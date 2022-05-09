@@ -30,3 +30,75 @@ pacman::p_load(dlookr, # Exploratory data analysis
                nycflights13, # Holds the flights data set
                tidyverse) # Powerful data wrangling package suite
 
+
+# load in the flights data
+data("flights")
+
+# HTML output of first six rows
+formattable(head(flights))
+
+# Alternative HTML with kableExtra
+flights %>% 
+  head() %>%
+  kableExtra::kbl() %>%
+  kableExtra::kable_styling()
+
+# Properties of the flights data set
+formattable(diagnose(flights))
+
+# Summary statistics of flights data set
+formattable(describe(flights))
+
+# Refined summary statistics table
+RefinedTable <- flights %>%
+  describe() %>%
+  select(variable, n, na, mean, sd, IQR)
+
+formattable(RefinedTable)
+
+
+# Describe categorical columns
+formattable(diagnose_category(flights))
+
+# Group level descriptive statistics
+GroupTable <- flights %>%
+  group_by(carrier) %>% 
+  select(carrier, dep_delay) %>%
+  describe()
+
+formattable(GroupTable)
+
+
+# Testing normality
+
+# Shapiro-Wilk test
+# NOTE: sample size must be > 20
+
+# departure delay, arrival delay, air time 
+FlightsNorm <- flights %>%
+  select(dep_delay, arr_delay, air_time)
+
+# Shapiro-Wilk test
+formattable(normality(FlightsNorm))
+
+# Q-Q plots 
+FlightsNorm %>%
+  plot_normality() 
+
+# Normality within groups
+NormCarrierTable <- flights %>%
+  group_by(carrier) %>%
+  select(carrier, dep_delay) %>%
+  normality()
+
+formattable(NormCarrierTable)
+
+# Grouped Q-Q plot
+flights %>%
+  group_by(carrier) %>%
+  select(carrier, dep_delay) %>%
+  plot_normality()
+
+# HTML in browser with interactive EDA report 
+eda_wed_report(FlightsNorm)
+
