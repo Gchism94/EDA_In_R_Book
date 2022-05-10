@@ -189,7 +189,7 @@ formattable(normality(FlightsNorm))
 
 ##### Q-Q plots
 Q-Q plots look at the quartiles of a target data set and plot it against predicted quartiles from a normal distribution
-* The 30% quartile and the 70% quartile
+
 ```{r}
 FlightsNorm %>%
 plot_normality(dep_delay, arr_delay, air_time)

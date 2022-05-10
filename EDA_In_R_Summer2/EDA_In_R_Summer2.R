@@ -100,5 +100,22 @@ flights %>%
   plot_normality()
 
 # HTML in browser with interactive EDA report 
-eda_wed_report(FlightsNorm)
+eda_web_report(FlightsNorm)
 
+# NOTE: possible error with 'forecast' package when running the eda_web_report() function
+# Use the following fix
+
+# WINDOWS
+# utils::setInternet2(TRUE)
+# options(download.file.method = "internal")
+
+# MAC OS X
+# options(download.file.method = "curl")
+
+# LINUX 
+# options(download.file.method = "wget")
+
+# install.packages("forecast")
+# library(forecast)
+
+# Then re-run the eda_web_report() function
