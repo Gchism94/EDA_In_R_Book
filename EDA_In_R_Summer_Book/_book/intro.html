@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -117,18 +180,19 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" id="toc-getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" class="nav-link active" data-scroll-target="#getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports"> <span class="header-section-number">1.1</span> Getting started with the dlookr R package: Exploring a novel data set and produce publication quality tables and reports</a>
+  <li><a href="#what-is-exploratory-data-analysis" id="toc-what-is-exploratory-data-analysis" class="nav-link active" data-scroll-target="#what-is-exploratory-data-analysis"> <span class="header-section-number">1.0.1</span> What is exploratory data analysis?</a></li>
+  <li><a href="#what-are-some-important-data-set-characteristics" id="toc-what-are-some-important-data-set-characteristics" class="nav-link" data-scroll-target="#what-are-some-important-data-set-characteristics"> <span class="header-section-number">1.1</span> <strong>What are some important data set characteristics?</strong></a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"> <span class="header-section-number">1.2</span> Diagnostics</a>
   <ul class="collapse">
-  <li><a href="#what-is-exploratory-data-analysis" id="toc-what-is-exploratory-data-analysis" class="nav-link" data-scroll-target="#what-is-exploratory-data-analysis"> <span class="header-section-number">1.1.1</span> What is exploratory data analysis?</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"> <span class="header-section-number">1.2.1</span> Variables</a></li>
+  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"> <span class="header-section-number">1.2.2</span> Types</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">1.2.3</span> Missing values</a></li>
   </ul></li>
-  <li><a href="#what-are-some-important-data-set-characteristics" id="toc-what-are-some-important-data-set-characteristics" class="nav-link" data-scroll-target="#what-are-some-important-data-set-characteristics"> <span class="header-section-number">1.2</span> <strong>What are some important data set characteristics?</strong></a></li>
-  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"> <span class="header-section-number">1.3</span> Diagnostics</a>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"> <span class="header-section-number">1.3</span> Summary Statistics</a>
   <ul class="collapse">
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"> <span class="header-section-number">1.3.1</span> Variables</a></li>
-  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"> <span class="header-section-number">1.3.2</span> Types</a></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">1.3.3</span> Missing values</a></li>
+  <li><a href="#central-tendency" id="toc-central-tendency" class="nav-link" data-scroll-target="#central-tendency"> <span class="header-section-number">1.3.1</span> Central Tendency</a></li>
+  <li><a href="#statistical-dispersion" id="toc-statistical-dispersion" class="nav-link" data-scroll-target="#statistical-dispersion"> <span class="header-section-number">1.3.2</span> Statistical Dispersion</a></li>
   </ul></li>
-  <li><a href="#summary-statistics-numerical-variables" id="toc-summary-statistics-numerical-variables" class="nav-link" data-scroll-target="#summary-statistics-numerical-variables"> <span class="header-section-number">1.4</span> Summary statistics: numerical variables</a></li>
   </ul>
 </nav>
     </div>
@@ -157,13 +221,11 @@ ul.task-list{list-style: none;}
 <p></p><figcaption class="figure-caption">Image Credit: Choonghyun Ryu</figcaption><p></p>
 </figure>
 </div>
-<section id="getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports"><span class="header-section-number">1.1</span> Getting started with the dlookr R package: Exploring a novel data set and produce publication quality tables and reports</h2>
 <p><a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">Exploratory data analysis</a> is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The <a href="https://en.wikipedia.org/wiki/R_(programming_language)">R programming language</a>, specifically through the <a href="https://en.wikipedia.org/wiki/RStudio">RStudio IDE</a>, is widely used open source platform for <a href="https://en.wikipedia.org/wiki/Data_analysis">data analysis</a> and <a href="https://en.wikipedia.org/wiki/Data_and_information_visualization">data visualization</a>. This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis <a href="https://arxiv.org/pdf/1904.02101.pdf">packages</a>, each of which have their own pros and cons.</p>
 <p>Here, we utilize the <a href="https://github.com/choonghyunryu/dlookr">dlookr package</a> to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data <a href="https://en.wikipedia.org/wiki/Outlier">outliers</a>, <a href="https://en.wikipedia.org/wiki/Missing_data">missing data</a>, as well as summary statistical reports.</p>
 <hr>
-<section id="what-is-exploratory-data-analysis" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="what-is-exploratory-data-analysis"><span class="header-section-number">1.1.1</span> What is exploratory data analysis?</h3>
+<section id="what-is-exploratory-data-analysis" class="level3" data-number="1.0.1">
+<h3 data-number="1.0.1" class="anchored" data-anchor-id="what-is-exploratory-data-analysis"><span class="header-section-number">1.0.1</span> What is exploratory data analysis?</h3>
 <p>Exploratory data analysis is a <a href="https://en.wikipedia.org/wiki/Statistics">statistical</a>, approach towards analyzing <a href="https://en.wikipedia.org/wiki/Data_set">data sets</a> to investigate and summarize their main characteristics, often through <a href="https://en.wikipedia.org/wiki/Statistical_graphics">statistical graphics</a> and other data visualization methods.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -172,75 +234,688 @@ ul.task-list{list-style: none;}
 </div>
 <hr>
 </section>
-</section>
-<section id="what-are-some-important-data-set-characteristics" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="what-are-some-important-data-set-characteristics"><span class="header-section-number">1.2</span> <strong>What are some important data set characteristics?</strong></h2>
+<section id="what-are-some-important-data-set-characteristics" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-are-some-important-data-set-characteristics"><span class="header-section-number">1.1</span> <strong>What are some important data set characteristics?</strong></h2>
 <p>There are several characteristics that are arguably important, but we will only consider those covered in this workshop.</p>
 </section>
-<section id="diagnostics" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">1.3</span> Diagnostics</h2>
+<section id="diagnostics" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">1.2</span> Diagnostics</h2>
 <p>When importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.</p>
 <hr>
-<section id="variables" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.3.1</span> Variables</h3>
+<section id="variables" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.2.1</span> Variables</h3>
 <p>Name of each variable</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+Pregnancies
+</th>
+<th style="text-align:right;">
+Glucose
+</th>
+<th style="text-align:right;">
+BloodPressure
+</th>
+<th style="text-align:right;">
+SkinThickness
+</th>
+<th style="text-align:right;">
+Insulin
+</th>
+<th style="text-align:right;">
+BMI
+</th>
+<th style="text-align:right;">
+DiabetesPedigreeFunction
+</th>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+Outcome
+</th>
+<th style="text-align:right;">
+Age_group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+148
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+33.6
+</td>
+<td style="text-align:right;">
+0.627
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+26.6
+</td>
+<td style="text-align:right;">
+0.351
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+23.3
+</td>
+<td style="text-align:right;">
+0.672
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+28.1
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Young
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+43.1
+</td>
+<td style="text-align:right;">
+2.288
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Young
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
 </section>
-<section id="types" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="types"><span class="header-section-number">1.3.2</span> Types</h3>
+<section id="types" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="types"><span class="header-section-number">1.2.2</span> Types</h3>
 <p>Data type of each variable</p>
-<section id="numerical-continuous" class="level4" data-number="1.3.2.1">
-<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="numerical-continuous"><span class="header-section-number">1.3.2.1</span> <strong>Numerical</strong>: Continuous</h4>
-<ul>
-<li>Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)</li>
-</ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variables
+</th>
+<th style="text-align:right;">
+types
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Pregnancies
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Glucose
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+BloodPressure
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+SkinThickness
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Insulin
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+BMI
+</td>
+<td style="text-align:right;">
+numeric
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DiabetesPedigreeFunction
+</td>
+<td style="text-align:right;">
+numeric
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Age
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Outcome
+</td>
+<td style="text-align:right;">
+integer
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Age_group
+</td>
+<td style="text-align:right;">
+factor
+</td>
+</tr>
+</tbody>
+
+</table>
 </div>
 </div>
-</section>
-<section id="numerical-discrete" class="level4" data-number="1.3.2.2">
-<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="numerical-discrete"><span class="header-section-number">1.3.2.2</span> <strong>Numerical</strong>: Discrete</h4>
-<ul>
-<li>Countable whole numbers or integers (e.g., number of successes or failures)</li>
-</ul>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="categorical-nominal" class="level4" data-number="1.3.2.3">
-<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="categorical-nominal"><span class="header-section-number">1.3.2.3</span> <strong>Categorical</strong>: Nominal</h4>
-<p>Labeling variables without any order or quantitative value (e.g., hair color, nationality)</p>
+<section id="numerical-continuous" class="level4" data-number="1.2.2.1">
+<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="numerical-continuous"><span class="header-section-number">1.2.2.1</span> <strong>Numerical</strong>: Continuous</h4>
+<p>Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="intro_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="ordinal" class="level4" data-number="1.3.2.4">
-<h4 data-number="1.3.2.4" class="anchored" data-anchor-id="ordinal"><span class="header-section-number">1.3.2.4</span> <strong>Ordinal</strong></h4>
-<p>Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)</p>
+<section id="numerical-discrete" class="level4" data-number="1.2.2.2">
+<h4 data-number="1.2.2.2" class="anchored" data-anchor-id="numerical-discrete"><span class="header-section-number">1.2.2.2</span> <strong>Numerical</strong>: Discrete</h4>
+<p>Countable whole numbers or integers (e.g., number of successes or failures)</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="intro_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<hr>
+</section>
+<section id="categorical-nominal" class="level4" data-number="1.2.2.3">
+<h4 data-number="1.2.2.3" class="anchored" data-anchor-id="categorical-nominal"><span class="header-section-number">1.2.2.3</span> <strong>Categorical</strong>: Nominal</h4>
+<p>Labeling variables without any order or quantitative value (e.g., hair color, nationality)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="categorical-ordinal" class="level4" data-number="1.2.2.4">
+<h4 data-number="1.2.2.4" class="anchored" data-anchor-id="categorical-ordinal"><span class="header-section-number">1.2.2.4</span> <strong>Categorical: Ordinal</strong></h4>
+<p>Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 </section>
-<section id="missing-values" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">1.3.3</span> Missing values</h3>
-<p>AKA NAs, representing cells, rows, or columns without data * Missing percent: percentage of missing values * Unique count: number of unique values * Unique rate: rate of unique value - unique count / total number of observations</p>
-<p><img src="https://statisticsglobe.com/wp-content/uploads/2018/08/Table-1-Example-Data-Frame-na.omit-Function-in-R.png" class="img-fluid"></p>
+<section id="missing-values" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">1.2.3</span> Missing values</h3>
+<p>AKA “NAs”, representing cells, rows, or columns without data * Missing percent: percentage of missing values * Unique count: number of unique values * Unique rate: rate of unique value - unique count / total number of observations</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">ifelse</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="fu">length</span>(.), <span class="at">replace =</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">as.character</span>(.), <span class="cn">NA</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  formattable<span class="sc">::</span><span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+Pregnancies
+</th>
+<th style="text-align:right;">
+Glucose
+</th>
+<th style="text-align:right;">
+BloodPressure
+</th>
+<th style="text-align:right;">
+SkinThickness
+</th>
+<th style="text-align:right;">
+Insulin
+</th>
+<th style="text-align:right;">
+BMI
+</th>
+<th style="text-align:right;">
+DiabetesPedigreeFunction
+</th>
+<th style="text-align:right;">
+Age
+</th>
+<th style="text-align:right;">
+Outcome
+</th>
+<th style="text-align:right;">
+Age_group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+148
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+33.6
+</td>
+<td style="text-align:right;">
+0.627
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+26.6
+</td>
+<td style="text-align:right;">
+0.351
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.672
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+28.1
+</td>
+<td style="text-align:right;">
+0.167
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Young
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+168
+</td>
+<td style="text-align:right;">
+43.1
+</td>
+<td style="text-align:right;">
+2.288
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Middle
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Young
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
 <hr>
 </section>
 </section>
-<section id="summary-statistics-numerical-variables" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="summary-statistics-numerical-variables"><span class="header-section-number">1.4</span> Summary statistics: numerical variables</h2>
+<section id="summary-statistics" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">1.3</span> Summary Statistics</h2>
+<p>Above we described some properties of data. However, you will need to know some descriptive characteristics of your data before you can move forward. Enter, <a href="https://en.wikipedia.org/wiki/Summary_statistics">summary statistics</a>.</p>
+<p>Summary statistics allow you to summarize large amounts of information about your data as quickly as possible.</p>
+<section id="central-tendency" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="central-tendency"><span class="header-section-number">1.3.1</span> Central Tendency</h3>
+<p>Measuring a central property of your data. Some examples you’ve probably heard of are:</p>
+<ul>
+<li><p>Mean: Average value</p></li>
+<li><p>Median: Middle value</p></li>
+<li><p>Mode: Most common value</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Notice however, that all values of central tendency can be pretty similar, such as in the top panel. This will become important when we discuss data transformations in Chapter 3.</p>
+</section>
+<section id="statistical-dispersion" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="statistical-dispersion"><span class="header-section-number">1.3.2</span> Statistical Dispersion</h3>
+<p>Measure of data variability, scatter, or spread. Some examples you may have heard of:</p>
+<ul>
+<li><p>Standard deviation (SD): The amount of variation that occurs in a set of values.</p></li>
+<li><p>Interquartile range (IQR): The difference between the 75th and 25th percentiles</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#4E84C4"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(BMI) <span class="sc">-</span> <span class="fu">sd</span>(BMI)), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(BMI) <span class="sc">+</span> <span class="fu">sd</span>(BMI)), <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">30</span>, <span class="at">yend =</span> <span class="dv">30</span>, <span class="at">x =</span> <span class="fu">mean</span>(BMI) <span class="sc">-</span> <span class="fu">sd</span>(BMI) <span class="sc">+</span> <span class="dv">1</span>, <span class="at">xend =</span> <span class="fu">mean</span>(BMI) <span class="sc">+</span> <span class="fu">sd</span>(BMI) <span class="sc">-</span> <span class="dv">1</span>), <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">30</span>, <span class="at">x =</span> <span class="fu">mean</span>(BMI)), <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">32</span>, <span class="at">yend =</span> <span class="dv">45</span>, <span class="at">x =</span> <span class="fu">mean</span>(BMI) <span class="sc">+</span> <span class="fl">1.5</span>, <span class="at">xend =</span> <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">30</span>, <span class="at">yend =</span> <span class="dv">35</span>, <span class="at">x =</span> <span class="fu">mean</span>(BMI) <span class="sc">+</span> <span class="fu">sd</span>(BMI), <span class="at">xend =</span> <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">54</span>, <span class="at">y =</span> <span class="dv">45</span>, <span class="at">label =</span> <span class="st">"Mean"</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">52.5</span>, <span class="at">y =</span> <span class="dv">35</span>, <span class="at">label =</span> <span class="st">"SD"</span>, <span class="at">size =</span> <span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
