@@ -132,7 +132,7 @@ The above is pretty overwhelming, and most people don't care about percentiles o
 # Summary statistics, selecting the desired ones
 RefinedTable <- flights %>%
   describe() %>%
-  select(variable, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75)
+  select(described_variables, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75)
 
 formattable(RefinedTable)
 ```
@@ -158,7 +158,7 @@ GroupTable <- flights %>%
   group_by(carrier) %>%
   select(carrier, dep_delay, arr_delay, air_time) %>%
   describe() %>%
-  select(variable, carrier, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75)
+  select(described_variables, carrier, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75)
 
 formattable(GroupTable)
 ```
