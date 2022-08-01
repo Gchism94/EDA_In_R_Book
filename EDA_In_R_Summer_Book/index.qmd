@@ -1,0 +1,35 @@
+# Preface {.unnumbered}
+
+## Welcome to the UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!
+
+![Image credit: RStudio is a trademark of Posit, PBC](images/DSI_RStudio_Stats.jpg)
+
+------------------------------------------------------------------------
+
+Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the [Data Science Institute](https://datascience.arizona.edu/)
+
+------------------------------------------------------------------------
+
+## [Exploratory data analysis in R - Diagnosing like a data doctor](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1)
+
+### Purpose of workshop
+
+Exploring a novel data set and produce publication quality tables and reports
+
+------------------------------------------------------------------------
+
+## [Exploratory data analysis in R - Exploring like a data adventurer](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2)
+
+### Purpose of the workshop
+
+Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports
+
+------------------------------------------------------------------------
+
+[Visit our available Digital Learning Resources Library!](https://github.com/ua-data7/LearningResources/wiki)
+
+------------------------------------------------------------------------
+
+Created: 07/22/2022 (G. Chism); Last up date: 07/22/2022
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CC_BY-NC-SA.svg/800px-CC_BY-NC-SA.svg.png?20181117113353" width="150" height="50"/> [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)

@@ -1,0 +1,117 @@
+# Introduction
+
+![Image Credit: Choonghyun Ryu](https://choonghyunryu.github.io/dlookr/figures/detective_2.png){fig-align="left" width="214" height="238"}
+
+## Getting started with the dlookr R package: Exploring a novel data set and produce publication quality tables and reports
+
+[Exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The [R programming language](https://en.wikipedia.org/wiki/R_(programming_language)), specifically through the [RStudio IDE](https://en.wikipedia.org/wiki/RStudio), is widely used open source platform for [data analysis](https://en.wikipedia.org/wiki/Data_analysis) and [data visualization](https://en.wikipedia.org/wiki/Data_and_information_visualization). This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis [packages](https://arxiv.org/pdf/1904.02101.pdf), each of which have their own pros and cons.
+
+Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data [outliers](https://en.wikipedia.org/wiki/Outlier), [missing data](https://en.wikipedia.org/wiki/Missing_data), as well as summary statistical reports.
+
+------------------------------------------------------------------------
+
+### What is exploratory data analysis?
+
+Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
+
+```{r, echo = FALSE, message = FALSE}
+pacman::p_load(colorblindr, colorspace, GGally, ggpubr, here, tidyverse)
+
+theme_set(theme_pubclean(base_size = 16))
+
+dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
+  mutate(Age_group = ifelse(Age >=21 & Age <= 30, "Young", 
+                            ifelse(Age > 30 & Age <=50, "Middle", 
+                                   "Elderly")),
+         Age_group = fct_rev(Age_group))
+
+dataset |> 
+  select(Age_group, Glucose, Insulin, BMI) |>
+  ggpairs(aes(color = Age_group, alpha = 0.5)) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_blank()) + 
+  scale_fill_OkabeIto()
+```
+
+------------------------------------------------------------------------
+
+## **What are some important data set characteristics?**
+
+There are several characteristics that are arguably important, but we will only consider those covered in this workshop.
+
+## Diagnostics
+
+When importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.
+
+------------------------------------------------------------------------
+
+### Variables
+
+Name of each variable
+
+### Types
+
+Data type of each variable
+
+#### **Numerical**: Continuous
+
+-   Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)
+
+```{r, echo = FALSE, message = FALSE}
+dataset |> 
+  ggplot(aes(x = BMI)) +
+  geom_line(stat = "bin", binwidth = 5, color = "#4E84C4", size = 2)
+```
+
+#### **Numerical**: Discrete
+
+-   Countable whole numbers or integers (e.g., number of successes or failures)
+
+```{r, echo = FALSE, message = FALSE}
+dataset |> 
+  ggplot(aes(x = Outcome, group = Age_group, fill = Age_group)) +
+  geom_histogram(position = position_dodge2(), binwidth = 1) +
+  guides(fill = guide_legend(title = "Age Group")) +
+  theme(axis.ticks = element_blank()) +
+  scale_x_continuous(labels = c("", "0", "", "1", "")) +
+  scale_fill_OkabeIto()
+```
+
+------------------------------------------------------------------------
+
+#### **Categorical**: Nominal
+
+Labeling variables without any order or quantitative value (e.g., hair color, nationality)
+
+```{r, echo = FALSE, message = FALSE}
+dataset |> 
+  mutate(Outcome = ifelse(Outcome == "0", "No", "Yes")) |>
+  ggplot(aes(x = Outcome, y = BMI, color = Outcome)) +
+  geom_jitter(size = 2, alpha = 0.75, width = 0.1) +
+  theme(legend.position = "none") +
+  scale_color_OkabeIto()
+```
+
+#### **Ordinal**
+
+Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)
+
+```{r, echo = FALSE, message = FALSE}
+dataset |> 
+  ggplot(aes(x = Age_group, y = BMI, color = Age_group)) +
+  geom_jitter(size = 2, alpha = 0.75, width = 0.1) +
+  xlab("Age group") +
+  theme(legend.position = "none") +
+  scale_color_OkabeIto()
+```
+
+### Missing values
+
+AKA NAs, representing cells, rows, or columns without data \* Missing percent: percentage of missing values \* Unique count: number of unique values \* Unique rate: rate of unique value - unique count / total number of observations
+
+![](https://statisticsglobe.com/wp-content/uploads/2018/08/Table-1-Example-Data-Frame-na.omit-Function-in-R.png)
+
+------------------------------------------------------------------------
+
+## Summary statistics: numerical variables

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exploratory Data Analysis In R Workshops Companion Book - 1&nbsp; Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Exploratory Data Analysis In R Workshops Companion Book</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" id="toc-getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" class="nav-link active" data-scroll-target="#getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports"> <span class="header-section-number">1.1</span> Getting started with the dlookr R package: Exploring a novel data set and produce publication quality tables and reports</a>
+  <ul class="collapse">
+  <li><a href="#what-is-exploratory-data-analysis" id="toc-what-is-exploratory-data-analysis" class="nav-link" data-scroll-target="#what-is-exploratory-data-analysis"> <span class="header-section-number">1.1.1</span> What is exploratory data analysis?</a></li>
+  </ul></li>
+  <li><a href="#what-are-some-important-data-set-characteristics" id="toc-what-are-some-important-data-set-characteristics" class="nav-link" data-scroll-target="#what-are-some-important-data-set-characteristics"> <span class="header-section-number">1.2</span> <strong>What are some important data set characteristics?</strong></a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics"> <span class="header-section-number">1.3</span> Diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"> <span class="header-section-number">1.3.1</span> Variables</a></li>
+  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types"> <span class="header-section-number">1.3.2</span> Types</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"> <span class="header-section-number">1.3.3</span> Missing values</a></li>
+  </ul></li>
+  <li><a href="#summary-statistics-numerical-variables" id="toc-summary-statistics-numerical-variables" class="nav-link" data-scroll-target="#summary-statistics-numerical-variables"> <span class="header-section-number">1.4</span> Summary statistics: numerical variables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://choonghyunryu.github.io/dlookr/figures/detective_2.png" width="214" height="238" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Image Credit: Choonghyun Ryu</figcaption><p></p>
+</figure>
+</div>
+<section id="getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="getting-started-with-the-dlookr-r-package-exploring-a-novel-data-set-and-produce-publication-quality-tables-and-reports"><span class="header-section-number">1.1</span> Getting started with the dlookr R package: Exploring a novel data set and produce publication quality tables and reports</h2>
+<p><a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">Exploratory data analysis</a> is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The <a href="https://en.wikipedia.org/wiki/R_(programming_language)">R programming language</a>, specifically through the <a href="https://en.wikipedia.org/wiki/RStudio">RStudio IDE</a>, is widely used open source platform for <a href="https://en.wikipedia.org/wiki/Data_analysis">data analysis</a> and <a href="https://en.wikipedia.org/wiki/Data_and_information_visualization">data visualization</a>. This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis <a href="https://arxiv.org/pdf/1904.02101.pdf">packages</a>, each of which have their own pros and cons.</p>
+<p>Here, we utilize the <a href="https://github.com/choonghyunryu/dlookr">dlookr package</a> to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data <a href="https://en.wikipedia.org/wiki/Outlier">outliers</a>, <a href="https://en.wikipedia.org/wiki/Missing_data">missing data</a>, as well as summary statistical reports.</p>
+<hr>
+<section id="what-is-exploratory-data-analysis" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="what-is-exploratory-data-analysis"><span class="header-section-number">1.1.1</span> What is exploratory data analysis?</h3>
+<p>Exploratory data analysis is a <a href="https://en.wikipedia.org/wiki/Statistics">statistical</a>, approach towards analyzing <a href="https://en.wikipedia.org/wiki/Data_set">data sets</a> to investigate and summarize their main characteristics, often through <a href="https://en.wikipedia.org/wiki/Statistical_graphics">statistical graphics</a> and other data visualization methods.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="what-are-some-important-data-set-characteristics" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="what-are-some-important-data-set-characteristics"><span class="header-section-number">1.2</span> <strong>What are some important data set characteristics?</strong></h2>
+<p>There are several characteristics that are arguably important, but we will only consider those covered in this workshop.</p>
+</section>
+<section id="diagnostics" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="diagnostics"><span class="header-section-number">1.3</span> Diagnostics</h2>
+<p>When importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.</p>
+<hr>
+<section id="variables" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.3.1</span> Variables</h3>
+<p>Name of each variable</p>
+</section>
+<section id="types" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="types"><span class="header-section-number">1.3.2</span> Types</h3>
+<p>Data type of each variable</p>
+<section id="numerical-continuous" class="level4" data-number="1.3.2.1">
+<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="numerical-continuous"><span class="header-section-number">1.3.2.1</span> <strong>Numerical</strong>: Continuous</h4>
+<ul>
+<li>Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="numerical-discrete" class="level4" data-number="1.3.2.2">
+<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="numerical-discrete"><span class="header-section-number">1.3.2.2</span> <strong>Numerical</strong>: Discrete</h4>
+<ul>
+<li>Countable whole numbers or integers (e.g., number of successes or failures)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="categorical-nominal" class="level4" data-number="1.3.2.3">
+<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="categorical-nominal"><span class="header-section-number">1.3.2.3</span> <strong>Categorical</strong>: Nominal</h4>
+<p>Labeling variables without any order or quantitative value (e.g., hair color, nationality)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="ordinal" class="level4" data-number="1.3.2.4">
+<h4 data-number="1.3.2.4" class="anchored" data-anchor-id="ordinal"><span class="header-section-number">1.3.2.4</span> <strong>Ordinal</strong></h4>
+<p>Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="missing-values" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">1.3.3</span> Missing values</h3>
+<p>AKA NAs, representing cells, rows, or columns without data * Missing percent: percentage of missing values * Unique count: number of unique values * Unique rate: rate of unique value - unique count / total number of observations</p>
+<p><img src="https://statisticsglobe.com/wp-content/uploads/2018/08/Table-1-Example-Data-Frame-na.omit-Function-in-R.png" class="img-fluid"></p>
+<hr>
+</section>
+</section>
+<section id="summary-statistics-numerical-variables" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="summary-statistics-numerical-variables"><span class="header-section-number">1.4</span> Summary statistics: numerical variables</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
