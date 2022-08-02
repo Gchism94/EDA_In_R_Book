@@ -1,0 +1,416 @@
+---
+title: "Advanced EDA in R"
+author: "Greg Chism"
+date: "3/28/2022"
+output: 
+  html_document: 
+    theme: readable
+    toc: yes
+---
+
+
+```{r setup, include = FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Purpose of workshop
+__Exploring and visualizing a novel data set and produce publication quality graphs and tables__ 
+
+***
+
+## Objectives
+1. Load and explore a data set with publication quality tables
+2. Thoroughly diagnose outliers and missing values 
+3. Impute outliers and missing values
+
+***
+
+#### Required setup 
+We first need to prepare our environment with the necessary packages and set a global theme for publishable plots in ggplot()
+```{r}
+options(repos = list(CRAN = "http://cran.rstudio.com/"))
+options(digits = 2)
+
+install.packages("pacman")
+
+pacman::p_load(dlookr,
+       formattable,
+       ggdist,
+       ggpubr,
+       ggridges,
+       kableExtra,
+       knitr,
+       papeR,
+       plotly,
+       RColorBrewer,
+       Stat2Data,
+       tidyverse,
+       visdat)
+
+theme_set(theme_pubr())
+```
+
+***
+
+### 1.0 Load and examine a data set
+```{r}
+# Let's load a data set from the Hawks data set
+data("Hawks")
+
+# What does the data look like?
+formattable(head(Hawks))
+```
+
+***
+
+#### 1.1 Diagnose your data
+```{r}
+# What are the properties of the data
+formattable(diagnose(Hawks))
+```
+* `variables`: name of each variable
+* `types`: data type of each variable
+* `missing_count`: number of missing values 
+* `missing_percent`: percentage of missing values 
+* `unique_count`: number of unique values
+* `unique_rate`: rate of unique value - unique_count / number of observations
+
+***
+#### Box plot
+![](https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png) 
+_(c) Cédric Scherer_
+
+
+***
+
+#### Skewness
+![](https://aakinshin.net/posts/misleading-skewness/img/skew_intro-dark.png)
+_(c) Andrey Akinshin_
+
+***
+
+__BEWARE__
+
+* “Skewness” has multiple definitions. Several underlying equations mey be at play
+* Skewness is “designed” for distributions with one peak (_unimodal_); it’s meaningless for distributions with multiple peaks (_multimodal_).
+* Most default skewness definitions are not robust: a single outlier could completely distort the skewness value.
+* We can’t make conclusions about the locations of the mean and the median based on the skewness sign.
+
+***
+
+#### Kurtosis
+![](https://aakinshin.net/posts/misleading-kurtosis/img/kurt_intro-dark.png)
+_(c) Andrey Akinshin_
+
+***
+
+__BEWARE__
+
+* There are multiple definitions of kurtosis - i.e., “kurtosis” and “excess kurtosis,” but there are other definitions of this measure.
+* Kurtosis may work fine for distributions with one peak (_unimodal_); it’s meaningless for distributions with multiple peaks (_multimodal_).
+* The classic definition of kurtosis is not robust: it could be easily spoiled by extreme outliers.
+
+***
+
+#### 1.2 Describe your continuous data
+```{r}
+# Summary statistics 
+formattable(describe(Hawks))
+```
+* `n` : number of observations excluding missing values
+* `na` : number of missing values
+* `mean` : arithmetic average
+* `sd` : standard deviation
+* `se_mean` : standard error mean. sd/sqrt(n)
+* `IQR` : interquartile range (Q3-Q1)
+* `skewness` : skewness
+* `kurtosis` : kurtosis
+* `p25` : Q1. 25% percentile
+* `p50` : median. 50% percentile
+* `p75` : Q3. 75% percentile
+* `p01`, `p05`, `p10`, `p20`, `p30` : 1%, 5%, 20%, 30% percentiles
+* `p40`, `p60`, `p70`, `p80` : 40%, 60%, 70%, 80% percentiles
+* `p90`, `p95`, `p99`, `p100` : 90%, 95%, 99%, 100% percentiles
+
+***
+
+#### 1.3 Describe your continuous data: refined
+The above is pretty overwhelming, and most people don't care about percentiles outside of Q1, Q3, and the median (Q2). 
+```{r}
+# Summary statistics, selecting the desired ones
+RefinedTable <- Hawks %>%
+  describe() %>%
+  select(variable, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75)
+
+formattable(RefinedTable)
+```
+
+
+#### 1.4 Describe categorical variables
+```{r}
+formattable(diagnose_category(Hawks))
+```
+* `variables`: category names
+* `levels`: group names within categories
+* `N`: number of observation
+* `freq`: number of observation at group level / number of observation at category level
+* `ratio`: percentage of observation at group level / number of observation at category level
+* `rank`: rank of the occupancy ratio of levels (order in which the groups are in the category)
+
+*** 
+
+### 2.0 Thorough ourlier & missing value diagnosis
+* Diagnose outliers 
+* Basic NA diagnosis: showing columns with NAs and rating them 
+* Advanced NA diagnosis: 
+
+#### 2.1 Diagnose outliers
+There are several numerical variables that have outliers above, let's see what the data look like with and without them
+* Create a table with columns containing outliers
+* Plot outliers in a box plot and histogram
+```{r}
+# Table showing outliers
+formattable(diagnose_outlier(Hawks) %>%
+  filter(outliers_ratio > 0)) %>%  
+  mutate(rate = outliers_mean / with_mean) %>% 
+  arrange(desc(rate)) %>% 
+  select(-outliers_cnt)
+
+# Boxplot and histograms of data with and without outliers
+Hawks %>%
+  select(find_outliers(Hawks)) %>%
+           plot_outlier()
+```
+
+***
+
+#### 2.2 Basic exploration of missing values (NAs)
+* Table showing the extent of NAs in columns containing them
+* Plots showing the frequency of missing values
+```{r, output.width = "100%"}
+# Create the NA table
+NA.Table <- plot_na_pareto(Hawks, only_na = TRUE, plot = FALSE) 
+
+# Publishable table
+formattable(NA.Table)
+
+# Plot the insersect of the columns with missing values
+# This plot visualizes the table above
+plot_na_pareto(Hawks, only_na = TRUE)
+```
+
+***
+
+#### 2.3 Advanced exploration of missing values (NAs)
+* Intersect plot that shows, for every combination of columns relevant, how many missing values are common
+* Orange boxes are the columns in question
+* x axis (top green bar plots) show the number of missing values in that column
+* y axis (right green bars) show the number of missing values in the columns in orange blocks
+```{r}
+# Plot the insersect of the 5 columns with the most missing values
+# This means that some combinations of columns have missing values in the same row
+plot_na_intersect(Hawks, only_na = TRUE, n_vars = 5, n_intersacts = 5) 
+```
+
+***
+
+#### 2.4 Determining if NA observations are the same
+* Missing values can be the same observation across several columns, this is not shown above
+* The visdat package can solve this with the vis_miss() function which shows the rows with missing values through plotly() 
+* Here we will show ALL columns with NAs, and you can zoom into individual rows (interactive plot)
+* NOTE: This line will make the HTML rendering take a while... 
+```{r}
+#Hawks %>%
+ #select(Tarsus, WingPitFat, Crop, KeelFat, StandardTail) %>%
+ #vis_miss() %>%
+ #ggplotly() 
+```
+
+***
+
+### 3.0 Impute outliers and NAs
+Removing outliers and NAs is tricky, but there are methods to do so. I will go over several, and discuss benefits and costs to each. 
+
+The principle goal for all imputation is to find the method that does not change the distribution too much (or oddly). 
+
+***
+
+NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data.  
+ 
+***
+
+#### 3.1 Classifying outliers
+Before imputing outliers, you will want to diagnose whether it's they are natural outliers or not. We will not be looking at "Crop" for example, because there are several NAs, which we will impute below. We can however look at Hallux and KeelFat. 
+
+```{r}
+# Box plot
+Hawks %>% # Set the simulated normal data as a data frame
+  ggplot(aes(x = Hallux, y = Species, fill = Species)) + # Create a ggplot
+  geom_boxplot(width = 0.5) +
+  xlab("Hallux length (mm)") +  # Relabel the x axis label
+  ylab(NULL) + # Remove the y axis label
+  scale_fill_brewer(palette = "Dark2") + # Change the color scheme for the fill criteria
+  theme(legend.position = "none") + # Remove the legend 
+  xlim(0, 50)
+```
+
+Now let's say that we want to impute extreme values and remove outliers that don't make sense, such as Hallux lengths > 50 mm: can you imagine a hawk tallon that's over 300mm?.. 
+
+Method of imputation using imputate_outlier():
+We remove outliers and replace them with values that are estimates based on the existing data
+* `mean`: arithmetic mean
+* `median`: median
+* `mode`: mode
+* `capping`: Impute the upper outliers with 95 percentile, and impute the bottom outliers with 5 percentile - aka Winsorizing 
+
+#### Mean imputation
+The mean of the observed values for each variable is computed and the outliers for that variable are imputed by this mean
+```{r, results = 'hide'}
+# Raw summary, output suppressed
+Hawks_Hallux <- Hawks %>% 
+  select(Hallux) %>%
+  filter(Hallux > 50)
+
+out_hawks_mean <- imputate_outlier(Hawks_Hallux, Hallux, method = "mean")
+
+out_hawks_mean_table <- summary(out_hawks_mean)
+```
+
+```{r, results = 'hide'}
+# Results table: mean imputation of outliers
+kable(out_hawks_mean_table) %>%
+  kable_styling()
+```
+
+```{r}
+# Visualization of the mean imputation
+plot(out_hawks_mean)
+```
+
+#### Median imputation
+The median of the observed values for each variable is computed and the outliers for that variable are imputed by this median
+
+```{r, results = 'hide'}
+# Raw summary, output suppressed
+Hawks_Hallux <- Hawks %>% 
+  select(Hallux) %>%
+  filter(Hallux > 50)
+
+out_hawks_median <- imputate_outlier(Hawks_Hallux, Hallux, method = "median")
+
+out_hawks_median_table <- summary(out_hawks_median)
+```
+
+```{r, results = 'hide'}
+# Results table: median imputation of outliers
+kable(out_hawks_median_table) %>%
+  kable_styling()
+```
+
+```{r}
+# Visualization of the median imputation
+plot(out_hawks_median)
+```
+
+***
+
+#### Pros & cons of using the mean / median imputation
+__Pros__:
+
+* Easy and fast.
+* Works well with small numerical datasets.
+
+__Cons__:
+
+* Doesn’t factor the correlations between features. It only works on the column level.
+* Will give poor results on encoded categorical features (do NOT use it on categorical features).
+* Not very accurate.
+* Doesn’t account for the uncertainty in the imputations.
+
+***
+
+#### Mode imputation
+The mode of the observed values for each variable is computed and the outliers for that variable are imputed by this mode
+
+```{r, results = 'hide'}
+# Raw summary, output suppressed
+Hawks_Hallux <- Hawks %>% 
+  select(Hallux) %>%
+  filter(Hallux > 50)
+
+out_hawks_mode <- imputate_outlier(Hawks_Hallux, Hallux, method = "mode")
+
+out_hawks_mode_table <- summary(out_hawks_mode)
+```
+
+```{r, results = 'hide'}
+# Results table: mode imputation of outliers
+kable(out_hawks_mode_table) %>%
+  kable_styling()
+```
+
+```{r}
+# Visualization of the mode imputation
+plot(out_hawks_mode)
+```
+
+***
+
+#### Pros & cons of using the mean / median imputation
+
+__Pros__:
+
+* Works well with categorical features.
+
+__Cons__:
+
+* It also doesn’t factor the correlations between features.
+
+* It can introduce bias in the data.
+
+*** 
+
+#### Capping imputation (aka Winsorizing)
+The Percentile Capping is a method of Imputing the Outlier values by replacing those observations outside the lower limit with the value of 5th percentile and those that lie above the upper limit, with the value of 95th percentile of the same dataset.
+
+```{r, results = 'hide'}
+# Raw summary, output suppressed
+Hawks_Hallux <- Hawks %>% 
+  select(Hallux) %>%
+  filter(Hallux > 50)
+
+out_hawks_cap <- imputate_outlier(Hawks_Hallux, Hallux, method = "capping")
+
+out_hawks_cap_table <- summary(out_hawks_cap)
+```
+
+```{r, results = 'hide'}
+# Results table: capping imputation of outliers
+kable(out_hawks_cap_table) %>%
+  kable_styling()
+```
+
+```{r}
+# Visualization of the capping imputation
+plot(out_hawks_cap)
+```
+
+***
+#### Pros and cons of capping 
+
+__Pros__:
+
+* Not influenced by extreme values
+
+__Cons__:
+* Capping only modifies the smallest and largest values slightly. This is generally not a good idea since it means we’re just modifying data values for the sake of modifications.
+* If no extreme outliers are present, winsorization may be unnecessary.
+
+***
+
+#### Imputing NAs
+I will only be addressing three types of NA imputation (but note you can use mean, median, and mode as well):
+1. `knn`: K-nearest neighbors
+2. `rpart`: Recursive Partitioning and Regression Trees (rpart)
+3. `mice`: Multivariate Imputation by Chained Equations (Mice)
+
