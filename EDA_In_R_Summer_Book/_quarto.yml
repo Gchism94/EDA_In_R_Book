@@ -8,8 +8,8 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - EDA_In_R_Summer1.qmd
+    - EDA_In_R_Summer2.qmd
 
 bibliography: references.bib
 

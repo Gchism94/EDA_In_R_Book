@@ -1,0 +1,245 @@
+# Exploratory Data Analysis in R - Exploring Like a Data Adventurer
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Purpose of Workshop
+
+**Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports**
+
+------------------------------------------------------------------------
+
+## Objectives
+
+1.  Using summary statistics to better understand individual columns in a data set.
+2.  Assessing data normality in numerical columns.
+3.  Producing a publishable HTML with summary statistics and normality tests for columns within a data set.
+
+------------------------------------------------------------------------
+
+## Required Setup
+
+We first need to prepare our environment with the necessary packages
+
+```{r, results = 'hide'}
+options(repos = list(CRAN = "http://cran.rstudio.com/"))
+options(digits = 2)
+
+install.packages("pacman")
+
+pacman::p_load(dlookr, # Exploratory data analysis
+               formattable, # HTML tables from R outputs
+               here, # Standardizes paths to data
+               kableExtra, # Alternative to formattable
+               knitr, # Needed to write HTML reports
+               tidyverse) # Powerful data wrangling package suite
+```
+
+------------------------------------------------------------------------
+
+### Load and Examine a Data Set
+
+```{r}
+# Let's load a data set from the flights data set
+dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
+  # Add a categorical group
+  mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
+                            ifelse(Age > 30 & Age <=50, "Middle", 
+                                   "Elderly")),
+         Age_group = fct_rev(Age_group))
+
+# What does the data look like?
+formattable(head(dataset))
+```
+
+------------------------------------------------------------------------
+
+## Diagnose your Data
+
+```{r}
+# What are the properties of the data
+formattable(diagnose(dataset))
+```
+
+-   `variables`: name of each variable
+-   `types`: data type of each variable
+-   `missing_count`: number of missing values
+-   `missing_percent`: percentage of missing values
+-   `unique_count`: number of unique values
+-   `unique_rate`: rate of unique value - unique_count / number of observations
+
+------------------------------------------------------------------------
+
+### Box Plot
+
+![Image Credit: [CÉDRIC SCHERER](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/)](https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png){alt="Image Credit: CÉDRIC SCHERER" fig-alt="Boxplot showing the IQR, lower and upper quartiles, median, and outliers"}
+
+------------------------------------------------------------------------
+
+### Skewness
+
+![(c) [Andrey Akinshin](https://aakinshin.net/posts/misleading-skewness/)](https://aakinshin.net/posts/misleading-skewness/img/skew_intro-dark.png)
+
+------------------------------------------------------------------------
+
+#### **NOTE**
+
+-   "Skewness" has multiple definitions. Several underlying equations mey be at play
+-   Skewness is "designed" for distributions with one peak (*unimodal*); it's meaningless for distributions with multiple peaks (*multimodal*).
+-   Most default skewness definitions are not robust: a single outlier could completely distort the skewness value.
+-   We can't make conclusions about the locations of the mean and the median based on the skewness sign.
+
+------------------------------------------------------------------------
+
+### Kurtosis
+
+![(c) [Andrey Akinshin](https://aakinshin.net/posts/misleading-kurtosis/)](https://aakinshin.net/posts/misleading-kurtosis/img/kurt_intro-dark.png)
+
+------------------------------------------------------------------------
+
+**NOTE**
+
+-   There are multiple definitions of kurtosis - i.e., "kurtosis" and "excess kurtosis," but there are other definitions of this measure.
+-   Kurtosis may work fine for distributions with one peak (*unimodal*); it's meaningless for distributions with multiple peaks (*multimodal*).
+-   The classic definition of kurtosis is not robust: it could be easily spoiled by extreme outliers.
+
+------------------------------------------------------------------------
+
+## Describe your Continuous Data
+
+```{r}
+# Summary statistics 
+dataset |>
+  describe() |>
+  formattable()
+```
+
+-   `n` : number of observations excluding missing values
+-   `na` : number of missing values
+-   `mean` : arithmetic average
+-   `sd` : standard deviation
+-   `se_mean` : standard error mean. sd/sqrt(n)
+-   `IQR` : interquartile range (Q3-Q1)
+-   `skewness` : skewness
+-   `kurtosis` : kurtosis
+-   `p25` : Q1. 25% percentile
+-   `p50` : median. 50% percentile
+-   `p75` : Q3. 75% percentile
+-   `p01`, `p05`, `p10`, `p20`, `p30` : 1%, 5%, 20%, 30% percentiles
+-   `p40`, `p60`, `p70`, `p80` : 40%, 60%, 70%, 80% percentiles
+-   `p90`, `p95`, `p99`, `p100` : 90%, 95%, 99%, 100% percentiles
+
+------------------------------------------------------------------------
+
+### Describe your Continuous Data: Refined
+
+The above is pretty overwhelming, and most people don't care about percentiles outside of Q1, Q3, and the median (Q2).
+
+```{r}
+# Summary statistics, selecting the desired ones
+dataset %>%
+  describe() %>%
+  select(described_variables, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75) |>
+  formattable()
+```
+
+------------------------------------------------------------------------
+
+## Describe Categorical Variables
+
+```{r}
+dataset |>
+  diagnose_category() |>
+  formattable()
+```
+
+-   `variables`: category names
+-   `levels`: group names within categories
+-   `N`: number of observation
+-   `freq`: number of observation at group level / number of observation at category level
+-   `ratio`: percentage of observation at group level / number of observation at category level
+-   `rank`: rank of the occupancy ratio of levels (order in which the groups are in the category)
+
+------------------------------------------------------------------------
+
+### Group Descriptive Statistics
+
+```{r}
+dataset |>
+  group_by(Age_group) |>
+  select(Glucose, Insulin, BMI, SkinThickness) |>
+  describe() |>
+  select(described_variables, Age_group, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75) |>
+  formattable()
+```
+
+------------------------------------------------------------------------
+
+## Testing Normality
+
+-   Shapiro-Wilk test & Q-Q plots
+-   Testing overall normality of two columns
+-   Testing normality of groups
+
+------------------------------------------------------------------------
+
+### Normality of Columns
+
+------------------------------------------------------------------------
+
+#### Shapiro-Wilk Test
+
+Shapiro-Wilk test looks at whether a target distribution is sample form a normal distribution
+
+```{r}
+dataset |>
+  select(Glucose, Insulin, BMI, SkinThickness) |>
+  normality() |>
+  formattable()
+```
+
+------------------------------------------------------------------------
+
+#### Q-Q Plots
+
+Plots of the quartiles of a target data set and plot it against predicted quartiles from a normal distribution
+
+```{r}
+dataset |>
+plot_normality(Glucose, Insulin, BMI, SkinThickness)
+```
+
+------------------------------------------------------------------------
+
+### Normality within Groups
+
+Looking within Age_group at the subgroup normality
+
+#### Shapiro-Wilk Test
+
+```{r}
+dataset %>%
+  group_by(Age_group) %>%
+  select(Glucose, Insulin) %>%
+  normality() |>
+  formattable()
+```
+
+#### Q-Q Plots
+
+```{r}
+dataset %>%
+  group_by(Age_group) %>%
+  select(Glucose, Insulin) %>%
+  plot_normality()
+```
+
+------------------------------------------------------------------------
+
+## Produce an HTML normality summary of a data set
+
+```{r}
+# Remove the '#' below to reproduce an HTML from an R script. 
+#eda_web_report(dataset)
+```

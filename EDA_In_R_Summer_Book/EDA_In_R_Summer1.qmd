@@ -1,0 +1,189 @@
+# Exploratory Data Analysis in R - Diagnosing Like a Data Doctor
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+## Purpose of workshop
+
+**Exploring a novel data set and produce publication quality tables and reports**
+
+------------------------------------------------------------------------
+
+## Objectives
+
+1.  Load and explore a data set with publication quality tables
+2.  Diagnose outliers and missing values in a data set
+3.  Prepare an HTML summary report showcasing properties of a data set
+
+------------------------------------------------------------------------
+
+## Required Setup
+
+We first need to prepare our environment with the necessary packages
+
+```{r, results = 'hide', message = FALSE, warning = FALSE}
+
+# Sets the number of significant figures to two - e.g., 0.01
+options(digits = 2)
+
+# Required package for quick package downloading and loading 
+install.packages("pacman")
+
+# Downloads and load required packages
+pacman::p_load(dlookr, # Exploratory data analysis
+               formattable, # HTML tables from R outputs
+               here, # Standardizes paths to data
+               kableExtra, # Alternative to formattable
+               knitr, # Needed to write HTML reports
+               tidyverse) # Powerful data wrangling package suite
+```
+
+------------------------------------------------------------------------
+
+### Load and Examine a Data Set
+
+-   Load data and view
+-   Examine columns and data types
+-   Define box plots
+-   Describe meta data
+
+```{r}
+# Let's load a data set from the flights data set
+dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
+  # Add a categorical group
+  mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
+                            ifelse(Age > 30 & Age <=50, "Middle", 
+                                   "Elderly")),
+         Age_group = fct_rev(Age_group))
+
+# What does the data look like?
+formattable(head(dataset))
+```
+
+------------------------------------------------------------------------
+
+## Diagnose your Data
+
+```{r}
+# What are the properties of the data
+formattable(diagnose(dataset))
+```
+
+-   `variables`: name of each variable
+-   `types`: data type of each variable
+-   `missing_count`: number of missing values
+-   `missing_percent`: percentage of missing values
+-   `unique_count`: number of unique values
+-   `unique_rate`: rate of unique value - unique_count / number of observations
+
+------------------------------------------------------------------------
+
+## Summary Statistics of your Data
+
+### Numerical Variables
+
+```{r}
+formattable(diagnose_numeric(dataset))
+```
+
+-   `min`: minimum value
+-   `Q1`: 1/4 quartile, 25th percentile
+-   `mean`: arithmetic mean (average value)
+-   `median`: median, 50th percentile
+-   `Q3`: 3/4 quartile, 75th percentile
+-   `max`: maximum value
+-   `zero`: number of observations with the value 0
+-   `minus`: number of observations with negative numbers
+-   `outlier`: number of outliers
+
+------------------------------------------------------------------------
+
+### Outliers
+
+Values outside of $1.5 * IQR$
+
+![Image Credit: [CÉDRIC SCHERER](https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/)](https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png){fig-alt="Boxplot showing the IQR, lower and upper quartiles, median, and outliers"}
+
+------------------------------------------------------------------------
+
+There are several numerical variables that have outliers above, let's see what the data look like with and without them
+
+-   Create a table with columns containing outliers
+
+-   Plot outliers in a box plot and histogram
+
+```{r}
+# Table showing outliers
+formattable(diagnose_outlier(dataset) %>%
+  filter(outliers_ratio > 0))
+```
+
+-   `outliers_cnt`: number of outliers
+-   `outliers_ratio`: ratio of outliers over all values
+-   `outliers_mean`: arithmetic mean (average value) of outlier values
+-   `with_mean`: arithmetic mean of all values **including** outliers
+-   `without_mean`: arithmetic mean of all values **excluding** outliers
+
+```{r}
+# Selecting desired columns 
+dataset %>% 
+  select(BloodPressure, BMI, Age) %>%
+    plot_outlier()
+```
+
+------------------------------------------------------------------------
+
+### Missing Values (NAs)
+
+-   Table showing the extent of NAs in columns containing them
+-   Plot showing the frequency of missing values
+
+```{r}
+
+# Randomly generate NAs
+na.dataset <- dataset |>
+  dplyr::mutate_all(~ifelse(sample(c(TRUE, FALSE), size = length(.), replace =
+                                     TRUE, prob = c(0.8, 0.2)),
+                            as.character(.), NA)) 
+na.dataset |>
+head() |>
+  formattable()
+```
+
+```{r, output.width = "100%"}
+
+# Create the NA table
+plot_na_pareto(na.dataset, only_na = TRUE, plot = FALSE) |>
+formattable() # Publishable table
+```
+
+```{r}
+# Plot the intersect of the columns with the most missing values
+# This means that some combinations of columns have missing values in the same row
+na.dataset |>
+  select(BloodPressure, Glucose, Age) |>
+  plot_na_intersect(only_na = TRUE) 
+```
+
+### Categorical Variables
+
+```{r}
+diagnose_category(dataset) |> formattable()
+```
+
+-   `variables`: category names
+-   `levels`: group names within categories
+-   `N`: number of observation
+-   `freq`: number of observation at group level / number of observation at category level
+-   `ratio`: percentage of observation at group level / number of observation at category level
+-   `rank`: rank of the occupancy ratio of levels (order in which the groups are in the category)
+
+------------------------------------------------------------------------
+
+## Produce an HTML Summary of a Data Set
+
+```{r}
+# Remove the '#' below to reproduce an HTML from an R script. 
+#diagnose_web_report(dataset)
+```
