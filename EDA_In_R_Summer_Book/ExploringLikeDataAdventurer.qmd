@@ -23,9 +23,13 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 We first need to prepare our environment with the necessary packages
 
 ```{r, results = 'hide'}
+# Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
+
+# Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
 
+# Required package for quick package downloading and loading 
 install.packages("pacman")
 
 pacman::p_load(dlookr, # Exploratory data analysis
@@ -237,7 +241,7 @@ group_by(Group) |>
 
 ------------------------------------------------------------------------
 
-## Produce an HTML normality summary of a data set
+## Produce an HTML Normality Summary
 
 ```{r}
 # Remove the '#' below to reproduce an HTML from an R script. 

@@ -18,14 +18,18 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ------------------------------------------------------------------------
 
-## Required setup
+## Required Setup
 
 We first need to prepare our environment with the necessary packages and set a global theme for publishable plots in `ggplot()`
 
-```{r}
+```{r, results = 'hide', message = FALSE, warning = FALSE}
+# Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
+
+# Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
 
+# Required package for quick package downloading and loading 
 install.packages("pacman")
 
 pacman::p_load(colorblindr, # Colorblind friendly pallettes
@@ -44,15 +48,20 @@ pacman::p_load(colorblindr, # Colorblind friendly pallettes
                tidyverse, # Powerful data wrangling package suite
                visdat) # Another EDA visualization package
 
-theme_set(theme_pubclean(base_size = 16))
+# Set global ggplot() theme
+# Theme pub_clean() from the ggpubr package with base text size = 16
+theme_set(theme_pubclean(base_size = 16)) 
+# All axes titles to their respective far right sides
 theme_update(axis.title = element_text(hjust = 1))
+# Remove axes ticks
 theme_update(axis.ticks = element_blank()) 
+# Remove legend key
 theme_update(legend.key = element_blank())
 ```
 
 ------------------------------------------------------------------------
 
-### Load and Examine a Data Set
+## Load and Examine a Data Set
 
 ```{r}
 # Let's load a data set from the flights data set
@@ -71,7 +80,7 @@ dataset |>
 
 ------------------------------------------------------------------------
 
-## Diagnose your data
+## Diagnose your Data
 
 ```{r}
 # What are the properties of the data
@@ -116,7 +125,7 @@ dataset |>
 
 ------------------------------------------------------------------------
 
-## Basic exploration of missing values (NAs)
+## Basic Exploration of Missing Values (NAs)
 
 -   Table showing the extent of NAs in columns containing them
 
@@ -125,6 +134,7 @@ dataset |>
 na.dataset <- dataset |>
   generateNA(p = 0.3)
 
+# First six rows
 na.dataset |>
 head() |>
   formattable()
@@ -171,6 +181,7 @@ na.dataset |>
 -   NOTE: This line will make the HTML rendering take a while...
 
 ```{r}
+# Interactive plotly() plot of all NA values to examine every row
 na.dataset |>
  select(BloodPressure, Glucose, Age) |>
  vis_miss() |>
@@ -179,7 +190,7 @@ na.dataset |>
 
 ------------------------------------------------------------------------
 
-## Impute outliers and NAs
+## Impute Outliers and NAs
 
 Removing outliers and NAs can be tricky, but there are methods to do so. I will go over several, and discuss benefits and costs to each.
 
@@ -187,11 +198,11 @@ The principle goal for all imputation is to find the method that does not change
 
 ------------------------------------------------------------------------
 
-#### NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data.
+**NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data.**
 
 ------------------------------------------------------------------------
 
-### Classifying outliers
+### Classifying Outliers
 
 Before imputing outliers, you will want to diagnose whether it's they are natural outliers or not. We will not be looking at "Insulin" for example across Age_group, because there are several NAs, which we will impute below.
 
@@ -218,7 +229,7 @@ We remove outliers using `imputate_outlier()` and replace them with values that 
 
 -   `capping`: Impute the upper outliers with 95 percentile, and impute the bottom outliers with 5 percentile - aka Winsorizing
 
-### Mean imputation
+### Mean Imputation
 
 The mean of the observed values for each variable is computed and the outliers for that variable are imputed by this mean
 
@@ -229,6 +240,7 @@ mean_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "mean")
 
+# HTML table showing the summary statistics of our imputation
 mean_out_imp_insulin |>
   summary() |>
   kable() |>
@@ -241,7 +253,7 @@ mean_out_imp_insulin |>
   plot()
 ```
 
-### Median imputation
+### Median Imputation
 
 The median of the observed values for each variable is computed and the outliers for that variable are imputed by this median
 
@@ -252,6 +264,7 @@ med_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "median")
 
+# HTML table showing the summary statistics of our imputation
 med_out_imp_insulin |>
   summary() |>
   kable() |>
@@ -266,7 +279,7 @@ med_out_imp_insulin |>
 
 ------------------------------------------------------------------------
 
-#### Pros & cons of using the mean or median imputation
+#### Pros & Cons of Using the Mean or Median Imputation
 
 **Pros**:
 
@@ -282,7 +295,7 @@ med_out_imp_insulin |>
 
 ------------------------------------------------------------------------
 
-### Mode imputation
+### Mode Imputation
 
 The mode of the observed values for each variable is computed and the outliers for that variable are imputed by this mode
 
@@ -293,6 +306,7 @@ mode_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "mode")
 
+# HTML table showing the summary statistics of our imputation
 mode_out_imp_insulin |>
   summary() |>
   kable() |>
@@ -307,7 +321,7 @@ plot()
 
 ------------------------------------------------------------------------
 
-#### Pros & cons of using the mean / median imputation
+#### Pros & Cons of Using the Mode Imputation
 
 **Pros**:
 
@@ -321,7 +335,7 @@ plot()
 
 ------------------------------------------------------------------------
 
-### Capping imputation (aka Winsorizing)
+### Capping Imputation (aka Winsorizing)
 
 The Percentile Capping is a method of Imputing the outlier values by replacing those observations outside the lower limit with the value of 5th percentile and those that lie above the upper limit, with the value of 95th percentile of the same dataset.
 
@@ -332,6 +346,7 @@ cap_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "capping")
 
+# HTML table showing the summary statistics of our imputation
 cap_out_imp_insulin |>
   summary() |>
   kable() |>
@@ -346,7 +361,7 @@ cap_out_imp_insulin |>
 
 ------------------------------------------------------------------------
 
-#### Pros and cons of capping
+#### Pros and Cons of Capping
 
 **Pros**:
 
@@ -370,16 +385,16 @@ I will only be addressing one type of NA imputation using `imputate_na()` (but n
 
 Since our normal `dataset` has no NA values, we will use the `na.dataset` we created earlier.
 
-### K-Nearest Neighbor (KNN) imputation
+### K-Nearest Neighbor (KNN) Imputation
 
 KNN is a machine learning algorithm that classifies data by similarity. This in effect clusters data into similar groups. The algorithm predicts values of new data to replace NA values based on how closely they resembles training data points, such as by comparing across other columns.
 
 Here's a visual example using the `clara()` function from the `cluster` package to run a KNN algorithm on our `dataset`, where three clusters are created by the algorithm.
 
 ```{r}
+# KNN plot of our dataset without categories
 autoplot(clara(dataset[-5], 3)) +
   scale_color_OkabeIto()
-
 ```
 
 ```{r}
@@ -387,11 +402,12 @@ autoplot(clara(dataset[-5], 3)) +
 knn_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "knn")
 
+# Plot showing the results of our imputation
 knn_na_imp_insulin |>
   plot()
 ```
 
-#### Pros & cons of using KNN imputation
+#### Pros & Cons of Using KNN Imputation
 
 **Pro**:
 
@@ -410,7 +426,7 @@ rpart is a decision tree machine learning algorithm that builds classification o
 For example, if we are missing a value for `Age_group` a first decision could be whether the associated `Age` is within a series of yes or no criteria
 
 ```{r, echo = FALSE}
-
+# rpart algorithm plot for our categorical variable Age_group
 fancyRpartPlot(rpart(Age_group~., data = na.dataset),
                yesno = 2,
                split.col="black",
@@ -425,11 +441,12 @@ fancyRpartPlot(rpart(Age_group~., data = na.dataset),
 rpart_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "rpart")
 
+# Plot showing the results of our imputation
 rpart_na_imp_insulin |>
   plot()
 ```
 
-#### Pros & cons of using rpart imputation
+#### Pros & Cons of Using rpart Imputation
 
 **Pros**:
 
@@ -439,11 +456,11 @@ rpart_na_imp_insulin |>
 
 **Cons**:
 
--   Can overfit the data as they grow.
+-   Can over fit the data as they grow.
 
 -   Speed decreases with more data columns.
 
-###  Multivariate Imputation by Chained Equations (MICE)
+### Multivariate Imputation by Chained Equations (MICE)
 
 MICE is an algorithm that fills missing values multiple times, hence dealing with uncertainty better than other methods. This approach creates multiple copies of the data that can then be analyzed and then pooled into a single dataset.
 
@@ -454,11 +471,12 @@ MICE is an algorithm that fills missing values multiple times, hence dealing wit
 mice_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "mice")
 
+# Plot showing the results of our imputation
 mice_na_imp_insulin |>
   plot()
 ```
 
-#### Pros & cons of MICE imputation
+#### Pros & Cons of MICE Imputation
 
 **Pros**:
 
@@ -470,7 +488,7 @@ mice_na_imp_insulin |>
 
 -   You have to round the results for ordinal data because resulting data points are too great or too small (floating-points).
 
-## Produce an HTML normality summary of a data set
+## Produce an HTML Transformation Summary
 
 ```{r}
 # Remove the '#' below to reproduce an HTML from an R script. 

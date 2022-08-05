@@ -1,12 +1,12 @@
-# Exploratory Data Analysis in R - Transforming like a data... Transformer
+# Exploratory Data Analysis in R - Transforming like a Data... Transformer
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## Purpose of workshop
+## Purpose of Workshop
 
-#### Using data transformation to correct non-normality in data
+**Using data transformation to correct non-normality in data**
 
 ## Objectives
 
@@ -15,11 +15,13 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 3.  Data transformation
 4.  Prepare an HTML summary report showcasing data transformations
 
-## Required setup
+## Required Setup
 
 We first need to prepare our environment with the necessary packages
 
 ```{r, results = 'hide', message = FALSE, warning = FALSE}
+# Sets the repository to download packages from
+options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
 # Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
@@ -41,10 +43,9 @@ pacman::p_load(dlookr, # Exploratory data analysis
 ## Load and Examine a Data Set
 
 -   Load data and view
-
-<!-- -->
-
 -   Examine columns and data types
+-   Examine data normality
+-   Describe properties of data
 
 ```{r}
 # Let's load a data set from the flights data set
@@ -154,7 +155,7 @@ dataset %>%
   plot_normality()
 ```
 
-## Transforming data
+## Transforming Data
 
 Your data could be more easily interpreted with a transformation, since not all relationships in nature follow a linear relationship - i.e., many biological phenomena follow a power law (or logarithmic curve), where they do not scale linearly.
 
@@ -186,7 +187,7 @@ We will compare `sqrt`, `log+1`, and `1/x` (inverse) transformations. Note that 
 #### Square-root Transformation
 
 ```{r}
-sqrtAge <- transform(InsMod$Insulin, method = "sqrt") 
+sqrtIns <- transform(InsMod$Insulin, method = "sqrt") 
 
 summary(sqrtIns)
 ```
@@ -222,7 +223,7 @@ InvIns |>
   plot()
 ```
 
-### Box-cox transformation
+### Box-cox Transformation
 
 There are several transformations, each with it's own "criteria", and they don't always fix extremely skewed data. Instead, you can just choose the [Box-Cox transformation](https://en.wikipedia.org/wiki/Box%E2%80%93Cox_distribution) which searches for the the best lambda value that maximizes the log-likelihood (basically, what power transformation is best). The benefit is that you should have normally distributed data after, but the power relationship might be pretty abstract (i.e., what would a transformation of x\^0.12 be interpreted as in your system?..)
 
@@ -237,7 +238,7 @@ BoxCoxIns |>
   plot()
 ```
 
-## Produce an HTML Summary of a Data Set
+## Produce an HTML Transformation Summary 
 
 ```{r}
 # Remove the '#' below to reproduce an HTML from an R script. 
