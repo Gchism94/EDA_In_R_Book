@@ -1,3 +1,7 @@
+---
+bibliography: references.bib
+---
+
 # Exploratory Data Analysis in R - Diagnosing like a Data Doctor
 
 ```{r setup, include = FALSE}
@@ -49,14 +53,11 @@ pacman::p_load(dlookr, # Exploratory data analysis
 -   Define box plots
 -   Describe meta data
 
+We will be using open source data from UArizona researchers for Test, Trace, Treat (T3) efforts offers two clinical diagnostic tests (Antigen, RT-PCR) to determine whether an individual is currently infected with the COVID-19 virus. [@merchant2022]
+
 ```{r}
 # Let's load a data set from the flights data set
-dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
-  # Add a categorical group
-  mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
-                            ifelse(Age > 30 & Age <= 50, "Middle", 
-                                   "Elderly")),
-         Age_group = fct_rev(Age_group))
+dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "daily_summary.csv")) 
 
 # What does the data look like?
 dataset |>
@@ -136,8 +137,7 @@ diagnose_outlier(dataset) |>
 
 ```{r}
 # Selecting desired columns 
-dataset %>% 
-  select(BloodPressure, BMI, Age) %>%
+dataset |>
     plot_outlier()
 ```
 
@@ -148,20 +148,10 @@ dataset %>%
 -   Table showing the extent of NAs in columns containing them
 -   Plot showing the frequency of missing values
 
-```{r}
-# Randomly generate NAs
-na.dataset <- dataset |>
-  generateNA(p = 0.2)
-
-# Show first six hows of new data
-na.dataset |>
-head() |>
-  formattable()
-```
-
 ```{r, output.width = "100%"}
 # Create the NA table
-na.dataset |>
+dataset |>
+  generateNA(p = 0.3) |>
   plot_na_pareto(only_na = TRUE, plot = FALSE) |>
   formattable() # Publishable table
 ```
@@ -169,8 +159,9 @@ na.dataset |>
 ```{r}
 # Plot the intersect of the columns with the most missing values
 # This means that some combinations of columns have missing values in the same row
-na.dataset |>
-  select(BloodPressure, Glucose, Age) |>
+dataset |>
+  generateNA(p = 0.3) |>
+  select(test_type, test_result, test_count) |>
   plot_na_intersect(only_na = TRUE) 
 ```
 

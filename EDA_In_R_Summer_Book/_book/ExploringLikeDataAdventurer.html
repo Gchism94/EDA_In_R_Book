@@ -78,6 +78,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -88,7 +107,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ImputatingLikeDataScientist.html" rel="next">
+<link href="./TransformingLikeDataTrans.html" rel="next">
 <link href="./DiagnosingLikeDataDoctor.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -173,7 +192,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a data… Transformer (?)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
   </div>
 </li>
     </ul>
@@ -265,247 +289,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="load-and-examine-a-data-set" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="load-and-examine-a-data-set"><span class="header-section-number">3.4</span> Load and Examine a Data Set</h2>
+<p>We will be using open source data from UArizona researchers that investigates the effects of climate change on canopy trees. <span class="citation" data-cites="meredith2021">(<a href="#ref-meredith2021" role="doc-biblioref">Meredith, Ladd, and Werner 2021</a>)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's load a data set from the flights data set</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"EDA_In_R_Summer_Book"</span>, <span class="st">"data"</span>, <span class="st">"diabetes.csv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a categorical group</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Age_group =</span> <span class="fu">ifelse</span>(Age <span class="sc">&gt;=</span> <span class="dv">21</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">30</span>, <span class="st">"Young"</span>, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(Age <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span><span class="dv">50</span>, <span class="st">"Middle"</span>, </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Elderly"</span>)),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Age_group =</span> <span class="fu">fct_rev</span>(Age_group))</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"EDA_In_R_Summer_Book"</span>, <span class="st">"data"</span>, <span class="st">"Data_Fig2_Repo.csv"</span>)) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
 <thead>
 <tr>
 <th style="text-align:right;">
-Pregnancies
+Date
 </th>
 <th style="text-align:right;">
-Glucose
+Group
 </th>
 <th style="text-align:right;">
-BloodPressure
+Sap_Flow
 </th>
 <th style="text-align:right;">
-SkinThickness
+TWaterFlux
 </th>
 <th style="text-align:right;">
-Insulin
+pLWP
 </th>
 <th style="text-align:right;">
-BMI
-</th>
-<th style="text-align:right;">
-DiabetesPedigreeFunction
-</th>
-<th style="text-align:right;">
-Age
-</th>
-<th style="text-align:right;">
-Outcome
-</th>
-<th style="text-align:right;">
-Age_group
+mLWP
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:right;">
-6
+10/4/19
 </td>
 <td style="text-align:right;">
-148
+Drought-sensitive canopy
 </td>
 <td style="text-align:right;">
-72
+184.0
 </td>
 <td style="text-align:right;">
-35
+82.2
 </td>
 <td style="text-align:right;">
-0
+-0.26
 </td>
 <td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-0.63
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-Middle
+-0.68
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-1
+10/4/19
 </td>
 <td style="text-align:right;">
-85
+Drought-sensitive understory
 </td>
 <td style="text-align:right;">
-66
+2.5
 </td>
 <td style="text-align:right;">
-29
+1.3
 </td>
 <td style="text-align:right;">
-0
+-0.30
 </td>
 <td style="text-align:right;">
-27
-</td>
-<td style="text-align:right;">
-0.35
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-Middle
+-0.76
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-8
+10/4/19
 </td>
 <td style="text-align:right;">
-183
+Drought-tolerant canopy
 </td>
 <td style="text-align:right;">
-64
+10.6
 </td>
 <td style="text-align:right;">
-0
+4.4
 </td>
 <td style="text-align:right;">
-0
+-0.44
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-0.67
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-Middle
+-0.72
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-1
+10/4/19
 </td>
 <td style="text-align:right;">
-89
+Drought-tolerant understory
 </td>
 <td style="text-align:right;">
-66
+4.4
 </td>
 <td style="text-align:right;">
-23
+2.1
 </td>
 <td style="text-align:right;">
-94
+-0.21
 </td>
 <td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
-0.17
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-Young
+-0.70
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-0
+10/5/19
 </td>
 <td style="text-align:right;">
-137
+Drought-sensitive canopy
 </td>
 <td style="text-align:right;">
-40
+182.9
 </td>
 <td style="text-align:right;">
-35
+95.9
 </td>
 <td style="text-align:right;">
-168
+-0.28
 </td>
 <td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-2.29
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-Middle
+-0.71
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-5
+10/5/19
 </td>
 <td style="text-align:right;">
-116
+Drought-sensitive understory
 </td>
 <td style="text-align:right;">
-74
+2.5
 </td>
 <td style="text-align:right;">
-0
+1.2
 </td>
 <td style="text-align:right;">
-0
+-0.32
 </td>
 <td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-0.20
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-Young
+-0.79
 </td>
 </tr>
 </tbody>
@@ -550,107 +486,67 @@ unique_rate
 <tbody>
 <tr>
 <td style="text-align:right;">
-Pregnancies
+Date
 </td>
 <td style="text-align:right;">
-integer
-</td>
-<td style="text-align:right;">
-0
+character
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-17
+0
 </td>
 <td style="text-align:right;">
-0.0221
+147
+</td>
+<td style="text-align:right;">
+0.2500
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Glucose
+Group
 </td>
 <td style="text-align:right;">
-integer
-</td>
-<td style="text-align:right;">
-0
+character
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-136
+0
 </td>
 <td style="text-align:right;">
-0.1771
+4
+</td>
+<td style="text-align:right;">
+0.0068
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-BloodPressure
+Sap_Flow
 </td>
 <td style="text-align:right;">
-integer
+numeric
 </td>
 <td style="text-align:right;">
-0
+108
 </td>
 <td style="text-align:right;">
-0
+18
 </td>
 <td style="text-align:right;">
-47
+481
 </td>
 <td style="text-align:right;">
-0.0612
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-SkinThickness
-</td>
-<td style="text-align:right;">
-integer
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-51
-</td>
-<td style="text-align:right;">
-0.0664
+0.8180
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-integer
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-186
-</td>
-<td style="text-align:right;">
-0.2422
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
+TWaterFlux
 </td>
 <td style="text-align:right;">
 numeric
@@ -662,90 +558,50 @@ numeric
 0
 </td>
 <td style="text-align:right;">
-248
+508
 </td>
 <td style="text-align:right;">
-0.3229
+0.8639
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-DiabetesPedigreeFunction
+pLWP
 </td>
 <td style="text-align:right;">
 numeric
 </td>
 <td style="text-align:right;">
-0
+312
 </td>
 <td style="text-align:right;">
-0
+53
 </td>
 <td style="text-align:right;">
-517
+277
 </td>
 <td style="text-align:right;">
-0.6732
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Age
-</td>
-<td style="text-align:right;">
-integer
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-52
-</td>
-<td style="text-align:right;">
-0.0677
+0.4711
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Outcome
+mLWP
 </td>
 <td style="text-align:right;">
-integer
+numeric
 </td>
 <td style="text-align:right;">
-0
+280
 </td>
 <td style="text-align:right;">
-0
+48
 </td>
 <td style="text-align:right;">
-2
+309
 </td>
 <td style="text-align:right;">
-0.0026
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Age_group
-</td>
-<td style="text-align:right;">
-factor
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0.0039
+0.5255
 </td>
 </tr>
 </tbody>
@@ -905,722 +761,322 @@ p100
 <tbody>
 <tr>
 <td style="text-align:right;">
-Pregnancies
+Sap_Flow
 </td>
 <td style="text-align:right;">
-768
+480
 </td>
 <td style="text-align:right;">
-0
+108
 </td>
 <td style="text-align:right;">
-3.85
+25.09
 </td>
 <td style="text-align:right;">
-3.37
+40.52
 </td>
 <td style="text-align:right;">
-0.122
+1.849
 </td>
 <td style="text-align:right;">
-5.00
+13.92
 </td>
 <td style="text-align:right;">
-0.90
+2.2
 </td>
 <td style="text-align:right;">
-0.16
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:right;">
-2.0
-</td>
-<td style="text-align:right;">
-3.00
-</td>
-<td style="text-align:right;">
-4.00
-</td>
-<td style="text-align:right;">
-5.00
-</td>
-<td style="text-align:right;">
-6.00
-</td>
-<td style="text-align:right;">
-7.00
-</td>
-<td style="text-align:right;">
-9.00
-</td>
-<td style="text-align:right;">
-10.0
-</td>
-<td style="text-align:right;">
-13.0
-</td>
-<td style="text-align:right;">
-17.0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-120.89
-</td>
-<td style="text-align:right;">
-31.97
-</td>
-<td style="text-align:right;">
-1.154
-</td>
-<td style="text-align:right;">
-41.25
+4.20
 </td>
 <td style="text-align:right;">
 0.17
-</td>
-<td style="text-align:right;">
-0.64
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-57.000
-</td>
-<td style="text-align:right;">
-79.00
-</td>
-<td style="text-align:right;">
-85.00
-</td>
-<td style="text-align:right;">
-95.00
-</td>
-<td style="text-align:right;">
-99.00
-</td>
-<td style="text-align:right;">
-102.00
-</td>
-<td style="text-align:right;">
-109.0
-</td>
-<td style="text-align:right;">
-117.00
-</td>
-<td style="text-align:right;">
-125.00
-</td>
-<td style="text-align:right;">
-134.00
-</td>
-<td style="text-align:right;">
-140.25
-</td>
-<td style="text-align:right;">
-147.00
-</td>
-<td style="text-align:right;">
-167.00
-</td>
-<td style="text-align:right;">
-181.0
-</td>
-<td style="text-align:right;">
-196.0
-</td>
-<td style="text-align:right;">
-199.0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BloodPressure
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-69.11
-</td>
-<td style="text-align:right;">
-19.36
-</td>
-<td style="text-align:right;">
-0.698
-</td>
-<td style="text-align:right;">
-18.00
-</td>
-<td style="text-align:right;">
--1.84
-</td>
-<td style="text-align:right;">
-5.18
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-38.70
-</td>
-<td style="text-align:right;">
-54.00
-</td>
-<td style="text-align:right;">
-60.00
-</td>
-<td style="text-align:right;">
-62.00
-</td>
-<td style="text-align:right;">
-64.00
-</td>
-<td style="text-align:right;">
-68.0
-</td>
-<td style="text-align:right;">
-72.00
-</td>
-<td style="text-align:right;">
-74.00
-</td>
-<td style="text-align:right;">
-78.00
-</td>
-<td style="text-align:right;">
-80.00
-</td>
-<td style="text-align:right;">
-82.00
-</td>
-<td style="text-align:right;">
-88.00
-</td>
-<td style="text-align:right;">
-90.0
-</td>
-<td style="text-align:right;">
-106.0
-</td>
-<td style="text-align:right;">
-122.0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-SkinThickness
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-20.54
-</td>
-<td style="text-align:right;">
-15.95
-</td>
-<td style="text-align:right;">
-0.576
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-<td style="text-align:right;">
-0.11
-</td>
-<td style="text-align:right;">
--0.52
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-8.20
-</td>
-<td style="text-align:right;">
-18.0
-</td>
-<td style="text-align:right;">
-23.00
-</td>
-<td style="text-align:right;">
-27.00
-</td>
-<td style="text-align:right;">
-31.00
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-<td style="text-align:right;">
-35.00
-</td>
-<td style="text-align:right;">
-40.00
-</td>
-<td style="text-align:right;">
-44.0
-</td>
-<td style="text-align:right;">
-51.3
-</td>
-<td style="text-align:right;">
-99.0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-79.80
-</td>
-<td style="text-align:right;">
-115.24
-</td>
-<td style="text-align:right;">
-4.159
-</td>
-<td style="text-align:right;">
-127.25
-</td>
-<td style="text-align:right;">
-2.27
-</td>
-<td style="text-align:right;">
-7.21
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.0
-</td>
-<td style="text-align:right;">
-30.50
-</td>
-<td style="text-align:right;">
-72.20
-</td>
-<td style="text-align:right;">
-106.00
-</td>
-<td style="text-align:right;">
-127.25
-</td>
-<td style="text-align:right;">
-150.00
-</td>
-<td style="text-align:right;">
-210.00
-</td>
-<td style="text-align:right;">
-293.0
-</td>
-<td style="text-align:right;">
-519.9
-</td>
-<td style="text-align:right;">
-846.0
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-31.99
-</td>
-<td style="text-align:right;">
-7.88
-</td>
-<td style="text-align:right;">
-0.284
-</td>
-<td style="text-align:right;">
-9.30
-</td>
-<td style="text-align:right;">
--0.43
-</td>
-<td style="text-align:right;">
-3.29
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
-21.80
-</td>
-<td style="text-align:right;">
-23.60
-</td>
-<td style="text-align:right;">
-25.90
-</td>
-<td style="text-align:right;">
-27.30
-</td>
-<td style="text-align:right;">
-28.20
-</td>
-<td style="text-align:right;">
-30.1
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-<td style="text-align:right;">
-33.70
-</td>
-<td style="text-align:right;">
-35.49
-</td>
-<td style="text-align:right;">
-36.60
-</td>
-<td style="text-align:right;">
-37.80
-</td>
-<td style="text-align:right;">
-41.50
-</td>
-<td style="text-align:right;">
-44.4
-</td>
-<td style="text-align:right;">
-50.8
-</td>
-<td style="text-align:right;">
-67.1
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-DiabetesPedigreeFunction
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.47
 </td>
 <td style="text-align:right;">
 0.33
 </td>
 <td style="text-align:right;">
-0.012
+0.47
 </td>
 <td style="text-align:right;">
-0.38
+1.15
 </td>
 <td style="text-align:right;">
-1.92
+2.26
 </td>
 <td style="text-align:right;">
-5.59
+2.45
 </td>
 <td style="text-align:right;">
-0.078
+3.76
 </td>
 <td style="text-align:right;">
-0.095
+5.05
 </td>
 <td style="text-align:right;">
-0.14
+5.82
 </td>
 <td style="text-align:right;">
-0.17
+9.03
+</td>
+<td style="text-align:right;">
+10.51
+</td>
+<td style="text-align:right;">
+16.37
+</td>
+<td style="text-align:right;">
+48.89
+</td>
+<td style="text-align:right;">
+83.48
+</td>
+<td style="text-align:right;">
+109.84
+</td>
+<td style="text-align:right;">
+176.99
+</td>
+<td style="text-align:right;">
+184.04
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+11.93
+</td>
+<td style="text-align:right;">
+19.05
+</td>
+<td style="text-align:right;">
+0.786
+</td>
+<td style="text-align:right;">
+6.28
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:right;">
+3.88
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.15
 </td>
 <td style="text-align:right;">
 0.22
 </td>
 <td style="text-align:right;">
-0.24
+0.60
+</td>
+<td style="text-align:right;">
+1.14
+</td>
+<td style="text-align:right;">
+1.29
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+2.31
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+4.20
+</td>
+<td style="text-align:right;">
+5.21
+</td>
+<td style="text-align:right;">
+7.58
+</td>
+<td style="text-align:right;">
+23.37
+</td>
+<td style="text-align:right;">
+43.14
+</td>
+<td style="text-align:right;">
+51.81
+</td>
+<td style="text-align:right;">
+80.87
+</td>
+<td style="text-align:right;">
+96.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+pLWP
+</td>
+<td style="text-align:right;">
+276
+</td>
+<td style="text-align:right;">
+312
+</td>
+<td style="text-align:right;">
+-0.61
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.014
 </td>
 <td style="text-align:right;">
 0.26
 </td>
 <td style="text-align:right;">
-0.3
+-1.1
 </td>
 <td style="text-align:right;">
-0.37
+1.77
 </td>
 <td style="text-align:right;">
-0.45
+-1.43
 </td>
 <td style="text-align:right;">
-0.56
+-1.32
 </td>
 <td style="text-align:right;">
-0.63
+-1.07
 </td>
 <td style="text-align:right;">
-0.69
+-0.88
 </td>
 <td style="text-align:right;">
-0.88
+-0.73
 </td>
 <td style="text-align:right;">
-1.1
+-0.71
 </td>
 <td style="text-align:right;">
-1.7
+-0.68
 </td>
 <td style="text-align:right;">
-2.4
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Age
+-0.62
 </td>
 <td style="text-align:right;">
-768
+-0.59
 </td>
 <td style="text-align:right;">
-0
+-0.55
 </td>
 <td style="text-align:right;">
-33.24
+-0.49
 </td>
 <td style="text-align:right;">
-11.76
+-0.45
 </td>
 <td style="text-align:right;">
-0.424
+-0.41
 </td>
 <td style="text-align:right;">
-17.00
+-0.35
 </td>
 <td style="text-align:right;">
-1.13
+-0.30
 </td>
 <td style="text-align:right;">
-0.64
+-0.24
 </td>
 <td style="text-align:right;">
-21.000
-</td>
-<td style="text-align:right;">
-21.000
-</td>
-<td style="text-align:right;">
-21.00
-</td>
-<td style="text-align:right;">
-22.00
-</td>
-<td style="text-align:right;">
-23.00
-</td>
-<td style="text-align:right;">
-24.00
-</td>
-<td style="text-align:right;">
-25.00
-</td>
-<td style="text-align:right;">
-27.0
-</td>
-<td style="text-align:right;">
-29.00
-</td>
-<td style="text-align:right;">
-33.00
-</td>
-<td style="text-align:right;">
-38.00
-</td>
-<td style="text-align:right;">
-41.00
-</td>
-<td style="text-align:right;">
-42.60
-</td>
-<td style="text-align:right;">
-51.00
-</td>
-<td style="text-align:right;">
-58.0
-</td>
-<td style="text-align:right;">
-67.0
-</td>
-<td style="text-align:right;">
-81.0
+-0.21
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Outcome
+mLWP
 </td>
 <td style="text-align:right;">
-768
+308
 </td>
 <td style="text-align:right;">
-0
+280
 </td>
 <td style="text-align:right;">
-0.35
+-1.03
 </td>
 <td style="text-align:right;">
-0.48
+0.30
 </td>
 <td style="text-align:right;">
 0.017
 </td>
 <td style="text-align:right;">
-1.00
+0.42
 </td>
 <td style="text-align:right;">
-0.64
+-0.8
 </td>
 <td style="text-align:right;">
--1.60
+-0.18
 </td>
 <td style="text-align:right;">
-0.000
+-1.81
 </td>
 <td style="text-align:right;">
-0.000
+-1.79
 </td>
 <td style="text-align:right;">
-0.00
+-1.62
 </td>
 <td style="text-align:right;">
-0.00
+-1.46
 </td>
 <td style="text-align:right;">
-0.00
+-1.32
 </td>
 <td style="text-align:right;">
-0.00
+-1.23
 </td>
 <td style="text-align:right;">
-0.00
+-1.13
 </td>
 <td style="text-align:right;">
-0.0
+-1.04
 </td>
 <td style="text-align:right;">
-0.00
+-0.95
 </td>
 <td style="text-align:right;">
-0.00
+-0.90
 </td>
 <td style="text-align:right;">
-1.00
+-0.84
 </td>
 <td style="text-align:right;">
-1.00
+-0.81
 </td>
 <td style="text-align:right;">
-1.00
+-0.76
 </td>
 <td style="text-align:right;">
-1.00
+-0.71
 </td>
 <td style="text-align:right;">
-1.0
+-0.67
 </td>
 <td style="text-align:right;">
-1.0
+-0.59
 </td>
 <td style="text-align:right;">
-1.0
+-0.55
 </td>
 </tr>
 </tbody>
@@ -1651,8 +1107,8 @@ Outcome
 <p>The above is pretty overwhelming, and most people don’t care about percentiles outside of Q1, Q3, and the median (Q2).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics, selecting the desired ones</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">|&gt;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(described_variables, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75) <span class="sc">|&gt;</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1701,344 +1157,154 @@ p75
 <tbody>
 <tr>
 <td style="text-align:right;">
-Pregnancies
+Sap_Flow
 </td>
 <td style="text-align:right;">
-768
+480
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+25.09
+</td>
+<td style="text-align:right;">
+40.52
+</td>
+<td style="text-align:right;">
+1.849
+</td>
+<td style="text-align:right;">
+13.92
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:right;">
+4.20
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+<td style="text-align:right;">
+5.82
+</td>
+<td style="text-align:right;">
+16.37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+588
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-3.85
+11.93
 </td>
 <td style="text-align:right;">
-3.37
+19.05
 </td>
 <td style="text-align:right;">
-0.122
+0.786
 </td>
 <td style="text-align:right;">
-5.00
+6.28
 </td>
 <td style="text-align:right;">
-0.90
+2.1
 </td>
 <td style="text-align:right;">
-0.16
+3.88
 </td>
 <td style="text-align:right;">
-1.00
+1.29
 </td>
 <td style="text-align:right;">
 3.00
 </td>
 <td style="text-align:right;">
-6.00
+7.58
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Glucose
+pLWP
 </td>
 <td style="text-align:right;">
-768
+276
 </td>
 <td style="text-align:right;">
-0
+312
 </td>
 <td style="text-align:right;">
-120.89
+-0.61
 </td>
 <td style="text-align:right;">
-31.97
+0.23
 </td>
 <td style="text-align:right;">
-1.154
+0.014
 </td>
 <td style="text-align:right;">
-41.25
+0.26
 </td>
 <td style="text-align:right;">
-0.17
+-1.1
 </td>
 <td style="text-align:right;">
-0.64
+1.77
 </td>
 <td style="text-align:right;">
-99.00
+-0.71
 </td>
 <td style="text-align:right;">
-117.00
+-0.59
 </td>
 <td style="text-align:right;">
-140.25
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BloodPressure
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-69.11
-</td>
-<td style="text-align:right;">
-19.36
-</td>
-<td style="text-align:right;">
-0.698
-</td>
-<td style="text-align:right;">
-18.00
-</td>
-<td style="text-align:right;">
--1.84
-</td>
-<td style="text-align:right;">
-5.18
-</td>
-<td style="text-align:right;">
-62.00
-</td>
-<td style="text-align:right;">
-72.00
-</td>
-<td style="text-align:right;">
-80.00
+-0.45
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-SkinThickness
+mLWP
 </td>
 <td style="text-align:right;">
-768
+308
 </td>
 <td style="text-align:right;">
-0
+280
 </td>
 <td style="text-align:right;">
-20.54
+-1.03
 </td>
 <td style="text-align:right;">
-15.95
-</td>
-<td style="text-align:right;">
-0.576
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-<td style="text-align:right;">
-0.11
-</td>
-<td style="text-align:right;">
--0.52
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-23.00
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-79.80
-</td>
-<td style="text-align:right;">
-115.24
-</td>
-<td style="text-align:right;">
-4.159
-</td>
-<td style="text-align:right;">
-127.25
-</td>
-<td style="text-align:right;">
-2.27
-</td>
-<td style="text-align:right;">
-7.21
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-30.50
-</td>
-<td style="text-align:right;">
-127.25
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-31.99
-</td>
-<td style="text-align:right;">
-7.88
-</td>
-<td style="text-align:right;">
-0.284
-</td>
-<td style="text-align:right;">
-9.30
-</td>
-<td style="text-align:right;">
--0.43
-</td>
-<td style="text-align:right;">
-3.29
-</td>
-<td style="text-align:right;">
-27.30
-</td>
-<td style="text-align:right;">
-32.00
-</td>
-<td style="text-align:right;">
-36.60
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-DiabetesPedigreeFunction
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.47
-</td>
-<td style="text-align:right;">
-0.33
-</td>
-<td style="text-align:right;">
-0.012
-</td>
-<td style="text-align:right;">
-0.38
-</td>
-<td style="text-align:right;">
-1.92
-</td>
-<td style="text-align:right;">
-5.59
-</td>
-<td style="text-align:right;">
-0.24
-</td>
-<td style="text-align:right;">
-0.37
-</td>
-<td style="text-align:right;">
-0.63
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Age
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-33.24
-</td>
-<td style="text-align:right;">
-11.76
-</td>
-<td style="text-align:right;">
-0.424
-</td>
-<td style="text-align:right;">
-17.00
-</td>
-<td style="text-align:right;">
-1.13
-</td>
-<td style="text-align:right;">
-0.64
-</td>
-<td style="text-align:right;">
-24.00
-</td>
-<td style="text-align:right;">
-29.00
-</td>
-<td style="text-align:right;">
-41.00
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Outcome
-</td>
-<td style="text-align:right;">
-768
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0.35
-</td>
-<td style="text-align:right;">
-0.48
+0.30
 </td>
 <td style="text-align:right;">
 0.017
 </td>
 <td style="text-align:right;">
-1.00
+0.42
 </td>
 <td style="text-align:right;">
-0.64
+-0.8
 </td>
 <td style="text-align:right;">
--1.60
+-0.18
 </td>
 <td style="text-align:right;">
-0.00
+-1.23
 </td>
 <td style="text-align:right;">
-0.00
+-0.95
 </td>
 <td style="text-align:right;">
-1.00
+-0.81
 </td>
 </tr>
 </tbody>
@@ -2083,19 +1349,19 @@ rank
 <tbody>
 <tr>
 <td style="text-align:right;">
-Age_group
+Date
 </td>
 <td style="text-align:right;">
-Young
+1/1/20
 </td>
 <td style="text-align:right;">
-768
+588
 </td>
 <td style="text-align:right;">
-417
+4
 </td>
 <td style="text-align:right;">
-54
+0.68
 </td>
 <td style="text-align:right;">
 1
@@ -2103,42 +1369,262 @@ Young
 </tr>
 <tr>
 <td style="text-align:right;">
-Age_group
+Date
 </td>
 <td style="text-align:right;">
-Middle
+1/10/20
 </td>
 <td style="text-align:right;">
-768
+588
 </td>
 <td style="text-align:right;">
-270
+4
 </td>
 <td style="text-align:right;">
-35
+0.68
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Age_group
+Date
 </td>
 <td style="text-align:right;">
-Elderly
+1/11/20
 </td>
 <td style="text-align:right;">
-768
+588
 </td>
 <td style="text-align:right;">
-81
+4
 </td>
 <td style="text-align:right;">
-11
+0.68
 </td>
 <td style="text-align:right;">
-3
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/12/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/13/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/14/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/15/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/16/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/17/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Date
+</td>
+<td style="text-align:right;">
+1/18/20
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Group
+</td>
+<td style="text-align:right;">
+Drought-sensitive canopy
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Group
+</td>
+<td style="text-align:right;">
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Group
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Group
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+25.00
+</td>
+<td style="text-align:right;">
+1
 </td>
 </tr>
 </tbody>
@@ -2159,11 +1645,10 @@ Elderly
 <h3 data-number="3.7.1" class="anchored" data-anchor-id="group-descriptive-statistics"><span class="header-section-number">3.7.1</span> Group Descriptive Statistics</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age_group) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Glucose, Insulin, BMI, SkinThickness) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(described_variables, Age_group, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">describe</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(described_variables, Group, n, na, mean, sd, se_mean, IQR, skewness, kurtosis, p25, p50, p75) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -2173,7 +1658,7 @@ Elderly
 described_variables
 </th>
 <th style="text-align:right;">
-Age_group
+Group
 </th>
 <th style="text-align:right;">
 n
@@ -2213,494 +1698,658 @@ p75
 <tbody>
 <tr>
 <td style="text-align:right;">
-BMI
+mLWP
 </td>
 <td style="text-align:right;">
-Young
+Drought-sensitive canopy
 </td>
 <td style="text-align:right;">
-417
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-8.7
-</td>
-<td style="text-align:right;">
-0.43
-</td>
-<td style="text-align:right;">
-10.3
-</td>
-<td style="text-align:right;">
--0.391
-</td>
-<td style="text-align:right;">
-3.081
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-36
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
-</td>
-<td style="text-align:right;">
-Middle
-</td>
-<td style="text-align:right;">
-270
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-6.2
-</td>
-<td style="text-align:right;">
-0.38
-</td>
-<td style="text-align:right;">
-7.6
-</td>
-<td style="text-align:right;">
-0.468
-</td>
-<td style="text-align:right;">
-0.022
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-37
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
-</td>
-<td style="text-align:right;">
-Elderly
-</td>
-<td style="text-align:right;">
-81
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-7.8
-</td>
-<td style="text-align:right;">
-0.87
-</td>
-<td style="text-align:right;">
-9.7
-</td>
-<td style="text-align:right;">
--1.175
-</td>
-<td style="text-align:right;">
-4.027
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-36
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-Young
-</td>
-<td style="text-align:right;">
-417
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-114
-</td>
-<td style="text-align:right;">
-28.7
-</td>
-<td style="text-align:right;">
-1.41
-</td>
-<td style="text-align:right;">
-34.0
-</td>
-<td style="text-align:right;">
-0.295
-</td>
-<td style="text-align:right;">
-1.575
-</td>
-<td style="text-align:right;">
-95
-</td>
-<td style="text-align:right;">
-110
-</td>
-<td style="text-align:right;">
-129
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-Middle
-</td>
-<td style="text-align:right;">
-270
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-126
-</td>
-<td style="text-align:right;">
-33.9
-</td>
-<td style="text-align:right;">
-2.06
-</td>
-<td style="text-align:right;">
-47.8
-</td>
-<td style="text-align:right;">
--0.101
-</td>
-<td style="text-align:right;">
-0.448
-</td>
-<td style="text-align:right;">
-103
-</td>
-<td style="text-align:right;">
-123
-</td>
-<td style="text-align:right;">
-151
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-Elderly
-</td>
-<td style="text-align:right;">
-81
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-140
-</td>
-<td style="text-align:right;">
-31.3
-</td>
-<td style="text-align:right;">
-3.47
-</td>
-<td style="text-align:right;">
-48.0
-</td>
-<td style="text-align:right;">
-0.075
-</td>
-<td style="text-align:right;">
--0.512
-</td>
-<td style="text-align:right;">
-114
-</td>
-<td style="text-align:right;">
-137
-</td>
-<td style="text-align:right;">
-162
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-Young
-</td>
-<td style="text-align:right;">
-417
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-84
-</td>
-<td style="text-align:right;">
-109.5
-</td>
-<td style="text-align:right;">
-5.36
-</td>
-<td style="text-align:right;">
-125.0
-</td>
-<td style="text-align:right;">
-2.021
-</td>
-<td style="text-align:right;">
-5.198
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-56
-</td>
-<td style="text-align:right;">
-125
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-Middle
-</td>
-<td style="text-align:right;">
-270
-</td>
-<td style="text-align:right;">
-0
+77
 </td>
 <td style="text-align:right;">
 70
 </td>
 <td style="text-align:right;">
-107.8
+-1.32
 </td>
 <td style="text-align:right;">
-6.56
+0.298
 </td>
 <td style="text-align:right;">
-125.0
+0.034
 </td>
 <td style="text-align:right;">
-2.304
+0.41
 </td>
 <td style="text-align:right;">
-7.787
+0.3178
 </td>
 <td style="text-align:right;">
-0
+-0.691
 </td>
 <td style="text-align:right;">
-0
+-1.53
 </td>
 <td style="text-align:right;">
-125
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
+-1.35
 </td>
 <td style="text-align:right;">
-Elderly
-</td>
-<td style="text-align:right;">
-81
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-90
-</td>
-<td style="text-align:right;">
-159.4
-</td>
-<td style="text-align:right;">
-17.71
-</td>
-<td style="text-align:right;">
-156.0
-</td>
-<td style="text-align:right;">
-2.398
-</td>
-<td style="text-align:right;">
-6.934
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-156
+-1.11
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-SkinThickness
+mLWP
 </td>
 <td style="text-align:right;">
-Young
+Drought-sensitive understory
 </td>
 <td style="text-align:right;">
-417
+77
 </td>
 <td style="text-align:right;">
-0
+70
 </td>
 <td style="text-align:right;">
-22
+-1.10
 </td>
 <td style="text-align:right;">
-14.7
+0.264
 </td>
 <td style="text-align:right;">
-0.72
+0.030
 </td>
 <td style="text-align:right;">
-20.0
+0.43
 </td>
 <td style="text-align:right;">
--0.078
+-0.3411
 </td>
 <td style="text-align:right;">
--0.848
+-0.313
 </td>
 <td style="text-align:right;">
-12
+-1.34
 </td>
 <td style="text-align:right;">
-23
+-1.05
 </td>
 <td style="text-align:right;">
-32
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-SkinThickness
-</td>
-<td style="text-align:right;">
-Middle
-</td>
-<td style="text-align:right;">
-270
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-16.8
-</td>
-<td style="text-align:right;">
-1.02
-</td>
-<td style="text-align:right;">
-33.0
-</td>
-<td style="text-align:right;">
--0.032
-</td>
-<td style="text-align:right;">
--1.435
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-33
+-0.91
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-SkinThickness
+mLWP
 </td>
 <td style="text-align:right;">
-Elderly
+Drought-tolerant canopy
 </td>
 <td style="text-align:right;">
-81
+77
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+-0.89
+</td>
+<td style="text-align:right;">
+0.092
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+-0.2608
+</td>
+<td style="text-align:right;">
+-0.402
+</td>
+<td style="text-align:right;">
+-0.95
+</td>
+<td style="text-align:right;">
+-0.89
+</td>
+<td style="text-align:right;">
+-0.83
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+mLWP
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+-0.81
+</td>
+<td style="text-align:right;">
+0.171
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+-0.9539
+</td>
+<td style="text-align:right;">
+-0.412
+</td>
+<td style="text-align:right;">
+-0.91
+</td>
+<td style="text-align:right;">
+-0.74
+</td>
+<td style="text-align:right;">
+-0.70
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+pLWP
+</td>
+<td style="text-align:right;">
+Drought-sensitive canopy
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+-0.67
+</td>
+<td style="text-align:right;">
+0.246
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+-0.3510
+</td>
+<td style="text-align:right;">
+-0.274
+</td>
+<td style="text-align:right;">
+-0.79
+</td>
+<td style="text-align:right;">
+-0.71
+</td>
+<td style="text-align:right;">
+-0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+pLWP
+</td>
+<td style="text-align:right;">
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+-0.70
+</td>
+<td style="text-align:right;">
+0.284
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+-1.1510
+</td>
+<td style="text-align:right;">
+0.480
+</td>
+<td style="text-align:right;">
+-0.80
+</td>
+<td style="text-align:right;">
+-0.59
+</td>
+<td style="text-align:right;">
+-0.52
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+pLWP
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+-0.63
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+-0.4644
+</td>
+<td style="text-align:right;">
+-0.592
+</td>
+<td style="text-align:right;">
+-0.71
+</td>
+<td style="text-align:right;">
+-0.60
+</td>
+<td style="text-align:right;">
+-0.57
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+pLWP
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+-0.44
+</td>
+<td style="text-align:right;">
+0.132
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+-0.4333
+</td>
+<td style="text-align:right;">
+-0.432
+</td>
+<td style="text-align:right;">
+-0.52
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:right;">
+-0.36
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-sensitive canopy
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+85.27
+</td>
+<td style="text-align:right;">
+41.314
+</td>
+<td style="text-align:right;">
+3.771
+</td>
+<td style="text-align:right;">
+40.09
+</td>
+<td style="text-align:right;">
+1.0493
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+<td style="text-align:right;">
+53.98
+</td>
+<td style="text-align:right;">
+76.72
+</td>
+<td style="text-align:right;">
+94.07
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+1.45
+</td>
+<td style="text-align:right;">
+0.804
+</td>
+<td style="text-align:right;">
+0.073
+</td>
+<td style="text-align:right;">
+1.66
+</td>
+<td style="text-align:right;">
+-0.2242
+</td>
+<td style="text-align:right;">
+-1.635
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+<td style="text-align:right;">
+2.19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+9.07
+</td>
+<td style="text-align:right;">
+1.396
+</td>
+<td style="text-align:right;">
+0.127
+</td>
+<td style="text-align:right;">
+2.28
+</td>
+<td style="text-align:right;">
+-0.6344
+</td>
+<td style="text-align:right;">
+-0.695
+</td>
+<td style="text-align:right;">
+8.12
+</td>
+<td style="text-align:right;">
+9.29
+</td>
+<td style="text-align:right;">
+10.40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+4.57
+</td>
+<td style="text-align:right;">
+0.902
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+1.09
+</td>
+<td style="text-align:right;">
+-0.9141
+</td>
+<td style="text-align:right;">
+-0.077
+</td>
+<td style="text-align:right;">
+4.05
+</td>
+<td style="text-align:right;">
+4.94
+</td>
+<td style="text-align:right;">
+5.14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-sensitive canopy
+</td>
+<td style="text-align:right;">
+147
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-16
+40.40
 </td>
 <td style="text-align:right;">
-18.5
+19.028
 </td>
 <td style="text-align:right;">
-2.05
+1.569
 </td>
 <td style="text-align:right;">
-29.0
+24.88
 </td>
 <td style="text-align:right;">
-1.345
+0.9210
 </td>
 <td style="text-align:right;">
-3.438
+0.509
+</td>
+<td style="text-align:right;">
+25.22
+</td>
+<td style="text-align:right;">
+38.63
+</td>
+<td style="text-align:right;">
+50.10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+147
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;">
-7
+0.75
 </td>
 <td style="text-align:right;">
-29
+0.429
+</td>
+<td style="text-align:right;">
+0.035
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.0105
+</td>
+<td style="text-align:right;">
+-1.188
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+1.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.36
+</td>
+<td style="text-align:right;">
+0.940
+</td>
+<td style="text-align:right;">
+0.078
+</td>
+<td style="text-align:right;">
+1.51
+</td>
+<td style="text-align:right;">
+-0.3548
+</td>
+<td style="text-align:right;">
+-0.940
+</td>
+<td style="text-align:right;">
+3.60
+</td>
+<td style="text-align:right;">
+4.46
+</td>
+<td style="text-align:right;">
+5.11
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+147
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.19
+</td>
+<td style="text-align:right;">
+0.598
+</td>
+<td style="text-align:right;">
+0.049
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+-0.0087
+</td>
+<td style="text-align:right;">
+-0.779
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+2.20
+</td>
+<td style="text-align:right;">
+2.69
 </td>
 </tr>
 </tbody>
@@ -2727,9 +2376,8 @@ Elderly
 <p>Shapiro-Wilk test looks at whether a target distribution is sample form a normal distribution</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Glucose, Insulin, BMI, SkinThickness) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">normality</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">normality</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -2752,58 +2400,58 @@ sample
 <tbody>
 <tr>
 <td style="text-align:right;">
-Glucose
+Sap_Flow
 </td>
 <td style="text-align:right;">
-0.97
+0.63
 </td>
 <td style="text-align:right;">
-2.0e-11
+7.4e-31
 </td>
 <td style="text-align:right;">
-768
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-0.72
-</td>
-<td style="text-align:right;">
-7.9e-34
-</td>
-<td style="text-align:right;">
-768
+588
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-BMI
+TWaterFlux
 </td>
 <td style="text-align:right;">
-0.95
+0.64
 </td>
 <td style="text-align:right;">
-1.8e-15
+2.2e-33
 </td>
 <td style="text-align:right;">
-768
+588
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-SkinThickness
+pLWP
 </td>
 <td style="text-align:right;">
-0.90
+0.93
 </td>
 <td style="text-align:right;">
-1.8e-21
+3.4e-10
 </td>
 <td style="text-align:right;">
-768
+588
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+mLWP
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+7.0e-11
+</td>
+<td style="text-align:right;">
+588
 </td>
 </tr>
 </tbody>
@@ -2818,7 +2466,7 @@ SkinThickness
 <p>Plots of the quartiles of a target data set and plot it against predicted quartiles from a normal distribution</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_normality</span>(Glucose, Insulin, BMI, SkinThickness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_normality</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ExploringLikeDataAdventurer_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -2841,9 +2489,9 @@ SkinThickness
 <section id="shapiro-wilk-test-1" class="level4" data-number="3.8.2.1">
 <h4 data-number="3.8.2.1" class="anchored" data-anchor-id="shapiro-wilk-test-1"><span class="header-section-number">3.8.2.1</span> Shapiro-Wilk Test</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age_group) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Glucose, Insulin) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sap_Flow, TWaterFlux) <span class="sc">|&gt;</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">normality</span>() <span class="sc">|&gt;</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -2855,7 +2503,7 @@ SkinThickness
 variable
 </th>
 <th style="text-align:right;">
-Age_group
+Group
 </th>
 <th style="text-align:right;">
 statistic
@@ -2871,104 +2519,138 @@ sample
 <tbody>
 <tr>
 <td style="text-align:right;">
-Glucose
+Sap_Flow
 </td>
 <td style="text-align:right;">
-Young
+Drought-sensitive canopy
 </td>
 <td style="text-align:right;">
-0.95
+0.87
 </td>
 <td style="text-align:right;">
-5.4e-10
+9.8e-09
 </td>
 <td style="text-align:right;">
-417
+147
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-Glucose
+Sap_Flow
 </td>
 <td style="text-align:right;">
-Middle
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+0.86
+</td>
+<td style="text-align:right;">
+2.2e-09
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+8.3e-07
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Sap_Flow
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
+</td>
+<td style="text-align:right;">
+0.90
+</td>
+<td style="text-align:right;">
+2.2e-07
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-sensitive canopy
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+1.1e-06
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-sensitive understory
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+1.3e-06
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-tolerant canopy
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1.3e-04
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+TWaterFlux
+</td>
+<td style="text-align:right;">
+Drought-tolerant understory
 </td>
 <td style="text-align:right;">
 0.98
 </td>
 <td style="text-align:right;">
-6.4e-04
+4.4e-02
 </td>
 <td style="text-align:right;">
-270
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-Elderly
-</td>
-<td style="text-align:right;">
-0.98
-</td>
-<td style="text-align:right;">
-1.4e-01
-</td>
-<td style="text-align:right;">
-81
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-Young
-</td>
-<td style="text-align:right;">
-0.76
-</td>
-<td style="text-align:right;">
-5.6e-24
-</td>
-<td style="text-align:right;">
-417
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-Middle
-</td>
-<td style="text-align:right;">
-0.69
-</td>
-<td style="text-align:right;">
-6.9e-22
-</td>
-<td style="text-align:right;">
-270
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-Elderly
-</td>
-<td style="text-align:right;">
-0.63
-</td>
-<td style="text-align:right;">
-6.2e-13
-</td>
-<td style="text-align:right;">
-81
+147
 </td>
 </tr>
 </tbody>
@@ -2980,9 +2662,9 @@ Elderly
 <section id="q-q-plots-1" class="level4" data-number="3.8.2.2">
 <h4 data-number="3.8.2.2" class="anchored" data-anchor-id="q-q-plots-1"><span class="header-section-number">3.8.2.2</span> Q-Q Plots</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age_group) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Glucose, Insulin) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sap_Flow, TWaterFlux) <span class="sc">|&gt;</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_normality</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="ExploringLikeDataAdventurer_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
@@ -3002,6 +2684,12 @@ Elderly
 <div class="cell-output-display">
 <p><img src="ExploringLikeDataAdventurer_files/figure-html/unnamed-chunk-11-6.png" class="img-fluid" width="672"></p>
 </div>
+<div class="cell-output-display">
+<p><img src="ExploringLikeDataAdventurer_files/figure-html/unnamed-chunk-11-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="ExploringLikeDataAdventurer_files/figure-html/unnamed-chunk-11-8.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <hr>
 </section>
@@ -3015,6 +2703,11 @@ Elderly
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-meredith2021" class="csl-entry" role="doc-biblioentry">
+Meredith, Laura, S. Nemiah Ladd, and Christiane Werner. 2021. <span>“Data for <span>"</span>Ecosystem Fluxes During Drought and Recovery in an Experimental Forest<span>"</span>.”</span> University of Arizona Research Data Repository. <a href="https://doi.org/10.25422/AZU.DATA.14632593.V1">https://doi.org/10.25422/AZU.DATA.14632593.V1</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -3122,8 +2815,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ImputatingLikeDataScientist.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./TransformingLikeDataTrans.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a data… Transformer (?)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
