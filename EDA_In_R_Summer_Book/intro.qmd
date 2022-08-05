@@ -15,14 +15,14 @@ Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) t
 Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
 
 ```{r}
-pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggpubr, here, hrbrthemes, tidyverse)
+pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, tidyverse, plotly) 
 
 import_roboto_condensed()
 
 theme_set(theme_pubclean(base_size = 16))
 theme_update(axis.title = element_text(hjust = 1))
 theme_update(axis.ticks = element_blank())
-theme_update(text = element_text(family = "Roboto Condensed"))
+theme_update(text = element_text(family = "Roboto Condensed")) 
 
 dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
@@ -79,7 +79,7 @@ Measurable numbers that are fractional or decimal and cannot be counted (e.g., t
 dataset |> 
   ggplot(aes(x = BMI)) +
   geom_line(stat = "bin", binwidth = 5, color = "#4E84C4", size = 2) +
-  ylab("Count") 
+  ylab("Count")
 ```
 
 #### **Numerical**: Discrete
@@ -226,7 +226,7 @@ dataset |>
   annotate(geom = "text", x = 67.1, y = 25, label = "Outlier", size = 5) 
 ```
 
-## Distribution Shape
+### Distribution Shape {#sec-DistShape}
 
 Measures of describing the shape of a distribution, usually compared to a normal distribution (bell-curve)
 
@@ -235,15 +235,30 @@ Measures of describing the shape of a distribution, usually compared to a normal
 -   Kurtosis: The tailedness of the distribution
 
 ```{r}
-
 dataset |>
   ggplot(aes(x = dlookr::transform(Insulin, "minmax"))) +
   geom_density(size = 2) +
   geom_density(aes(x = dlookr::transform(Glucose, "minmax")), size = 2, linetype = "dashed") +
-  ylab("Density")
+  xlab("Mix-Max Centered Insulin and Glucose") +
+  ylab("Density") +
+  geom_segment(aes(y = 5, yend = 5, x = 0.05, xend = 0.15)) +
+  geom_segment(aes(y = 1, yend = 2.15, x = 0.85, xend = 0.85)) +
+  annotate(geom = "text", x = 0.175, y = 5, label = "Insulin \nSkewness = 2.27 \nKurtosis = 7.21", size = 5, hjust = 0) +
+  annotate(geom = "text", x = 0.73, y = 3.15, label = "Glucose \nSkewness = 0.174 \nKurtosis = 0.641", size = 5, hjust = 0)
+```
 
+### Statistical Dependence (Correlation)
 
-#0.174    0.641 Glucose
-#2.27     7.21 Insulin
+Measure of causality between two random variables (statistically). Notably, we approximate causality with correlations (see [correlation $\neq$ causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation#:~:text=The%20phrase%20%22correlation%20does%20not,association%20or%20correlation%20between%20them.))
 
+-   Numerical values, but you can compare numericals across categories (see the first plot above).
+
+```{r}
+dataset |>
+  select(-c(Age_group, DiabetesPedigreeFunction, Pregnancies)) |>
+  cor() |>
+  ggcorrplot(method = "circle",
+             colors = c("#6D9EC1", "white", "#E46726"),
+             outline.col = "black") +
+  guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10, ticks = FALSE)) 
 ```

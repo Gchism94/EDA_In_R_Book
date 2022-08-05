@@ -1,4 +1,4 @@
-# Exploratory Data Analysis in R - Diagnosing Like a Data Doctor
+# Exploratory Data Analysis in R - Diagnosing like a Data Doctor
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
@@ -36,12 +36,13 @@ pacman::p_load(dlookr, # Exploratory data analysis
                here, # Standardizes paths to data
                kableExtra, # Alternative to formattable
                knitr, # Needed to write HTML reports
+               missRanger, # To generate NAs
                tidyverse) # Powerful data wrangling package suite
 ```
 
 ------------------------------------------------------------------------
 
-### Load and Examine a Data Set
+## Load and Examine a Data Set
 
 -   Load data and view
 -   Examine columns and data types
@@ -53,12 +54,14 @@ pacman::p_load(dlookr, # Exploratory data analysis
 dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
-                            ifelse(Age > 30 & Age <=50, "Middle", 
+                            ifelse(Age > 30 & Age <= 50, "Middle", 
                                    "Elderly")),
          Age_group = fct_rev(Age_group))
 
 # What does the data look like?
-formattable(head(dataset))
+dataset |>
+  head() |>
+  formattable()
 ```
 
 ------------------------------------------------------------------------
@@ -67,7 +70,9 @@ formattable(head(dataset))
 
 ```{r}
 # What are the properties of the data
-formattable(diagnose(dataset))
+dataset |>
+  diagnose() |>
+  formattable()
 ```
 
 -   `variables`: name of each variable
@@ -84,7 +89,10 @@ formattable(diagnose(dataset))
 ### Numerical Variables
 
 ```{r}
-formattable(diagnose_numeric(dataset))
+# Summary statistics of our numerical columns
+dataset |>
+  diagnose_numeric() |>
+  formattable()
 ```
 
 -   `min`: minimum value
@@ -115,8 +123,9 @@ There are several numerical variables that have outliers above, let's see what t
 
 ```{r}
 # Table showing outliers
-formattable(diagnose_outlier(dataset) %>%
-  filter(outliers_ratio > 0))
+diagnose_outlier(dataset) |>
+  filter(outliers_ratio > 0) |>
+  formattable()
 ```
 
 -   `outliers_cnt`: number of outliers
@@ -140,22 +149,21 @@ dataset %>%
 -   Plot showing the frequency of missing values
 
 ```{r}
-
 # Randomly generate NAs
 na.dataset <- dataset |>
-  dplyr::mutate_all(~ifelse(sample(c(TRUE, FALSE), size = length(.), replace =
-                                     TRUE, prob = c(0.8, 0.2)),
-                            as.character(.), NA)) 
+  generateNA(p = 0.2)
+
+# Show first six hows of new data
 na.dataset |>
 head() |>
   formattable()
 ```
 
 ```{r, output.width = "100%"}
-
 # Create the NA table
-plot_na_pareto(na.dataset, only_na = TRUE, plot = FALSE) |>
-formattable() # Publishable table
+na.dataset |>
+  plot_na_pareto(only_na = TRUE, plot = FALSE) |>
+  formattable() # Publishable table
 ```
 
 ```{r}
@@ -169,7 +177,10 @@ na.dataset |>
 ### Categorical Variables
 
 ```{r}
-diagnose_category(dataset) |> formattable()
+# Diagnose our categorical columns
+dataset |>
+  diagnose_category() |> 
+  formattable()
 ```
 
 -   `variables`: category names

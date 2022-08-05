@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exploratory Data Analysis In R Workshops Companion Book - 1&nbsp; Introduction</title>
+<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,7 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./EDA_In_R_Summer1.html" rel="next">
+<link href="./DiagnosingLikeDataDoctor.html" rel="next">
 <link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -79,7 +79,7 @@ ul.task-list{list-style: none;}
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Exploratory Data Analysis In R Workshops Companion Book</a> 
+      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -101,22 +101,17 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./EDA_In_R_Summer1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing Like a Data Doctor</span></a>
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./EDA_In_R_Summer2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring Like a Data Adventurer</span></a>
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
   </div>
 </li>
     </ul>
@@ -140,8 +135,9 @@ ul.task-list{list-style: none;}
   <ul class="collapse">
   <li><a href="#central-tendency" id="toc-central-tendency" class="nav-link" data-scroll-target="#central-tendency"> <span class="header-section-number">1.3.1</span> Central Tendency</a></li>
   <li><a href="#statistical-dispersion" id="toc-statistical-dispersion" class="nav-link" data-scroll-target="#statistical-dispersion"> <span class="header-section-number">1.3.2</span> Statistical Dispersion</a></li>
+  <li><a href="#sec-DistShape" id="toc-sec-DistShape" class="nav-link" data-scroll-target="#sec-DistShape"> <span class="header-section-number">1.3.3</span> Distribution Shape</a></li>
+  <li><a href="#statistical-dependence-correlation" id="toc-statistical-dependence-correlation" class="nav-link" data-scroll-target="#statistical-dependence-correlation"> <span class="header-section-number">1.3.4</span> Statistical Dependence (Correlation)</a></li>
   </ul></li>
-  <li><a href="#distribution-shape" id="toc-distribution-shape" class="nav-link" data-scroll-target="#distribution-shape"> <span class="header-section-number">1.4</span> Distribution Shape</a></li>
   </ul>
 </nav>
     </div>
@@ -622,36 +618,36 @@ Age_group
 6
 </td>
 <td style="text-align:right;">
-148
+NA
 </td>
 <td style="text-align:right;">
 72
 </td>
 <td style="text-align:right;">
-NA
+35
 </td>
 <td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
 33.6
 </td>
 <td style="text-align:right;">
-NA
+0.627
 </td>
 <td style="text-align:right;">
 50
 </td>
 <td style="text-align:right;">
-1
+NA
 </td>
 <td style="text-align:right;">
-Middle
+NA
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-1
+NA
 </td>
 <td style="text-align:right;">
 85
@@ -672,7 +668,7 @@ Middle
 0.351
 </td>
 <td style="text-align:right;">
-NA
+31
 </td>
 <td style="text-align:right;">
 0
@@ -695,10 +691,10 @@ Middle
 NA
 </td>
 <td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
-NA
+23.3
 </td>
 <td style="text-align:right;">
 0.672
@@ -718,7 +714,7 @@ Middle
 1
 </td>
 <td style="text-align:right;">
-89
+NA
 </td>
 <td style="text-align:right;">
 66
@@ -730,13 +726,13 @@ Middle
 94
 </td>
 <td style="text-align:right;">
-NA
+28.1
 </td>
 <td style="text-align:right;">
 0.167
 </td>
 <td style="text-align:right;">
-21
+NA
 </td>
 <td style="text-align:right;">
 0
@@ -750,10 +746,10 @@ Young
 0
 </td>
 <td style="text-align:right;">
-137
+NA
 </td>
 <td style="text-align:right;">
-40
+NA
 </td>
 <td style="text-align:right;">
 35
@@ -765,16 +761,16 @@ Young
 43.1
 </td>
 <td style="text-align:right;">
-2.288
-</td>
-<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:right;">
-NA
+33
 </td>
 <td style="text-align:right;">
-Middle
+1
+</td>
+<td style="text-align:right;">
+NA
 </td>
 </tr>
 <tr>
@@ -788,19 +784,19 @@ Middle
 74
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
-30
+25.6
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+NA
 </td>
 <td style="text-align:right;">
 0
@@ -850,9 +846,8 @@ Young
 </div>
 </div>
 </section>
-</section>
-<section id="distribution-shape" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="distribution-shape"><span class="header-section-number">1.4</span> Distribution Shape</h2>
+<section id="sec-DistShape" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="sec-DistShape"><span class="header-section-number">1.3.3</span> Distribution Shape</h3>
 <p>Measures of describing the shape of a distribution, usually compared to a normal distribution (bell-curve)</p>
 <ul>
 <li><p>Skewness: The symmetry of the distribution</p></li>
@@ -863,8 +858,21 @@ Young
 <p><img src="intro_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="statistical-dependence-correlation" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="statistical-dependence-correlation"><span class="header-section-number">1.3.4</span> Statistical Dependence (Correlation)</h3>
+<p>Measure of causality between two random variables (statistically). Notably, we approximate causality with correlations (see <a href="https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation#:~:text=The%20phrase%20%22correlation%20does%20not,association%20or%20correlation%20between%20them.">correlation <span class="math inline">\(\neq\)</span> causation</a>)</p>
+<ul>
+<li>Numerical values, but you can compare numericals across categories (see the first plot above).</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="intro_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -972,8 +980,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./EDA_In_R_Summer1.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing Like a Data Doctor</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./DiagnosingLikeDataDoctor.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

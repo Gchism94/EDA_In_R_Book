@@ -1,0 +1,516 @@
+---
+title: "EDA_IP"
+format: html
+editor: visual
+---
+
+## In progress workshop materials
+
+#### Looking at empirical data: exploratory data analysis
+
+##### All of the above is great, but empirical data sets are full of different data types, and you will be answering question
+
+```{r}
+# Let's explore a data set from the Penguins data set
+data(package = 'palmerpenguins')
+
+# What does the data look like?
+head(penguins)
+
+# What are the properties of the data
+vt(penguins, lush = TRUE)
+
+# Summary statistics of the data
+st(penguins,
+   summ = 
+     c('notNA(x)', 'mean(x)','median(x)','sd(x)','min(x)','pctile(x)[25]','pctile(x)[75]','max(x)'),
+   summ.names = 
+     c('N', 'Mean','Median','Std. Dev.','Min', '1st Qtl.', '3rd Qtl.', 'Max')
+           )
+
+# Grouped summary statistics
+# These include statistical tests for groups: 
+# A joint F-test for numeric variables: anova(lm)
+# A Chi-square test of independence for categorical variables (chisq.test)
+
+# By species
+st(penguins,
+   group = 'species',
+   group.test = TRUE)
+
+# By island
+st(penguins,
+   group = 'island',
+   group.test = TRUE)
+
+```
+
+#### Exploring correlations and plotting differences among groups
+
+```{r}
+# Correlation matrix to see how numerical factors influence one another
+NumPenguins <-select_if(penguins, is.numeric) %>% 
+  drop_na()
+
+corr <- round(cor(NumPenguins), 1)
+head(corr)
+
+# Compute a matrix of correlation p-values
+p.mat <- cor_pmat(NumPenguins)
+head(p.mat)
+
+# Visualizing the correlations matrix with coefficients
+ggcorrplot(corr, hc.order = TRUE, type = "lower",
+   lab = TRUE,
+   outline.color = "white",
+   colors = c("#6D9EC1", "white", "#E46726"),
+   ggtheme = theme_gray) 
+
+# Now let's explore some of the data 
+# you can use several methods to visualize groups:
+
+# Box plot
+penguins %>%
+  ggplot(aes(x = body_mass_g, y = species, fill = species)) + # Create a ggplot
+  geom_boxplot(width = 0.2, 
+               alpha = 0.8) +
+    # Remove the x axis label
+    ylab(NULL) +
+  # Change y axis label
+    xlab("Body mass (g)") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none")
+
+# Ridge plots (basically density plots)
+penguins %>% # Set the simulated normal data as a data frame
+  ggplot(aes(x = body_mass_g, y = species, fill = species)) + # Create a ggplot
+  geom_density_ridges(scale = 0.9) +
+    # Remove the x axis label
+    ylab(NULL) +
+  # Change y axis label
+    xlab("Body mass (g)") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none")
+
+# Histogram interval plot
+penguins %>% # Set the simulated normal data as a data frame
+  ggplot(aes(x = species, y = body_mass_g, fill = species)) + # Create a ggplot
+  # Add a histogram and interval plot
+  stat_histinterval(adjust = 0.5, # Customize the bandwidth
+                    justification = -0.1, # Separate the interval from the bottom of the histogram
+                    outline_bars = TRUE, # Creating bars around each histogram bin
+                    slab_color = "black") + # Color the histogram bins
+  # Remove the x axis label
+    xlab(NULL) +
+  # Change y axis label
+    ylab("Body mass (g)") +
+  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none")
+```
+
+#### Plotting relationships between continuous variables
+
+```{r}
+# We plot relationships between continuous variables several ways
+
+# SCATTER PLOTS
+# Basic scatter plot
+penguins %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>%
+  ggplot(aes(x = bill_ratio, y = flipper_length_mm)) + # Create a ggplot
+  geom_point(size = 1.3, alpha = 0.8) +
+  # Change y axis label
+    xlab("Bill ratio") +
+  ylab("Flipper length (mm)")
+
+# Grouped scatter plot
+penguins %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>%
+  ggplot(aes(x = bill_ratio, y = flipper_length_mm, color = species)) + # Create a ggplot
+  geom_point(size = 1.3, alpha = 0.8) +
+  # Change y axis label
+    xlab("Bill ratio") +
+  ylab("Flipper length (mm)") +
+  scale_color_brewer(palette = "Dark2") +
+ labs(color = "Species") 
+
+# Scatter plot with scaled point size
+penguins %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>%
+  ggplot(aes(x = bill_ratio, y = flipper_length_mm, color = species, size = body_mass_g)) + # Create a ggplot
+  geom_point(alpha = 0.8) +
+  # Change y axis label
+    xlab("Bill ratio") +
+  ylab("Flipper length (mm)") +
+  scale_color_brewer(palette = "Dark2") +
+ labs(color = "Species", size = "Body mass (g)") 
+
+# Density plots
+# Contours
+penguins %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>%
+  ggplot(aes(x = bill_ratio, y = flipper_length_mm, color = species, size = body_mass_g)) + # Create a ggplot
+  geom_density_2d() +
+  # Change y axis label
+    xlab("Bill ratio") +
+  ylab("Flipper length (mm)") +
+ labs(color = "Species", size = "Body mass (g)") +
+  scale_color_brewer(palette = "Dark2") +
+  ylim(160, 250)
+```
+
+#### Dealing with multiple groups and complex relationships
+
+-   Multiple panels
+-   Clustering analyses
+
+```{r}
+
+```
+
+#### BONUS (Raincloud plots): A pretty advanced - but beautiful and elegant - way to visualize relationships between groups
+
+```{r}
+# An advanced (and very pretty) way to visualize relationships : raincloud plot
+
+# DISTRIBUTIONS ----
+# Setting a custom ggplot2 function
+# This function makes a pretty ggplot theme
+# This function takes no arguments 
+# meaning that you always have just niwot_theme() and not niwot_theme(something else here)
+theme_niwot <- function(){
+  theme_bw() +
+    theme(text = element_text(family = "Poppins"),
+          axis.text = element_text(size = 16), 
+          axis.title = element_text(size = 18),
+          axis.line.x = element_line(color="black"), 
+          axis.line.y = element_line(color="black"),
+          panel.border = element_blank(),
+          panel.grid.major.x = element_blank(),                                          
+          panel.grid.minor.x = element_blank(),
+          panel.grid.minor.y = element_blank(),
+          panel.grid.major.y = element_blank(),  
+          plot.margin = unit(c(1, 1, 1, 1), units = , "cm"),
+          plot.title = element_text(size = 18, vjust = 1, hjust = 0),
+          legend.text = element_text(size = 12),          
+          legend.title = element_blank(),                              
+          legend.position = c(0.95, 0.15), 
+          legend.key = element_blank(),
+          legend.background = element_rect(color = "black", 
+                                           fill = "transparent", 
+                                           size = 2, linetype = "blank"))
+}
+
+# We will use a function by Ben Marwick
+# This code loads the function in the working environment
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+
+fun_mean <- function(x){
+  return(data.frame(y=mean(x),label=mean(x,na.rm=T)))}
+                                           
+penguins %>%
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) %>% 
+  ggplot(aes(x = fct_rev(species), 
+             y = bill_ratio, 
+             fill = fct_rev(species))) +
+  geom_flat_violin(position = position_nudge(x = 0.2, y = 0), 
+                   alpha = 0.8) + 
+  geom_boxplot(
+    width = 0.2, 
+    outlier.shape = NA,
+    alpha = 0.8) +
+  geom_jitter(
+    aes(color = fct_rev(species)),
+    size = 1.3,
+    width = 0.075, alpha = 0.1) + 
+  stat_summary(fun.data = fun_mean, 
+               geom = "text", 
+               vjust = -2.65, 
+               size = 5, 
+               aes(label = round(..y.., digits = 1))) +
+  xlab(NULL) +
+  ylab("Bill ratio") +
+  scale_fill_manual(values = 
+                      c("#5A4A6F", 
+                        "#E47250",  
+                        "#EBB261")) +
+  scale_colour_manual(values = 
+                          c("#5A4A6F", 
+                            "#E47250",  
+                            "#EBB261")) +
+  coord_flip() +
+  theme_niwot() +
+  theme(legend.position = "none")
+```
+
+#### 1.3 Next we simulate two variables and see whether they correlate
+
+```{r}
+# Simulated dody size & height data from normal distributions
+BS.H.Data <- data.frame(BodySize = rnorm(20, mean = 5, sd = 2), Height = rnorm(20, mean = 12, sd = 4))
+
+# Linear regression of random variables body size and height
+summary(lm(BodySize ~ Height , BS.H.Data))
+
+# Plot the (lack of a) relationship in ggplot
+BS.H.Data %>% 
+  ggplot(aes(x = Height, y = BodySize)) + 
+  geom_point() + 
+  xlab("Height") +
+  ylab("Body size") +
+  ggtitle("Random height v. body size")
+```
+
+#### 1.3.1 Now we simulate two corralated continuous variables
+
+```{r}
+# Since the above are random... no relationship
+# Here's how to simulate correlated variables
+Cor.BS.H.Data <- rnorm_multi(n = 50, 
+                             mu = c(5, 12),
+                             sd = c(2, 4),
+                             r = 0.75,
+                             varnames = c("BodySize", "Height"),
+                             empirical = FALSE)
+
+
+# Linear regression of random variables body size and height
+summary(lm(BodySize ~ Height , Cor.BS.H.Data))
+
+# Plot the relationship in ggplot
+Cor.BS.H.Data %>% 
+  ggplot(aes(x = Height, y = BodySize)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) + 
+  xlab("Height") +
+  ylab("Body size") +
+  ggtitle("Corralated height v. body size")
+```
+
+### 2.0 Simulating other data types & relationships
+
+#### 2.1 Simulating random Binary, Poisson, and Character vectors
+
+```{r}
+# Set the seed before simulating random data to replicate these numbers
+set.seed(20)
+# Simulate binary data using the random binomial function
+BinaryData <- as.factor(rbinom(n = 20, size = 1, prob = 0.7))
+
+# Table showing the number of each binary value
+table(BinaryData)
+
+# Plot histogram of binary data
+barplot(table(BinaryData),
+     main = "Histogram of sim binary data",
+     xlab = "Sim binary data",
+     )
+
+# Set the seed before simulating random data to replicate these numbers
+set.seed(20)
+
+# Simulate discrete counts from a Poisson distribution
+PoisData <- rpois(20, lambda = 2.5)
+
+# Plot histogram of Poisson data
+hist(PoisData,
+     main = "Histogram of sim Poisson data",
+     xlab = "Sim Poisson data")
+
+# Simulate vectors of characters
+rep(letters[1:2], each = 3, length.out = 20) # Replicate letters "A" and "B", three times each, along a sequence of length 10
+```
+
+#### 2.2 Simulate data with a difference among groups
+
+```{r}
+# Simulate a random normally distributed response variable & a group that conforms to the pattern
+GroupResponse = data.frame(Group = rep(letters[1:2], length.out = 50), # Replicate letters "A" and "B" alternating along a sequence of length 20
+                            Response = rnorm(n = 50, mean = c(5, 10), sd = 1)) # 20 observations, 10 have mean = 5 and 10 have mean = 10, both have standard deviation = 1)
+
+# Show the simulated data
+head(GroupResponse)
+
+# Student's T test for difference among two groups
+t.test(Response ~ Group, data = GroupResponse, paired = FALSE, two.sided = TRUE, conf.level = 0.95)
+
+# Boxplot showing the difference among groups
+Boxplot(Response ~ Group, data = GroupResponse, 
+        main = "Sim difference among groups")
+```
+
+### 3.0 Simulating a study
+
+##### Simulating an entire study will allow you to consider how you should organize your data and prepare for data analysis and visualization. We will be looking at song birds as a study system, where we are asking how the age of the bird, whether the bird has a mate, and the number of visits an individual made to a food source that we camera trapped over one week.
+
+##### We will use answer the following question that could result from a data set with these variables: Does age and whether the bird was mated influence the number of food visits?
+
+##### Data that we need:
+
+-   Age, as a normally distributed continuous variable
+-   Mated, a binary variable that is related to Age
+-   Visits, a count variable that is Poisson distributed (since we are counting visits it makes sense that the numbers will be smaller per-capita)
+
+#### 3.1 Defining & simulating random variables for Age and Mated
+
+##### First we need to set the parameters for the data that will be simulated. This is not (and should not be trivial). You will need to simulate reasonable data, ideally from biological relevance, or better, previous data from literature.
+
+```{r}
+# Create a binary variable for "Mated", where we define three different probabilities for success
+# 100% success
+Mated1 = rbinom(n = 100,
+               size = 1, 
+               prob = 0.75)
+
+# 50% success
+Mated2 = rbinom(n = 100,
+               size = 1, 
+               prob = 0.5)
+
+# 10% success
+Mated3 = rbinom(n = 100,
+               size = 1, 
+               prob = 0.1)
+
+# We are introducing a new simulation here, where we truncate the normal distribution to not include values that are impossible (Age cannot be < 1 or > 15). We also assume a standard deviation of 5, so that all values can be considered. 
+# This makes sense because bird populations will taper off to fewer older individuals than younger (assuming predation, disease, aggression within species)
+Age = rtruncnorm(n = 100,
+            mean = 5, 
+            sd = 5,
+            a = 1,
+            b = 15)
+
+# Show the simulated data
+head(Age)
+
+# Mean and standard deviation of "Age"
+mean(Age)
+
+sd(Age)
+
+# Histogram of "Age"
+hist(Age,
+     main = "Simulated age",
+     xlab = "Age")
+```
+
+#### 3.2 Correlating our data
+
+##### Now we need to correlate our random variables, where we assign our three "Mated" binomial distributions to specific Age ranges. We could do everything above within the code used here, but it's sometimes easier to control random variables separately then correlate them after.
+
+##### We will then create a "Visits" Poisson distribution that is correlated to both Age and Mated, but also the Age \* Mated interaction. This can be done through the lambda in the rpois() function.
+
+```{r}
+# Create a correlation between Age and Mated
+SimDataset <- data_frame(Age = Age, Mated1 = Mated1, Mated2 = Mated2, Mated3 = Mated3) %>%
+  mutate(Mated = ifelse(Age < 7 & Age >= 1, Mated3, 
+                        ifelse(Age >= 7 & Age < 10, Mated2, Mated1))) %>%
+  select(Age, Mated)
+
+# Show the simulated data
+Mated <- SimDataset$Mated
+
+head(Mated)
+
+## Now the binary variable "Female"
+# Table showing the number of values in each binary option
+table(Mated)
+
+# Plot histogram of binary data
+barplot(table(Mated),
+     main = "Histogram of Mated",
+     xlab = "Mated",
+     )
+
+# Create a discrete variable with a Poisson distribution that has a linear relationship with Age and Mated
+# Try playing with the variables that create the correlation between Age, Mated, and Age * Mated. 
+Visits = rpois(100, lambda = 0.9 * Age + 0.9 * Mated + 0.9 * Age * Mated) 
+
+head(Visits)
+
+# Plot histogram of Poisson data
+hist(Visits,
+     main = "Histogram of Visits",
+     xlab = "Visits")
+
+# Combine to a new data set
+SimDataset <- cbind(SimDataset, Visits) %>%
+  mutate()
+
+head(SimDataset)
+```
+
+#### 3.3 Analyzing and plotting our data
+
+##### Remember we are answering the question:
+
+-   Does age and whether the bird was mated influence the number of food visits?
+
+##### Our hypothesis is that birds that are mated and older require more food to raise their young.
+
+##### This predicts that food site visitation will increase with both age and whether the bird is mated.
+
+##### We will be using a generalized linear model with a Poisson family to test our prediction
+
+##### *glm(Visits \~ Age \* Mated)*
+
+```{r}
+## Since this is relatively exploratory, we can look at a covariance matrix to discover the correlations between our variables
+# Compute a correlation matrix
+corr <- round(cor(SimDataset), 1)
+head(corr)
+
+# Compute a matrix of correlation p-values
+p.mat <- cor_pmat(SimDataset)
+head(p.mat)
+
+# Visualizing the correlations matrix with coefficients
+ggcorrplot(corr, hc.order = TRUE, type = "lower",
+   lab = TRUE)
+
+# Generalized linear regression with a Poisson fit
+summary(glm(Visits ~ Age * Mated, family = "poisson", data = SimDataset))
+
+# Plot the linear relationships
+# NOTE: You can do a little better and plot a Poisson fit (see supplementary)
+ggplot(data = SimDataset, aes(x = Age, y = Visits, color = as.factor(Mated))) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE) +
+  ggtitle("Affect of mated and age on feeding visits") +
+  scale_color_discrete(name = "Mated",
+                       breaks = c("1", "0"),
+                       labels = c("Yes", "No"))
+```
+
+### 4.0 Statistical power (*a priori*)
+
+#### By now you might notice how powerful simulating study data can be. However, you can also simulate data to predict the statistical power of your study. Conventional statistical power is 80%, per Cohen 2013, meaning that there is a 80% probability that you will detect a significant statistical effect. Knowing this, you can determine what sample size you need to detect different levels of effect size (Cohen's *d*)
+
+#### 3.3 (BONUS) Interpreting regression models
+
+Simple & multiple linear regression outputs Regression line: y = a + bx Where: "**b**" is the slope of the *line* "**a**" is the y-intercept "x" is an explanatory variable *aka independent variable* "y" is a dependent variable: *what you're trying to predict*
+
+------------------------------------------------------------------------
+
+**r-squared:** The proportion of the variance in the dependent variable that is predictable from the independent variable \* i.e., an r-squared of 0.5 means that 50% of the variance in *"y"* is predictable from *"x"*
+
+------------------------------------------------------------------------
+
+**Adjusted r-squared:** Slightly different: The proportion of variation explained by only the independent variables that actually affect the dependent variable. \* Adj. r-squared penalizes you for adding independent variables
+
+------------------------------------------------------------------------
+
+**So what?** If the *r-squared* and *adj. r-squared* are close to each other, the selected variables are doing great, but if they are very different then the model variables are not relevant
+
+```{r}
+# Multiple linear regression predicting the relationship between wing and tail length in hawks
+LinMod <- summary(lm(Tail ~ Wing * Species, data = Hawks))
+
+# Clean the summary() output using prettify() 
+Pretty_lm <- prettify(LinMod)
+
+# Create an HTML table using kable, where the prettify() function cleans the raw summary output and the kable_styling() applies a clean theme
+kable(Pretty_lm) %>%
+  kable_styling()
+```

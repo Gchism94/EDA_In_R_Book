@@ -172,16 +172,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./EDA_In_R_Summer2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring Like a Data Adventurer</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -258,7 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               here, <span class="co"># Standardizes paths to data</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co"># Alternative to formattable</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               knitr, <span class="co"># Needed to write HTML reports</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               tidyverse) <span class="co"># Powerful data wrangling package suite</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               missRanger, <span class="co"># To generate NAs</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>               tidyverse) <span class="co"># Powerful data wrangling package suite</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 <section id="load-and-examine-a-data-set" class="level3" data-number="2.3.1">
@@ -274,12 +265,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"EDA_In_R_Summer_Book"</span>, <span class="st">"data"</span>, <span class="st">"diabetes.csv"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a categorical group</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Age_group =</span> <span class="fu">ifelse</span>(Age <span class="sc">&gt;=</span> <span class="dv">21</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">30</span>, <span class="st">"Young"</span>, </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(Age <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span><span class="dv">50</span>, <span class="st">"Middle"</span>, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">ifelse</span>(Age <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> Age <span class="sc">&lt;=</span> <span class="dv">50</span>, <span class="st">"Middle"</span>, </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Elderly"</span>)),</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Age_group =</span> <span class="fu">fct_rev</span>(Age_group))</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">formattable</span>(<span class="fu">head</span>(dataset))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -522,7 +515,9 @@ Young
 <h2 data-number="2.4" class="anchored" data-anchor-id="diagnose-your-data"><span class="header-section-number">2.4</span> Diagnose your Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the properties of the data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">formattable</span>(<span class="fu">diagnose</span>(dataset))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -769,7 +764,9 @@ factor
 <section id="numerical-variables" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="numerical-variables"><span class="header-section-number">2.5.1</span> Numerical Variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">formattable</span>(<span class="fu">diagnose_numeric</span>(dataset))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose_numeric</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -1131,8 +1128,9 @@ Outcome
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table showing outliers</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">formattable</span>(<span class="fu">diagnose_outlier</span>(dataset) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outliers_ratio <span class="sc">&gt;</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diagnose_outlier</span>(dataset) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outliers_ratio <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -1357,12 +1355,11 @@ Age
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly generate NAs</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>na.dataset <span class="ot">&lt;-</span> dataset <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">ifelse</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">size =</span> <span class="fu">length</span>(.), <span class="at">replace =</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">as.character</span>(.), <span class="cn">NA</span>)) </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>na.dataset <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generateNA</span>(<span class="at">p =</span> <span class="fl">0.2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>na.dataset <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -1415,19 +1412,19 @@ NA
 35
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
-33.6
+34
 </td>
 <td style="text-align:right;">
-0.627
-</td>
-<td style="text-align:right;">
-50
+0.63
 </td>
 <td style="text-align:right;">
 NA
+</td>
+<td style="text-align:right;">
+1
 </td>
 <td style="text-align:right;">
 Middle
@@ -1435,10 +1432,10 @@ Middle
 </tr>
 <tr>
 <td style="text-align:right;">
-1
+NA
 </td>
 <td style="text-align:right;">
-NA
+85
 </td>
 <td style="text-align:right;">
 66
@@ -1450,19 +1447,19 @@ NA
 0
 </td>
 <td style="text-align:right;">
-26.6
+27
 </td>
 <td style="text-align:right;">
-0.351
+0.35
 </td>
 <td style="text-align:right;">
 31
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
-NA
+Middle
 </td>
 </tr>
 <tr>
@@ -1470,7 +1467,7 @@ NA
 8
 </td>
 <td style="text-align:right;">
-NA
+183
 </td>
 <td style="text-align:right;">
 64
@@ -1482,10 +1479,10 @@ NA
 0
 </td>
 <td style="text-align:right;">
-NA
+23
 </td>
 <td style="text-align:right;">
-NA
+0.67
 </td>
 <td style="text-align:right;">
 32
@@ -1499,7 +1496,7 @@ Middle
 </tr>
 <tr>
 <td style="text-align:right;">
-NA
+1
 </td>
 <td style="text-align:right;">
 89
@@ -1511,13 +1508,13 @@ NA
 23
 </td>
 <td style="text-align:right;">
-NA
+94
 </td>
 <td style="text-align:right;">
-28.1
+28
 </td>
 <td style="text-align:right;">
-0.167
+0.17
 </td>
 <td style="text-align:right;">
 21
@@ -1526,18 +1523,18 @@ NA
 0
 </td>
 <td style="text-align:right;">
-NA
+Young
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
 137
 </td>
 <td style="text-align:right;">
-NA
+40
 </td>
 <td style="text-align:right;">
 35
@@ -1546,13 +1543,13 @@ NA
 168
 </td>
 <td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+2.29
+</td>
+<td style="text-align:right;">
 NA
-</td>
-<td style="text-align:right;">
-2.288
-</td>
-<td style="text-align:right;">
-33
 </td>
 <td style="text-align:right;">
 1
@@ -1566,7 +1563,7 @@ Middle
 5
 </td>
 <td style="text-align:right;">
-NA
+116
 </td>
 <td style="text-align:right;">
 74
@@ -1575,19 +1572,19 @@ NA
 0
 </td>
 <td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:right;">
-25.6
-</td>
-<td style="text-align:right;">
-0.201
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
 Young
@@ -1600,8 +1597,9 @@ Young
 </div>
 <div class="cell" data-output.width="100%">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the NA table</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_na_pareto</span>(na.dataset, <span class="at">only_na =</span> <span class="cn">TRUE</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">formattable</span>() <span class="co"># Publishable table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>na.dataset <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_na_pareto</span>(<span class="at">only_na =</span> <span class="cn">TRUE</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>() <span class="co"># Publishable table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -1630,135 +1628,16 @@ cumulative
 Age
 </td>
 <td style="text-align:right;">
-169
+154
 </td>
 <td style="text-align:right;">
-0.22
-</td>
-<td style="text-align:right;">
-Bad
-</td>
-<td style="text-align:right;">
-11
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BloodPressure
-</td>
-<td style="text-align:right;">
-164
-</td>
-<td style="text-align:right;">
-0.21
+0.2
 </td>
 <td style="text-align:right;">
 Bad
 </td>
 <td style="text-align:right;">
-22
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Glucose
-</td>
-<td style="text-align:right;">
-159
-</td>
-<td style="text-align:right;">
-0.21
-</td>
-<td style="text-align:right;">
-Bad
-</td>
-<td style="text-align:right;">
-32
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Insulin
-</td>
-<td style="text-align:right;">
-158
-</td>
-<td style="text-align:right;">
-0.21
-</td>
-<td style="text-align:right;">
-Bad
-</td>
-<td style="text-align:right;">
-43
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Outcome
-</td>
-<td style="text-align:right;">
-153
-</td>
-<td style="text-align:right;">
-0.20
-</td>
-<td style="text-align:right;">
-NotBad
-</td>
-<td style="text-align:right;">
-53
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-Pregnancies
-</td>
-<td style="text-align:right;">
-151
-</td>
-<td style="text-align:right;">
-0.20
-</td>
-<td style="text-align:right;">
-NotBad
-</td>
-<td style="text-align:right;">
-63
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-BMI
-</td>
-<td style="text-align:right;">
-149
-</td>
-<td style="text-align:right;">
-0.19
-</td>
-<td style="text-align:right;">
-NotBad
-</td>
-<td style="text-align:right;">
-73
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-DiabetesPedigreeFunction
-</td>
-<td style="text-align:right;">
-148
-</td>
-<td style="text-align:right;">
-0.19
-</td>
-<td style="text-align:right;">
-NotBad
-</td>
-<td style="text-align:right;">
-82
+10
 </td>
 </tr>
 <tr>
@@ -1766,16 +1645,135 @@ NotBad
 Age_group
 </td>
 <td style="text-align:right;">
-146
+154
 </td>
 <td style="text-align:right;">
-0.19
+0.2
 </td>
 <td style="text-align:right;">
-NotBad
+Bad
 </td>
 <td style="text-align:right;">
-92
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+BloodPressure
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+BMI
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+DiabetesPedigreeFunction
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Glucose
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Insulin
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+70
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Outcome
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+80
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Pregnancies
+</td>
+<td style="text-align:right;">
+154
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+90
 </td>
 </tr>
 <tr>
@@ -1783,13 +1781,13 @@ NotBad
 SkinThickness
 </td>
 <td style="text-align:right;">
-124
+154
 </td>
 <td style="text-align:right;">
-0.16
+0.2
 </td>
 <td style="text-align:right;">
-NotBad
+Bad
 </td>
 <td style="text-align:right;">
 100
@@ -1814,7 +1812,9 @@ NotBad
 <section id="categorical-variables" class="level3" data-number="2.5.4">
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">2.5.4</span> Categorical Variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diagnose_category</span>(dataset) <span class="sc">|&gt;</span> <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose_category</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">

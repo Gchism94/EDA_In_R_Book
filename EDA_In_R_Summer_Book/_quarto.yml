@@ -2,14 +2,16 @@ project:
   type: book
 
 book:
-  title: "Exploratory Data Analysis In R Workshops Companion Book"
+  title: "Data 7 Exploratory Data Analysis In R Workshops Companion Book"
   author: "Greg Chism"
   date: "8/1/2022"
   chapters:
     - index.qmd
     - intro.qmd
-    - EDA_In_R_Summer1.qmd
-    - EDA_In_R_Summer2.qmd
+    - DiagnosingLikeDataDoctor.qmd
+    - ExploringLikeDataAdventurer.qmd
+    - TransformingLikeDataTrans.qmd
+    - ImputatingLikeDataScientist.qmd
 
 bibliography: references.bib
 
