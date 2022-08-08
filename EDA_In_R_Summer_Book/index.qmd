@@ -2,7 +2,7 @@
 
 ## Welcome to the UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!
 
-![Image credit: RStudio is a trademark of Posit, PBC](images/DSI_RStudio_Stats.jpg)
+![](images/DataScienceInstitute_ALTERNATE.png){width="370"}
 
 ------------------------------------------------------------------------
 

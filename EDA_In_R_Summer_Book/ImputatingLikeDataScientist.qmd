@@ -64,7 +64,7 @@ theme_update(legend.key = element_blank())
 ## Load and Examine a Data Set
 
 ```{r}
-# Let's load a data set from the flights data set
+# Let's load a data set from the diabetes data set
 dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
@@ -229,6 +229,8 @@ We remove outliers using `imputate_outlier()` and replace them with values that 
 
 -   `capping`: Impute the upper outliers with 95 percentile, and impute the bottom outliers with 5 percentile - aka Winsorizing
 
+------------------------------------------------------------------------
+
 ### Mean Imputation
 
 The mean of the observed values for each variable is computed and the outliers for that variable are imputed by this mean
@@ -252,6 +254,8 @@ mean_out_imp_insulin |>
 mean_out_imp_insulin |>
   plot()
 ```
+
+------------------------------------------------------------------------
 
 ### Median Imputation
 
@@ -385,6 +389,8 @@ I will only be addressing one type of NA imputation using `imputate_na()` (but n
 
 Since our normal `dataset` has no NA values, we will use the `na.dataset` we created earlier.
 
+------------------------------------------------------------------------
+
 ### K-Nearest Neighbor (KNN) Imputation
 
 KNN is a machine learning algorithm that classifies data by similarity. This in effect clusters data into similar groups. The algorithm predicts values of new data to replace NA values based on how closely they resembles training data points, such as by comparing across other columns.
@@ -407,6 +413,8 @@ knn_na_imp_insulin |>
   plot()
 ```
 
+------------------------------------------------------------------------
+
 #### Pros & Cons of Using KNN Imputation
 
 **Pro**:
@@ -418,6 +426,8 @@ knn_na_imp_insulin |>
 -   KNN is computationally expensive because it stores the entire training dataset into computer memory.
 
 -   KNN is very sensitive to outliers, so you would have to imputate these first.
+
+------------------------------------------------------------------------
 
 ### Recursive Partitioning and Regression Trees (rpart)
 
@@ -446,6 +456,8 @@ rpart_na_imp_insulin |>
   plot()
 ```
 
+------------------------------------------------------------------------
+
 #### Pros & Cons of Using rpart Imputation
 
 **Pros**:
@@ -459,6 +471,8 @@ rpart_na_imp_insulin |>
 -   Can over fit the data as they grow.
 
 -   Speed decreases with more data columns.
+
+------------------------------------------------------------------------
 
 ### Multivariate Imputation by Chained Equations (MICE)
 
@@ -476,6 +490,8 @@ mice_na_imp_insulin |>
   plot()
 ```
 
+------------------------------------------------------------------------
+
 #### Pros & Cons of MICE Imputation
 
 **Pros**:
@@ -487,6 +503,8 @@ mice_na_imp_insulin |>
 **Cons**:
 
 -   You have to round the results for ordinal data because resulting data points are too great or too small (floating-points).
+
+------------------------------------------------------------------------
 
 ## Produce an HTML Transformation Summary
 

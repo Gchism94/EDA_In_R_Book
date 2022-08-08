@@ -8,12 +8,16 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 **Using data transformation to correct non-normality in data**
 
+------------------------------------------------------------------------
+
 ## Objectives
 
 1.  Load and explore a data set with publication quality tables
 2.  Quickly diagnose non-normality in data
 3.  Data transformation
 4.  Prepare an HTML summary report showcasing data transformations
+
+------------------------------------------------------------------------
 
 ## Required Setup
 
@@ -40,6 +44,8 @@ pacman::p_load(dlookr, # Exploratory data analysis
                tidyverse) # Powerful data wrangling package suite
 ```
 
+------------------------------------------------------------------------
+
 ## Load and Examine a Data Set
 
 -   Load data and view
@@ -48,7 +54,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 -   Describe properties of data
 
 ```{r}
-# Let's load a data set from the flights data set
+# Let's load a data set from the diabetes data set
 dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
@@ -61,6 +67,8 @@ dataset |>
   head() |>
   formattable()
 ```
+
+------------------------------------------------------------------------
 
 ### Data Normality
 
@@ -99,6 +107,8 @@ dataset |>
   theme(axis.title.y = element_blank()) 
 ```
 
+------------------------------------------------------------------------
+
 ### Describing Properties of our Data (Refined)
 
 #### Skewness
@@ -121,6 +131,8 @@ Note that we will remove the other percentiles to produce a cleaner output
 
 -   `skewness`: skewness
 
+------------------------------------------------------------------------
+
 ## Testing Normality (Accelerated)
 
 -   Q-Q plots
@@ -130,6 +142,8 @@ Note that we will remove the other percentiles to produce a cleaner output
 -   Testing normality of groups
 
 **Note** that you can also use `normality()` to run Shapiro-Wilk tests, but since this test is not viable at `N < 20`, I recommend just skipping to Q-Q plots.
+
+------------------------------------------------------------------------
 
 #### Q-Q Plots
 
@@ -141,6 +155,8 @@ Notably, `plot_normality()` will show you the Logaritmic and Skewed transformati
 dataset |>
 plot_normality(Glucose, Insulin, Age)
 ```
+
+------------------------------------------------------------------------
 
 ## Normality within Groups
 
@@ -155,6 +171,8 @@ dataset %>%
   plot_normality()
 ```
 
+------------------------------------------------------------------------
+
 ## Transforming Data
 
 Your data could be more easily interpreted with a transformation, since not all relationships in nature follow a linear relationship - i.e., many biological phenomena follow a power law (or logarithmic curve), where they do not scale linearly.
@@ -165,6 +183,8 @@ We will try to transform the `Insulin` column with through several approaches an
 InsMod <- dataset |>
   filter(Insulin > 0)
 ```
+
+------------------------------------------------------------------------
 
 ### Square-root, Cube-root, and Logarithmic Transformations
 
@@ -184,6 +204,8 @@ Resolving Skewness using `transform()`.
 
 We will compare `sqrt`, `log+1`, and `1/x` (inverse) transformations. Note that you would have to add a constant to use the `log` transformation, so it is easier to use the `log+1` instead. You however need to add a constant to both the `sqrt` and `1/x` transformations because they don't include zeros and will otherwise skew the results.
 
+------------------------------------------------------------------------
+
 #### Square-root Transformation
 
 ```{r}
@@ -196,6 +218,8 @@ summary(sqrtIns)
 sqrtIns |>
   plot()
 ```
+
+------------------------------------------------------------------------
 
 #### Logarithmic (+1) Transformation
 
@@ -210,6 +234,8 @@ Log1Ins |>
   plot()
 ```
 
+------------------------------------------------------------------------
+
 #### Inverse Transformation
 
 ```{r}
@@ -222,6 +248,8 @@ summary(InvIns)
 InvIns |>
   plot()
 ```
+
+------------------------------------------------------------------------
 
 ### Box-cox Transformation
 
@@ -237,6 +265,8 @@ summary(BoxCoxIns)
 BoxCoxIns |>
   plot()
 ```
+
+------------------------------------------------------------------------
 
 ## Produce an HTML Transformation Summary 
 

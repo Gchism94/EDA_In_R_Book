@@ -47,7 +47,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 We will be using open source data from UArizona researchers that investigates the effects of climate change on canopy trees. [@meredith2021]
 
 ```{r}
-# Let's load a data set from the flights data set
+# Let's load a data set from the canopy tree data set
 dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "Data_Fig2_Repo.csv")) 
 
 # What does the data look like?
