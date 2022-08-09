@@ -1,0 +1,6673 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Data 7 Exploratory Data Analysis In R Workshops Companion Book},
+  pdfauthor={Greg Chism},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Data 7 Exploratory Data Analysis In R Workshops Companion Book}
+\author{Greg Chism}
+\date{8/8/2022}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, frame hidden, interior hidden, enhanced]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+\hypertarget{welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book}{%
+\section*{Welcome to the UArizona Data7 Exploratory Data Analysis In R
+Workshops Companion
+Book!}\label{welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book}}
+\addcontentsline{toc}{section}{Welcome to the UArizona Data7 Exploratory
+Data Analysis In R Workshops Companion Book!}
+
+\includegraphics[width=3.85417in,height=\textheight]{./images/DataScienceInstitute_ALTERNATE.png}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Here you will find a collection of Exploratory Data Analysis in R
+Workshops prepared by the staff of the
+\href{https://datascience.arizona.edu/}{Data Science Institute}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor}{%
+\section*{\texorpdfstring{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1}{Exploratory
+data analysis in R - Diagnosing like a data
+doctor}}{Exploratory data analysis in R - Diagnosing like a data doctor}}\label{exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor}}
+\addcontentsline{toc}{section}{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1}{Exploratory
+data analysis in R - Diagnosing like a data doctor}}
+
+\hypertarget{purpose-of-workshop}{%
+\subsection*{Purpose of Workshop}\label{purpose-of-workshop}}
+\addcontentsline{toc}{subsection}{Purpose of Workshop}
+
+Exploring a novel data set and produce publication quality tables and
+reports
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exploratory-data-analysis-in-r---exploring-like-a-data-adventurer}{%
+\section*{\texorpdfstring{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2}{Exploratory
+data analysis in R - Exploring like a data
+adventurer}}{Exploratory data analysis in R - Exploring like a data adventurer}}\label{exploratory-data-analysis-in-r---exploring-like-a-data-adventurer}}
+\addcontentsline{toc}{section}{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2}{Exploratory
+data analysis in R - Exploring like a data adventurer}}
+
+\hypertarget{purpose-of-the-workshop}{%
+\subsection*{Purpose of the Workshop}\label{purpose-of-the-workshop}}
+\addcontentsline{toc}{subsection}{Purpose of the Workshop}
+
+Exploring the normality of numerical columns in a novel data set and
+producing publication quality tables and reports
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exploratory-data-analysis-in-r---transforming-like-a-data-transformer}{%
+\section*{\texorpdfstring{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall3}{Exploratory
+Data Analysis in R - Transforming like a Data\ldots{}
+Transformer}}{Exploratory Data Analysis in R - Transforming like a Data\ldots{} Transformer}}\label{exploratory-data-analysis-in-r---transforming-like-a-data-transformer}}
+\addcontentsline{toc}{section}{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall3}{Exploratory
+Data Analysis in R - Transforming like a Data\ldots{} Transformer}}
+
+\hypertarget{purpose-of-the-workshop-1}{%
+\subsection*{Purpose of the Workshop}\label{purpose-of-the-workshop-1}}
+\addcontentsline{toc}{subsection}{Purpose of the Workshop}
+
+Using data transformation to correct non-normality in numerical data
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exploratory-data-analysis-in-r---imputating-like-a-data-scientist}{%
+\section*{\texorpdfstring{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall4}{Exploratory
+Data Analysis in R - Imputating like a Data
+Scientist}}{Exploratory Data Analysis in R - Imputating like a Data Scientist}}\label{exploratory-data-analysis-in-r---imputating-like-a-data-scientist}}
+\addcontentsline{toc}{section}{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall4}{Exploratory
+Data Analysis in R - Imputating like a Data Scientist}}
+
+\hypertarget{purpose-of-the-workshop-2}{%
+\subsection*{Purpose of the Workshop}\label{purpose-of-the-workshop-2}}
+\addcontentsline{toc}{subsection}{Purpose of the Workshop}
+
+Exploring, visualizing, and imputing outliers and missing values (NAs)
+in a novel data set and produce publication quality graphs and tables
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exploratory-data-analysis-in-r---correlate-like-a-data-master}{%
+\section*{\texorpdfstring{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall5}{Exploratory
+Data Analysis in R - Correlate Like a Data
+Master}}{Exploratory Data Analysis in R - Correlate Like a Data Master}}\label{exploratory-data-analysis-in-r---correlate-like-a-data-master}}
+\addcontentsline{toc}{section}{\href{https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall5}{Exploratory
+Data Analysis in R - Correlate Like a Data Master}}
+
+\hypertarget{purpose-of-the-workshop-3}{%
+\subsection*{Purpose of the Workshop}\label{purpose-of-the-workshop-3}}
+\addcontentsline{toc}{subsection}{Purpose of the Workshop}
+
+Assess relationships within a novel data set using publication quality
+tables and plots
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\href{https://github.com/ua-data7/LearningResources/wiki}{Visit our
+available Digital Learning Resources Library!}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Created: 07/22/2022 (G. Chism); Last update: 08/09/2022
+
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+\begin{figure}
+
+\includegraphics[width=2.22917in,height=2.47917in]{https://choonghyunryu.github.io/dlookr/figures/detective_2.png} \hfill{}
+
+\caption{Image Credit: Choonghyun Ryu}
+
+\end{figure}
+
+\href{https://en.wikipedia.org/wiki/Exploratory_data_analysis}{Exploratory
+data analysis} is an essential first step towards determining the
+validity of your data and should be performed throughout the data
+pipeline. However, EDA is often performed too late or not at all. The
+\href{https://en.wikipedia.org/wiki/R_(programming_language)}{R
+programming language}, specifically through the
+\href{https://en.wikipedia.org/wiki/RStudio}{RStudio IDE}, is widely
+used open source platform for
+\href{https://en.wikipedia.org/wiki/Data_analysis}{data analysis} and
+\href{https://en.wikipedia.org/wiki/Data_and_information_visualization}{data
+visualization}. This is because of the extensive variety of packages
+available and attentive community devoted to data analysis.
+Consequently, there are several exploratory data analysis
+\href{https://arxiv.org/pdf/1904.02101.pdf}{packages}, each of which
+have their own pros and cons.
+
+Here, we utilize the
+\href{https://github.com/choonghyunryu/dlookr}{dlookr package} to
+conduct preliminary exploratory data analysis aimed at diagnosing any
+major issues with an imported data set. dlookr offers a clean and
+straightforward methodology to uncover issues such as data
+\href{https://en.wikipedia.org/wiki/Outlier}{outliers},
+\href{https://en.wikipedia.org/wiki/Missing_data}{missing data}, as well
+as summary statistical reports.
+
+\hypertarget{what-is-exploratory-data-analysis}{%
+\subsection{What is Exploratory Data
+Analysis?}\label{what-is-exploratory-data-analysis}}
+
+Exploratory data analysis is a
+\href{https://en.wikipedia.org/wiki/Statistics}{statistical}, approach
+towards analyzing \href{https://en.wikipedia.org/wiki/Data_set}{data
+sets} to investigate and summarize their main characteristics, often
+through
+\href{https://en.wikipedia.org/wiki/Statistical_graphics}{statistical
+graphics} and other data visualization methods.
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-1-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{what-are-some-important-data-set-characteristics}{%
+\section{\texorpdfstring{\textbf{What are Some Important Data Set
+Characteristics?}}{What are Some Important Data Set Characteristics?}}\label{what-are-some-important-data-set-characteristics}}
+
+There are several characteristics that are arguably important, but we
+will only consider those covered in this workshop series. Let's start
+with the fundamentals that will help guide us.
+
+\hypertarget{diagnostics}{%
+\section{Diagnostics}\label{diagnostics}}
+
+When importing data sets, it is important to consider characteristics
+about the data columns, rows, and individual cells.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variables}{%
+\subsection{Variables}\label{variables}}
+
+Name of each variable
+
+Pregnancies
+
+Glucose
+
+BloodPressure
+
+SkinThickness
+
+Insulin
+
+BMI
+
+DiabetesPedigreeFunction
+
+Age
+
+Outcome
+
+Age\_group
+
+6
+
+148
+
+72
+
+35
+
+0
+
+33.6
+
+0.627
+
+50
+
+1
+
+Middle
+
+1
+
+85
+
+66
+
+29
+
+0
+
+26.6
+
+0.351
+
+31
+
+0
+
+Middle
+
+8
+
+183
+
+64
+
+0
+
+0
+
+23.3
+
+0.672
+
+32
+
+1
+
+Middle
+
+1
+
+89
+
+66
+
+23
+
+94
+
+28.1
+
+0.167
+
+21
+
+0
+
+Young
+
+0
+
+137
+
+40
+
+35
+
+168
+
+43.1
+
+2.288
+
+33
+
+1
+
+Middle
+
+5
+
+116
+
+74
+
+0
+
+0
+
+25.6
+
+0.201
+
+30
+
+0
+
+Young
+
+\hypertarget{types}{%
+\subsection{Types}\label{types}}
+
+Data type of each variable
+
+variables
+
+types
+
+Pregnancies
+
+integer
+
+Glucose
+
+integer
+
+BloodPressure
+
+integer
+
+SkinThickness
+
+integer
+
+Insulin
+
+integer
+
+BMI
+
+numeric
+
+DiabetesPedigreeFunction
+
+numeric
+
+Age
+
+integer
+
+Outcome
+
+integer
+
+Age\_group
+
+factor
+
+\hypertarget{numerical-continuous}{%
+\subsubsection{\texorpdfstring{\textbf{Numerical}:
+Continuous}{Numerical: Continuous}}\label{numerical-continuous}}
+
+Measurable numbers that are fractional or decimal and cannot be counted
+(e.g., time, height, weight)
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-4-1.pdf}
+
+\hypertarget{numerical-discrete}{%
+\subsubsection{\texorpdfstring{\textbf{Numerical}:
+Discrete}{Numerical: Discrete}}\label{numerical-discrete}}
+
+Countable whole numbers or integers (e.g., number of successes or
+failures)
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{categorical-nominal}{%
+\subsubsection{\texorpdfstring{\textbf{Categorical}:
+Nominal}{Categorical: Nominal}}\label{categorical-nominal}}
+
+Labeling variables without any order or quantitative value (e.g., hair
+color, nationality)
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+\hypertarget{categorical-ordinal}{%
+\subsubsection{\texorpdfstring{\textbf{Categorical:
+Ordinal}}{Categorical: Ordinal}}\label{categorical-ordinal}}
+
+Where there is a hierarchical order along a scale (e.g., ranks, letter
+grades, age groups)
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-7-1.pdf}
+
+\hypertarget{missing-values-nas}{%
+\subsection{Missing Values (NAs)}\label{missing-values-nas}}
+
+Cells, rows, or columns without data
+
+\begin{itemize}
+\item
+  Missing percent: percentage of missing values * Unique count: number
+  of unique values.
+\item
+  Unique rate: rate of unique value - unique count / total number of
+  observations.
+\end{itemize}
+
+Pregnancies
+
+Glucose
+
+BloodPressure
+
+SkinThickness
+
+Insulin
+
+BMI
+
+DiabetesPedigreeFunction
+
+Age
+
+Outcome
+
+Age\_group
+
+6
+
+NA
+
+NA
+
+35
+
+0
+
+NA
+
+0.627
+
+NA
+
+1
+
+Middle
+
+1
+
+85
+
+66
+
+29
+
+NA
+
+26.6
+
+NA
+
+31
+
+0
+
+Middle
+
+NA
+
+183
+
+64
+
+NA
+
+NA
+
+23.3
+
+0.672
+
+32
+
+1
+
+Middle
+
+NA
+
+89
+
+66
+
+NA
+
+94
+
+28.1
+
+0.167
+
+21
+
+NA
+
+Young
+
+0
+
+137
+
+NA
+
+35
+
+168
+
+43.1
+
+2.288
+
+33
+
+1
+
+Middle
+
+NA
+
+116
+
+74
+
+0
+
+0
+
+25.6
+
+0.201
+
+30
+
+NA
+
+NA
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{summary-statistics}{%
+\section{Summary Statistics}\label{summary-statistics}}
+
+Above we described some properties of data. However, you will need to
+know some descriptive characteristics of your data before you can move
+forward. Enter,
+\href{https://en.wikipedia.org/wiki/Summary_statistics}{summary
+statistics}.
+
+Summary statistics allow you to summarize large amounts of information
+about your data as quickly as possible.
+
+\hypertarget{central-tendency}{%
+\subsection{Central Tendency}\label{central-tendency}}
+
+Measuring a central property of your data. Some examples you've probably
+heard of are:
+
+\begin{itemize}
+\item
+  Mean: Average value
+\item
+  Median: Middle value
+\item
+  Mode: Most common value
+\end{itemize}
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-9-1.pdf}
+
+Notice however, that all values of central tendency can be pretty
+similar, such as in the top panel. This will become important when we
+discuss data transformations in Chapter 3.
+
+\hypertarget{statistical-dispersion}{%
+\subsection{Statistical Dispersion}\label{statistical-dispersion}}
+
+Measure of data variability, scatter, or spread. Some examples you may
+have heard of:
+
+\begin{itemize}
+\item
+  Standard deviation (SD): The amount of variation that occurs in a set
+  of values.
+\item
+  Interquartile range (IQR): The difference between the 75th and 25th
+  percentiles
+\item
+  Outliers: A value outside of \(1.5 * IQR\)
+\end{itemize}
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
+\hypertarget{sec-DistShape}{%
+\subsection{Distribution Shape}\label{sec-DistShape}}
+
+Measures of describing the shape of a distribution, usually compared to
+a normal distribution (bell-curve)
+
+\begin{itemize}
+\item
+  Skewness: The symmetry of the distribution
+\item
+  Kurtosis: The tailedness of the distribution
+\end{itemize}
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-11-1.pdf}
+
+\hypertarget{statistical-dependence-correlation}{%
+\subsection{Statistical Dependence
+(Correlation)}\label{statistical-dependence-correlation}}
+
+Measure of causality between two random variables (statistically).
+Notably, we approximate causality with correlations (see
+\href{https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation\#:~:text=The\%20phrase\%20\%22correlation\%20does\%20not,association\%20or\%20correlation\%20between\%20them.}{correlation
+\(\neq\) causation})
+
+\begin{itemize}
+\tightlist
+\item
+  Numerical values, but you can compare numericals across categories
+  (see the first plot above).
+\end{itemize}
+
+\includegraphics{./intro_files/figure-pdf/unnamed-chunk-12-1.pdf}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor-1}{%
+\chapter{Exploratory Data Analysis in R - Diagnosing like a Data
+Doctor}\label{exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor-1}}
+
+\hypertarget{purpose-of-workshop-1}{%
+\section{Purpose of workshop}\label{purpose-of-workshop-1}}
+
+\textbf{Exploring a novel data set and produce publication quality
+tables and reports}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{objectives}{%
+\section{Objectives}\label{objectives}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Load and explore a data set with publication quality tables
+\item
+  Diagnose outliers and missing values in a data set
+\item
+  Prepare an HTML summary report showcasing properties of a data set
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-setup}{%
+\section{Required Setup}\label{required-setup}}
+
+We first need to prepare our environment with the necessary packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sets the repository to download packages from}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{list}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"http://cran.rstudio.com/"}\NormalTok{))}
+
+\CommentTok{\# Sets the number of significant figures to two {-} e.g., 0.01}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Required package for quick package downloading and loading }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+
+\CommentTok{\# Downloads and load required packages}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(dlookr, }\CommentTok{\# Exploratory data analysis}
+\NormalTok{               formattable, }\CommentTok{\# HTML tables from R outputs}
+\NormalTok{               here, }\CommentTok{\# Standardizes paths to data}
+\NormalTok{               kableExtra, }\CommentTok{\# Alternative to formattable}
+\NormalTok{               knitr, }\CommentTok{\# Needed to write HTML reports}
+\NormalTok{               missRanger, }\CommentTok{\# To generate NAs}
+\NormalTok{               tidyverse) }\CommentTok{\# Powerful data wrangling package suite}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{load-and-examine-a-data-set}{%
+\section{Load and Examine a Data
+Set}\label{load-and-examine-a-data-set}}
+
+\begin{itemize}
+\tightlist
+\item
+  Load data and view
+\item
+  Examine columns and data types
+\item
+  Define box plots
+\item
+  Describe meta data
+\end{itemize}
+
+We will be using open source data from UArizona researchers for Test,
+Trace, Treat (T3) efforts offers two clinical diagnostic tests (Antigen,
+RT-PCR) to determine whether an individual is currently infected with
+the COVID-19 virus. (Merchant et al. 2022)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s load a data set from the COVID{-}19 daily testing data set}
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"Data7\_EDA\_In\_R\_Book"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"daily\_summary.csv"}\NormalTok{)) }
+
+\CommentTok{\# What does the data look like?}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+result\_date
+
+affil\_category
+
+test\_type
+
+test\_result
+
+test\_count
+
+test\_source
+
+2020-08-04
+
+Employee
+
+Antigen
+
+Negative
+
+5
+
+Campus Health
+
+2020-08-04
+
+Employee
+
+Antigen
+
+Positive
+
+0
+
+Campus Health
+
+2020-08-04
+
+Employee
+
+Antigen
+
+Negative
+
+1
+
+Test All Test Smart
+
+2020-08-04
+
+Employee
+
+Antigen
+
+Positive
+
+0
+
+Test All Test Smart
+
+2020-08-04
+
+Off-Campus Student
+
+Antigen
+
+Negative
+
+9
+
+Campus Health
+
+2020-08-04
+
+Off-Campus Student
+
+Antigen
+
+Positive
+
+1
+
+Campus Health
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnose-your-data}{%
+\section{Diagnose your Data}\label{diagnose-your-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What are the properties of the data}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+types
+
+missing\_count
+
+missing\_percent
+
+unique\_count
+
+unique\_rate
+
+result\_date
+
+character
+
+0
+
+0
+
+541
+
+0.05893
+
+affil\_category
+
+character
+
+0
+
+0
+
+4
+
+0.00044
+
+test\_type
+
+character
+
+0
+
+0
+
+3
+
+0.00033
+
+test\_result
+
+character
+
+0
+
+0
+
+3
+
+0.00033
+
+test\_count
+
+integer
+
+0
+
+0
+
+591
+
+0.06438
+
+test\_source
+
+character
+
+0
+
+0
+
+2
+
+0.00022
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{variables}: name of each variable
+\item
+  \texttt{types}: data type of each variable
+\item
+  \texttt{missing\_count}: number of missing values
+\item
+  \texttt{missing\_percent}: percentage of missing values
+\item
+  \texttt{unique\_count}: number of unique values
+\item
+  \texttt{unique\_rate}: rate of unique value - unique\_count / number
+  of observations
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{summary-statistics-of-your-data}{%
+\section{Summary Statistics of your
+Data}\label{summary-statistics-of-your-data}}
+
+\hypertarget{numerical-variables}{%
+\subsection{Numerical Variables}\label{numerical-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary statistics of our numerical columns}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose\_numeric}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+min
+
+Q1
+
+mean
+
+median
+
+Q3
+
+max
+
+zero
+
+minus
+
+outlier
+
+test\_count
+
+0
+
+0
+
+47
+
+2
+
+16
+
+1472
+
+2777
+
+0
+
+1721
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{min}: minimum value
+\item
+  \texttt{Q1}: 1/4 quartile, 25th percentile
+\item
+  \texttt{mean}: arithmetic mean (average value)
+\item
+  \texttt{median}: median, 50th percentile
+\item
+  \texttt{Q3}: 3/4 quartile, 75th percentile
+\item
+  \texttt{max}: maximum value
+\item
+  \texttt{zero}: number of observations with the value 0
+\item
+  \texttt{minus}: number of observations with negative numbers
+\item
+  \texttt{outlier}: number of outliers
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{outliers}{%
+\subsection{Outliers}\label{outliers}}
+
+Values outside of \(1.5 * IQR\)
+
+\begin{figure}
+
+{\centering \includegraphics{https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png}
+
+}
+
+\caption{Image Credit:
+\href{https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/}{CÉDRIC
+SCHERER}}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+There are several numerical variables that have outliers above, let's
+see what the data look like with and without them
+
+\begin{itemize}
+\item
+  Create a table with columns containing outliers
+\item
+  Plot outliers in a box plot and histogram
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Table showing outliers}
+\FunctionTok{diagnose\_outlier}\NormalTok{(dataset) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(outliers\_ratio }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+outliers\_cnt
+
+outliers\_ratio
+
+outliers\_mean
+
+with\_mean
+
+without\_mean
+
+test\_count
+
+1721
+
+19
+
+231
+
+47
+
+4.3
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{outliers\_cnt}: number of outliers
+\item
+  \texttt{outliers\_ratio}: ratio of outliers over all values
+\item
+  \texttt{outliers\_mean}: arithmetic mean (average value) of outlier
+  values
+\item
+  \texttt{with\_mean}: arithmetic mean of all values \textbf{including}
+  outliers
+\item
+  \texttt{without\_mean}: arithmetic mean of all values
+  \textbf{excluding} outliers
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Selecting desired columns }
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+    \FunctionTok{plot\_outlier}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./DiagnosingLikeDataDoctor_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{missing-values-nas-1}{%
+\subsection{Missing Values (NAs)}\label{missing-values-nas-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Table showing the extent of NAs in columns containing them
+\item
+  Plot showing the frequency of missing values
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create the NA table}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{generateNA}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_na\_pareto}\NormalTok{(}\AttributeTok{only\_na =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{plot =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{() }\CommentTok{\# Publishable table}
+\end{Highlighting}
+\end{Shaded}
+
+variable
+
+frequencies
+
+ratio
+
+grade
+
+cumulative
+
+affil\_category
+
+2754
+
+0.3
+
+Bad
+
+17
+
+result\_date
+
+2754
+
+0.3
+
+Bad
+
+33
+
+test\_count
+
+2754
+
+0.3
+
+Bad
+
+50
+
+test\_result
+
+2754
+
+0.3
+
+Bad
+
+67
+
+test\_source
+
+2754
+
+0.3
+
+Bad
+
+83
+
+test\_type
+
+2754
+
+0.3
+
+Bad
+
+100
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the intersect of the columns with the most missing values}
+\CommentTok{\# This means that some combinations of columns have missing values in the same row}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{generateNA}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(test\_type, test\_result, test\_count) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_na\_intersect}\NormalTok{(}\AttributeTok{only\_na =} \ConstantTok{TRUE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./DiagnosingLikeDataDoctor_files/figure-pdf/unnamed-chunk-8-1.pdf}
+
+}
+
+\end{figure}
+
+\hypertarget{categorical-variables}{%
+\subsection{Categorical Variables}\label{categorical-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Diagnose our categorical columns}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose\_category}\NormalTok{() }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+levels
+
+N
+
+freq
+
+ratio
+
+rank
+
+result\_date
+
+2020-09-17
+
+9180
+
+26
+
+0.283
+
+1
+
+result\_date
+
+2020-09-23
+
+9180
+
+26
+
+0.283
+
+1
+
+result\_date
+
+2020-10-01
+
+9180
+
+26
+
+0.283
+
+1
+
+result\_date
+
+2020-10-08
+
+9180
+
+26
+
+0.283
+
+1
+
+result\_date
+
+2020-09-01
+
+9180
+
+25
+
+0.272
+
+5
+
+result\_date
+
+2020-09-16
+
+9180
+
+25
+
+0.272
+
+5
+
+result\_date
+
+2020-09-24
+
+9180
+
+25
+
+0.272
+
+5
+
+result\_date
+
+2020-12-09
+
+9180
+
+25
+
+0.272
+
+5
+
+result\_date
+
+2020-12-15
+
+9180
+
+25
+
+0.272
+
+5
+
+result\_date
+
+2020-09-04
+
+9180
+
+24
+
+0.261
+
+10
+
+affil\_category
+
+Off-Campus Student
+
+9180
+
+3368
+
+36.688
+
+1
+
+affil\_category
+
+Employee
+
+9180
+
+2987
+
+32.538
+
+2
+
+affil\_category
+
+On-Campus Student
+
+9180
+
+2823
+
+30.752
+
+3
+
+affil\_category
+
+Other
+
+9180
+
+2
+
+0.022
+
+4
+
+test\_type
+
+Antigen
+
+9180
+
+4624
+
+50.370
+
+1
+
+test\_type
+
+PCR
+
+9180
+
+4554
+
+49.608
+
+2
+
+test\_type
+
+Antibody
+
+9180
+
+2
+
+0.022
+
+3
+
+test\_result
+
+Negative
+
+9180
+
+4575
+
+49.837
+
+1
+
+test\_result
+
+Positive
+
+9180
+
+4575
+
+49.837
+
+1
+
+test\_result
+
+Inconclusive
+
+9180
+
+30
+
+0.327
+
+3
+
+test\_source
+
+Test All Test Smart
+
+9180
+
+5078
+
+55.316
+
+1
+
+test\_source
+
+Campus Health
+
+9180
+
+4102
+
+44.684
+
+2
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{variables}: category names
+\item
+  \texttt{levels}: group names within categories
+\item
+  \texttt{N}: number of observation
+\item
+  \texttt{freq}: number of observation at group level / number of
+  observation at category level
+\item
+  \texttt{ratio}: percentage of observation at group level / number of
+  observation at category level
+\item
+  \texttt{rank}: rank of the occupancy ratio of levels (order in which
+  the groups are in the category)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{produce-an-html-summary-of-a-data-set}{%
+\section{Produce an HTML Summary of a Data
+Set}\label{produce-an-html-summary-of-a-data-set}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the \textquotesingle{}\#\textquotesingle{} below to reproduce an HTML from an R script. }
+\CommentTok{\#diagnose\_web\_report(dataset)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{exploratory-data-analysis-in-r---exploring-like-a-data-adventurer-1}{%
+\chapter{Exploratory Data Analysis in R - Exploring like a Data
+Adventurer}\label{exploratory-data-analysis-in-r---exploring-like-a-data-adventurer-1}}
+
+\hypertarget{purpose-of-workshop-2}{%
+\section{Purpose of Workshop}\label{purpose-of-workshop-2}}
+
+\textbf{Exploring the normality of numerical columns in a novel data set
+and producing publication quality tables and reports}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{objectives-1}{%
+\section{Objectives}\label{objectives-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using summary statistics to better understand individual columns in a
+  data set.
+\item
+  Assessing data normality in numerical columns.
+\item
+  Producing a publishable HTML with summary statistics and normality
+  tests for columns within a data set.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-setup-1}{%
+\section{Required Setup}\label{required-setup-1}}
+
+We first need to prepare our environment with the necessary packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sets the repository to download packages from}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{list}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"http://cran.rstudio.com/"}\NormalTok{))}
+
+\CommentTok{\# Sets the number of significant figures to two {-} e.g., 0.01}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Required package for quick package downloading and loading }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(dlookr, }\CommentTok{\# Exploratory data analysis}
+\NormalTok{               formattable, }\CommentTok{\# HTML tables from R outputs}
+\NormalTok{               here, }\CommentTok{\# Standardizes paths to data}
+\NormalTok{               kableExtra, }\CommentTok{\# Alternative to formattable}
+\NormalTok{               knitr, }\CommentTok{\# Needed to write HTML reports}
+\NormalTok{               tidyverse) }\CommentTok{\# Powerful data wrangling package suite}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{load-and-examine-a-data-set-1}{%
+\section{Load and Examine a Data
+Set}\label{load-and-examine-a-data-set-1}}
+
+We will be using open source data from UArizona researchers that
+investigates the effects of climate change on canopy trees. (Meredith,
+Ladd, and Werner 2021)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s load a data set from the canopy tree data set}
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"Data7\_EDA\_In\_R\_Book"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"Data\_Fig2\_Repo.csv"}\NormalTok{)) }
+
+\CommentTok{\# What does the data look like?}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Date
+
+Group
+
+Sap\_Flow
+
+TWaterFlux
+
+pLWP
+
+mLWP
+
+10/4/19
+
+Drought-sens-canopy
+
+184.0
+
+82.2
+
+-0.26
+
+-0.68
+
+10/4/19
+
+Drought-sens-under
+
+2.5
+
+1.3
+
+-0.30
+
+-0.76
+
+10/4/19
+
+Drought-tol-canopy
+
+10.6
+
+4.4
+
+-0.44
+
+-0.72
+
+10/4/19
+
+Drought-tol-under
+
+4.4
+
+2.1
+
+-0.21
+
+-0.70
+
+10/5/19
+
+Drought-sens-canopy
+
+182.9
+
+95.9
+
+-0.28
+
+-0.71
+
+10/5/19
+
+Drought-sens-under
+
+2.5
+
+1.2
+
+-0.32
+
+-0.79
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnose-your-data-1}{%
+\section{Diagnose your Data}\label{diagnose-your-data-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What are the properties of the data}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+types
+
+missing\_count
+
+missing\_percent
+
+unique\_count
+
+unique\_rate
+
+Date
+
+character
+
+0
+
+0
+
+147
+
+0.2500
+
+Group
+
+character
+
+0
+
+0
+
+4
+
+0.0068
+
+Sap\_Flow
+
+numeric
+
+108
+
+18
+
+481
+
+0.8180
+
+TWaterFlux
+
+numeric
+
+0
+
+0
+
+508
+
+0.8639
+
+pLWP
+
+numeric
+
+312
+
+53
+
+277
+
+0.4711
+
+mLWP
+
+numeric
+
+280
+
+48
+
+309
+
+0.5255
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{variables}: name of each variable
+\item
+  \texttt{types}: data type of each variable
+\item
+  \texttt{missing\_count}: number of missing values
+\item
+  \texttt{missing\_percent}: percentage of missing values
+\item
+  \texttt{unique\_count}: number of unique values
+\item
+  \texttt{unique\_rate}: rate of unique value - unique\_count / number
+  of observations
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{box-plot}{%
+\subsection{Box Plot}\label{box-plot}}
+
+\begin{figure}
+
+{\centering \includegraphics{https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png}
+
+}
+
+\caption{Image Credit:
+\href{https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/}{CÉDRIC
+SCHERER}}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{skewness}{%
+\subsection{Skewness}\label{skewness}}
+
+\begin{figure}
+
+{\centering \includegraphics{https://aakinshin.net/posts/misleading-skewness/img/skew_intro-dark.png}
+
+}
+
+\caption{(c)
+\href{https://aakinshin.net/posts/misleading-skewness/}{Andrey
+Akinshin}}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{note}{%
+\subsubsection{\texorpdfstring{\textbf{NOTE}}{NOTE}}\label{note}}
+
+\begin{itemize}
+\tightlist
+\item
+  ``Skewness'' has multiple definitions. Several underlying equations
+  mey be at play
+\item
+  Skewness is ``designed'' for distributions with one peak
+  (\emph{unimodal}); it's meaningless for distributions with multiple
+  peaks (\emph{multimodal}).
+\item
+  Most default skewness definitions are not robust: a single outlier
+  could completely distort the skewness value.
+\item
+  We can't make conclusions about the locations of the mean and the
+  median based on the skewness sign.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{kurtosis}{%
+\subsection{Kurtosis}\label{kurtosis}}
+
+\begin{figure}
+
+{\centering \includegraphics{https://aakinshin.net/posts/misleading-kurtosis/img/kurt_intro-dark.png}
+
+}
+
+\caption{(c)
+\href{https://aakinshin.net/posts/misleading-kurtosis/}{Andrey
+Akinshin}}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{NOTE}
+
+\begin{itemize}
+\tightlist
+\item
+  There are multiple definitions of kurtosis - i.e., ``kurtosis'' and
+  ``excess kurtosis,'' but there are other definitions of this measure.
+\item
+  Kurtosis may work fine for distributions with one peak
+  (\emph{unimodal}); it's meaningless for distributions with multiple
+  peaks (\emph{multimodal}).
+\item
+  The classic definition of kurtosis is not robust: it could be easily
+  spoiled by extreme outliers.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describe-your-continuous-data}{%
+\section{Describe your Continuous
+Data}\label{describe-your-continuous-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary statistics }
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{describe}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+described\_variables
+
+n
+
+na
+
+mean
+
+sd
+
+se\_mean
+
+IQR
+
+skewness
+
+kurtosis
+
+p00
+
+p01
+
+p05
+
+p10
+
+p20
+
+p25
+
+p30
+
+p40
+
+p50
+
+p60
+
+p70
+
+p75
+
+p80
+
+p90
+
+p95
+
+p99
+
+p100
+
+Sap\_Flow
+
+480
+
+108
+
+25.09
+
+40.52
+
+1.849
+
+13.92
+
+2.2
+
+4.20
+
+0.17
+
+0.33
+
+0.47
+
+1.15
+
+2.26
+
+2.45
+
+3.76
+
+5.05
+
+5.82
+
+9.03
+
+10.51
+
+16.37
+
+48.89
+
+83.48
+
+109.84
+
+176.99
+
+184.04
+
+TWaterFlux
+
+588
+
+0
+
+11.93
+
+19.05
+
+0.786
+
+6.28
+
+2.1
+
+3.88
+
+0.10
+
+0.15
+
+0.22
+
+0.60
+
+1.14
+
+1.29
+
+1.70
+
+2.31
+
+3.00
+
+4.20
+
+5.21
+
+7.58
+
+23.37
+
+43.14
+
+51.81
+
+80.87
+
+96.01
+
+pLWP
+
+276
+
+312
+
+-0.61
+
+0.23
+
+0.014
+
+0.26
+
+-1.1
+
+1.77
+
+-1.43
+
+-1.32
+
+-1.07
+
+-0.88
+
+-0.73
+
+-0.71
+
+-0.68
+
+-0.62
+
+-0.59
+
+-0.55
+
+-0.49
+
+-0.45
+
+-0.41
+
+-0.35
+
+-0.30
+
+-0.24
+
+-0.21
+
+mLWP
+
+308
+
+280
+
+-1.03
+
+0.30
+
+0.017
+
+0.42
+
+-0.8
+
+-0.18
+
+-1.81
+
+-1.79
+
+-1.62
+
+-1.46
+
+-1.32
+
+-1.23
+
+-1.13
+
+-1.04
+
+-0.95
+
+-0.90
+
+-0.84
+
+-0.81
+
+-0.76
+
+-0.71
+
+-0.67
+
+-0.59
+
+-0.55
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{describes\_variables}: name of the column being described
+\item
+  \texttt{n}: number of observations excluding missing values
+\item
+  \texttt{na}: number of missing values
+\item
+  \texttt{mean}: arithmetic average
+\item
+  \texttt{sd}: standard deviation
+\item
+  \texttt{se\_mean}: standard error mean. sd/sqrt(n)
+\item
+  \texttt{IQR}: interquartile range (Q3-Q1)
+\item
+  \texttt{skewness}: skewness
+\item
+  \texttt{kurtosis}: kurtosis
+\item
+  \texttt{p25}: Q1. 25\% percentile
+\item
+  \texttt{p50}: median. 50\% percentile
+\item
+  \texttt{p75}: Q3. 75\% percentile
+\item
+  \texttt{p01}, \texttt{p05}, \texttt{p10}, \texttt{p20}, \texttt{p30}:
+  1\%, 5\%, 20\%, 30\% percentiles
+\item
+  \texttt{p40}, \texttt{p60}, \texttt{p70}, \texttt{p80}: 40\%, 60\%,
+  70\%, 80\% percentiles
+\item
+  \texttt{p90}, \texttt{p95}, \texttt{p99}, \texttt{p100}: 90\%, 95\%,
+  99\%, 100\% percentiles
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describe-your-continuous-data-refined}{%
+\subsection{Describe your Continuous Data:
+Refined}\label{describe-your-continuous-data-refined}}
+
+The above is pretty overwhelming, and most people don't care about
+percentiles outside of Q1, Q3, and the median (Q2).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Summary statistics, selecting the desired ones}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{describe}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(described\_variables, n, na, mean, sd, se\_mean, IQR, skewness, kurtosis, p25, p50, p75) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+described\_variables
+
+n
+
+na
+
+mean
+
+sd
+
+se\_mean
+
+IQR
+
+skewness
+
+kurtosis
+
+p25
+
+p50
+
+p75
+
+Sap\_Flow
+
+480
+
+108
+
+25.09
+
+40.52
+
+1.849
+
+13.92
+
+2.2
+
+4.20
+
+2.45
+
+5.82
+
+16.37
+
+TWaterFlux
+
+588
+
+0
+
+11.93
+
+19.05
+
+0.786
+
+6.28
+
+2.1
+
+3.88
+
+1.29
+
+3.00
+
+7.58
+
+pLWP
+
+276
+
+312
+
+-0.61
+
+0.23
+
+0.014
+
+0.26
+
+-1.1
+
+1.77
+
+-0.71
+
+-0.59
+
+-0.45
+
+mLWP
+
+308
+
+280
+
+-1.03
+
+0.30
+
+0.017
+
+0.42
+
+-0.8
+
+-0.18
+
+-1.23
+
+-0.95
+
+-0.81
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describe-categorical-variables}{%
+\section{Describe Categorical
+Variables}\label{describe-categorical-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose\_category}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+levels
+
+N
+
+freq
+
+ratio
+
+rank
+
+Date
+
+1/1/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/10/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/11/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/12/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/13/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/14/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/15/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/16/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/17/20
+
+588
+
+4
+
+0.68
+
+1
+
+Date
+
+1/18/20
+
+588
+
+4
+
+0.68
+
+1
+
+Group
+
+Drought-sens-canopy
+
+588
+
+147
+
+25.00
+
+1
+
+Group
+
+Drought-sens-under
+
+588
+
+147
+
+25.00
+
+1
+
+Group
+
+Drought-tol-canopy
+
+588
+
+147
+
+25.00
+
+1
+
+Group
+
+Drought-tol-under
+
+588
+
+147
+
+25.00
+
+1
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{variables}: category names
+\item
+  \texttt{levels}: group names within categories
+\item
+  \texttt{N}: number of observation
+\item
+  \texttt{freq}: number of observation at group level / number of
+  observation at category level
+\item
+  \texttt{ratio}: percentage of observation at group level / number of
+  observation at category level
+\item
+  \texttt{rank}: rank of the occupancy ratio of levels (order in which
+  the groups are in the category)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{group-descriptive-statistics}{%
+\subsection{Group Descriptive
+Statistics}\label{group-descriptive-statistics}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{describe}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(described\_variables, Group, n, na, mean, sd, se\_mean, IQR, skewness, kurtosis, p25, p50, p75) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+described\_variables
+
+Group
+
+n
+
+na
+
+mean
+
+sd
+
+se\_mean
+
+IQR
+
+skewness
+
+kurtosis
+
+p25
+
+p50
+
+p75
+
+mLWP
+
+Drought-sens-canopy
+
+77
+
+70
+
+-1.32
+
+0.298
+
+0.034
+
+0.41
+
+0.3178
+
+-0.691
+
+-1.53
+
+-1.35
+
+-1.11
+
+mLWP
+
+Drought-sens-under
+
+77
+
+70
+
+-1.10
+
+0.264
+
+0.030
+
+0.43
+
+-0.3411
+
+-0.313
+
+-1.34
+
+-1.05
+
+-0.91
+
+mLWP
+
+Drought-tol-canopy
+
+77
+
+70
+
+-0.89
+
+0.092
+
+0.010
+
+0.12
+
+-0.2608
+
+-0.402
+
+-0.95
+
+-0.89
+
+-0.83
+
+mLWP
+
+Drought-tol-under
+
+77
+
+70
+
+-0.81
+
+0.171
+
+0.019
+
+0.21
+
+-0.9539
+
+-0.412
+
+-0.91
+
+-0.74
+
+-0.70
+
+pLWP
+
+Drought-sens-canopy
+
+69
+
+78
+
+-0.67
+
+0.246
+
+0.030
+
+0.32
+
+-0.3510
+
+-0.274
+
+-0.79
+
+-0.71
+
+-0.47
+
+pLWP
+
+Drought-sens-under
+
+69
+
+78
+
+-0.70
+
+0.284
+
+0.034
+
+0.28
+
+-1.1510
+
+0.480
+
+-0.80
+
+-0.59
+
+-0.52
+
+pLWP
+
+Drought-tol-canopy
+
+69
+
+78
+
+-0.63
+
+0.096
+
+0.012
+
+0.14
+
+-0.4644
+
+-0.592
+
+-0.71
+
+-0.60
+
+-0.57
+
+pLWP
+
+Drought-tol-under
+
+69
+
+78
+
+-0.44
+
+0.132
+
+0.016
+
+0.16
+
+-0.4333
+
+-0.432
+
+-0.52
+
+-0.41
+
+-0.36
+
+Sap\_Flow
+
+Drought-sens-canopy
+
+120
+
+27
+
+85.27
+
+41.314
+
+3.771
+
+40.09
+
+1.0493
+
+0.150
+
+53.98
+
+76.72
+
+94.07
+
+Sap\_Flow
+
+Drought-sens-under
+
+120
+
+27
+
+1.45
+
+0.804
+
+0.073
+
+1.66
+
+-0.2242
+
+-1.635
+
+0.53
+
+1.67
+
+2.19
+
+Sap\_Flow
+
+Drought-tol-canopy
+
+120
+
+27
+
+9.07
+
+1.396
+
+0.127
+
+2.28
+
+-0.6344
+
+-0.695
+
+8.12
+
+9.29
+
+10.40
+
+Sap\_Flow
+
+Drought-tol-under
+
+120
+
+27
+
+4.57
+
+0.902
+
+0.082
+
+1.09
+
+-0.9141
+
+-0.077
+
+4.05
+
+4.94
+
+5.14
+
+TWaterFlux
+
+Drought-sens-canopy
+
+147
+
+0
+
+40.40
+
+19.028
+
+1.569
+
+24.88
+
+0.9210
+
+0.509
+
+25.22
+
+38.63
+
+50.10
+
+TWaterFlux
+
+Drought-sens-under
+
+147
+
+0
+
+0.75
+
+0.429
+
+0.035
+
+0.84
+
+0.0105
+
+-1.188
+
+0.27
+
+0.82
+
+1.11
+
+TWaterFlux
+
+Drought-tol-canopy
+
+147
+
+0
+
+4.36
+
+0.940
+
+0.078
+
+1.51
+
+-0.3548
+
+-0.940
+
+3.60
+
+4.46
+
+5.11
+
+TWaterFlux
+
+Drought-tol-under
+
+147
+
+0
+
+2.19
+
+0.598
+
+0.049
+
+0.95
+
+-0.0087
+
+-0.779
+
+1.74
+
+2.20
+
+2.69
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{testing-normality}{%
+\section{Testing Normality}\label{testing-normality}}
+
+\begin{itemize}
+\tightlist
+\item
+  Shapiro-Wilk test \& Q-Q plots
+\item
+  Testing overall normality of two columns
+\item
+  Testing normality of groups
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normality-of-columns}{%
+\subsection{Normality of Columns}\label{normality-of-columns}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{shapiro-wilk-test}{%
+\subsubsection{Shapiro-Wilk Test}\label{shapiro-wilk-test}}
+
+Shapiro-Wilk test looks at whether a target distribution is sample form
+a normal distribution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{normality}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+vars
+
+statistic
+
+p\_value
+
+sample
+
+Sap\_Flow
+
+0.63
+
+7.4e-31
+
+588
+
+TWaterFlux
+
+0.64
+
+2.2e-33
+
+588
+
+pLWP
+
+0.93
+
+3.4e-10
+
+588
+
+mLWP
+
+0.93
+
+7.0e-11
+
+588
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{q-q-plots}{%
+\subsubsection{Q-Q Plots}\label{q-q-plots}}
+
+Plots of the quartiles of a target data set and plot it against
+predicted quartiles from a normal distribution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{plot\_normality}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-9-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-9-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-9-3.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-9-4.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normality-within-groups}{%
+\subsection{Normality within Groups}\label{normality-within-groups}}
+
+Looking within Age\_group at the subgroup normality
+
+\hypertarget{shapiro-wilk-test-1}{%
+\subsubsection{Shapiro-Wilk Test}\label{shapiro-wilk-test-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Sap\_Flow, TWaterFlux) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{normality}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variable
+
+Group
+
+statistic
+
+p\_value
+
+sample
+
+Sap\_Flow
+
+Drought-sens-canopy
+
+0.87
+
+9.8e-09
+
+147
+
+Sap\_Flow
+
+Drought-sens-under
+
+0.86
+
+2.2e-09
+
+147
+
+Sap\_Flow
+
+Drought-tol-canopy
+
+0.91
+
+8.3e-07
+
+147
+
+Sap\_Flow
+
+Drought-tol-under
+
+0.90
+
+2.2e-07
+
+147
+
+TWaterFlux
+
+Drought-sens-canopy
+
+0.93
+
+1.1e-06
+
+147
+
+TWaterFlux
+
+Drought-sens-under
+
+0.93
+
+1.3e-06
+
+147
+
+TWaterFlux
+
+Drought-tol-canopy
+
+0.96
+
+1.3e-04
+
+147
+
+TWaterFlux
+
+Drought-tol-under
+
+0.98
+
+4.4e-02
+
+147
+
+\hypertarget{q-q-plots-1}{%
+\subsubsection{Q-Q Plots}\label{q-q-plots-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Sap\_Flow, TWaterFlux) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_normality}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-3.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-4.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-5.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-6.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-7.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ExploringLikeDataAdventurer_files/figure-pdf/unnamed-chunk-11-8.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{produce-an-html-normality-summary}{%
+\section{Produce an HTML Normality
+Summary}\label{produce-an-html-normality-summary}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the \textquotesingle{}\#\textquotesingle{} below to reproduce an HTML from an R script. }
+\CommentTok{\#eda\_web\_report(dataset)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{exploratory-data-analysis-in-r---transforming-like-a-data-transformer-1}{%
+\chapter{Exploratory Data Analysis in R - Transforming like a
+Data\ldots{}
+Transformer}\label{exploratory-data-analysis-in-r---transforming-like-a-data-transformer-1}}
+
+\hypertarget{purpose-of-workshop-3}{%
+\section{Purpose of Workshop}\label{purpose-of-workshop-3}}
+
+\textbf{Using data transformation to correct non-normality in numerical
+data}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{objectives-2}{%
+\section{Objectives}\label{objectives-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Load and explore a data set with publication quality tables
+\item
+  Quickly diagnose non-normality in data
+\item
+  Data transformation
+\item
+  Prepare an HTML summary report showcasing data transformations
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-setup-2}{%
+\section{Required Setup}\label{required-setup-2}}
+
+We first need to prepare our environment with the necessary packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sets the repository to download packages from}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{list}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"http://cran.rstudio.com/"}\NormalTok{))}
+
+\CommentTok{\# Sets the number of significant figures to two {-} e.g., 0.01}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Required package for quick package downloading and loading }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+
+\CommentTok{\# Downloads and load required packages}
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(dlookr, }\CommentTok{\# Exploratory data analysis}
+\NormalTok{               forecast, }\CommentTok{\# Needed for Box{-}Cox transformations}
+\NormalTok{               formattable, }\CommentTok{\# HTML tables from R outputs}
+\NormalTok{               here, }\CommentTok{\# Standardizes paths to data}
+\NormalTok{               kableExtra, }\CommentTok{\# Alternative to formattable}
+\NormalTok{               knitr, }\CommentTok{\# Needed to write HTML reports}
+\NormalTok{               missRanger, }\CommentTok{\# To generate NAs}
+\NormalTok{               tidyverse) }\CommentTok{\# Powerful data wrangling package suite}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{load-and-examine-a-data-set-2}{%
+\section{Load and Examine a Data
+Set}\label{load-and-examine-a-data-set-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Load data and view
+\item
+  Examine columns and data types
+\item
+  Examine data normality
+\item
+  Describe properties of data
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s load a data set from the diabetes data set}
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"Data7\_EDA\_In\_R\_Book"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"diabetes.csv"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \CommentTok{\# Add a categorical group}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Age\_group =} \FunctionTok{ifelse}\NormalTok{(Age }\SpecialCharTok{\textgreater{}=} \DecValTok{21} \SpecialCharTok{\&}\NormalTok{ Age }\SpecialCharTok{\textless{}=} \DecValTok{30}\NormalTok{, }\StringTok{"Young"}\NormalTok{, }
+                            \FunctionTok{ifelse}\NormalTok{(Age }\SpecialCharTok{\textgreater{}} \DecValTok{30} \SpecialCharTok{\&}\NormalTok{ Age }\SpecialCharTok{\textless{}=} \DecValTok{50}\NormalTok{, }\StringTok{"Middle"}\NormalTok{, }
+                                   \StringTok{"Elderly"}\NormalTok{)),}
+         \AttributeTok{Age\_group =} \FunctionTok{fct\_rev}\NormalTok{(Age\_group))}
+
+\CommentTok{\# What does the data look like?}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Pregnancies
+
+Glucose
+
+BloodPressure
+
+SkinThickness
+
+Insulin
+
+BMI
+
+DiabetesPedigreeFunction
+
+Age
+
+Outcome
+
+Age\_group
+
+6
+
+148
+
+72
+
+35
+
+0
+
+34
+
+0.63
+
+50
+
+1
+
+Middle
+
+1
+
+85
+
+66
+
+29
+
+0
+
+27
+
+0.35
+
+31
+
+0
+
+Middle
+
+8
+
+183
+
+64
+
+0
+
+0
+
+23
+
+0.67
+
+32
+
+1
+
+Middle
+
+1
+
+89
+
+66
+
+23
+
+94
+
+28
+
+0.17
+
+21
+
+0
+
+Young
+
+0
+
+137
+
+40
+
+35
+
+168
+
+43
+
+2.29
+
+33
+
+1
+
+Middle
+
+5
+
+116
+
+74
+
+0
+
+0
+
+26
+
+0.20
+
+30
+
+0
+
+Young
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{data-normality}{%
+\subsection{Data Normality}\label{data-normality}}
+
+Normal distributions (bell curves) are a common data assumptions for
+many
+\href{https://en.wikipedia.org/wiki/Statistical_hypothesis_testing}{hypothesis
+testing statistics}, in particular
+\href{https://en.wikipedia.org/wiki/Parametric_statistics}{parametric
+statistics}. Deviations from normality can either strongly skew the
+results or reduce the power to detect a
+\href{https://en.wikipedia.org/wiki/Statistical_significance}{significant
+statistical difference}.
+
+Here are the distribution properties to know and consider:
+
+\begin{itemize}
+\item
+  The mean, median, and mode are the same value.
+\item
+  Distribution symmetry at the mean.
+\item
+  Normal distributions can be described by the mean and standard
+  deviation.
+\end{itemize}
+
+Here's an example using the \texttt{Glucose} column in our
+\texttt{dataset}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Function for data mode}
+\NormalTok{getmode }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(v) \{}
+\NormalTok{   uniqv }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(v)}
+\NormalTok{   uniqv[}\FunctionTok{which.max}\NormalTok{(}\FunctionTok{tabulate}\NormalTok{(}\FunctionTok{match}\NormalTok{(v, uniqv)))]}
+\NormalTok{\}}
+
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BMI)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =} \StringTok{"\#4E84C4"}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{bins =} \DecValTok{40}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{x =} \FunctionTok{mean}\NormalTok{(BMI)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{x =} \FunctionTok{median}\NormalTok{(BMI)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{x =} \FunctionTok{getmode}\NormalTok{(BMI)), }\AttributeTok{size =} \DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{{-}} \FunctionTok{sd}\NormalTok{(BMI)), }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_vline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{xintercept =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(BMI)), }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{yend =} \DecValTok{30}\NormalTok{, }\AttributeTok{x =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{{-}} \FunctionTok{sd}\NormalTok{(BMI), }\AttributeTok{xend =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(BMI)), }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{32}\NormalTok{, }\AttributeTok{yend =} \DecValTok{45}\NormalTok{, }\AttributeTok{x =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{+} \FloatTok{1.5}\NormalTok{, }\AttributeTok{xend =} \DecValTok{50}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{yend =} \DecValTok{30}\NormalTok{, }\AttributeTok{x =} \FunctionTok{mean}\NormalTok{(BMI) }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(BMI) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{, }\AttributeTok{xend =} \DecValTok{50}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{50.5}\NormalTok{, }\AttributeTok{y =} \DecValTok{45}\NormalTok{, }\AttributeTok{label =} \StringTok{"Mean, }\SpecialCharTok{\textbackslash{}n}\StringTok{Median, }\SpecialCharTok{\textbackslash{}n}\StringTok{Mode = 32"}\NormalTok{, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{geom =} \StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FloatTok{50.5}\NormalTok{, }\AttributeTok{y =} \DecValTok{30}\NormalTok{, }\AttributeTok{label =} \StringTok{"SD = 7.9"}\NormalTok{, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{()) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-3-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describing-properties-of-our-data-refined}{%
+\subsection{Describing Properties of our Data
+(Refined)}\label{describing-properties-of-our-data-refined}}
+
+\hypertarget{skewness-1}{%
+\subsubsection{Skewness}\label{skewness-1}}
+
+The symmetry of the distribution
+
+See Introduction~\ref{sec-DistShape} for more information about these
+values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Glucose, Insulin, BMI, SkinThickness) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{describe}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(described\_variables, skewness) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+described\_variables
+
+skewness
+
+Glucose
+
+0.17
+
+Insulin
+
+2.27
+
+BMI
+
+-0.43
+
+SkinThickness
+
+0.11
+
+Note that we will remove the other percentiles to produce a cleaner
+output
+
+\begin{itemize}
+\item
+  \texttt{describes\_variables}: name of the column being described
+\item
+  \texttt{skewness}: skewness
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{testing-normality-accelerated}{%
+\section{Testing Normality
+(Accelerated)}\label{testing-normality-accelerated}}
+
+\begin{itemize}
+\item
+  Q-Q plots
+\item
+  Testing overall normality of two columns
+\item
+  Testing normality of groups
+\end{itemize}
+
+\textbf{Note} that you can also use \texttt{normality()} to run
+Shapiro-Wilk tests, but since this test is not viable at
+\texttt{N\ \textless{}\ 20}, I recommend just skipping to Q-Q plots.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{q-q-plots-2}{%
+\subsubsection{Q-Q Plots}\label{q-q-plots-2}}
+
+Plots of the quartiles of a target data set and plot it against
+predicted quartiles from a normal distribution.
+
+Notably, \texttt{plot\_normality()} will show you the Logaritmic and
+Skewed transformations (more below)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{plot\_normality}\NormalTok{(Glucose, Insulin, Age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-5-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-5-3.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normality-within-groups-1}{%
+\section{Normality within Groups}\label{normality-within-groups-1}}
+
+Looking within Age\_group at the subgroup normality
+
+\hypertarget{q-q-plots-3}{%
+\subsubsection{Q-Q Plots}\label{q-q-plots-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Age\_group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(Glucose, Insulin) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{plot\_normality}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-3.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-4.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-5.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-6-6.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{transforming-data}{%
+\section{Transforming Data}\label{transforming-data}}
+
+Your data could be more easily interpreted with a transformation, since
+not all relationships in nature follow a linear relationship - i.e.,
+many biological phenomena follow a power law (or logarithmic curve),
+where they do not scale linearly.
+
+We will try to transform the \texttt{Insulin} column with through
+several approaches and discuss the pros and cons of each. First however,
+we will remove \texttt{0} values, because \texttt{Insulin} values are
+impossible\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InsMod }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(Insulin }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{square-root-cube-root-and-logarithmic-transformations}{%
+\subsection{Square-root, Cube-root, and Logarithmic
+Transformations}\label{square-root-cube-root-and-logarithmic-transformations}}
+
+Resolving Skewness using \texttt{transform()}.
+
+``sqrt'': \href{https://en.wikipedia.org/wiki/Square_root}{square-root
+transformation}. \(\sqrt x\) \textbf{(moderate skew)}
+
+``log'': \href{https://en.wikipedia.org/wiki/Logarithm}{log
+transformation}. \(log(x)\) \textbf{(greater skew)}
+
+``log+1'': log transformation. \(log(x + 1)\). Used for values that
+contain 0.
+
+``1/x'': \href{https://en.wikipedia.org/wiki/Inverse_function}{inverse
+transformation}. \(1/x\) \textbf{(severe skew)}
+
+``x\^{}2'':
+\href{https://en.wikipedia.org/wiki/Quadratic_function}{squared
+transformation}. \(x^2\)
+
+``x\^{}3'': \href{https://en.wikipedia.org/wiki/Cubic_function}{cubed
+transformation}. \(x^3\)
+
+We will compare \texttt{sqrt}, \texttt{log+1}, and \texttt{1/x}
+(inverse) transformations. Note that you would have to add a constant to
+use the \texttt{log} transformation, so it is easier to use the
+\texttt{log+1} instead. You however need to add a constant to both the
+\texttt{sqrt} and \texttt{1/x} transformations because they don't
+include zeros and will otherwise skew the results.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{square-root-transformation}{%
+\subsubsection{Square-root
+Transformation}\label{square-root-transformation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sqrtIns }\OtherTok{\textless{}{-}} \FunctionTok{transform}\NormalTok{(InsMod}\SpecialCharTok{$}\NormalTok{Insulin, }\AttributeTok{method =} \StringTok{"sqrt"}\NormalTok{) }
+
+\FunctionTok{summary}\NormalTok{(sqrtIns)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+* Resolving Skewness with sqrt
+
+* Information of Transformation (before vs after)
+         Original Transformation
+n           394.0         394.00
+na            0.0           0.00
+mean        155.5          11.75
+sd          118.8           4.17
+se_mean       6.0           0.21
+IQR         113.8           5.05
+skewness      2.2           1.01
+kurtosis      6.4           1.46
+p00          14.0           3.74
+p01          18.0           4.24
+p05          41.7           6.45
+p10          50.3           7.09
+p20          69.2           8.32
+p25          76.2           8.73
+p30          87.9           9.38
+p40         105.0          10.25
+p50         125.0          11.18
+p60         145.8          12.07
+p70         176.0          13.27
+p75         190.0          13.78
+p80         210.0          14.49
+p90         292.4          17.10
+p95         395.5          19.89
+p99         580.5          24.09
+p100        846.0          29.09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sqrtIns }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-9-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{logarithmic-1-transformation}{%
+\subsubsection{Logarithmic (+1)
+Transformation}\label{logarithmic-1-transformation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Log1Ins }\OtherTok{\textless{}{-}} \FunctionTok{transform}\NormalTok{(InsMod}\SpecialCharTok{$}\NormalTok{Insulin, }\AttributeTok{method =} \StringTok{"log+1"}\NormalTok{) }
+
+\FunctionTok{summary}\NormalTok{(Log1Ins)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+* Resolving Skewness with log+1
+
+* Information of Transformation (before vs after)
+         Original Transformation
+n           394.0        394.000
+na            0.0          0.000
+mean        155.5          4.818
+sd          118.8          0.691
+se_mean       6.0          0.035
+IQR         113.8          0.905
+skewness      2.2         -0.088
+kurtosis      6.4          0.237
+p00          14.0          2.708
+p01          18.0          2.944
+p05          41.7          3.753
+p10          50.3          3.938
+p20          69.2          4.251
+p25          76.2          4.347
+p30          87.9          4.488
+p40         105.0          4.663
+p50         125.0          4.836
+p60         145.8          4.989
+p70         176.0          5.176
+p75         190.0          5.252
+p80         210.0          5.352
+p90         292.4          5.682
+p95         395.5          5.983
+p99         580.5          6.366
+p100        846.0          6.742
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Log1Ins }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-11-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inverse-transformation}{%
+\subsubsection{Inverse Transformation}\label{inverse-transformation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InvIns }\OtherTok{\textless{}{-}} \FunctionTok{transform}\NormalTok{(InsMod}\SpecialCharTok{$}\NormalTok{Insulin, }\AttributeTok{method =} \StringTok{"1/x"}\NormalTok{) }
+
+\FunctionTok{summary}\NormalTok{(InvIns)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+* Resolving Skewness with 1/x
+
+* Information of Transformation (before vs after)
+         Original Transformation
+n           394.0        3.9e+02
+na            0.0        0.0e+00
+mean        155.5        1.1e-02
+sd          118.8        9.0e-03
+se_mean       6.0        4.6e-04
+IQR         113.8        7.9e-03
+skewness      2.2        3.2e+00
+kurtosis      6.4        1.5e+01
+p00          14.0        1.2e-03
+p01          18.0        1.7e-03
+p05          41.7        2.5e-03
+p10          50.3        3.4e-03
+p20          69.2        4.8e-03
+p25          76.2        5.3e-03
+p30          87.9        5.7e-03
+p40         105.0        6.9e-03
+p50         125.0        8.0e-03
+p60         145.8        9.5e-03
+p70         176.0        1.1e-02
+p75         190.0        1.3e-02
+p80         210.0        1.4e-02
+p90         292.4        2.0e-02
+p95         395.5        2.4e-02
+p99         580.5        5.6e-02
+p100        846.0        7.1e-02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InvIns }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-13-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{box-cox-transformation}{%
+\subsection{Box-cox Transformation}\label{box-cox-transformation}}
+
+There are several transformations, each with it's own ``criteria'', and
+they don't always fix extremely skewed data. Instead, you can just
+choose the
+\href{https://en.wikipedia.org/wiki/Box\%E2\%80\%93Cox_distribution}{Box-Cox
+transformation} which searches for the the best lambda value that
+maximizes the log-likelihood (basically, what power transformation is
+best). The benefit is that you should have normally distributed data
+after, but the power relationship might be pretty abstract (i.e., what
+would a transformation of x\^{}0.12 be interpreted as in your system?..)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BoxCoxIns }\OtherTok{\textless{}{-}} \FunctionTok{transform}\NormalTok{(InsMod}\SpecialCharTok{$}\NormalTok{Insulin, }\AttributeTok{method =} \StringTok{"Box{-}Cox"}\NormalTok{) }
+
+\FunctionTok{summary}\NormalTok{(BoxCoxIns)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+* Resolving Skewness with Box-Cox
+
+* Information of Transformation (before vs after)
+         Original Transformation
+n           394.0        394.000
+na            0.0          0.000
+mean        155.5          3.011
+sd          118.8          0.262
+se_mean       6.0          0.013
+IQR         113.8          0.335
+skewness      2.2         -0.630
+kurtosis      6.4          1.003
+p00          14.0          2.027
+p01          18.0          2.168
+p05          41.7          2.588
+p10          50.3          2.673
+p20          69.2          2.808
+p25          76.2          2.848
+p30          87.9          2.904
+p40         105.0          2.973
+p50         125.0          3.037
+p60         145.8          3.092
+p70         176.0          3.157
+p75         190.0          3.183
+p80         210.0          3.216
+p90         292.4          3.320
+p95         395.5          3.409
+p99         580.5          3.515
+p100        846.0          3.610
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BoxCoxIns }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./TransformingLikeDataTrans_files/figure-pdf/unnamed-chunk-15-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{produce-an-html-transformation-summary}{%
+\section{Produce an HTML Transformation
+Summary}\label{produce-an-html-transformation-summary}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the \textquotesingle{}\#\textquotesingle{} below to reproduce an HTML from an R script. }
+\CommentTok{\# transformation\_web\_report(dataset)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{exploratory-data-analysis-in-r---imputating-like-a-data-scientist-1}{%
+\chapter{Exploratory Data Analysis in R - Imputating like a Data
+Scientist}\label{exploratory-data-analysis-in-r---imputating-like-a-data-scientist-1}}
+
+\hypertarget{purpose-of-workshop-4}{%
+\section{Purpose of Workshop}\label{purpose-of-workshop-4}}
+
+\textbf{Exploring, visualizing, and imputing outliers and missing values
+(NAs) in a novel data set and produce publication quality graphs and
+tables}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{objectives-3}{%
+\section{Objectives}\label{objectives-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Load and explore a data set with publication quality tables
+\item
+  Thoroughly diagnose outliers and missing values
+\item
+  Impute outliers and missing values
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-setup-3}{%
+\section{Required Setup}\label{required-setup-3}}
+
+We first need to prepare our environment with the necessary packages and
+set a global theme for publishable plots in \texttt{ggplot()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sets the repository to download packages from}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{list}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"http://cran.rstudio.com/"}\NormalTok{))}
+
+\CommentTok{\# Sets the number of significant figures to two {-} e.g., 0.01}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Required package for quick package downloading and loading }
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+
+\NormalTok{pacman}\SpecialCharTok{::}\FunctionTok{p\_load}\NormalTok{(colorblindr, }\CommentTok{\# Colorblind friendly pallettes}
+\NormalTok{               cluster, }\CommentTok{\# K cluster analyses}
+\NormalTok{               dlookr, }\CommentTok{\# Exploratory data analysis}
+\NormalTok{               formattable, }\CommentTok{\# HTML tables from R outputs}
+\NormalTok{               ggfortify, }\CommentTok{\# Plotting tools for stats}
+\NormalTok{               ggpubr, }\CommentTok{\# Publishable ggplots}
+\NormalTok{               here, }\CommentTok{\# Standardizes paths to data}
+\NormalTok{               kableExtra, }\CommentTok{\# Alternative to formattable}
+\NormalTok{               knitr, }\CommentTok{\# Needed to write HTML reports}
+\NormalTok{               missRanger, }\CommentTok{\# To generate NAs}
+\NormalTok{               plotly, }\CommentTok{\# Visualization package}
+\NormalTok{               rattle, }\CommentTok{\# Decision tree visualization}
+\NormalTok{               rpart, }\CommentTok{\# rpart algorithm}
+\NormalTok{               tidyverse, }\CommentTok{\# Powerful data wrangling package suite}
+\NormalTok{               visdat) }\CommentTok{\# Another EDA visualization package}
+
+\CommentTok{\# Set global ggplot() theme}
+\CommentTok{\# Theme pub\_clean() from the ggpubr package with base text size = 16}
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_pubclean}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{16}\NormalTok{)) }
+\CommentTok{\# All axes titles to their respective far right sides}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\CommentTok{\# Remove axes ticks}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{()) }
+\CommentTok{\# Remove legend key}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{legend.key =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{load-and-examine-a-data-set-3}{%
+\section{Load and Examine a Data
+Set}\label{load-and-examine-a-data-set-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s load a data set from the diabetes data set}
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"Data7\_EDA\_In\_R\_Book"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"diabetes.csv"}\NormalTok{)) }\SpecialCharTok{|\textgreater{}}
+  \CommentTok{\# Add a categorical group}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Age\_group =} \FunctionTok{ifelse}\NormalTok{(Age }\SpecialCharTok{\textgreater{}=} \DecValTok{21} \SpecialCharTok{\&}\NormalTok{ Age }\SpecialCharTok{\textless{}=} \DecValTok{30}\NormalTok{, }\StringTok{"Young"}\NormalTok{, }
+                            \FunctionTok{ifelse}\NormalTok{(Age }\SpecialCharTok{\textgreater{}} \DecValTok{30} \SpecialCharTok{\&}\NormalTok{ Age }\SpecialCharTok{\textless{}=}\DecValTok{50}\NormalTok{, }\StringTok{"Middle"}\NormalTok{, }
+                                   \StringTok{"Elderly"}\NormalTok{)),}
+         \AttributeTok{Age\_group =} \FunctionTok{fct\_rev}\NormalTok{(Age\_group))}
+
+\CommentTok{\# What does the data look like?}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Pregnancies
+
+Glucose
+
+BloodPressure
+
+SkinThickness
+
+Insulin
+
+BMI
+
+DiabetesPedigreeFunction
+
+Age
+
+Outcome
+
+Age\_group
+
+6
+
+148
+
+72
+
+35
+
+0
+
+34
+
+0.63
+
+50
+
+1
+
+Middle
+
+1
+
+85
+
+66
+
+29
+
+0
+
+27
+
+0.35
+
+31
+
+0
+
+Middle
+
+8
+
+183
+
+64
+
+0
+
+0
+
+23
+
+0.67
+
+32
+
+1
+
+Middle
+
+1
+
+89
+
+66
+
+23
+
+94
+
+28
+
+0.17
+
+21
+
+0
+
+Young
+
+0
+
+137
+
+40
+
+35
+
+168
+
+43
+
+2.29
+
+33
+
+1
+
+Middle
+
+5
+
+116
+
+74
+
+0
+
+0
+
+26
+
+0.20
+
+30
+
+0
+
+Young
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnose-your-data-2}{%
+\section{Diagnose your Data}\label{diagnose-your-data-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What are the properties of the data}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+variables
+
+types
+
+missing\_count
+
+missing\_percent
+
+unique\_count
+
+unique\_rate
+
+Pregnancies
+
+integer
+
+0
+
+0
+
+17
+
+0.0221
+
+Glucose
+
+integer
+
+0
+
+0
+
+136
+
+0.1771
+
+BloodPressure
+
+integer
+
+0
+
+0
+
+47
+
+0.0612
+
+SkinThickness
+
+integer
+
+0
+
+0
+
+51
+
+0.0664
+
+Insulin
+
+integer
+
+0
+
+0
+
+186
+
+0.2422
+
+BMI
+
+numeric
+
+0
+
+0
+
+248
+
+0.3229
+
+DiabetesPedigreeFunction
+
+numeric
+
+0
+
+0
+
+517
+
+0.6732
+
+Age
+
+integer
+
+0
+
+0
+
+52
+
+0.0677
+
+Outcome
+
+integer
+
+0
+
+0
+
+2
+
+0.0026
+
+Age\_group
+
+factor
+
+0
+
+0
+
+3
+
+0.0039
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{variables}: name of each variable
+\item
+  \texttt{types}: data type of each variable
+\item
+  \texttt{missing\_count}: number of missing values
+\item
+  \texttt{missing\_percent}: percentage of missing values
+\item
+  \texttt{unique\_count}: number of unique values
+\item
+  \texttt{unique\_rate}: rate of unique value - unique\_count / number
+  of observations
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnose-outliers}{%
+\section{Diagnose Outliers}\label{diagnose-outliers}}
+
+There are several numerical variables that have outliers above, let's
+see what the data look like with and without them
+
+\begin{itemize}
+\item
+  Create a table with columns containing outliers
+\item
+  Plot outliers in a box plot and histogram
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Table showing outliers}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{diagnose\_outlier}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(outliers\_ratio }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{|\textgreater{}}  
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rate =}\NormalTok{ outliers\_mean }\SpecialCharTok{/}\NormalTok{ with\_mean) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(rate)) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{outliers\_cnt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+                 variables outliers_ratio outliers_mean with_mean without_mean
+1                  Insulin           4.43         457.0     79.80        62.33
+2            SkinThickness           0.13          99.0     20.54        20.43
+3              Pregnancies           0.52          15.0      3.85         3.79
+4 DiabetesPedigreeFunction           3.78           1.5      0.47         0.43
+5                      Age           1.17          70.0     33.24        32.81
+6                      BMI           2.47          23.7     31.99        32.20
+7            BloodPressure           5.86          19.2     69.11        72.21
+8                  Glucose           0.65           0.0    120.89       121.69
+  rate
+1 5.73
+2 4.82
+3 3.90
+4 3.27
+5 2.11
+6 0.74
+7 0.28
+8 0.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Boxplots and histograms of data with and without outliers}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(}\FunctionTok{find\_outliers}\NormalTok{(dataset)) }\SpecialCharTok{|\textgreater{}}
+           \FunctionTok{plot\_outlier}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-5-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{basic-exploration-of-missing-values-nas}{%
+\section{Basic Exploration of Missing Values
+(NAs)}\label{basic-exploration-of-missing-values-nas}}
+
+\begin{itemize}
+\tightlist
+\item
+  Table showing the extent of NAs in columns containing them
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Randomly generate NAs for 30}
+\NormalTok{na.dataset }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{generateNA}\NormalTok{(}\AttributeTok{p =} \FloatTok{0.3}\NormalTok{)}
+
+\CommentTok{\# First six rows}
+\NormalTok{na.dataset }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Pregnancies
+
+Glucose
+
+BloodPressure
+
+SkinThickness
+
+Insulin
+
+BMI
+
+DiabetesPedigreeFunction
+
+Age
+
+Outcome
+
+Age\_group
+
+6
+
+NA
+
+72
+
+35
+
+NA
+
+34
+
+0.63
+
+50
+
+1
+
+NA
+
+1
+
+NA
+
+66
+
+29
+
+0
+
+27
+
+0.35
+
+31
+
+0
+
+Middle
+
+8
+
+183
+
+64
+
+0
+
+NA
+
+NA
+
+0.67
+
+32
+
+1
+
+Middle
+
+NA
+
+NA
+
+NA
+
+23
+
+NA
+
+28
+
+0.17
+
+NA
+
+NA
+
+Young
+
+0
+
+NA
+
+NA
+
+35
+
+168
+
+43
+
+2.29
+
+33
+
+1
+
+Middle
+
+5
+
+116
+
+74
+
+0
+
+NA
+
+26
+
+0.20
+
+NA
+
+NA
+
+Young
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create the NA table}
+\NormalTok{na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_na\_pareto}\NormalTok{(}\AttributeTok{only\_na =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{plot =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{() }\CommentTok{\# Publishable table}
+\end{Highlighting}
+\end{Shaded}
+
+variable
+
+frequencies
+
+ratio
+
+grade
+
+cumulative
+
+Age
+
+230
+
+0.3
+
+Bad
+
+10
+
+Age\_group
+
+230
+
+0.3
+
+Bad
+
+20
+
+BloodPressure
+
+230
+
+0.3
+
+Bad
+
+30
+
+BMI
+
+230
+
+0.3
+
+Bad
+
+40
+
+DiabetesPedigreeFunction
+
+230
+
+0.3
+
+Bad
+
+50
+
+Glucose
+
+230
+
+0.3
+
+Bad
+
+60
+
+Insulin
+
+230
+
+0.3
+
+Bad
+
+70
+
+Outcome
+
+230
+
+0.3
+
+Bad
+
+80
+
+Pregnancies
+
+230
+
+0.3
+
+Bad
+
+90
+
+SkinThickness
+
+230
+
+0.3
+
+Bad
+
+100
+
+\begin{itemize}
+\tightlist
+\item
+  Plots showing the frequency of missing values
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the insersect of the columns with missing values}
+\CommentTok{\# This plot visualizes the table above}
+\NormalTok{na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_na\_pareto}\NormalTok{(}\AttributeTok{only\_na =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-7-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{advanced-exploration-of-missing-values-nas}{%
+\section{Advanced Exploration of Missing Values
+(NAs)}\label{advanced-exploration-of-missing-values-nas}}
+
+\begin{itemize}
+\tightlist
+\item
+  Intersect plot that shows, for every combination of columns relevant,
+  how many missing values are common
+\item
+  Orange boxes are the columns in question
+\item
+  x axis (top green bar plots) show the number of missing values in that
+  column
+\item
+  y axis (right green bars) show the number of missing values in the
+  columns in orange blocks
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the insersect of the 5 columns with the most missing values}
+\CommentTok{\# This means that some combinations of columns have missing values in the same row}
+\NormalTok{na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(BloodPressure, Glucose, Age) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_na\_intersect}\NormalTok{(}\AttributeTok{only\_na =} \ConstantTok{TRUE}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-8-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{determining-if-na-observations-are-the-same}{%
+\subsection{Determining if NA Observations are the
+Same}\label{determining-if-na-observations-are-the-same}}
+
+\begin{itemize}
+\tightlist
+\item
+  Missing values can be the same observation across several columns,
+  this is not shown above
+\item
+  The visdat package can solve this with the \texttt{vis\_miss()}
+  function which shows the rows with missing values through
+  \texttt{ggplotly()}
+\item
+  Here we will show ALL columns with NAs, and you can zoom into
+  individual rows (interactive plot)
+\item
+  NOTE: This line will make the HTML rendering take a while\ldots{}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Interactive plotly() plot of all NA values to examine every row}
+\NormalTok{na.dataset }\SpecialCharTok{|\textgreater{}}
+ \FunctionTok{select}\NormalTok{(BloodPressure, Glucose, Age) }\SpecialCharTok{|\textgreater{}}
+ \FunctionTok{vis\_miss}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+ \FunctionTok{ggplotly}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-9-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{impute-outliers-and-nas}{%
+\section{Impute Outliers and NAs}\label{impute-outliers-and-nas}}
+
+Removing outliers and NAs can be tricky, but there are methods to do so.
+I will go over several, and discuss benefits and costs to each.
+
+The principle goal for all imputation is to find the method that does
+not change the distribution too much (or oddly).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{NOTE: imputation should only be used when missing data is
+unavoidable and probably limited to 10\% of your data being outliers /
+missing data (though some argue imputation is necessary between
+30-60\%). Ask what the cause is for the outlier and missing data.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{classifying-outliers}{%
+\subsection{Classifying Outliers}\label{classifying-outliers}}
+
+Before imputing outliers, you will want to diagnose whether it's they
+are natural outliers or not. We will not be looking at ``Insulin'' for
+example across Age\_group, because there are several NAs, which we will
+impute below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Box plot}
+\NormalTok{dataset }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# Set the simulated normal data as a data frame}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Insulin, }\AttributeTok{y =}\NormalTok{ Age\_group, }\AttributeTok{fill =}\NormalTok{ Age\_group)) }\SpecialCharTok{+} \CommentTok{\# Create a ggplot}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{outlier.size =} \DecValTok{2}\NormalTok{, }\AttributeTok{outlier.alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{"Insulin (mg/dL)"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Relabel the x axis label}
+  \FunctionTok{ylab}\NormalTok{(}\StringTok{"Age group"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Remove the y axis label}
+  \FunctionTok{scale\_fill\_OkabeIto}\NormalTok{() }\SpecialCharTok{+} \CommentTok{\# Change the color scheme for the fill criteria}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)  }\CommentTok{\# Remove the legend }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
+}
+
+\end{figure}
+
+Now let's say that we want to impute extreme values and remove outliers
+that don't make sense, such as Insulin levels \textgreater{} 600 mg/dL:
+values greater than this induce a diabetic coma.
+
+We remove outliers using \texttt{imputate\_outlier()} and replace them
+with values that are estimates based on the existing data
+
+\begin{itemize}
+\item
+  \texttt{mean}: arithmetic mean
+\item
+  \texttt{median}: median
+\item
+  \texttt{mode}: mode
+\item
+  \texttt{capping}: Impute the upper outliers with 95 percentile, and
+  impute the bottom outliers with 5 percentile - aka Winsorizing
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-imputation}{%
+\subsection{Mean Imputation}\label{mean-imputation}}
+
+The mean of the observed values for each variable is computed and the
+outliers for that variable are imputed by this mean
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{mean\_out\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Insulin) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(Insulin }\SpecialCharTok{\textless{}} \DecValTok{600}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_outlier}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"mean"}\NormalTok{)}
+
+\CommentTok{\# Output showing the summary statistics of our imputation}
+\NormalTok{mean\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualization of the mean imputation}
+\NormalTok{mean\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-12-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{median-imputation}{%
+\subsection{Median Imputation}\label{median-imputation}}
+
+The median of the observed values for each variable is computed and the
+outliers for that variable are imputed by this median
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{med\_out\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Insulin) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(Insulin }\SpecialCharTok{\textless{}} \DecValTok{600}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_outlier}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"median"}\NormalTok{)}
+
+\CommentTok{\# Output showing the summary statistics of our imputation}
+\NormalTok{med\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Impute outliers with median
+
+* Information of Imputation (before vs after)
+                    Original Imputation
+described_variables "value"  "value"   
+n                   "764"    "764"     
+na                  "0"      "0"       
+mean                "76"     "60"      
+sd                  "106"    " 77"     
+se_mean             "3.8"    "2.8"     
+IQR                 "126"    "110"     
+skewness            "1.8"    "1.1"     
+kurtosis            "3.90"   "0.35"    
+p00                 "0"      "0"       
+p01                 "0"      "0"       
+p05                 "0"      "0"       
+p10                 "0"      "0"       
+p20                 "0"      "0"       
+p25                 "0"      "0"       
+p30                 "0"      "0"       
+p40                 "0"      "0"       
+p50                 "24"     "24"      
+p60                 "71"     "56"      
+p70                 "105"    " 92"     
+p75                 "126"    "110"     
+p80                 "147"    "130"     
+p90                 "207"    "180"     
+p95                 "285"    "215"     
+p99                 "482"    "284"     
+p100                "579"    "310"     
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualization of the median imputation}
+\NormalTok{med\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-14-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-cons-of-using-the-mean-or-median-imputation}{%
+\subsubsection{Pros \& Cons of Using the Mean or Median
+Imputation}\label{pros-cons-of-using-the-mean-or-median-imputation}}
+
+\textbf{Pros}:
+
+\begin{itemize}
+\tightlist
+\item
+  Easy and fast.
+\item
+  Works well with small numerical datasets.
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\tightlist
+\item
+  Doesn't factor the correlations between features. It only works on the
+  column level.
+\item
+  Will give poor results on encoded categorical features (do
+  \textbf{NOT} use it on categorical features).
+\item
+  Not very accurate.
+\item
+  Doesn't account for the uncertainty in the imputations.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mode-imputation}{%
+\subsection{Mode Imputation}\label{mode-imputation}}
+
+The mode of the observed values for each variable is computed and the
+outliers for that variable are imputed by this mode
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{mode\_out\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Insulin) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(Insulin }\SpecialCharTok{\textless{}} \DecValTok{600}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_outlier}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"mode"}\NormalTok{)}
+
+\CommentTok{\# Output showing the summary statistics of our imputation}
+\NormalTok{mode\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Impute outliers with mode
+
+* Information of Imputation (before vs after)
+                    Original Imputation
+described_variables "value"  "value"   
+n                   "764"    "764"     
+na                  "0"      "0"       
+mean                "76"     "59"      
+sd                  "106"    " 78"     
+se_mean             "3.8"    "2.8"     
+IQR                 "126"    "110"     
+skewness            "1.8"    "1.1"     
+kurtosis            "3.90"   "0.32"    
+p00                 "0"      "0"       
+p01                 "0"      "0"       
+p05                 "0"      "0"       
+p10                 "0"      "0"       
+p20                 "0"      "0"       
+p25                 "0"      "0"       
+p30                 "0"      "0"       
+p40                 "0"      "0"       
+p50                 "24"     " 0"      
+p60                 "71"     "56"      
+p70                 "105"    " 92"     
+p75                 "126"    "110"     
+p80                 "147"    "130"     
+p90                 "207"    "180"     
+p95                 "285"    "215"     
+p99                 "482"    "284"     
+p100                "579"    "310"     
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualization of the mode imputation}
+\NormalTok{mode\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-16-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-cons-of-using-the-mode-imputation}{%
+\subsubsection{Pros \& Cons of Using the Mode
+Imputation}\label{pros-cons-of-using-the-mode-imputation}}
+
+\textbf{Pros}:
+
+\begin{itemize}
+\tightlist
+\item
+  Works well with categorical features.
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\item
+  It also doesn't factor the correlations between features.
+\item
+  It can introduce bias in the data.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{capping-imputation-aka-winsorizing}{%
+\subsection{Capping Imputation (aka
+Winsorizing)}\label{capping-imputation-aka-winsorizing}}
+
+The Percentile Capping is a method of Imputing the outlier values by
+replacing those observations outside the lower limit with the value of
+5th percentile and those that lie above the upper limit, with the value
+of 95th percentile of the same dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{cap\_out\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(Insulin) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{filter}\NormalTok{(Insulin }\SpecialCharTok{\textless{}} \DecValTok{600}\NormalTok{) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_outlier}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"capping"}\NormalTok{)}
+
+\CommentTok{\# Output showing the summary statistics of our imputation}
+\NormalTok{cap\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Impute outliers with capping
+
+* Information of Imputation (before vs after)
+                    Original Imputation
+described_variables "value"  "value"   
+n                   "764"    "764"     
+na                  "0"      "0"       
+mean                "76"     "71"      
+sd                  "106"    " 89"     
+se_mean             "3.8"    "3.2"     
+IQR                 "126"    "126"     
+skewness            "1.8"    "1.1"     
+kurtosis            "3.895"  "0.017"   
+p00                 "0"      "0"       
+p01                 "0"      "0"       
+p05                 "0"      "0"       
+p10                 "0"      "0"       
+p20                 "0"      "0"       
+p25                 "0"      "0"       
+p30                 "0"      "0"       
+p40                 "0"      "0"       
+p50                 "24"     "24"      
+p60                 "71"     "71"      
+p70                 "105"    "105"     
+p75                 "126"    "126"     
+p80                 "147"    "147"     
+p90                 "207"    "207"     
+p95                 "285"    "285"     
+p99                 "482"    "285"     
+p100                "579"    "310"     
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualization of the capping imputation}
+\NormalTok{cap\_out\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-18-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-and-cons-of-capping}{%
+\subsubsection{Pros and Cons of
+Capping}\label{pros-and-cons-of-capping}}
+
+\textbf{Pros}:
+
+\begin{itemize}
+\tightlist
+\item
+  Not influenced by extreme values
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\item
+  Capping only modifies the smallest and largest values slightly. This
+  is generally not a good idea since it means we're just modifying data
+  values for the sake of modifications.
+\item
+  If no extreme outliers are present, Winsorization may be unnecessary.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{imputing-nas}{%
+\section{Imputing NAs}\label{imputing-nas}}
+
+I will only be addressing one type of NA imputation using
+\texttt{imputate\_na()} (but note you can use mean, median, and mode as
+well):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{knn}: K-nearest neighbors (KNN)
+\item
+  \texttt{rpart}: Recursive Partitioning and Regression Trees (rpart)
+\item
+  \texttt{mice}: Multivariate Imputation by Chained Equations (MICE)
+\end{enumerate}
+
+Since our normal \texttt{dataset} has no NA values, we will use the
+\texttt{na.dataset} we created earlier.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{k-nearest-neighbor-knn-imputation}{%
+\subsection{K-Nearest Neighbor (KNN)
+Imputation}\label{k-nearest-neighbor-knn-imputation}}
+
+KNN is a machine learning algorithm that classifies data by similarity.
+This in effect clusters data into similar groups. The algorithm predicts
+values of new data to replace NA values based on how closely they
+resembles training data points, such as by comparing across other
+columns.
+
+Here's a visual example using the \texttt{clara()} function from the
+\texttt{cluster} package to run a KNN algorithm on our \texttt{dataset},
+where three clusters are created by the algorithm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# KNN plot of our dataset without categories}
+\FunctionTok{autoplot}\NormalTok{(}\FunctionTok{clara}\NormalTok{(dataset[}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{], }\DecValTok{3}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_OkabeIto}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-19-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{knn\_na\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_na}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"knn"}\NormalTok{)}
+
+\CommentTok{\# Plot showing the results of our imputation}
+\NormalTok{knn\_na\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-20-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-cons-of-using-knn-imputation}{%
+\subsubsection{Pros \& Cons of Using KNN
+Imputation}\label{pros-cons-of-using-knn-imputation}}
+
+\textbf{Pro}:
+
+\begin{itemize}
+\tightlist
+\item
+  Possibly much more accurate than mean, median, or mode imputation for
+  some data sets.
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\item
+  KNN is computationally expensive because it stores the entire training
+  dataset into computer memory.
+\item
+  KNN is very sensitive to outliers, so you would have to imputate these
+  first.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{recursive-partitioning-and-regression-trees-rpart}{%
+\subsection{Recursive Partitioning and Regression Trees
+(rpart)}\label{recursive-partitioning-and-regression-trees-rpart}}
+
+rpart is a decision tree machine learning algorithm that builds
+classification or regression models through a two stage process, which
+can be thought of as binary trees. The algorithm splits the data into
+subsets, which move down other branches of the tree until a termination
+criteria is reached.
+
+For example, if we are missing a value for \texttt{Age\_group} a first
+decision could be whether the associated \texttt{Age} is within a series
+of yes or no criteria
+
+\includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{rpart\_na\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_na}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"rpart"}\NormalTok{)}
+
+\CommentTok{\# Plot showing the results of our imputation}
+\NormalTok{rpart\_na\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-22-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-cons-of-using-rpart-imputation}{%
+\subsubsection{Pros \& Cons of Using rpart
+Imputation}\label{pros-cons-of-using-rpart-imputation}}
+
+\textbf{Pros}:
+
+\begin{itemize}
+\item
+  Good for categorical data because approximations are easier to compare
+  across categories than continuous variables.
+\item
+  Not sensitive to outliers.
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\item
+  Can over fit the data as they grow.
+\item
+  Speed decreases with more data columns.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{multivariate-imputation-by-chained-equations-mice}{%
+\subsection{Multivariate Imputation by Chained Equations
+(MICE)}\label{multivariate-imputation-by-chained-equations-mice}}
+
+MICE is an algorithm that fills missing values multiple times, hence
+dealing with uncertainty better than other methods. This approach
+creates multiple copies of the data that can then be analyzed and then
+pooled into a single dataset.
+
+\begin{figure}
+
+{\centering \includegraphics{https://miro.medium.com/max/1400/1*cmZFWypJUrFL2QL3KyzXEQ.png}
+
+}
+
+\caption{Image Credit:
+\href{https://towardsdatascience.com/6-different-ways-to-compensate-for-missing-values-data-imputation-with-examples-6022d9ca0779}{Will
+Badr}}
+
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Raw summary, output suppressed}
+\NormalTok{mice\_na\_imp\_insulin }\OtherTok{\textless{}{-}}\NormalTok{ na.dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{imputate\_na}\NormalTok{(Insulin, }\AttributeTok{method =} \StringTok{"mice"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+ iter imp variable
+  1   1  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  1   2  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  1   3  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  1   4  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  1   5  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  2   1  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  2   2  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  2   3  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  2   4  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  2   5  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  3   1  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  3   2  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  3   3  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  3   4  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  3   5  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  4   1  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  4   2  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  4   3  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  4   4  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  4   5  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  5   1  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  5   2  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  5   3  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  5   4  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+  5   5  Pregnancies  Glucose  BloodPressure  SkinThickness  Insulin  BMI  DiabetesPedigreeFunction  Age  Outcome  Age_group
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot showing the results of our imputation}
+\NormalTok{mice\_na\_imp\_insulin }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./ImputatingLikeDataScientist_files/figure-pdf/unnamed-chunk-23-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pros-cons-of-mice-imputation}{%
+\subsubsection{Pros \& Cons of MICE
+Imputation}\label{pros-cons-of-mice-imputation}}
+
+\textbf{Pros}:
+
+\begin{itemize}
+\item
+  Multiple imputations are more accurate than a single imputation.
+\item
+  The chained equations are very flexible to data types, such as
+  categorical and ordinal.
+\end{itemize}
+
+\textbf{Cons}:
+
+\begin{itemize}
+\tightlist
+\item
+  You have to round the results for ordinal data because resulting data
+  points are too great or too small (floating-points).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{produce-an-html-transformation-summary-1}{%
+\section{Produce an HTML Transformation
+Summary}\label{produce-an-html-transformation-summary-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the \textquotesingle{}\#\textquotesingle{} below to reproduce an HTML from an R script. }
+
+\CommentTok{\# transformation\_web\_report(dataset)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{exploratory-data-analysis-in-r---correlate-like-a-data-master-1}{%
+\chapter{Exploratory Data Analysis in R - Correlate Like a Data
+Master}\label{exploratory-data-analysis-in-r---correlate-like-a-data-master-1}}
+
+\hypertarget{purpose-of-workshop-5}{%
+\section{Purpose of workshop}\label{purpose-of-workshop-5}}
+
+\textbf{Assess relationships within a novel data set using publication
+quality tables and plots}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{objectives-4}{%
+\section{Objectives}\label{objectives-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Describe and visualize correlations between numerical variables
+\item
+  Visualize correlations of all numerical variables within groups
+\item
+  Describe and visualize relationships based on target variables
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{required-setup-4}{%
+\subsection{Required setup}\label{required-setup-4}}
+
+\hypertarget{we-first-need-to-prepare-our-environment-with-the-necessary-packages}{%
+\subsubsection{We first need to prepare our environment with the
+necessary
+packages}\label{we-first-need-to-prepare-our-environment-with-the-necessary-packages}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{list}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"http://cran.rstudio.com/"}\NormalTok{))}
+
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"pacman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Installing pacman [0.5.1] ...
+    OK [linked cache]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pacman)}
+
+\FunctionTok{p\_load}\NormalTok{(colorblindr,}
+\NormalTok{       dlookr,}
+\NormalTok{       formattable,}
+\NormalTok{       GGally,}
+\NormalTok{       ggdist,}
+\NormalTok{       ggpubr,}
+\NormalTok{       ggridges,}
+\NormalTok{       here,}
+\NormalTok{       tidyverse)}
+
+\CommentTok{\# Set global ggplot() theme}
+\CommentTok{\# Theme pub\_clean() from the ggpubr package with base text size = 16}
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_pubclean}\NormalTok{(}\AttributeTok{base\_size =} \DecValTok{12}\NormalTok{)) }
+\CommentTok{\# All axes titles to their respective far right sides}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{axis.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\CommentTok{\# Remove axes ticks}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{()) }
+\CommentTok{\# Remove legend key}
+\FunctionTok{theme\_update}\NormalTok{(}\AttributeTok{legend.key =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{load-the-examine-a-data-set}{%
+\section{Load the Examine a Data
+Set}\label{load-the-examine-a-data-set}}
+
+We will be using open source data from UArizona researchers that
+investigates the effects of climate change on canopy trees. (Meredith,
+Ladd, and Werner 2021)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Let\textquotesingle{}s load the canopy tree data set}
+\NormalTok{dataset }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"Data7\_EDA\_In\_R\_Book"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"Data\_Fig2\_Repo.csv"}\NormalTok{))}
+
+\CommentTok{\# What does the data look like?}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Date
+
+Group
+
+Sap\_Flow
+
+TWaterFlux
+
+pLWP
+
+mLWP
+
+10/4/19
+
+Drought-sens-canopy
+
+184.040975
+
+82.243292
+
+-0.2633781
+
+-0.6797690
+
+10/4/19
+
+Drought-sens-under
+
+2.475989
+
+1.258050
+
+-0.2996688
+
+-0.7613264
+
+10/4/19
+
+Drought-tol-canopy
+
+10.598949
+
+4.405479
+
+-0.4375563
+
+-0.7225572
+
+10/4/19
+
+Drought-tol-under
+
+4.399854
+
+2.055276
+
+-0.2052237
+
+-0.7028581
+
+10/5/19
+
+Drought-sens-canopy
+
+182.905444
+
+95.865255
+
+-0.2769280
+
+-0.7082610
+
+10/5/19
+
+Drought-sens-under
+
+2.459209
+
+1.225792
+
+-0.3205980
+
+-0.7928576
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describe-and-visualize-correlations}{%
+\section{Describe and Visualize
+Correlations}\label{describe-and-visualize-correlations}}
+
+\href{https://en.wikipedia.org/wiki/Correlation}{Correlations} are a
+statistical relationship between two numerical variables, may or may not
+be causal. Exploring correlations in your data allows you determine data
+independence, a major
+\href{https://www.statology.org/parametric-tests-assumptions/}{assumption
+of parametric statistics}, which means your variables are both randomly
+collected.
+
+\hypertarget{if-youre-interested-in-some-underlying-statistics}{%
+\subsubsection{If you're interested in some underlying
+statistics\ldots{}}\label{if-youre-interested-in-some-underlying-statistics}}
+
+Note that the \texttt{dlookr} default correlation is the
+\href{https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient}{Pearson's
+\(r\) coefficient}, but you can specify any method you would like:
+\texttt{correlate(dataset,\ method\ =\ "")}, where the method can be
+\texttt{"pearson"} for Pearson's \(r\), \texttt{"spearman"} for
+\href{https://en.wikipedia.org/wiki/Spearman\%27s_rank_correlation_coefficient}{Spearman's}\$\textbackslash rho\$,
+or ``kendall'' for
+\href{https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient}{Kendall's}
+\(\tau\). The main differences are that Pearson's \(r\) assumes a normal
+distribution for ALL numerical variables, whereas Spearman's \(\rho\)
+and Kendall's \(\tau\) do not, but Spearman's \(\rho\) requires
+\(N > 10\), and Kendall's \(\tau\) does not. Notably, Kendall's \(\tau\)
+performs as well as Spearman's \(\rho\) when \(N > 10\), so its best to
+just use Kendall's \(\tau\) when data are not normally distributed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Table of correlations between numerical variables (we are sticking to the default Pearson\textquotesingle{}s r coefficient)}
+\FunctionTok{correlate}\NormalTok{(dataset) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{formattable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+var1
+
+var2
+
+coef\_corr
+
+TWaterFlux
+
+Sap\_Flow
+
+0.9881370
+
+pLWP
+
+Sap\_Flow
+
+0.1202809
+
+mLWP
+
+Sap\_Flow
+
+-0.2011949
+
+Sap\_Flow
+
+TWaterFlux
+
+0.9881370
+
+pLWP
+
+TWaterFlux
+
+0.1256446
+
+mLWP
+
+TWaterFlux
+
+-0.1893302
+
+Sap\_Flow
+
+pLWP
+
+0.1202809
+
+TWaterFlux
+
+pLWP
+
+0.1256446
+
+mLWP
+
+pLWP
+
+0.6776509
+
+Sap\_Flow
+
+mLWP
+
+-0.2011949
+
+TWaterFlux
+
+mLWP
+
+-0.1893302
+
+pLWP
+
+mLWP
+
+0.6776509
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Correlation matrix of numerical variables}
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+\FunctionTok{plot\_correlate}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-4-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{visualize-correlations-within-groups}{%
+\section{Visualize Correlations within
+Groups}\label{visualize-correlations-within-groups}}
+
+If we have groups that we will compare later on, it is a good idea to
+see how each numerical variable correlates within these groups.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{plot\_correlate}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-5-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-5-2.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-5-3.pdf}
+
+}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-5-4.pdf}
+
+}
+
+\end{figure}
+
+This is great, we have our correlations within groups! However, the
+correlation matrices aren't always the most intuitive, so let's plot!
+
+We will be using the \texttt{ggpairs()} function within the
+\texttt{GGally} package. Specifically, we are looking at the
+correlations between predawn leaf water potential \texttt{pLWP} and
+midday leaf water potential \texttt{mLWP}. Leaf water potential is a key
+indicator for how stressed plants are in droughts.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset }\SpecialCharTok{|\textgreater{}} 
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(Group, pLWP, mLWP) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{ggpairs}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Group, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{strip.background =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \CommentTok{\# I don\textquotesingle{}t like the facet strips}
+  \FunctionTok{scale\_fill\_OkabeIto}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_OkabeIto}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{describe-and-visualize-relationships-based-on-target-variables}{%
+\section{Describe and Visualize Relationships Based on Target
+Variables}\label{describe-and-visualize-relationships-based-on-target-variables}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{target-variables}{%
+\subsection{Target Variables}\label{target-variables}}
+
+\texttt{Target\ variables} are essentially numerical or categorical
+variables that you want to relate others to in a data frame.
+\texttt{dlookr} does this through the \texttt{target\_by()} function,
+which is similar to \texttt{group\_by()} in \texttt{dplyr}. The
+\texttt{relate()} function then briefly analyzes the relationship
+between the target variable and the variables of interest.
+
+The relationships below will have the formula relationship
+\texttt{target\ \textasciitilde{}\ predictor}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{numerical-target-variables-numerical-variable-of-interest}{%
+\subsection{Numerical Target Variables: Numerical Variable of
+Interest}\label{numerical-target-variables-numerical-variable-of-interest}}
+
+\texttt{Formula:\ pLWP\ (numerical)\ \ \textasciitilde{}\ Sap\_Flow\ (numerical)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The numerical target variable that we want}
+\NormalTok{num }\OtherTok{\textless{}{-}} \FunctionTok{target\_by}\NormalTok{(dataset, Sap\_Flow)}
+
+\CommentTok{\# Relating the variable of interest to the numerical target variable}
+\NormalTok{num\_num }\OtherTok{\textless{}{-}} \FunctionTok{relate}\NormalTok{(num, pLWP)}
+
+\CommentTok{\# Summary of the regression analysis {-} the same as the summary from lm(Formula)}
+\FunctionTok{summary}\NormalTok{(num\_num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = formula_str, data = data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-32.719 -26.647 -20.924  -0.811 148.353 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   42.167      7.971   5.290 2.51e-07 ***
+pLWP          24.600     12.266   2.006   0.0459 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 46.2 on 274 degrees of freedom
+  (312 observations deleted due to missingness)
+Multiple R-squared:  0.01447,   Adjusted R-squared:  0.01087 
+F-statistic: 4.022 on 1 and 274 DF,  p-value: 0.04589
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plotting the linear relationship}
+\FunctionTok{plot}\NormalTok{(num\_num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-8-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{numerical-target-variables-categorical-variable-of-interest}{%
+\subsection{Numerical Target Variables: Categorical Variable of
+Interest}\label{numerical-target-variables-categorical-variable-of-interest}}
+
+Formula:
+\texttt{Group\ (categorical)\ \textasciitilde{}\ pLWP\ (numerical)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The categorical target variable that we want}
+\NormalTok{num }\OtherTok{\textless{}{-}} \FunctionTok{target\_by}\NormalTok{(dataset, pLWP) }
+
+\CommentTok{\# We need to change Group to a factor}
+\NormalTok{num}\SpecialCharTok{$}\NormalTok{Group }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(num}\SpecialCharTok{$}\NormalTok{Group)}
+
+\CommentTok{\# Relating the variable of interest to the numerical target variable}
+\NormalTok{num\_cat }\OtherTok{\textless{}{-}} \FunctionTok{relate}\NormalTok{(num, Group)}
+
+\CommentTok{\# Summary of the ANOVA analysis {-} the same as the summary from anova(lm(Formula))}
+\FunctionTok{summary}\NormalTok{(num\_cat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = formula(formula_str), data = data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.73720 -0.09700  0.03598  0.11314  0.40655 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             -0.66993    0.02466 -27.166  < 2e-16 ***
+GroupDrought-sens-under -0.02621    0.03488  -0.751    0.453    
+GroupDrought-tol-canopy  0.04002    0.03488   1.148    0.252    
+GroupDrought-tol-under   0.22969    0.03488   6.586 2.33e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2048 on 272 degrees of freedom
+  (312 observations deleted due to missingness)
+Multiple R-squared:  0.1956,    Adjusted R-squared:  0.1867 
+F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(num\_cat) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-10-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{categorical-target-variables-numerical-variable-of-interest}{%
+\subsection{Categorical Target Variables: Numerical Variable of
+Interest}\label{categorical-target-variables-numerical-variable-of-interest}}
+
+Note that this produces descriptive statistics, unlike the other
+relationships we are looking at.
+
+Formula:
+\texttt{pLWP\ (numerical)\ \textasciitilde{}\ Group\ (categorical)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The categorical target variable that we want}
+\NormalTok{categ }\OtherTok{\textless{}{-}} \FunctionTok{target\_by}\NormalTok{(dataset, Group)}
+
+\CommentTok{\# Relating the variable of interest to the numerical target variable}
+\NormalTok{cat\_num }\OtherTok{\textless{}{-}} \FunctionTok{relate}\NormalTok{(categ, pLWP)}
+
+\CommentTok{\# Summary of the regression analysis {-} the same as the summary from lm()}
+\FunctionTok{summary}\NormalTok{(cat\_num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ described_variables    Group                 n               na       
+ Length:5            Length:5           Min.   : 69.0   Min.   : 78.0  
+ Class :character    Class :character   1st Qu.: 69.0   1st Qu.: 78.0  
+ Mode  :character    Mode  :character   Median : 69.0   Median : 78.0  
+                                        Mean   :110.4   Mean   :124.8  
+                                        3rd Qu.: 69.0   3rd Qu.: 78.0  
+                                        Max.   :276.0   Max.   :312.0  
+      mean               sd             se_mean             IQR        
+ Min.   :-0.6961   Min.   :0.09557   Min.   :0.01151   Min.   :0.1351  
+ 1st Qu.:-0.6699   1st Qu.:0.13188   1st Qu.:0.01367   1st Qu.:0.1597  
+ Median :-0.6299   Median :0.22715   Median :0.01588   Median :0.2640  
+ Mean   :-0.6091   Mean   :0.19699   Mean   :0.02098   Mean   :0.2310  
+ 3rd Qu.:-0.6091   3rd Qu.:0.24639   3rd Qu.:0.02966   3rd Qu.:0.2788  
+ Max.   :-0.4402   Max.   :0.28394   Max.   :0.03418   Max.   :0.3173  
+    skewness          kurtosis            p00               p01         
+ Min.   :-1.1510   Min.   :-0.5921   Min.   :-1.4333   Min.   :-1.4307  
+ 1st Qu.:-1.1047   1st Qu.:-0.4320   1st Qu.:-1.4333   1st Qu.:-1.3160  
+ Median :-0.4644   Median :-0.2744   Median :-1.2993   Median :-1.2538  
+ Mean   :-0.7009   Mean   : 0.1897   Mean   :-1.1553   Mean   :-1.1133  
+ 3rd Qu.:-0.4333   3rd Qu.: 0.4796   3rd Qu.:-0.8637   3rd Qu.:-0.8388  
+ Max.   :-0.3510   Max.   : 1.7675   Max.   :-0.7467   Max.   :-0.7272  
+      p05               p10               p20               p25         
+ Min.   :-1.3067   Min.   :-1.1449   Min.   :-0.9067   Min.   :-0.8000  
+ 1st Qu.:-1.0870   1st Qu.:-1.0047   1st Qu.:-0.8587   1st Qu.:-0.7906  
+ Median :-1.0666   Median :-0.8802   Median :-0.7339   Median :-0.7140  
+ Mean   :-0.9838   Mean   :-0.8878   Mean   :-0.7583   Mean   :-0.7063  
+ 3rd Qu.:-0.7816   3rd Qu.:-0.7724   3rd Qu.:-0.7304   3rd Qu.:-0.7065  
+ Max.   :-0.6772   Max.   :-0.6366   Max.   :-0.5619   Max.   :-0.5205  
+      p30               p40               p50               p60         
+ Min.   :-0.7386   Min.   :-0.7204   Min.   :-0.7059   Min.   :-0.6206  
+ 1st Qu.:-0.7076   1st Qu.:-0.6299   1st Qu.:-0.6028   1st Qu.:-0.5861  
+ Median :-0.6801   Median :-0.6292   Median :-0.5921   Median :-0.5855  
+ Mean   :-0.6590   Mean   :-0.6079   Mean   :-0.5787   Mean   :-0.5487  
+ 3rd Qu.:-0.6790   3rd Qu.:-0.6171   3rd Qu.:-0.5862   3rd Qu.:-0.5536  
+ Max.   :-0.4896   Max.   :-0.4427   Max.   :-0.4064   Max.   :-0.3978  
+      p70               p75               p80               p90         
+ Min.   :-0.5758   Min.   :-0.5714   Min.   :-0.5653   Min.   :-0.5150  
+ 1st Qu.:-0.5504   1st Qu.:-0.5212   1st Qu.:-0.4907   1st Qu.:-0.4243  
+ Median :-0.5269   Median :-0.4733   Median :-0.4259   Median :-0.3519  
+ Mean   :-0.5068   Mean   :-0.4753   Mean   :-0.4446   Mean   :-0.3812  
+ 3rd Qu.:-0.4925   3rd Qu.:-0.4500   3rd Qu.:-0.4088   3rd Qu.:-0.3394  
+ Max.   :-0.3883   Max.   :-0.3608   Max.   :-0.3325   Max.   :-0.2756  
+      p95               p99               p100        
+ Min.   :-0.5100   Min.   :-0.4609   Min.   :-0.4376  
+ 1st Qu.:-0.3700   1st Qu.:-0.3139   1st Qu.:-0.2997  
+ Median :-0.3049   Median :-0.2726   Median :-0.2634  
+ Mean   :-0.3457   Mean   :-0.2994   Mean   :-0.2822  
+ 3rd Qu.:-0.3004   3rd Qu.:-0.2363   3rd Qu.:-0.2052  
+ Max.   :-0.2430   Max.   :-0.2133   Max.   :-0.2052  
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(cat\_num) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-12-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{categorical-target-variables-categorical-variable-of-interest}{%
+\subsection{Categorical Target Variables: Categorical Variable of
+Interest}\label{categorical-target-variables-categorical-variable-of-interest}}
+
+Notably, there is only one categorical variable\ldots{} Let's make
+another:
+
+If \(mLWP > mean(mLWP) + sd(mLWP)\) then ``Yes'', else ``No''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cat\_dataset }\OtherTok{\textless{}{-}}\NormalTok{ dataset }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{select}\NormalTok{(pLWP, Group) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{HighLWP =} \FunctionTok{ifelse}\NormalTok{(pLWP }\SpecialCharTok{\textgreater{}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(pLWP }\SpecialCharTok{+} \FunctionTok{sd}\NormalTok{(pLWP))), }\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{))}
+
+\FunctionTok{head}\NormalTok{(cat\_dataset) }\SpecialCharTok{|\textgreater{}}
+  \FunctionTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+        pLWP               Group HighLWP
+1 -0.2633781 Drought-sens-canopy     Yes
+2 -0.2996688  Drought-sens-under     Yes
+3 -0.4375563  Drought-tol-canopy      No
+4 -0.2052237   Drought-tol-under     Yes
+5 -0.2769280 Drought-sens-canopy     Yes
+6 -0.3205980  Drought-sens-under     Yes
+\end{verbatim}
+
+Now we have two categories!
+
+Formula =
+\texttt{Group\ (categorical)\ \textasciitilde{}\ HighLWP\ (categorical)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The categorical target variable that we want}
+\NormalTok{categ1 }\OtherTok{\textless{}{-}} \FunctionTok{target\_by}\NormalTok{(cat\_dataset, HighLWP)}
+
+\CommentTok{\# Relating the variable of interest to the categorical target variable}
+\NormalTok{cat\_num }\OtherTok{\textless{}{-}} \FunctionTok{relate}\NormalTok{(categ1, Group)}
+
+\CommentTok{\# Summary of the Chi{-}square test for Independence}
+\FunctionTok{summary}\NormalTok{(cat\_num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Call: xtabs(formula = formula_str, data = data, addNA = TRUE)
+Number of cases in table: 276 
+Number of factors: 2 
+Test for independence of all factors:
+    Chisq = 30.201, df = 3, p-value = 1.252e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(cat\_num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{./CorrelateLikeDataMaster_files/figure-pdf/unnamed-chunk-15-1.pdf}
+
+}
+
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-merchant2022}{}}%
+Merchant, Nirav C, Jim Davis, George H Franks, Chun Ly, Fernando Rios,
+Todd Wickizer, Gary D Windham, and Michelle Yung. 2022. {``University of
+Arizona Test-Trace-Treat COVID-19 Testing Results.''} University of
+Arizona Research Data Repository.
+\url{https://doi.org/10.25422/AZU.DATA.14869740.V3}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-meredith2021}{}}%
+Meredith, Laura, S. Nemiah Ladd, and Christiane Werner. 2021. {``Data
+for {"}Ecosystem Fluxes During Drought and Recovery in an Experimental
+Forest{"}.''} University of Arizona Research Data Repository.
+\url{https://doi.org/10.25422/AZU.DATA.14632593.V1}.
+
+\end{CSLReferences}
+
+
+
+\end{document}

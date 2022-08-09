@@ -1,4 +1,4 @@
-# Exploratory Data Analysis in R - Transforming like a Data... Transformer
+# Exploratory Data Analysis in R - Transforming like a Data... Transformer {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 

@@ -2,7 +2,7 @@
 bibliography: references.bib
 ---
 
-# Exploratory Data Analysis in R - Correlate Like a Data Master
+# Exploratory Data Analysis in R - Correlate Like a Data Master {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 

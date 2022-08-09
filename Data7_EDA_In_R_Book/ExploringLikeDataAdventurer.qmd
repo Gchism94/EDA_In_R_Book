@@ -1,4 +1,4 @@
-# Exploratory Data Analysis in R - Exploring like a Data Adventurer
+# Exploratory Data Analysis in R - Exploring like a Data Adventurer {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 

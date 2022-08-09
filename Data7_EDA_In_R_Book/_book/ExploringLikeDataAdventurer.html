@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Greg Chism">
-<meta name="dcterms.date" content="2022-09-19">
 
-<title>Exploratory Data Analysis in R - Exploring like a Data Adventurer</title>
+<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - Exploratory Data Analysis in R - Exploring like a Data Adventurer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,48 +100,163 @@ div.csl-indent {
 </style>
 
 
-<script src="ExploringLikeDataAdventurer_files/libs/clipboard/clipboard.min.js"></script>
-<script src="ExploringLikeDataAdventurer_files/libs/quarto-html/quarto.js"></script>
-<script src="ExploringLikeDataAdventurer_files/libs/quarto-html/popper.min.js"></script>
-<script src="ExploringLikeDataAdventurer_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="ExploringLikeDataAdventurer_files/libs/quarto-html/anchor.min.js"></script>
-<link href="ExploringLikeDataAdventurer_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="ExploringLikeDataAdventurer_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="ExploringLikeDataAdventurer_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="ExploringLikeDataAdventurer_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="ExploringLikeDataAdventurer_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./TransformingLikeDataTrans.html" rel="next">
+<link href="./DiagnosingLikeDataDoctor.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link active">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputating like a Data Scientist</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link active" data-scroll-target="#purpose-of-workshop">Purpose of Workshop</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-setup" id="toc-required-setup" class="nav-link" data-scroll-target="#required-setup">Required Setup</a></li>
+  <li><a href="#load-and-examine-a-data-set" id="toc-load-and-examine-a-data-set" class="nav-link" data-scroll-target="#load-and-examine-a-data-set">Load and Examine a Data Set</a></li>
+  <li><a href="#diagnose-your-data" id="toc-diagnose-your-data" class="nav-link" data-scroll-target="#diagnose-your-data">Diagnose your Data</a>
+  <ul class="collapse">
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot">Box Plot</a></li>
+  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness">Skewness</a></li>
+  <li><a href="#kurtosis" id="toc-kurtosis" class="nav-link" data-scroll-target="#kurtosis">Kurtosis</a></li>
+  </ul></li>
+  <li><a href="#describe-your-continuous-data" id="toc-describe-your-continuous-data" class="nav-link" data-scroll-target="#describe-your-continuous-data">Describe your Continuous Data</a>
+  <ul class="collapse">
+  <li><a href="#describe-your-continuous-data-refined" id="toc-describe-your-continuous-data-refined" class="nav-link" data-scroll-target="#describe-your-continuous-data-refined">Describe your Continuous Data: Refined</a></li>
+  </ul></li>
+  <li><a href="#describe-categorical-variables" id="toc-describe-categorical-variables" class="nav-link" data-scroll-target="#describe-categorical-variables">Describe Categorical Variables</a>
+  <ul class="collapse">
+  <li><a href="#group-descriptive-statistics" id="toc-group-descriptive-statistics" class="nav-link" data-scroll-target="#group-descriptive-statistics">Group Descriptive Statistics</a></li>
+  </ul></li>
+  <li><a href="#testing-normality" id="toc-testing-normality" class="nav-link" data-scroll-target="#testing-normality">Testing Normality</a>
+  <ul class="collapse">
+  <li><a href="#normality-of-columns" id="toc-normality-of-columns" class="nav-link" data-scroll-target="#normality-of-columns">Normality of Columns</a></li>
+  <li><a href="#normality-within-groups" id="toc-normality-within-groups" class="nav-link" data-scroll-target="#normality-within-groups">Normality within Groups</a></li>
+  </ul></li>
+  <li><a href="#produce-an-html-normality-summary" id="toc-produce-an-html-normality-summary" class="nav-link" data-scroll-target="#produce-an-html-normality-summary">Produce an HTML Normality Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</h1>
+<h1 class="title d-none d-lg-block">Exploratory Data Analysis in R - Exploring like a Data Adventurer</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Greg Chism </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2022</p>
-    </div>
-  </div>
     
   </div>
   
@@ -2601,14 +2714,15 @@ Drought-tol-under
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#eda_web_report(dataset)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-meredith2021" class="csl-entry" role="doc-biblioentry">
 Meredith, Laura, S. Nemiah Ladd, and Christiane Werner. 2021. <span>“Data for <span>"</span>Ecosystem Fluxes During Drought and Recovery in an Experimental Forest<span>"</span>.”</span> University of Arizona Research Data Repository. <a href="https://doi.org/10.25422/AZU.DATA.14632593.V1">https://doi.org/10.25422/AZU.DATA.14632593.V1</a>.
 </div>
-</div></section></div></main>
-<!-- /main column -->
+</div>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -2706,6 +2820,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./DiagnosingLikeDataDoctor.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./TransformingLikeDataTrans.html" class="pagination-link">
+        <span class="nav-page-text">Exploratory Data Analysis in R - Transforming like a Data… Transformer</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

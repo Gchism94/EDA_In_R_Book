@@ -4,7 +4,7 @@ project:
 book:
   title: "Data 7 Exploratory Data Analysis In R Workshops Companion Book"
   author: "Greg Chism"
-  date: "8/8/2022"
+  cover-image: cover.png
   chapters:
     - index.qmd
     - intro.qmd
@@ -13,14 +13,14 @@ book:
     - TransformingLikeDataTrans.qmd
     - ImputatingLikeDataScientist.qmd
     - CorrelateLikeDataMaster.qmd
+  repo-url: https://github.com/Gchism94/Data7_EDA_In_R_Workshops
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    code-copy: true
 
 
 

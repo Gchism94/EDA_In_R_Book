@@ -1,4 +1,4 @@
-# Introduction
+# Introduction {.unnumbered}
 
 ![Image Credit: Choonghyun Ryu](https://choonghyunryu.github.io/dlookr/figures/detective_2.png){fig-align="left" width="214" height="238"}
 
@@ -15,7 +15,11 @@ Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) t
 Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
 
 ```{r}
-pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, tidyverse, plotly) 
+pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, remotes, tidyverse, plotly) 
+
+remotes::install_github("r-link/corrmorant")
+
+library(corrmorant)
 
 import_roboto_condensed()
 
@@ -24,7 +28,7 @@ theme_update(axis.title = element_text(hjust = 1))
 theme_update(axis.ticks = element_blank())
 theme_update(text = element_text(family = "Roboto Condensed")) 
 
-dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
+dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
                             ifelse(Age > 30 & Age <=50, "Middle", 
                                    "Elderly")),

@@ -1,10 +1,6 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
-## Welcome to the UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!
-
-![](images/DataScienceInstitute_ALTERNATE.png){width="370"}
-
-------------------------------------------------------------------------
+## UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!
 
 Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the [Data Science Institute](https://datascience.arizona.edu/)
 
@@ -12,7 +8,7 @@ Here you will find a collection of Exploratory Data Analysis in R Workshops prep
 
 ## [Exploratory data analysis in R - Diagnosing like a data doctor](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1)
 
-### Purpose of workshop
+### Purpose of Workshop
 
 Exploring a novel data set and produce publication quality tables and reports
 
@@ -20,17 +16,33 @@ Exploring a novel data set and produce publication quality tables and reports
 
 ## [Exploratory data analysis in R - Exploring like a data adventurer](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2)
 
-### Purpose of the workshop
+### Purpose of the Workshop
 
 Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports
 
 ------------------------------------------------------------------------
 
-## Exploratory Data Analysis in R - Transforming like a Data... Transformer
+## [Exploratory Data Analysis in R - Transforming like a Data... Transformer](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall3)
 
-### Purpose of the workshop
+### Purpose of the Workshop
 
 Using data transformation to correct non-normality in numerical data
+
+------------------------------------------------------------------------
+
+## [Exploratory Data Analysis in R - Imputating like a Data Scientist](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall4)
+
+### Purpose of the Workshop
+
+Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables
+
+------------------------------------------------------------------------
+
+## [Exploratory Data Analysis in R - Correlate Like a Data Master](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall5)
+
+### Purpose of the Workshop
+
+Assess relationships within a novel data set using publication quality tables and plots
 
 ------------------------------------------------------------------------
 

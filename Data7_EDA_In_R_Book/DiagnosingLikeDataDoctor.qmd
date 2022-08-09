@@ -2,7 +2,7 @@
 bibliography: references.bib
 ---
 
-# Exploratory Data Analysis in R - Diagnosing like a Data Doctor
+# Exploratory Data Analysis in R - Diagnosing like a Data Doctor {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 

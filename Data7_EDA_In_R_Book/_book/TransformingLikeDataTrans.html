@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - 4&nbsp; Exploratory Data Analysis in R - Transforming like a Data… Transformer</title>
+<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - Exploratory Data Analysis in R - Transforming like a Data… Transformer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></h1>
+      <h1 class="quarto-secondary-nav-title">Exploratory Data Analysis in R - Transforming like a Data… Transformer</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -143,6 +143,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -154,37 +157,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Welcome</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span></a>
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span></a>
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></a>
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link active">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputating like a Data Scientist</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Correlate Like a Data Master</span></a>
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
   </div>
 </li>
     </ul>
@@ -196,22 +199,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link active" data-scroll-target="#purpose-of-workshop"> <span class="header-section-number">4.1</span> Purpose of Workshop</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"> <span class="header-section-number">4.2</span> Objectives</a></li>
-  <li><a href="#required-setup" id="toc-required-setup" class="nav-link" data-scroll-target="#required-setup"> <span class="header-section-number">4.3</span> Required Setup</a></li>
-  <li><a href="#load-and-examine-a-data-set" id="toc-load-and-examine-a-data-set" class="nav-link" data-scroll-target="#load-and-examine-a-data-set"> <span class="header-section-number">4.4</span> Load and Examine a Data Set</a>
+  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link active" data-scroll-target="#purpose-of-workshop">Purpose of Workshop</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-setup" id="toc-required-setup" class="nav-link" data-scroll-target="#required-setup">Required Setup</a></li>
+  <li><a href="#load-and-examine-a-data-set" id="toc-load-and-examine-a-data-set" class="nav-link" data-scroll-target="#load-and-examine-a-data-set">Load and Examine a Data Set</a>
   <ul class="collapse">
-  <li><a href="#data-normality" id="toc-data-normality" class="nav-link" data-scroll-target="#data-normality"> <span class="header-section-number">4.4.1</span> Data Normality</a></li>
-  <li><a href="#describing-properties-of-our-data-refined" id="toc-describing-properties-of-our-data-refined" class="nav-link" data-scroll-target="#describing-properties-of-our-data-refined"> <span class="header-section-number">4.4.2</span> Describing Properties of our Data (Refined)</a></li>
+  <li><a href="#data-normality" id="toc-data-normality" class="nav-link" data-scroll-target="#data-normality">Data Normality</a></li>
+  <li><a href="#describing-properties-of-our-data-refined" id="toc-describing-properties-of-our-data-refined" class="nav-link" data-scroll-target="#describing-properties-of-our-data-refined">Describing Properties of our Data (Refined)</a></li>
   </ul></li>
-  <li><a href="#testing-normality-accelerated" id="toc-testing-normality-accelerated" class="nav-link" data-scroll-target="#testing-normality-accelerated"> <span class="header-section-number">4.5</span> Testing Normality (Accelerated)</a></li>
-  <li><a href="#normality-within-groups" id="toc-normality-within-groups" class="nav-link" data-scroll-target="#normality-within-groups"> <span class="header-section-number">4.6</span> Normality within Groups</a></li>
-  <li><a href="#transforming-data" id="toc-transforming-data" class="nav-link" data-scroll-target="#transforming-data"> <span class="header-section-number">4.7</span> Transforming Data</a>
+  <li><a href="#testing-normality-accelerated" id="toc-testing-normality-accelerated" class="nav-link" data-scroll-target="#testing-normality-accelerated">Testing Normality (Accelerated)</a></li>
+  <li><a href="#normality-within-groups" id="toc-normality-within-groups" class="nav-link" data-scroll-target="#normality-within-groups">Normality within Groups</a></li>
+  <li><a href="#transforming-data" id="toc-transforming-data" class="nav-link" data-scroll-target="#transforming-data">Transforming Data</a>
   <ul class="collapse">
-  <li><a href="#square-root-cube-root-and-logarithmic-transformations" id="toc-square-root-cube-root-and-logarithmic-transformations" class="nav-link" data-scroll-target="#square-root-cube-root-and-logarithmic-transformations"> <span class="header-section-number">4.7.1</span> Square-root, Cube-root, and Logarithmic Transformations</a></li>
-  <li><a href="#box-cox-transformation" id="toc-box-cox-transformation" class="nav-link" data-scroll-target="#box-cox-transformation"> <span class="header-section-number">4.7.2</span> Box-cox Transformation</a></li>
+  <li><a href="#square-root-cube-root-and-logarithmic-transformations" id="toc-square-root-cube-root-and-logarithmic-transformations" class="nav-link" data-scroll-target="#square-root-cube-root-and-logarithmic-transformations">Square-root, Cube-root, and Logarithmic Transformations</a></li>
+  <li><a href="#box-cox-transformation" id="toc-box-cox-transformation" class="nav-link" data-scroll-target="#box-cox-transformation">Box-cox Transformation</a></li>
   </ul></li>
-  <li><a href="#produce-an-html-transformation-summary" id="toc-produce-an-html-transformation-summary" class="nav-link" data-scroll-target="#produce-an-html-transformation-summary"> <span class="header-section-number">4.8</span> Produce an HTML Transformation Summary</a></li>
+  <li><a href="#produce-an-html-transformation-summary" id="toc-produce-an-html-transformation-summary" class="nav-link" data-scroll-target="#produce-an-html-transformation-summary">Produce an HTML Transformation Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -220,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></h1>
+<h1 class="title d-none d-lg-block">Exploratory Data Analysis in R - Transforming like a Data… Transformer</h1>
 </div>
 
 
@@ -234,13 +237,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="purpose-of-workshop" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="purpose-of-workshop"><span class="header-section-number">4.1</span> Purpose of Workshop</h2>
+<section id="purpose-of-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of Workshop</h2>
 <p><strong>Using data transformation to correct non-normality in numerical data</strong></p>
 <hr>
 </section>
-<section id="objectives" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="objectives"><span class="header-section-number">4.2</span> Objectives</h2>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ol type="1">
 <li>Load and explore a data set with publication quality tables</li>
 <li>Quickly diagnose non-normality in data</li>
@@ -249,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <hr>
 </section>
-<section id="required-setup" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="required-setup"><span class="header-section-number">4.3</span> Required Setup</h2>
+<section id="required-setup" class="level2">
+<h2 class="anchored" data-anchor-id="required-setup">Required Setup</h2>
 <p>We first need to prepare our environment with the necessary packages</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets the repository to download packages from</span></span>
@@ -274,8 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <hr>
 </section>
-<section id="load-and-examine-a-data-set" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="load-and-examine-a-data-set"><span class="header-section-number">4.4</span> Load and Examine a Data Set</h2>
+<section id="load-and-examine-a-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="load-and-examine-a-data-set">Load and Examine a Data Set</h2>
 <ul>
 <li>Load data and view</li>
 <li>Examine columns and data types</li>
@@ -531,8 +534,8 @@ Young
 </div>
 </div>
 <hr>
-<section id="data-normality" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="data-normality"><span class="header-section-number">4.4.1</span> Data Normality</h3>
+<section id="data-normality" class="level3">
+<h3 class="anchored" data-anchor-id="data-normality">Data Normality</h3>
 <p>Normal distributions (bell curves) are a common data assumptions for many <a href="https://en.wikipedia.org/wiki/Statistical_hypothesis_testing">hypothesis testing statistics</a>, in particular <a href="https://en.wikipedia.org/wiki/Parametric_statistics">parametric statistics</a>. Deviations from normality can either strongly skew the results or reduce the power to detect a <a href="https://en.wikipedia.org/wiki/Statistical_significance">significant statistical difference</a>.</p>
 <p>Here are the distribution properties to know and consider:</p>
 <ul>
@@ -568,12 +571,12 @@ Young
 </div>
 <hr>
 </section>
-<section id="describing-properties-of-our-data-refined" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="describing-properties-of-our-data-refined"><span class="header-section-number">4.4.2</span> Describing Properties of our Data (Refined)</h3>
-<section id="skewness" class="level4" data-number="4.4.2.1">
-<h4 data-number="4.4.2.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">4.4.2.1</span> Skewness</h4>
+<section id="describing-properties-of-our-data-refined" class="level3">
+<h3 class="anchored" data-anchor-id="describing-properties-of-our-data-refined">Describing Properties of our Data (Refined)</h3>
+<section id="skewness" class="level4">
+<h4 class="anchored" data-anchor-id="skewness">Skewness</h4>
 <p>The symmetry of the distribution</p>
-<p>See <a href="intro.html#sec-DistShape">Introduction&nbsp;<span>1.3.3</span></a> for more information about these values</p>
+<p>See <a href="intro.html#sec-DistShape">Introduction&nbsp;<span>3.3</span></a> for more information about these values</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Glucose, Insulin, BMI, SkinThickness) <span class="sc">|&gt;</span></span>
@@ -640,8 +643,8 @@ SkinThickness
 </section>
 </section>
 </section>
-<section id="testing-normality-accelerated" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="testing-normality-accelerated"><span class="header-section-number">4.5</span> Testing Normality (Accelerated)</h2>
+<section id="testing-normality-accelerated" class="level2">
+<h2 class="anchored" data-anchor-id="testing-normality-accelerated">Testing Normality (Accelerated)</h2>
 <ul>
 <li><p>Q-Q plots</p></li>
 <li><p>Testing overall normality of two columns</p></li>
@@ -649,8 +652,8 @@ SkinThickness
 </ul>
 <p><strong>Note</strong> that you can also use <code>normality()</code> to run Shapiro-Wilk tests, but since this test is not viable at <code>N &lt; 20</code>, I recommend just skipping to Q-Q plots.</p>
 <hr>
-<section id="q-q-plots" class="level4" data-number="4.5.0.1">
-<h4 data-number="4.5.0.1" class="anchored" data-anchor-id="q-q-plots"><span class="header-section-number">4.5.0.1</span> Q-Q Plots</h4>
+<section id="q-q-plots" class="level4">
+<h4 class="anchored" data-anchor-id="q-q-plots">Q-Q Plots</h4>
 <p>Plots of the quartiles of a target data set and plot it against predicted quartiles from a normal distribution.</p>
 <p>Notably, <code>plot_normality()</code> will show you the Logaritmic and Skewed transformations (more below)</p>
 <div class="cell">
@@ -669,11 +672,11 @@ SkinThickness
 <hr>
 </section>
 </section>
-<section id="normality-within-groups" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="normality-within-groups"><span class="header-section-number">4.6</span> Normality within Groups</h2>
+<section id="normality-within-groups" class="level2">
+<h2 class="anchored" data-anchor-id="normality-within-groups">Normality within Groups</h2>
 <p>Looking within Age_group at the subgroup normality</p>
-<section id="q-q-plots-1" class="level4" data-number="4.6.0.1">
-<h4 data-number="4.6.0.1" class="anchored" data-anchor-id="q-q-plots-1"><span class="header-section-number">4.6.0.1</span> Q-Q Plots</h4>
+<section id="q-q-plots-1" class="level4">
+<h4 class="anchored" data-anchor-id="q-q-plots-1">Q-Q Plots</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age_group) <span class="sc">%&gt;%</span></span>
@@ -701,8 +704,8 @@ SkinThickness
 <hr>
 </section>
 </section>
-<section id="transforming-data" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="transforming-data"><span class="header-section-number">4.7</span> Transforming Data</h2>
+<section id="transforming-data" class="level2">
+<h2 class="anchored" data-anchor-id="transforming-data">Transforming Data</h2>
 <p>Your data could be more easily interpreted with a transformation, since not all relationships in nature follow a linear relationship - i.e., many biological phenomena follow a power law (or logarithmic curve), where they do not scale linearly.</p>
 <p>We will try to transform the <code>Insulin</code> column with through several approaches and discuss the pros and cons of each. First however, we will remove <code>0</code> values, because <code>Insulin</code> values are impossible…</p>
 <div class="cell">
@@ -710,8 +713,8 @@ SkinThickness
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Insulin <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
-<section id="square-root-cube-root-and-logarithmic-transformations" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="square-root-cube-root-and-logarithmic-transformations"><span class="header-section-number">4.7.1</span> Square-root, Cube-root, and Logarithmic Transformations</h3>
+<section id="square-root-cube-root-and-logarithmic-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="square-root-cube-root-and-logarithmic-transformations">Square-root, Cube-root, and Logarithmic Transformations</h3>
 <p>Resolving Skewness using <code>transform()</code>.</p>
 <p>“sqrt”: <a href="https://en.wikipedia.org/wiki/Square_root">square-root transformation</a>. <span class="math inline">\(\sqrt x\)</span> <strong>(moderate skew)</strong></p>
 <p>“log”: <a href="https://en.wikipedia.org/wiki/Logarithm">log transformation</a>. <span class="math inline">\(log(x)\)</span> <strong>(greater skew)</strong></p>
@@ -721,8 +724,8 @@ SkinThickness
 <p>“x^3”: <a href="https://en.wikipedia.org/wiki/Cubic_function">cubed transformation</a>. <span class="math inline">\(x^3\)</span></p>
 <p>We will compare <code>sqrt</code>, <code>log+1</code>, and <code>1/x</code> (inverse) transformations. Note that you would have to add a constant to use the <code>log</code> transformation, so it is easier to use the <code>log+1</code> instead. You however need to add a constant to both the <code>sqrt</code> and <code>1/x</code> transformations because they don’t include zeros and will otherwise skew the results.</p>
 <hr>
-<section id="square-root-transformation" class="level4" data-number="4.7.1.1">
-<h4 data-number="4.7.1.1" class="anchored" data-anchor-id="square-root-transformation"><span class="header-section-number">4.7.1.1</span> Square-root Transformation</h4>
+<section id="square-root-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="square-root-transformation">Square-root Transformation</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sqrtIns <span class="ot">&lt;-</span> <span class="fu">transform</span>(InsMod<span class="sc">$</span>Insulin, <span class="at">method =</span> <span class="st">"sqrt"</span>) </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -768,8 +771,8 @@ p100        846.0          29.09</code></pre>
 </div>
 <hr>
 </section>
-<section id="logarithmic-1-transformation" class="level4" data-number="4.7.1.2">
-<h4 data-number="4.7.1.2" class="anchored" data-anchor-id="logarithmic-1-transformation"><span class="header-section-number">4.7.1.2</span> Logarithmic (+1) Transformation</h4>
+<section id="logarithmic-1-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="logarithmic-1-transformation">Logarithmic (+1) Transformation</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Log1Ins <span class="ot">&lt;-</span> <span class="fu">transform</span>(InsMod<span class="sc">$</span>Insulin, <span class="at">method =</span> <span class="st">"log+1"</span>) </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -815,8 +818,8 @@ p100        846.0          6.742</code></pre>
 </div>
 <hr>
 </section>
-<section id="inverse-transformation" class="level4" data-number="4.7.1.3">
-<h4 data-number="4.7.1.3" class="anchored" data-anchor-id="inverse-transformation"><span class="header-section-number">4.7.1.3</span> Inverse Transformation</h4>
+<section id="inverse-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="inverse-transformation">Inverse Transformation</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>InvIns <span class="ot">&lt;-</span> <span class="fu">transform</span>(InsMod<span class="sc">$</span>Insulin, <span class="at">method =</span> <span class="st">"1/x"</span>) </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -863,8 +866,8 @@ p100        846.0        7.1e-02</code></pre>
 <hr>
 </section>
 </section>
-<section id="box-cox-transformation" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="box-cox-transformation"><span class="header-section-number">4.7.2</span> Box-cox Transformation</h3>
+<section id="box-cox-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="box-cox-transformation">Box-cox Transformation</h3>
 <p>There are several transformations, each with it’s own “criteria”, and they don’t always fix extremely skewed data. Instead, you can just choose the <a href="https://en.wikipedia.org/wiki/Box%E2%80%93Cox_distribution">Box-Cox transformation</a> which searches for the the best lambda value that maximizes the log-likelihood (basically, what power transformation is best). The benefit is that you should have normally distributed data after, but the power relationship might be pretty abstract (i.e., what would a transformation of x^0.12 be interpreted as in your system?..)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>BoxCoxIns <span class="ot">&lt;-</span> <span class="fu">transform</span>(InsMod<span class="sc">$</span>Insulin, <span class="at">method =</span> <span class="st">"Box-Cox"</span>) </span>
@@ -912,8 +915,8 @@ p100        846.0          3.610</code></pre>
 <hr>
 </section>
 </section>
-<section id="produce-an-html-transformation-summary" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="produce-an-html-transformation-summary"><span class="header-section-number">4.8</span> Produce an HTML Transformation Summary</h2>
+<section id="produce-an-html-transformation-summary" class="level2">
+<h2 class="anchored" data-anchor-id="produce-an-html-transformation-summary">Produce an HTML Transformation Summary</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the '#' below to reproduce an HTML from an R script. </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># transformation_web_report(dataset)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1023,12 +1026,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./ExploringLikeDataAdventurer.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ImputatingLikeDataScientist.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Exploratory Data Analysis in R - Imputating like a Data Scientist</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

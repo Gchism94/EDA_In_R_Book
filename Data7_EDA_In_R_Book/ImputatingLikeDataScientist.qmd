@@ -1,4 +1,4 @@
-# Exploratory Data Analysis in R - Imputating like a Data Scientist
+# Exploratory Data Analysis in R - Imputating like a Data Scientist {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
@@ -369,7 +369,7 @@ cap_out_imp_insulin |>
 
 -   If no extreme outliers are present, Winsorization may be unnecessary.
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------ 
 
 ## Imputing NAs
 

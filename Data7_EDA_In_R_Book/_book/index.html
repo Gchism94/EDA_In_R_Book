@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Greg Chism">
-<meta name="dcterms.date" content="2022-08-08">
 
 <title>Data 7 Exploratory Data Analysis In R Workshops Companion Book</title>
 <style>
@@ -80,6 +79,9 @@ ul.task-list{list-style: none;}
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -91,37 +93,37 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">Welcome</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span></a>
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span></a>
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></a>
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputating like a Data Scientist</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis in R - Correlate Like a Data Master</span></a>
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
   </div>
 </li>
     </ul>
@@ -133,20 +135,28 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
-  <li><a href="#welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" id="toc-welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="nav-link" data-scroll-target="#welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book">Welcome to the UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</a></li>
+  <li><a href="#uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" id="toc-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="nav-link" data-scroll-target="#uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</a></li>
   <li><a href="#exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" id="toc-exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor"><span>Exploratory data analysis in R - Diagnosing like a data doctor</span></a>
   <ul class="collapse">
-  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link" data-scroll-target="#purpose-of-workshop">Purpose of workshop</a></li>
+  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link" data-scroll-target="#purpose-of-workshop">Purpose of Workshop</a></li>
   </ul></li>
   <li><a href="#exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" id="toc-exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---exploring-like-a-data-adventurer"><span>Exploratory data analysis in R - Exploring like a data adventurer</span></a>
   <ul class="collapse">
-  <li><a href="#purpose-of-the-workshop" id="toc-purpose-of-the-workshop" class="nav-link" data-scroll-target="#purpose-of-the-workshop">Purpose of the workshop</a></li>
+  <li><a href="#purpose-of-the-workshop" id="toc-purpose-of-the-workshop" class="nav-link" data-scroll-target="#purpose-of-the-workshop">Purpose of the Workshop</a></li>
   </ul></li>
-  <li><a href="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer" id="toc-exploratory-data-analysis-in-r---transforming-like-a-data-transformer" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  <li><a href="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer" id="toc-exploratory-data-analysis-in-r---transforming-like-a-data-transformer" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer"><span>Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></a>
   <ul class="collapse">
-  <li><a href="#purpose-of-the-workshop-1" id="toc-purpose-of-the-workshop-1" class="nav-link" data-scroll-target="#purpose-of-the-workshop-1">Purpose of the workshop</a></li>
+  <li><a href="#purpose-of-the-workshop-1" id="toc-purpose-of-the-workshop-1" class="nav-link" data-scroll-target="#purpose-of-the-workshop-1">Purpose of the Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---imputating-like-a-data-scientist" id="toc-exploratory-data-analysis-in-r---imputating-like-a-data-scientist" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---imputating-like-a-data-scientist"><span>Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop-2" id="toc-purpose-of-the-workshop-2" class="nav-link" data-scroll-target="#purpose-of-the-workshop-2">Purpose of the Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---correlate-like-a-data-master" id="toc-exploratory-data-analysis-in-r---correlate-like-a-data-master" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---correlate-like-a-data-master"><span>Exploratory Data Analysis in R - Correlate Like a Data Master</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop-3" id="toc-purpose-of-the-workshop-3" class="nav-link" data-scroll-target="#purpose-of-the-workshop-3">Purpose of the Workshop</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -171,31 +181,24 @@ ul.task-list{list-style: none;}
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 8, 2022</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<section id="welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-to-the-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book">Welcome to the UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</h2>
-<p><img src="images/DataScienceInstitute_ALTERNATE.png" class="img-fluid" width="370"></p>
-<hr>
+
+<section id="welcome" class="level1 unnumbered">
+<p><img src="cover.png" title="Data 7 Exploratory Data Analysis In R Workshops Companion Book" class="quarto-cover-image img-fluid"></p><h1 class="unnumbered">Welcome</h1>
+<section id="uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="level2">
+<h2 class="anchored" data-anchor-id="uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</h2>
 <p>Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the <a href="https://datascience.arizona.edu/">Data Science Institute</a></p>
 <hr>
 </section>
 <section id="exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1">Exploratory data analysis in R - Diagnosing like a data doctor</a></h2>
 <section id="purpose-of-workshop" class="level3">
-<h3 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of workshop</h3>
+<h3 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of Workshop</h3>
 <p>Exploring a novel data set and produce publication quality tables and reports</p>
 <hr>
 </section>
@@ -203,16 +206,32 @@ ul.task-list{list-style: none;}
 <section id="exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---exploring-like-a-data-adventurer"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2">Exploratory data analysis in R - Exploring like a data adventurer</a></h2>
 <section id="purpose-of-the-workshop" class="level3">
-<h3 class="anchored" data-anchor-id="purpose-of-the-workshop">Purpose of the workshop</h3>
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop">Purpose of the Workshop</h3>
 <p>Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports</p>
 <hr>
 </section>
 </section>
 <section id="exploratory-data-analysis-in-r---transforming-like-a-data-transformer" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---transforming-like-a-data-transformer">Exploratory Data Analysis in R - Transforming like a Data… Transformer</h2>
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---transforming-like-a-data-transformer"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall3">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a></h2>
 <section id="purpose-of-the-workshop-1" class="level3">
-<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-1">Purpose of the workshop</h3>
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-1">Purpose of the Workshop</h3>
 <p>Using data transformation to correct non-normality in numerical data</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---imputating-like-a-data-scientist" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---imputating-like-a-data-scientist"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall4">Exploratory Data Analysis in R - Imputating like a Data Scientist</a></h2>
+<section id="purpose-of-the-workshop-2" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-2">Purpose of the Workshop</h3>
+<p>Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---correlate-like-a-data-master" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---correlate-like-a-data-master"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall5">Exploratory Data Analysis in R - Correlate Like a Data Master</a></h2>
+<section id="purpose-of-the-workshop-3" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-3">Purpose of the Workshop</h3>
+<p>Assess relationships within a novel data set using publication quality tables and plots</p>
 <hr>
 <p><a href="https://github.com/ua-data7/LearningResources/wiki">Visit our available Digital Learning Resources Library!</a></p>
 <hr>
@@ -327,7 +346,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Introduction</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
