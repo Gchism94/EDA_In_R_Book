@@ -235,18 +235,16 @@ We remove outliers using `imputate_outlier()` and replace them with values that 
 
 The mean of the observed values for each variable is computed and the outliers for that variable are imputed by this mean
 
-```{r}
+```{r, results = 'hide'}
 # Raw summary, output suppressed
 mean_out_imp_insulin <- dataset |>
   select(Insulin) |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "mean")
 
-# HTML table showing the summary statistics of our imputation
+# Output showing the summary statistics of our imputation
 mean_out_imp_insulin |>
-  summary() |>
-  kable() |>
-  kable_styling()
+  summary()
 ```
 
 ```{r}
@@ -268,11 +266,9 @@ med_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "median")
 
-# HTML table showing the summary statistics of our imputation
+# Output showing the summary statistics of our imputation
 med_out_imp_insulin |>
-  summary() |>
-  kable() |>
-  kable_styling()
+  summary()
 ```
 
 ```{r}
@@ -310,11 +306,9 @@ mode_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "mode")
 
-# HTML table showing the summary statistics of our imputation
+# Output showing the summary statistics of our imputation
 mode_out_imp_insulin |>
-  summary() |>
-  kable() |>
-  kable_styling()
+  summary()
 ```
 
 ```{r}
@@ -350,11 +344,9 @@ cap_out_imp_insulin <- dataset |>
   filter(Insulin < 600) |>
   imputate_outlier(Insulin, method = "capping")
 
-# HTML table showing the summary statistics of our imputation
+# Output showing the summary statistics of our imputation
 cap_out_imp_insulin |>
-  summary() |>
-  kable() |>
-  kable_styling()
+  summary()
 ```
 
 ```{r}

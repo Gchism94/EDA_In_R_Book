@@ -26,10 +26,18 @@ Exploring the normality of numerical columns in a novel data set and producing p
 
 ------------------------------------------------------------------------
 
+## Exploratory Data Analysis in R - Transforming like a Data... Transformer
+
+### Purpose of the workshop
+
+Using data transformation to correct non-normality in numerical data
+
+------------------------------------------------------------------------
+
 [Visit our available Digital Learning Resources Library!](https://github.com/ua-data7/LearningResources/wiki)
 
 ------------------------------------------------------------------------
 
-Created: 07/22/2022 (G. Chism); Last up date: 07/22/2022
+Created: 07/22/2022 (G. Chism); Last update: 08/09/2022
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CC_BY-NC-SA.svg/800px-CC_BY-NC-SA.svg.png?20181117113353" width="150" height="50"/> [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)

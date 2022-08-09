@@ -6,7 +6,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ## Purpose of Workshop
 
-**Using data transformation to correct non-normality in data**
+**Using data transformation to correct non-normality in numerical data**
 
 ------------------------------------------------------------------------
 
