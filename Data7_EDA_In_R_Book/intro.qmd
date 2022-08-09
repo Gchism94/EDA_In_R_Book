@@ -1,0 +1,264 @@
+# Introduction
+
+![Image Credit: Choonghyun Ryu](https://choonghyunryu.github.io/dlookr/figures/detective_2.png){fig-align="left" width="214" height="238"}
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE) 
+```
+
+[Exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The [R programming language](https://en.wikipedia.org/wiki/R_(programming_language)), specifically through the [RStudio IDE](https://en.wikipedia.org/wiki/RStudio), is widely used open source platform for [data analysis](https://en.wikipedia.org/wiki/Data_analysis) and [data visualization](https://en.wikipedia.org/wiki/Data_and_information_visualization). This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis [packages](https://arxiv.org/pdf/1904.02101.pdf), each of which have their own pros and cons.
+
+Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data [outliers](https://en.wikipedia.org/wiki/Outlier), [missing data](https://en.wikipedia.org/wiki/Missing_data), as well as summary statistical reports.
+
+### What is Exploratory Data Analysis?
+
+Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
+
+```{r}
+pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, tidyverse, plotly) 
+
+import_roboto_condensed()
+
+theme_set(theme_pubclean(base_size = 16))
+theme_update(axis.title = element_text(hjust = 1))
+theme_update(axis.ticks = element_blank())
+theme_update(text = element_text(family = "Roboto Condensed")) 
+
+dataset <- read.csv(here("EDA_In_R_Summer_Book", "data", "diabetes.csv")) |>
+  mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
+                            ifelse(Age > 30 & Age <=50, "Middle", 
+                                   "Elderly")),
+         Age_group = fct_rev(Age_group))
+
+dataset |> 
+  select(Age_group, Glucose, Insulin, BMI) |>
+  ggpairs(aes(color = Age_group, alpha = 0.5)) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        strip.background = element_blank()) + 
+  scale_fill_OkabeIto() +
+  scale_color_OkabeIto()
+```
+
+------------------------------------------------------------------------
+
+## **What are Some Important Data Set Characteristics?**
+
+There are several characteristics that are arguably important, but we will only consider those covered in this workshop series. Let's start with the fundamentals that will help guide us.
+
+## Diagnostics
+
+When importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.
+
+------------------------------------------------------------------------
+
+### Variables
+
+Name of each variable
+
+```{r}
+head(dataset) |>
+  formattable::formattable()
+```
+
+### Types
+
+Data type of each variable
+
+```{r}
+dlookr::diagnose(dataset) |>
+  select(variables, types) |>
+  formattable::formattable()
+```
+
+#### **Numerical**: Continuous
+
+Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)
+
+```{r}
+dataset |> 
+  ggplot(aes(x = BMI)) +
+  geom_line(stat = "bin", binwidth = 5, color = "#4E84C4", size = 2) +
+  ylab("Count")
+```
+
+#### **Numerical**: Discrete
+
+Countable whole numbers or integers (e.g., number of successes or failures)
+
+```{r}
+dataset |> 
+  ggplot(aes(x = Outcome, group = Age_group, fill = Age_group)) +
+  geom_histogram(position = position_dodge2(), binwidth = 1) +
+  ylab("Count") +
+  guides(fill = guide_legend(title = "Age Group")) +
+  theme(axis.ticks = element_blank()) +
+  scale_x_continuous(labels = c("", "0", "", "1", "")) +
+  scale_fill_OkabeIto()
+```
+
+------------------------------------------------------------------------
+
+#### **Categorical**: Nominal
+
+Labeling variables without any order or quantitative value (e.g., hair color, nationality)
+
+```{r}
+dataset |> 
+  mutate(Outcome = ifelse(Outcome == "0", "No", "Yes")) |>
+  ggplot(aes(x = Outcome, y = BMI, color = Outcome)) +
+  geom_jitter(size = 2, alpha = 0.75, width = 0.1) +
+  theme(legend.position = "none") +
+  scale_color_OkabeIto()
+```
+
+#### **Categorical: Ordinal**
+
+Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)
+
+```{r}
+dataset |> 
+  ggplot(aes(x = Age_group, y = BMI, color = Age_group)) +
+  geom_jitter(size = 2, alpha = 0.75, width = 0.1) +
+  xlab("Age group") +
+  theme(legend.position = "none") +
+  scale_color_OkabeIto()
+```
+
+### Missing Values (NAs)
+
+Cells, rows, or columns without data
+
+-   Missing percent: percentage of missing values \* Unique count: number of unique values.
+
+-   Unique rate: rate of unique value - unique count / total number of observations.
+
+```{r}
+dataset |>
+  dplyr::mutate_all(~ifelse(sample(c(TRUE, FALSE), size = length(.), replace =
+                                     TRUE, prob = c(0.8, 0.2)),
+                            as.character(.), NA)) |>
+  head() |>
+  formattable::formattable()
+```
+
+------------------------------------------------------------------------
+
+## Summary Statistics
+
+Above we described some properties of data. However, you will need to know some descriptive characteristics of your data before you can move forward. Enter, [summary statistics](https://en.wikipedia.org/wiki/Summary_statistics).
+
+Summary statistics allow you to summarize large amounts of information about your data as quickly as possible.
+
+### Central Tendency
+
+Measuring a central property of your data. Some examples you've probably heard of are:
+
+-   Mean: Average value
+
+-   Median: Middle value
+
+-   Mode: Most common value
+
+```{r}
+
+p_BMI <- dataset |>
+  ggplot(aes(x = BMI)) +
+  geom_density(size = 2) +
+  stat_central_tendency(type = "mean", color = "red", linetype = 2, size = 1.5) +
+  stat_central_tendency(type = "median", color = "#0072B2", linetype = 2, size = 1.5) +
+  stat_central_tendency(type = "mode", color = "#999999", linetype = 2, size = 1.5) +
+  theme(axis.title.y = element_blank()) 
+  
+
+p_Ins <- dataset |>
+  ggplot(aes(x = Insulin)) +
+  geom_density(size = 2) +
+  stat_central_tendency(type = "mean", color = "red", linetype = 2, size = 1.5) +
+  stat_central_tendency(type = "median", color = "#0072B2", linetype = 2, size = 1.5) +
+  stat_central_tendency(type = "mode", color = "#999999", linetype = 2, size = 1.5) +
+  theme(axis.title.y = element_blank()) +
+  annotate(geom = "text", x = 125, y = 0.0085, label = "Mean", size = 5, hjust = 0, color = "red") +
+  annotate(geom = "text", x = 125, y = 0.006, label = "Median", size = 5, hjust = 0, color = "#0072B2") +
+  annotate(geom = "text", x = 125, y = 0.0035, label = "Mode", size = 5, hjust = 0, color = "#999999") 
+
+p_comb <- ggarrange(p_BMI, p_Ins, 
+          ncol = 1, nrow = 2)
+
+annotate_figure(p_comb, 
+                top = NULL,
+                bottom = NULL,
+                left = text_grob("Density", color =
+                                     "black", rot = 90, size = 16, family = "Roboto Condensed", y = 0.9),
+                right = NULL)
+```
+
+Notice however, that all values of central tendency can be pretty similar, such as in the top panel. This will become important when we discuss data transformations in Chapter 3.
+
+### Statistical Dispersion
+
+Measure of data variability, scatter, or spread. Some examples you may have heard of:
+
+-   Standard deviation (SD): The amount of variation that occurs in a set of values.
+
+-   Interquartile range (IQR): The difference between the 75th and 25th percentiles
+
+-   Outliers: A value outside of $1.5 * IQR$
+
+```{r}
+dataset |> 
+  ggplot(aes(x = BMI)) +
+  geom_histogram(fill = "#4E84C4", size = 2, bins = 40) +
+  geom_point(aes(y = 30, x = mean(BMI)), size = 5) +
+  geom_vline(aes(xintercept = mean(BMI) - sd(BMI)), size = 1.5, linetype = "dashed") + 
+  geom_vline(aes(xintercept = mean(BMI) + sd(BMI)), size = 1.5, linetype = "dashed") +
+  geom_segment(aes(y = 30, yend = 30, x = mean(BMI) - sd(BMI), xend = mean(BMI) + sd(BMI)), size = 1.5) +
+  geom_segment(aes(y = 32, yend = 45, x = mean(BMI) + 1.5, xend = 50)) +
+  geom_segment(aes(y = 30, yend = 35, x = mean(BMI) + sd(BMI) + 1, xend = 50)) +
+  geom_segment(aes(y = 12, yend = 22, x = 67.1, xend = 67.1)) +
+  annotate(geom = "text", x = 54, y = 45, label = "Mean", size = 5) +
+  annotate(geom = "text", x = 52.5, y = 35, label = "SD", size = 5) +
+  theme(axis.title.y = element_blank()) +
+  geom_boxplot(aes(x = BMI, y = 10), width = 7, lwd = 1.5) + 
+  annotate(geom = "text", x = 28, y = 3, label = "25th", size = 5) +
+  annotate(geom = "text", x = 36, y = 3, label = "75th", size = 5) +
+  annotate(geom = "text", x = 32, y = 17, label = "Median", size = 5) +
+  annotate(geom = "text", x = 67.1, y = 25, label = "Outlier", size = 5) 
+```
+
+### Distribution Shape {#sec-DistShape}
+
+Measures of describing the shape of a distribution, usually compared to a normal distribution (bell-curve)
+
+-   Skewness: The symmetry of the distribution
+
+-   Kurtosis: The tailedness of the distribution
+
+```{r}
+dataset |>
+  ggplot(aes(x = dlookr::transform(Insulin, "minmax"))) +
+  geom_density(size = 2) +
+  geom_density(aes(x = dlookr::transform(Glucose, "minmax")), size = 2, linetype = "dashed") +
+  xlab("Mix-Max Centered Insulin and Glucose") +
+  ylab("Density") +
+  geom_segment(aes(y = 5, yend = 5, x = 0.05, xend = 0.15)) +
+  geom_segment(aes(y = 1, yend = 2.15, x = 0.85, xend = 0.85)) +
+  annotate(geom = "text", x = 0.175, y = 5, label = "Insulin \nSkewness = 2.27 \nKurtosis = 7.21", size = 5, hjust = 0) +
+  annotate(geom = "text", x = 0.73, y = 3.15, label = "Glucose \nSkewness = 0.174 \nKurtosis = 0.641", size = 5, hjust = 0)
+```
+
+### Statistical Dependence (Correlation)
+
+Measure of causality between two random variables (statistically). Notably, we approximate causality with correlations (see [correlation $\neq$ causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation#:~:text=The%20phrase%20%22correlation%20does%20not,association%20or%20correlation%20between%20them.))
+
+-   Numerical values, but you can compare numericals across categories (see the first plot above).
+
+```{r}
+dataset |>
+  select(-c(Age_group, DiabetesPedigreeFunction, Pregnancies)) |>
+  cor() |>
+  ggcorrplot(method = "circle",
+             colors = c("#6D9EC1", "white", "#E46726"),
+             outline.col = "black") +
+  guides(fill = guide_colourbar(barwidth = 0.5, barheight = 10, ticks = FALSE)) 
+```
