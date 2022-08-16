@@ -1,6 +1,4 @@
-# Welcome {.unnumbered}
-
-## UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!
+# UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book! {.unnumbered}
 
 Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the [Data Science Institute](https://datascience.arizona.edu/)
 
