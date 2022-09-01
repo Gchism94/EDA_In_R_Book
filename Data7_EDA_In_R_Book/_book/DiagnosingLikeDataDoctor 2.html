@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - Exploratory Data Analysis in R - Diagnosing like a Data Doctor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ExploringLikeDataAdventurer.html" rel="next">
+<link href="./intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link active">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputating like a Data Scientist</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link active" data-scroll-target="#purpose-of-workshop">Purpose of workshop</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#required-setup" id="toc-required-setup" class="nav-link" data-scroll-target="#required-setup">Required Setup</a></li>
+  <li><a href="#load-and-examine-a-data-set" id="toc-load-and-examine-a-data-set" class="nav-link" data-scroll-target="#load-and-examine-a-data-set">Load and Examine a Data Set</a></li>
+  <li><a href="#diagnose-your-data" id="toc-diagnose-your-data" class="nav-link" data-scroll-target="#diagnose-your-data">Diagnose your Data</a></li>
+  <li><a href="#summary-statistics-of-your-data" id="toc-summary-statistics-of-your-data" class="nav-link" data-scroll-target="#summary-statistics-of-your-data">Summary Statistics of your Data</a>
+  <ul class="collapse">
+  <li><a href="#numerical-variables" id="toc-numerical-variables" class="nav-link" data-scroll-target="#numerical-variables">Numerical Variables</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  <li><a href="#missing-values-nas" id="toc-missing-values-nas" class="nav-link" data-scroll-target="#missing-values-nas">Missing Values (NAs)</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables">Categorical Variables</a></li>
+  </ul></li>
+  <li><a href="#produce-an-html-summary-of-a-data-set" id="toc-produce-an-html-summary-of-a-data-set" class="nav-link" data-scroll-target="#produce-an-html-summary-of-a-data-set">Produce an HTML Summary of a Data Set</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="purpose-of-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of workshop</h2>
+<p><strong>Exploring a novel data set and produce publication quality tables and reports</strong></p>
+<hr>
+</section>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ol type="1">
+<li>Load and explore a data set with publication quality tables</li>
+<li>Diagnose outliers and missing values in a data set</li>
+<li>Prepare an HTML summary report showcasing properties of a data set</li>
+</ol>
+<hr>
+</section>
+<section id="required-setup" class="level2">
+<h2 class="anchored" data-anchor-id="required-setup">Required Setup</h2>
+<p>We first need to prepare our environment with the necessary packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets the repository to download packages from</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">list</span>(<span class="at">CRAN =</span> <span class="st">"http://cran.rstudio.com/"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets the number of significant figures to two - e.g., 0.01</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Required package for quick package downloading and loading </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloads and load required packages</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dlookr, <span class="co"># Exploratory data analysis</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               formattable, <span class="co"># HTML tables from R outputs</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>               here, <span class="co"># Standardizes paths to data</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>               kableExtra, <span class="co"># Alternative to formattable</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>               knitr, <span class="co"># Needed to write HTML reports</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>               missRanger, <span class="co"># To generate NAs</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>               tidyverse) <span class="co"># Powerful data wrangling package suite</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="load-and-examine-a-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="load-and-examine-a-data-set">Load and Examine a Data Set</h2>
+<ul>
+<li>Load data and view</li>
+<li>Examine columns and data types</li>
+<li>Define box plots</li>
+<li>Describe meta data</li>
+</ul>
+<p>We will be using open source data from UArizona researchers for Test, Trace, Treat (T3) efforts offers two clinical diagnostic tests (Antigen, RT-PCR) to determine whether an individual is currently infected with the COVID-19 virus. <span class="citation" data-cites="merchant2022">(<a href="#ref-merchant2022" role="doc-biblioref">Merchant et al. 2022</a>)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's load a data set from the COVID-19 daily testing data set</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"Data7_EDA_In_R_Book"</span>, <span class="st">"data"</span>, <span class="st">"daily_summary.csv"</span>)) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+result_date
+</th>
+<th style="text-align:right;">
+affil_category
+</th>
+<th style="text-align:right;">
+test_type
+</th>
+<th style="text-align:right;">
+test_result
+</th>
+<th style="text-align:right;">
+test_count
+</th>
+<th style="text-align:right;">
+test_source
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Employee
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Negative
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+Campus Health
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Employee
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Positive
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Campus Health
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Employee
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Negative
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Test All Test Smart
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Employee
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Positive
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+Test All Test Smart
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Off-Campus Student
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Negative
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+Campus Health
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020-08-04
+</td>
+<td style="text-align:right;">
+Off-Campus Student
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+Positive
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+Campus Health
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="diagnose-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="diagnose-your-data">Diagnose your Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the properties of the data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variables
+</th>
+<th style="text-align:right;">
+types
+</th>
+<th style="text-align:right;">
+missing_count
+</th>
+<th style="text-align:right;">
+missing_percent
+</th>
+<th style="text-align:right;">
+unique_count
+</th>
+<th style="text-align:right;">
+unique_rate
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+character
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+541
+</td>
+<td style="text-align:right;">
+0.05893
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+character
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.00044
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_type
+</td>
+<td style="text-align:right;">
+character
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.00033
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_result
+</td>
+<td style="text-align:right;">
+character
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.00033
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_count
+</td>
+<td style="text-align:right;">
+integer
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+591
+</td>
+<td style="text-align:right;">
+0.06438
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_source
+</td>
+<td style="text-align:right;">
+character
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.00022
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<ul>
+<li><code>variables</code>: name of each variable</li>
+<li><code>types</code>: data type of each variable</li>
+<li><code>missing_count</code>: number of missing values</li>
+<li><code>missing_percent</code>: percentage of missing values</li>
+<li><code>unique_count</code>: number of unique values</li>
+<li><code>unique_rate</code>: rate of unique value - unique_count / number of observations</li>
+</ul>
+<hr>
+</section>
+<section id="summary-statistics-of-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="summary-statistics-of-your-data">Summary Statistics of your Data</h2>
+<section id="numerical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-variables">Numerical Variables</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics of our numerical columns</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose_numeric</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variables
+</th>
+<th style="text-align:right;">
+min
+</th>
+<th style="text-align:right;">
+Q1
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+median
+</th>
+<th style="text-align:right;">
+Q3
+</th>
+<th style="text-align:right;">
+max
+</th>
+<th style="text-align:right;">
+zero
+</th>
+<th style="text-align:right;">
+minus
+</th>
+<th style="text-align:right;">
+outlier
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+test_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1472
+</td>
+<td style="text-align:right;">
+2777
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1721
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<ul>
+<li><code>min</code>: minimum value</li>
+<li><code>Q1</code>: 1/4 quartile, 25th percentile</li>
+<li><code>mean</code>: arithmetic mean (average value)</li>
+<li><code>median</code>: median, 50th percentile</li>
+<li><code>Q3</code>: 3/4 quartile, 75th percentile</li>
+<li><code>max</code>: maximum value</li>
+<li><code>zero</code>: number of observations with the value 0</li>
+<li><code>minus</code>: number of observations with negative numbers</li>
+<li><code>outlier</code>: number of outliers</li>
+</ul>
+<hr>
+</section>
+<section id="outliers" class="level3">
+<h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
+<p>Values outside of <span class="math inline">\(1.5 * IQR\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://d33wubrfki0l68.cloudfront.net/6a759d8217be119e3409d1eb8e6cd78913bcc86f/c1995/img/evol-ggplot/boxplot.png" class="img-fluid figure-img" alt="Boxplot showing the IQR, lower and upper quartiles, median, and outliers"></p>
+<p></p><figcaption class="figure-caption">Image Credit: <a href="https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot-ep.-1/">CÉDRIC SCHERER</a></figcaption><p></p>
+</figure>
+</div>
+<hr>
+<p>There are several numerical variables that have outliers above, let’s see what the data look like with and without them</p>
+<ul>
+<li><p>Create a table with columns containing outliers</p></li>
+<li><p>Plot outliers in a box plot and histogram</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table showing outliers</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diagnose_outlier</span>(dataset) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outliers_ratio <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variables
+</th>
+<th style="text-align:right;">
+outliers_cnt
+</th>
+<th style="text-align:right;">
+outliers_ratio
+</th>
+<th style="text-align:right;">
+outliers_mean
+</th>
+<th style="text-align:right;">
+with_mean
+</th>
+<th style="text-align:right;">
+without_mean
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+test_count
+</td>
+<td style="text-align:right;">
+1721
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+231
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+4.3
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<ul>
+<li><code>outliers_cnt</code>: number of outliers</li>
+<li><code>outliers_ratio</code>: ratio of outliers over all values</li>
+<li><code>outliers_mean</code>: arithmetic mean (average value) of outlier values</li>
+<li><code>with_mean</code>: arithmetic mean of all values <strong>including</strong> outliers</li>
+<li><code>without_mean</code>: arithmetic mean of all values <strong>excluding</strong> outliers</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting desired columns </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_outlier</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DiagnosingLikeDataDoctor_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="missing-values-nas" class="level3">
+<h3 class="anchored" data-anchor-id="missing-values-nas">Missing Values (NAs)</h3>
+<ul>
+<li>Table showing the extent of NAs in columns containing them</li>
+<li>Plot showing the frequency of missing values</li>
+</ul>
+<div class="cell" data-output.width="100%">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the NA table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generateNA</span>(<span class="at">p =</span> <span class="fl">0.3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_na_pareto</span>(<span class="at">only_na =</span> <span class="cn">TRUE</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>() <span class="co"># Publishable table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variable
+</th>
+<th style="text-align:right;">
+frequencies
+</th>
+<th style="text-align:right;">
+ratio
+</th>
+<th style="text-align:right;">
+grade
+</th>
+<th style="text-align:right;">
+cumulative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_count
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_result
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+67
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_source
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+83
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_type
+</td>
+<td style="text-align:right;">
+2754
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+Bad
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the intersect of the columns with the most missing values</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This means that some combinations of columns have missing values in the same row</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generateNA</span>(<span class="at">p =</span> <span class="fl">0.3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(test_type, test_result, test_count) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_na_intersect</span>(<span class="at">only_na =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DiagnosingLikeDataDoctor_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="categorical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="categorical-variables">Categorical Variables</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagnose our categorical columns</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">diagnose_category</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+variables
+</th>
+<th style="text-align:right;">
+levels
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+freq
+</th>
+<th style="text-align:right;">
+ratio
+</th>
+<th style="text-align:right;">
+rank
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-17
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0.283
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-23
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0.283
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-10-01
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0.283
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-10-08
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+0.283
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-01
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.272
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-16
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.272
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-24
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.272
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-12-09
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.272
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-12-15
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.272
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+result_date
+</td>
+<td style="text-align:right;">
+2020-09-04
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0.261
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+Off-Campus Student
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+3368
+</td>
+<td style="text-align:right;">
+36.688
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+Employee
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+2987
+</td>
+<td style="text-align:right;">
+32.538
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+On-Campus Student
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+2823
+</td>
+<td style="text-align:right;">
+30.752
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+affil_category
+</td>
+<td style="text-align:right;">
+Other
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_type
+</td>
+<td style="text-align:right;">
+Antigen
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+4624
+</td>
+<td style="text-align:right;">
+50.370
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_type
+</td>
+<td style="text-align:right;">
+PCR
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+4554
+</td>
+<td style="text-align:right;">
+49.608
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_type
+</td>
+<td style="text-align:right;">
+Antibody
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_result
+</td>
+<td style="text-align:right;">
+Negative
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+4575
+</td>
+<td style="text-align:right;">
+49.837
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_result
+</td>
+<td style="text-align:right;">
+Positive
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+4575
+</td>
+<td style="text-align:right;">
+49.837
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_result
+</td>
+<td style="text-align:right;">
+Inconclusive
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0.327
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_source
+</td>
+<td style="text-align:right;">
+Test All Test Smart
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+5078
+</td>
+<td style="text-align:right;">
+55.316
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+test_source
+</td>
+<td style="text-align:right;">
+Campus Health
+</td>
+<td style="text-align:right;">
+9180
+</td>
+<td style="text-align:right;">
+4102
+</td>
+<td style="text-align:right;">
+44.684
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<ul>
+<li><code>variables</code>: category names</li>
+<li><code>levels</code>: group names within categories</li>
+<li><code>N</code>: number of observation</li>
+<li><code>freq</code>: number of observation at group level / number of observation at category level</li>
+<li><code>ratio</code>: percentage of observation at group level / number of observation at category level</li>
+<li><code>rank</code>: rank of the occupancy ratio of levels (order in which the groups are in the category)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="produce-an-html-summary-of-a-data-set" class="level2">
+<h2 class="anchored" data-anchor-id="produce-an-html-summary-of-a-data-set">Produce an HTML Summary of a Data Set</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the '#' below to reproduce an HTML from an R script. </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#diagnose_web_report(dataset)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-merchant2022" class="csl-entry" role="doc-biblioentry">
+Merchant, Nirav C, Jim Davis, George H Franks, Chun Ly, Fernando Rios, Todd Wickizer, Gary D Windham, and Michelle Yung. 2022. <span>“University of Arizona Test-Trace-Treat COVID-19 Testing Results.”</span> University of Arizona Research Data Repository. <a href="https://doi.org/10.25422/AZU.DATA.14869740.V3">https://doi.org/10.25422/AZU.DATA.14869740.V3</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ExploringLikeDataAdventurer.html" class="pagination-link">
+        <span class="nav-page-text">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
