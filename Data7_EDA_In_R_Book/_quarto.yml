@@ -11,7 +11,7 @@ book:
     - DiagnosingLikeDataDoctor.qmd
     - ExploringLikeDataAdventurer.qmd
     - TransformingLikeDataTrans.qmd
-    - ImputatingLikeDataScientist.qmd
+    - ImputingLikeDataScientist.qmd
     - CorrelateLikeDataMaster.qmd
   repo-url: https://github.com/Gchism94/Data7_EDA_In_R_Workshops
 
