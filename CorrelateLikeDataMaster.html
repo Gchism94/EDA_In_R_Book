@@ -107,7 +107,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ImputatingLikeDataScientist.html" rel="prev">
+<link href="./ImputingLikeDataScientist.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -200,7 +200,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputatingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputating like a Data Scientist</a>
+  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputing like a Data Scientist</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,8 +277,9 @@ div.csl-indent {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Installing pacman [0.5.1] ...
-    OK [linked cache]</code></pre>
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//RtmppiLdiN/downloaded_packages</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -290,17 +291,24 @@ div.csl-indent {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       ggpubr,</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>       ggridges,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>       here,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       tidyverse)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set global ggplot() theme</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Theme pub_clean() from the ggpubr package with base text size = 16</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_pubclean</span>(<span class="at">base_size =</span> <span class="dv">12</span>)) </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># All axes titles to their respective far right sides</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove axes ticks</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove legend key</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">legend.key =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//RtmppiLdiN/downloaded_packages
+
+The downloaded binary packages are in
+    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//RtmppiLdiN/downloaded_packages</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set global ggplot() theme</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Theme pub_clean() from the ggpubr package with base text size = 16</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_pubclean</span>(<span class="at">base_size =</span> <span class="dv">12</span>)) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># All axes titles to their respective far right sides</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove axes ticks</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove legend key</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_update</span>(<span class="at">legend.key =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
@@ -310,13 +318,13 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="load-the-examine-a-data-set">Load the Examine a Data Set</h2>
 <p>We will be using open source data from UArizona researchers that investigates the effects of climate change on canopy trees. <span class="citation" data-cites="meredith2021">(<a href="#ref-meredith2021" role="doc-biblioref">Meredith, Ladd, and Werner 2021</a>)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's load the canopy tree data set</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"Data7_EDA_In_R_Book"</span>, <span class="st">"data"</span>, <span class="st">"Data_Fig2_Repo.csv"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's load the canopy tree data set</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"Data7_EDA_In_R_Book"</span>, <span class="st">"data"</span>, <span class="st">"Data_Fig2_Repo.csv"</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -477,9 +485,9 @@ Drought-sens-under
 <h4 class="anchored" data-anchor-id="if-youre-interested-in-some-underlying-statistics">If you’re interested in some underlying statistics…</h4>
 <p>Note that the <code>dlookr</code> default correlation is the <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson’s <span class="math inline">\(r\)</span> coefficient</a>, but you can specify any method you would like: <code>correlate(dataset, method = "")</code>, where the method can be <code>"pearson"</code> for Pearson’s <span class="math inline">\(r\)</span>, <code>"spearman"</code> for <a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman’s</a>$\rho$, or “kendall” for <a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall’s</a> <span class="math inline">\(\tau\)</span>. The main differences are that Pearson’s <span class="math inline">\(r\)</span> assumes a normal distribution for ALL numerical variables, whereas Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> do not, but Spearman’s <span class="math inline">\(\rho\)</span> requires <span class="math inline">\(N &gt; 10\)</span>, and Kendall’s <span class="math inline">\(\tau\)</span> does not. Notably, Kendall’s <span class="math inline">\(\tau\)</span> performs as well as Spearman’s <span class="math inline">\(\rho\)</span> when <span class="math inline">\(N &gt; 10\)</span>, so its best to just use Kendall’s <span class="math inline">\(\tau\)</span> when data are not normally distributed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of correlations between numerical variables (we are sticking to the default Pearson's r coefficient)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(dataset) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of correlations between numerical variables (we are sticking to the default Pearson's r coefficient)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(dataset) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formattable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <table class="table table-condensed">
@@ -635,9 +643,9 @@ mLWP
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation matrix of numerical variables</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation matrix of numerical variables</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -649,9 +657,9 @@ mLWP
 <h2 class="anchored" data-anchor-id="visualize-correlations-within-groups">Visualize Correlations within Groups</h2>
 <p>If we have groups that we will compare later on, it is a good idea to see how each numerical variable correlates within these groups.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Group) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -668,12 +676,12 @@ mLWP
 <p>This is great, we have our correlations within groups! However, the correlation matrices aren’t always the most intuitive, so let’s plot!</p>
 <p>We will be using the <code>ggpairs()</code> function within the <code>GGally</code> package. Specifically, we are looking at the correlations between predawn leaf water potential <code>pLWP</code> and midday leaf water potential <code>mLWP</code>. Leaf water potential is a key indicator for how stressed plants are in droughts.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Group, pLWP, mLWP) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">color =</span> Group, <span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># I don't like the facet strips</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_OkabeIto</span>() <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_OkabeIto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Group, pLWP, mLWP) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="fu">aes</span>(<span class="at">color =</span> Group, <span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># I don't like the facet strips</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_OkabeIto</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_OkabeIto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -693,14 +701,14 @@ mLWP
 <h3 class="anchored" data-anchor-id="numerical-target-variables-numerical-variable-of-interest">Numerical Target Variables: Numerical Variable of Interest</h3>
 <p><code>Formula: pLWP (numerical)  ~ Sap_Flow (numerical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The numerical target variable that we want</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Sap_Flow)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>num_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(num, pLWP)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression analysis - the same as the summary from lm(Formula)</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The numerical target variable that we want</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Sap_Flow)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>num_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(num, pLWP)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression analysis - the same as the summary from lm(Formula)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -724,8 +732,8 @@ F-statistic: 4.022 on 1 and 274 DF,  p-value: 0.04589</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the linear relationship</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(num_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the linear relationship</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(num_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -736,17 +744,17 @@ F-statistic: 4.022 on 1 and 274 DF,  p-value: 0.04589</code></pre>
 <h3 class="anchored" data-anchor-id="numerical-target-variables-categorical-variable-of-interest">Numerical Target Variables: Categorical Variable of Interest</h3>
 <p>Formula: <code>Group (categorical) ~ pLWP (numerical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, pLWP) </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to change Group to a factor</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>num<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(num<span class="sc">$</span>Group)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>num_cat <span class="ot">&lt;-</span> <span class="fu">relate</span>(num, Group)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the ANOVA analysis - the same as the summary from anova(lm(Formula))</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, pLWP) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to change Group to a factor</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>num<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(num<span class="sc">$</span>Group)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>num_cat <span class="ot">&lt;-</span> <span class="fu">relate</span>(num, Group)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the ANOVA analysis - the same as the summary from anova(lm(Formula))</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(num_cat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -772,8 +780,8 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(num_cat) <span class="sc">+</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(num_cat) <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -785,14 +793,14 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Note that this produces descriptive statistics, unlike the other relationships we are looking at.</p>
 <p>Formula: <code>pLWP (numerical) ~ Group (categorical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>categ <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Group)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>cat_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(categ, pLWP)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression analysis - the same as the summary from lm()</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>categ <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Group)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>cat_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(categ, pLWP)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression analysis - the same as the summary from lm()</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> described_variables    Group                 n               na       
  Length:5            Length:5           Min.   : 69.0   Min.   : 78.0  
@@ -846,7 +854,7 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cat_num) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cat_num) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -858,13 +866,13 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Notably, there is only one categorical variable… Let’s make another:</p>
 <p>If <span class="math inline">\(mLWP &gt; mean(mLWP) + sd(mLWP)\)</span> then “Yes”, else “No”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cat_dataset <span class="ot">&lt;-</span> dataset <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pLWP, Group) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HighLWP =</span> <span class="fu">ifelse</span>(pLWP <span class="sc">&gt;</span> (<span class="fu">mean</span>(pLWP <span class="sc">+</span> <span class="fu">sd</span>(pLWP))), <span class="st">"Yes"</span>, <span class="st">"No"</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cat_dataset) <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cat_dataset <span class="ot">&lt;-</span> dataset <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pLWP, Group) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HighLWP =</span> <span class="fu">ifelse</span>(pLWP <span class="sc">&gt;</span> (<span class="fu">mean</span>(pLWP <span class="sc">+</span> <span class="fu">sd</span>(pLWP))), <span class="st">"Yes"</span>, <span class="st">"No"</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cat_dataset) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        pLWP               Group HighLWP
 1 -0.2633781 Drought-sens-canopy     Yes
@@ -878,14 +886,14 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Now we have two categories!</p>
 <p>Formula = <code>Group (categorical) ~ HighLWP (categorical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>categ1 <span class="ot">&lt;-</span> <span class="fu">target_by</span>(cat_dataset, HighLWP)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the categorical target variable</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>cat_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(categ1, Group)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the Chi-square test for Independence</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>categ1 <span class="ot">&lt;-</span> <span class="fu">target_by</span>(cat_dataset, HighLWP)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the categorical target variable</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>cat_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(categ1, Group)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the Chi-square test for Independence</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call: xtabs(formula = formula_str, data = data, addNA = TRUE)
 Number of cases in table: 276 
@@ -895,7 +903,7 @@ Test for independence of all factors:
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="CorrelateLikeDataMaster_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1011,8 +1019,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ImputatingLikeDataScientist.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exploratory Data Analysis in R - Imputating like a Data Scientist</span>
+      <a href="./ImputingLikeDataScientist.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exploratory Data Analysis in R - Imputing like a Data Scientist</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
