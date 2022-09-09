@@ -1,0 +1,11 @@
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: XCB Render
+Description: XCB Render Extension
+Version: 1.13
+Requires.private: xcb
+Libs: -L${libdir} -lxcb-render
+Cflags: -I${includedir}

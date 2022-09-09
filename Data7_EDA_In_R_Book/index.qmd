@@ -1,10 +1,10 @@
-# UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book! {.unnumbered}
+# UArizona Data7 Exploratory Data Analysis In Python Book! {.unnumbered}
 
 Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the [Data Science Institute](https://datascience.arizona.edu/)
 
 ------------------------------------------------------------------------
 
-## [Exploratory data analysis in R - Diagnosing like a data doctor](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1)
+## [Exploratory data analysis in R - Diagnosing like a data doctor](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall1)
 
 ### Purpose of Workshop
 
@@ -12,7 +12,7 @@ Exploring a novel data set and produce publication quality tables and reports
 
 ------------------------------------------------------------------------
 
-## [Exploratory data analysis in R - Exploring like a data adventurer](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2)
+## [Exploratory data analysis in R - Exploring like a data adventurer](https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall2)
 
 ### Purpose of the Workshop
 

@@ -1,0 +1,14 @@
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+libdir=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/lib
+includedir=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/include
+
+Name: FreeType 2
+URL: https://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 24.3.18
+Requires: 
+Requires.private: 
+Libs: -L/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/lib -lfreetype
+Libs.private: -lz -L/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/lib -lpng16 -lz
+Cflags: -I${includedir}/freetype2

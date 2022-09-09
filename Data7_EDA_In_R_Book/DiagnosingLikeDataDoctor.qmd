@@ -167,6 +167,8 @@ dataset |>
   plot_na_intersect(only_na = TRUE) 
 ```
 
+------------------------------------------------------------------------
+
 ### Categorical Variables
 
 ```{r}

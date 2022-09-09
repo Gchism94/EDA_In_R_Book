@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SQLite
+Description: SQL database engine
+Version: 3.39.3
+Libs: -L${libdir} -lsqlite3
+Libs.private: -lz 
+Cflags: -I${includedir}

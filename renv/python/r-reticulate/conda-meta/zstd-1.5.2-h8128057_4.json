@@ -1,0 +1,208 @@
+{
+  "build": "h8128057_4",
+  "build_number": 4,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "libcxx >=13.0.1",
+    "libzlib >=1.2.12,<1.3.0a0"
+  ],
+  "extracted_package_dir": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/zstd-1.5.2-h8128057_4",
+  "features": "",
+  "files": [
+    "bin/unzstd",
+    "bin/zstd",
+    "bin/zstdcat",
+    "bin/zstdgrep",
+    "bin/zstdless",
+    "bin/zstdmt",
+    "include/zdict.h",
+    "include/zstd.h",
+    "include/zstd_errors.h",
+    "lib/cmake/zstd/zstdConfig.cmake",
+    "lib/cmake/zstd/zstdConfigVersion.cmake",
+    "lib/cmake/zstd/zstdTargets-release.cmake",
+    "lib/cmake/zstd/zstdTargets.cmake",
+    "lib/libzstd.1.5.2.dylib",
+    "lib/libzstd.1.dylib",
+    "lib/libzstd.dylib",
+    "lib/pkgconfig/libzstd.pc",
+    "share/man/man1/unzstd.1",
+    "share/man/man1/zstd.1",
+    "share/man/man1/zstdcat.1",
+    "share/man/man1/zstdgrep.1",
+    "share/man/man1/zstdless.1"
+  ],
+  "fn": "zstd-1.5.2-h8128057_4.tar.bz2",
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "link": {
+    "source": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/zstd-1.5.2-h8128057_4",
+    "type": 1
+  },
+  "md5": "dc4c74dcc759058dae2324144f336de0",
+  "name": "zstd",
+  "package_tarball_full_path": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/zstd-1.5.2-h8128057_4.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/unzstd",
+        "path_type": "softlink",
+        "sha256": "bbc284dc4cda51c47c7e71a6610b4bc20a5793b54b6a4cdfff6f8b44e44e69b5",
+        "size_in_bytes": 166432
+      },
+      {
+        "_path": "bin/zstd",
+        "path_type": "hardlink",
+        "sha256": "bbc284dc4cda51c47c7e71a6610b4bc20a5793b54b6a4cdfff6f8b44e44e69b5",
+        "sha256_in_prefix": "bbc284dc4cda51c47c7e71a6610b4bc20a5793b54b6a4cdfff6f8b44e44e69b5",
+        "size_in_bytes": 166432
+      },
+      {
+        "_path": "bin/zstdcat",
+        "path_type": "softlink",
+        "sha256": "bbc284dc4cda51c47c7e71a6610b4bc20a5793b54b6a4cdfff6f8b44e44e69b5",
+        "size_in_bytes": 166432
+      },
+      {
+        "_path": "bin/zstdgrep",
+        "path_type": "hardlink",
+        "sha256": "9bc769b26542ef2efa14ae29b3178b7f10639cd95544207691cb258fe06bbe17",
+        "sha256_in_prefix": "9bc769b26542ef2efa14ae29b3178b7f10639cd95544207691cb258fe06bbe17",
+        "size_in_bytes": 3869
+      },
+      {
+        "_path": "bin/zstdless",
+        "path_type": "hardlink",
+        "sha256": "d088aa04d1e60fa093bbe0a8c5defd71cff7aec4333a7b4cd774a5ced40eece3",
+        "sha256_in_prefix": "d088aa04d1e60fa093bbe0a8c5defd71cff7aec4333a7b4cd774a5ced40eece3",
+        "size_in_bytes": 30
+      },
+      {
+        "_path": "bin/zstdmt",
+        "path_type": "softlink",
+        "sha256": "bbc284dc4cda51c47c7e71a6610b4bc20a5793b54b6a4cdfff6f8b44e44e69b5",
+        "size_in_bytes": 166432
+      },
+      {
+        "_path": "include/zdict.h",
+        "path_type": "hardlink",
+        "sha256": "39105bb1975d62ed34d3494123bde1ba5e4c2698b2c9cb30cddbf3ef6de90dd9",
+        "sha256_in_prefix": "39105bb1975d62ed34d3494123bde1ba5e4c2698b2c9cb30cddbf3ef6de90dd9",
+        "size_in_bytes": 25631
+      },
+      {
+        "_path": "include/zstd.h",
+        "path_type": "hardlink",
+        "sha256": "cd5ba03dd05083169a9cf5016daadad7fc8326ec3d249d6331db2e73eab86886",
+        "sha256_in_prefix": "cd5ba03dd05083169a9cf5016daadad7fc8326ec3d249d6331db2e73eab86886",
+        "size_in_bytes": 148639
+      },
+      {
+        "_path": "include/zstd_errors.h",
+        "path_type": "hardlink",
+        "sha256": "4cf99f343cad91d81bf88c7bbc9197eda6f78ff21f3e85ca1664273f595f0222",
+        "sha256_in_prefix": "4cf99f343cad91d81bf88c7bbc9197eda6f78ff21f3e85ca1664273f595f0222",
+        "size_in_bytes": 3817
+      },
+      {
+        "_path": "lib/cmake/zstd/zstdConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "bfbf6e24afbf8299ee0180a84638e92e7770a6366f20a1e89db6716c115f60de",
+        "sha256_in_prefix": "bfbf6e24afbf8299ee0180a84638e92e7770a6366f20a1e89db6716c115f60de",
+        "size_in_bytes": 55
+      },
+      {
+        "_path": "lib/cmake/zstd/zstdConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "dba316c91e68e0bd2aa42e9cb825c15d8ba23fa9fd0965cb5ae42dc898c38aa9",
+        "sha256_in_prefix": "dba316c91e68e0bd2aa42e9cb825c15d8ba23fa9fd0965cb5ae42dc898c38aa9",
+        "size_in_bytes": 1722
+      },
+      {
+        "_path": "lib/cmake/zstd/zstdTargets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "3fe06179d99ca4ded48e767263c80d7955b545ec7d42848fcac0a973d6a38b72",
+        "sha256_in_prefix": "3fe06179d99ca4ded48e767263c80d7955b545ec7d42848fcac0a973d6a38b72",
+        "size_in_bytes": 878
+      },
+      {
+        "_path": "lib/cmake/zstd/zstdTargets.cmake",
+        "path_type": "hardlink",
+        "sha256": "b2f1790d4fb60554ae736b532fdc543872fceba9b75453b4338f0da5b0e4dc44",
+        "sha256_in_prefix": "b2f1790d4fb60554ae736b532fdc543872fceba9b75453b4338f0da5b0e4dc44",
+        "size_in_bytes": 3273
+      },
+      {
+        "_path": "lib/libzstd.1.5.2.dylib",
+        "path_type": "hardlink",
+        "sha256": "bad1c9e4cd1f7d0e49a14b4638723f2cfaa0c7377fd786227830d005f6b11186",
+        "sha256_in_prefix": "bad1c9e4cd1f7d0e49a14b4638723f2cfaa0c7377fd786227830d005f6b11186",
+        "size_in_bytes": 718720
+      },
+      {
+        "_path": "lib/libzstd.1.dylib",
+        "path_type": "softlink",
+        "sha256": "bad1c9e4cd1f7d0e49a14b4638723f2cfaa0c7377fd786227830d005f6b11186",
+        "size_in_bytes": 718720
+      },
+      {
+        "_path": "lib/libzstd.dylib",
+        "path_type": "softlink",
+        "sha256": "bad1c9e4cd1f7d0e49a14b4638723f2cfaa0c7377fd786227830d005f6b11186",
+        "size_in_bytes": 718720
+      },
+      {
+        "_path": "lib/pkgconfig/libzstd.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "/Users/runner/miniforge3/conda-bld/zstd-split_1660748324678/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol",
+        "sha256": "70ec485b14e911841fa71335b4336a012c2b400a937e6dfe3e8914f07e461e62",
+        "sha256_in_prefix": "767af9d415ad0d02e3bdd86ee18c44ba9adea07a330f6595ed39c414211bad9a",
+        "size_in_bytes": 686
+      },
+      {
+        "_path": "share/man/man1/unzstd.1",
+        "path_type": "softlink",
+        "sha256": "7d16c39bb3d7d907e5de1cc0063bdce1ad110d6cc0b879af7139bf6bddca4653",
+        "size_in_bytes": 29535
+      },
+      {
+        "_path": "share/man/man1/zstd.1",
+        "path_type": "hardlink",
+        "sha256": "7d16c39bb3d7d907e5de1cc0063bdce1ad110d6cc0b879af7139bf6bddca4653",
+        "sha256_in_prefix": "7d16c39bb3d7d907e5de1cc0063bdce1ad110d6cc0b879af7139bf6bddca4653",
+        "size_in_bytes": 29535
+      },
+      {
+        "_path": "share/man/man1/zstdcat.1",
+        "path_type": "softlink",
+        "sha256": "7d16c39bb3d7d907e5de1cc0063bdce1ad110d6cc0b879af7139bf6bddca4653",
+        "size_in_bytes": 29535
+      },
+      {
+        "_path": "share/man/man1/zstdgrep.1",
+        "path_type": "hardlink",
+        "sha256": "870be6672462bfa01463ccb19000d51eb37f0cf042c0b40174c9422c92559203",
+        "sha256_in_prefix": "870be6672462bfa01463ccb19000d51eb37f0cf042c0b40174c9422c92559203",
+        "size_in_bytes": 1116
+      },
+      {
+        "_path": "share/man/man1/zstdless.1",
+        "path_type": "hardlink",
+        "sha256": "b81683a9415ae75649f4f65a3d3db0b550245802956867eeac53bb6a24e9b841",
+        "sha256_in_prefix": "b81683a9415ae75649f4f65a3d3db0b550245802956867eeac53bb6a24e9b841",
+        "size_in_bytes": 382
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "664f7e6b46cfff6022504eafdef26b4ac0f388fa39d682e64da9a7dbfe33fb56",
+  "size": 387032,
+  "subdir": "osx-arm64",
+  "timestamp": 1660748799590,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.2-h8128057_4.tar.bz2",
+  "version": "1.5.2"
+}

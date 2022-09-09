@@ -1,0 +1,10 @@
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=${prefix}
+includedir=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/include
+libdir=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate/lib
+
+Name: libdeflate
+Description: Fast implementation of DEFLATE, zlib, and gzip
+Version: 1.13
+Libs: -L${libdir} -ldeflate
+Cflags: -I${includedir}

@@ -1,0 +1,10 @@
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libjpeg
+Description: Reads and writes JPEG files
+Version: 9.5.0
+Libs: -L${libdir} -ljpeg
+Cflags: -I${includedir}

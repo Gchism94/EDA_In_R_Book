@@ -1,0 +1,12 @@
+prefix=/Users/gregchism/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Data7_EDA_In_R_Workshops/renv/python/r-reticulate
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libtiff
+Description:  Tag Image File Format (TIFF) library.
+Version: 4.4.0
+Libs: -L${libdir} -ltiff
+Libs.private: -lwebp -lzstd -llzma -lLerc -ljpeg -ldeflate -lz 
+Cflags: -I${includedir}
+Requires.private: 

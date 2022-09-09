@@ -6,7 +6,7 @@
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE) 
 ```
 
-[Exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The [R programming language](https://en.wikipedia.org/wiki/R_(programming_language)), specifically through the [RStudio IDE](https://en.wikipedia.org/wiki/RStudio), is widely used open source platform for [data analysis](https://en.wikipedia.org/wiki/Data_analysis) and [data visualization](https://en.wikipedia.org/wiki/Data_and_information_visualization). This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis [packages](https://arxiv.org/pdf/1904.02101.pdf), each of which have their own pros and cons.
+[Exploratory data analysis](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The [R programming language](https://en.wikipedia.org/wiki/R_(programming_language)), specifically through the [RStudio IDE](https://en.wikipedia.org/wiki/RStudio), is a widely used open source platform for [data analysis](https://en.wikipedia.org/wiki/Data_analysis) and [data visualization](https://en.wikipedia.org/wiki/Data_and_information_visualization). This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis [packages](https://arxiv.org/pdf/1904.02101.pdf), each of which have their own pros and cons.
 
 Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data [outliers](https://en.wikipedia.org/wiki/Outlier), [missing data](https://en.wikipedia.org/wiki/Missing_data), as well as summary statistical reports.
 
@@ -30,7 +30,7 @@ theme_update(text = element_text(family = "Roboto Condensed"))
 
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
-                            ifelse(Age > 30 & Age <=50, "Middle", 
+                            ifelse(Age > 30 & Age <= 50, "Middle", 
                                    "Elderly")),
          Age_group = fct_rev(Age_group))
 

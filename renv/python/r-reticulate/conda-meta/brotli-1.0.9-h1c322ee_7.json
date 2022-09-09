@@ -1,0 +1,70 @@
+{
+  "build": "h1c322ee_7",
+  "build_number": 7,
+  "channel": "https://conda.anaconda.org/conda-forge/osx-arm64",
+  "constrains": [],
+  "depends": [
+    "brotli-bin 1.0.9 h1c322ee_7",
+    "libbrotlidec 1.0.9 h1c322ee_7",
+    "libbrotlienc 1.0.9 h1c322ee_7"
+  ],
+  "extracted_package_dir": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/brotli-1.0.9-h1c322ee_7",
+  "features": "",
+  "files": [
+    "include/brotli/decode.h",
+    "include/brotli/encode.h",
+    "include/brotli/port.h",
+    "include/brotli/types.h"
+  ],
+  "fn": "brotli-1.0.9-h1c322ee_7.tar.bz2",
+  "license": "MIT",
+  "license_family": "MIT",
+  "link": {
+    "source": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/brotli-1.0.9-h1c322ee_7",
+    "type": 1
+  },
+  "md5": "52adb74400db3dee7b256835781da714",
+  "name": "brotli",
+  "package_tarball_full_path": "/Users/gregchism/Library/r-miniconda-arm64/pkgs/brotli-1.0.9-h1c322ee_7.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "include/brotli/decode.h",
+        "path_type": "hardlink",
+        "sha256": "a9665d09f77df18f8a1f4c948610474ebd8758ff3f3a0714842af0a12d263ee6",
+        "sha256_in_prefix": "a9665d09f77df18f8a1f4c948610474ebd8758ff3f3a0714842af0a12d263ee6",
+        "size_in_bytes": 14323
+      },
+      {
+        "_path": "include/brotli/encode.h",
+        "path_type": "hardlink",
+        "sha256": "dfc6f8e43b30e2e88c5cc9d1a4842aa967aa399e2ccd4eea3fb134a990216812",
+        "sha256_in_prefix": "dfc6f8e43b30e2e88c5cc9d1a4842aa967aa399e2ccd4eea3fb134a990216812",
+        "size_in_bytes": 17361
+      },
+      {
+        "_path": "include/brotli/port.h",
+        "path_type": "hardlink",
+        "sha256": "2cffc986439dfac586589f538db721155229ac615dfad16300dd70aff7b718f6",
+        "sha256_in_prefix": "2cffc986439dfac586589f538db721155229ac615dfad16300dd70aff7b718f6",
+        "size_in_bytes": 10712
+      },
+      {
+        "_path": "include/brotli/types.h",
+        "path_type": "hardlink",
+        "sha256": "96c9330e790aa6fe53f4cdd328d0a4b98e361b82913baa3219db73aadb11272c",
+        "sha256_in_prefix": "96c9330e790aa6fe53f4cdd328d0a4b98e361b82913baa3219db73aadb11272c",
+        "size_in_bytes": 2615
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "d5cbccc2dbaf4b25a3782becd12780f09071e617b5f874c408c22d09f4bc0f98",
+  "size": 18389,
+  "subdir": "osx-arm64",
+  "timestamp": 1648884016481,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/osx-arm64/brotli-1.0.9-h1c322ee_7.tar.bz2",
+  "version": "1.0.9"
+}
