@@ -379,13 +379,14 @@ cap_out_imp_insulin |>
 
 -   If no extreme outliers are present, Winsorization may be unnecessary.
 
-------------------------------------------------------------------------
 ## Imputing NAs
 
 I will only be addressing one type of NA imputation using `imputate_na()` (but note you can use mean, median, and mode as well):
 
 1.  `knn`: K-nearest neighbors (KNN)
+
 2.  `rpart`: Recursive Partitioning and Regression Trees (rpart)
+
 3.  `mice`: Multivariate Imputation by Chained Equations (MICE)
 
 Since our normal `dataset` has no NA values, we will use the `na.dataset` we created earlier.

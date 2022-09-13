@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Greg Chism">
+
+<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./intro.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Data 7 Exploratory Data Analysis In R Workshops Companion Book</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputing like a Data Scientist</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" id="toc-uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="nav-link active" data-scroll-target="#uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" id="toc-exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor"><span>Exploratory data analysis in R - Diagnosing like a data doctor</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link" data-scroll-target="#purpose-of-workshop">Purpose of Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" id="toc-exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---exploring-like-a-data-adventurer"><span>Exploratory data analysis in R - Exploring like a data adventurer</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop" id="toc-purpose-of-the-workshop" class="nav-link" data-scroll-target="#purpose-of-the-workshop">Purpose of the Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer" id="toc-exploratory-data-analysis-in-r---transforming-like-a-data-transformer" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---transforming-like-a-data-transformer"><span>Exploratory Data Analysis in R - Transforming like a Data… Transformer</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop-1" id="toc-purpose-of-the-workshop-1" class="nav-link" data-scroll-target="#purpose-of-the-workshop-1">Purpose of the Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---imputating-like-a-data-scientist" id="toc-exploratory-data-analysis-in-r---imputating-like-a-data-scientist" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---imputating-like-a-data-scientist"><span>Exploratory Data Analysis in R - Imputating like a Data Scientist</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop-2" id="toc-purpose-of-the-workshop-2" class="nav-link" data-scroll-target="#purpose-of-the-workshop-2">Purpose of the Workshop</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-in-r---correlate-like-a-data-master" id="toc-exploratory-data-analysis-in-r---correlate-like-a-data-master" class="nav-link" data-scroll-target="#exploratory-data-analysis-in-r---correlate-like-a-data-master"><span>Exploratory Data Analysis in R - Correlate Like a Data Master</span></a>
+  <ul class="collapse">
+  <li><a href="#purpose-of-the-workshop-3" id="toc-purpose-of-the-workshop-3" class="nav-link" data-scroll-target="#purpose-of-the-workshop-3">Purpose of the Workshop</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Data 7 Exploratory Data Analysis In R Workshops Companion Book</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Greg Chism </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+
+<section id="uarizona-data7-exploratory-data-analysis-in-r-workshops-companion-book" class="level1 unnumbered">
+<p><img src="cover.png" title="Data 7 Exploratory Data Analysis In R Workshops Companion Book" class="quarto-cover-image img-fluid"></p><h1 class="unnumbered">UArizona Data7 Exploratory Data Analysis In R Workshops Companion Book!</h1>
+<p>Here you will find a collection of Exploratory Data Analysis in R Workshops prepared by the staff of the <a href="https://datascience.arizona.edu/">Data Science Institute</a></p>
+<hr>
+<section id="exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---diagnosing-like-a-data-doctor"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer1">Exploratory data analysis in R - Diagnosing like a data doctor</a></h2>
+<section id="purpose-of-workshop" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of Workshop</h3>
+<p>Exploring a novel data set and produce publication quality tables and reports</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---exploring-like-a-data-adventurer" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---exploring-like-a-data-adventurer"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/EDA_In_R_Summer2">Exploratory data analysis in R - Exploring like a data adventurer</a></h2>
+<section id="purpose-of-the-workshop" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop">Purpose of the Workshop</h3>
+<p>Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---transforming-like-a-data-transformer" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---transforming-like-a-data-transformer"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall3">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a></h2>
+<section id="purpose-of-the-workshop-1" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-1">Purpose of the Workshop</h3>
+<p>Using data transformation to correct non-normality in numerical data</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---imputating-like-a-data-scientist" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---imputating-like-a-data-scientist"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall4">Exploratory Data Analysis in R - Imputating like a Data Scientist</a></h2>
+<section id="purpose-of-the-workshop-2" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-2">Purpose of the Workshop</h3>
+<p>Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables</p>
+<hr>
+</section>
+</section>
+<section id="exploratory-data-analysis-in-r---correlate-like-a-data-master" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-in-r---correlate-like-a-data-master"><a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops/tree/main/Workshops/Fall2022/EDA_In_R_Fall5">Exploratory Data Analysis in R - Correlate Like a Data Master</a></h2>
+<section id="purpose-of-the-workshop-3" class="level3">
+<h3 class="anchored" data-anchor-id="purpose-of-the-workshop-3">Purpose of the Workshop</h3>
+<p>Assess relationships within a novel data set using publication quality tables and plots</p>
+<hr>
+<p><a href="https://github.com/ua-data7/LearningResources/wiki">Visit our available Digital Learning Resources Library!</a></p>
+<hr>
+<p>Created: 07/22/2022 (G. Chism); Last update: 08/09/2022</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CC_BY-NC-SA.svg/800px-CC_BY-NC-SA.svg.png?20181117113353" width="150" height="50"> <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA</a></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./intro.html" class="pagination-link">
+        <span class="nav-page-text">Introduction</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
