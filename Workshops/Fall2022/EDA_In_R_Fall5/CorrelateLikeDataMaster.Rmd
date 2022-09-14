@@ -10,7 +10,7 @@ output:
 bibliography: references.bib
 ---
 
-# Exploratory Data Analysis in R - Correlate Like a Data Master
+# Exploratory Data Analysis in R - Correlate Like a Data Master {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
@@ -86,7 +86,7 @@ dataset |>
 
 #### If you're interested in some underlying statistics...
 
-Note that the `dlookr` default correlation is the [Pearson's $r$ coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient), but you can specify any method you would like: `correlate(dataset, method = "")`, where the method can be `"pearson"` for Pearson's $r$, `"spearman"` for [Spearman's](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient)\$\\rho\$, or "kendall" for [Kendall's](https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient) $\tau$. The main differences are that Pearson's $r$ assumes a normal distribution for ALL numerical variables, whereas Spearman's $\rho$ and Kendall's $\tau$ do not, but Spearman's $\rho$ requires $N > 10$, and Kendall's $\tau$ does not. Notably, Kendall's $\tau$ performs as well as Spearman's $\rho$ when $N > 10$, so its best to just use Kendall's $\tau$ when data are not normally distributed.
+Note that the `dlookr` default correlation is the [Pearson's $r$ coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient), but you can specify any method you would like: `correlate(dataset, method = "")`, where the method can be `"pearson"` for Pearson's $r$, `"spearman"` for [Spearman's](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) $\rho$, or `"kendall"` for [Kendall's](https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient) $\tau$. The main differences are that Pearson's $r$ assumes a normal distribution for ALL numerical variables, whereas Spearman's $\rho$ and Kendall's $\tau$ do not, but Spearman's $\rho$ requires $N > 10$, and Kendall's $\tau$ does not. Notably, Kendall's $\tau$ performs as well as Spearman's $\rho$ when $N > 10$, so its best to just use Kendall's $\tau$ when data are not normally distributed.
 
 ```{r}
 # Table of correlations between numerical variables (we are sticking to the default Pearson's r coefficient)
@@ -144,7 +144,7 @@ The relationships below will have the formula relationship `target ~ predictor`.
 `Formula: pLWP (numerical)  ~ Sap_Flow (numerical)`
 
 ```{r}
-# The numerical target variable that we want
+# The numerical predictor variable that we want
 num <- target_by(dataset, Sap_Flow)
 
 # Relating the variable of interest to the numerical target variable
@@ -166,7 +166,7 @@ plot(num_num)
 Formula: `Group (categorical) ~ pLWP (numerical)`
 
 ```{r}
-# The categorical target variable that we want
+# The categorical predictor variable that we want
 num <- target_by(dataset, pLWP) 
 
 # We need to change Group to a factor
@@ -193,13 +193,13 @@ Note that this produces descriptive statistics, unlike the other relationships w
 Formula: `pLWP (numerical) ~ Group (categorical)`
 
 ```{r}
-# The categorical target variable that we want
+# The categorical predictor variable that we want
 categ <- target_by(dataset, Group)
 
 # Relating the variable of interest to the numerical target variable
 cat_num <- relate(categ, pLWP)
 
-# Summary of the regression analysis - the same as the summary from lm()
+# Summary of descriptive statistics
 summary(cat_num)
 ```
 
@@ -216,11 +216,13 @@ Notably, there is only one categorical variable... Let's make another:
 If $mLWP > mean(mLWP) + sd(mLWP)$ then "Yes", else "No".
 
 ```{r}
+# Create new categorical column
 cat_dataset <- dataset |>
   select(pLWP, Group) |>
   drop_na() |>
   mutate(HighLWP = ifelse(pLWP > (mean(pLWP + sd(pLWP))), "Yes", "No"))
 
+# New dataset 
 head(cat_dataset) |>
   head()
 ```
@@ -230,7 +232,7 @@ Now we have two categories!
 Formula = `Group (categorical) ~ HighLWP (categorical)`
 
 ```{r}
-# The categorical target variable that we want
+# The categorical predictor variable that we want
 categ1 <- target_by(cat_dataset, HighLWP)
 
 # Relating the variable of interest to the categorical target variable

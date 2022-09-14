@@ -279,7 +279,7 @@ div.csl-indent {
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//Rtmpomdg3G/downloaded_packages</code></pre>
+    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//RtmpUN82LV/downloaded_packages</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -476,7 +476,7 @@ Drought-sens-under
 <p><a href="https://en.wikipedia.org/wiki/Correlation">Correlations</a> are a statistical relationship between two numerical variables, may or may not be causal. Exploring correlations in your data allows you determine data independence, a major <a href="https://www.statology.org/parametric-tests-assumptions/">assumption of parametric statistics</a>, which means your variables are both randomly collected.</p>
 <section id="if-youre-interested-in-some-underlying-statistics" class="level4">
 <h4 class="anchored" data-anchor-id="if-youre-interested-in-some-underlying-statistics">If you’re interested in some underlying statistics…</h4>
-<p>Note that the <code>dlookr</code> default correlation is the <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson’s <span class="math inline">\(r\)</span> coefficient</a>, but you can specify any method you would like: <code>correlate(dataset, method = "")</code>, where the method can be <code>"pearson"</code> for Pearson’s <span class="math inline">\(r\)</span>, <code>"spearman"</code> for <a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman’s</a>$\rho$, or “kendall” for <a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall’s</a> <span class="math inline">\(\tau\)</span>. The main differences are that Pearson’s <span class="math inline">\(r\)</span> assumes a normal distribution for ALL numerical variables, whereas Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> do not, but Spearman’s <span class="math inline">\(\rho\)</span> requires <span class="math inline">\(N &gt; 10\)</span>, and Kendall’s <span class="math inline">\(\tau\)</span> does not. Notably, Kendall’s <span class="math inline">\(\tau\)</span> performs as well as Spearman’s <span class="math inline">\(\rho\)</span> when <span class="math inline">\(N &gt; 10\)</span>, so its best to just use Kendall’s <span class="math inline">\(\tau\)</span> when data are not normally distributed.</p>
+<p>Note that the <code>dlookr</code> default correlation is the <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson’s <span class="math inline">\(r\)</span> coefficient</a>, but you can specify any method you would like: <code>correlate(dataset, method = "")</code>, where the method can be <code>"pearson"</code> for Pearson’s <span class="math inline">\(r\)</span>, <code>"spearman"</code> for <a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman’s</a> <span class="math inline">\(\rho\)</span>, or <code>"kendall"</code> for <a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall’s</a> <span class="math inline">\(\tau\)</span>. The main differences are that Pearson’s <span class="math inline">\(r\)</span> assumes a normal distribution for ALL numerical variables, whereas Spearman’s <span class="math inline">\(\rho\)</span> and Kendall’s <span class="math inline">\(\tau\)</span> do not, but Spearman’s <span class="math inline">\(\rho\)</span> requires <span class="math inline">\(N &gt; 10\)</span>, and Kendall’s <span class="math inline">\(\tau\)</span> does not. Notably, Kendall’s <span class="math inline">\(\tau\)</span> performs as well as Spearman’s <span class="math inline">\(\rho\)</span> when <span class="math inline">\(N &gt; 10\)</span>, so its best to just use Kendall’s <span class="math inline">\(\tau\)</span> when data are not normally distributed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table of correlations between numerical variables (we are sticking to the default Pearson's r coefficient)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">correlate</span>(dataset) <span class="sc">|&gt;</span></span>
@@ -694,7 +694,7 @@ mLWP
 <h3 class="anchored" data-anchor-id="numerical-target-variables-numerical-variable-of-interest">Numerical Target Variables: Numerical Variable of Interest</h3>
 <p><code>Formula: pLWP (numerical)  ~ Sap_Flow (numerical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The numerical target variable that we want</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The numerical predictor variable that we want</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Sap_Flow)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
@@ -737,7 +737,7 @@ F-statistic: 4.022 on 1 and 274 DF,  p-value: 0.04589</code></pre>
 <h3 class="anchored" data-anchor-id="numerical-target-variables-categorical-variable-of-interest">Numerical Target Variables: Categorical Variable of Interest</h3>
 <p>Formula: <code>Group (categorical) ~ pLWP (numerical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical predictor variable that we want</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, pLWP) </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to change Group to a factor</span></span>
@@ -786,13 +786,13 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Note that this produces descriptive statistics, unlike the other relationships we are looking at.</p>
 <p>Formula: <code>pLWP (numerical) ~ Group (categorical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical predictor variable that we want</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>categ <span class="ot">&lt;-</span> <span class="fu">target_by</span>(dataset, Group)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the numerical target variable</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>cat_num <span class="ot">&lt;-</span> <span class="fu">relate</span>(categ, pLWP)</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression analysis - the same as the summary from lm()</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of descriptive statistics</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cat_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> described_variables    Group                 n               na       
@@ -859,13 +859,15 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Notably, there is only one categorical variable… Let’s make another:</p>
 <p>If <span class="math inline">\(mLWP &gt; mean(mLWP) + sd(mLWP)\)</span> then “Yes”, else “No”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>cat_dataset <span class="ot">&lt;-</span> dataset <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pLWP, Group) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HighLWP =</span> <span class="fu">ifelse</span>(pLWP <span class="sc">&gt;</span> (<span class="fu">mean</span>(pLWP <span class="sc">+</span> <span class="fu">sd</span>(pLWP))), <span class="st">"Yes"</span>, <span class="st">"No"</span>))</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cat_dataset) <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new categorical column</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cat_dataset <span class="ot">&lt;-</span> dataset <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(pLWP, Group) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HighLWP =</span> <span class="fu">ifelse</span>(pLWP <span class="sc">&gt;</span> (<span class="fu">mean</span>(pLWP <span class="sc">+</span> <span class="fu">sd</span>(pLWP))), <span class="st">"Yes"</span>, <span class="st">"No"</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># New dataset </span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cat_dataset) <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        pLWP               Group HighLWP
 1 -0.2633781 Drought-sens-canopy     Yes
@@ -879,7 +881,7 @@ F-statistic: 22.05 on 3 and 272 DF,  p-value: 8.267e-13</code></pre>
 <p>Now we have two categories!</p>
 <p>Formula = <code>Group (categorical) ~ HighLWP (categorical)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical target variable that we want</span></span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The categorical predictor variable that we want</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>categ1 <span class="ot">&lt;-</span> <span class="fu">target_by</span>(cat_dataset, HighLWP)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Relating the variable of interest to the categorical target variable</span></span>
