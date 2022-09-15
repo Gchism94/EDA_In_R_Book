@@ -193,7 +193,7 @@ dataset |>
 
 ## Produce an HTML Summary of a Data Set
 
-```{r}
+```{r, eval = FALSE}
 # Remove the '#' below to reproduce an HTML from an R script. 
-#diagnose_web_report(dataset)
+diagnose_web_report(dataset)
 ```
