@@ -6,7 +6,7 @@ Data7 Exploratory Data Analysis in R Workshops
 
 This repository promotes the use of CyVerse, a cloud-based alternative to the RStudio IDE, and a more scalable option to RStudio Cloud. <a href="https://de.cyverse.org/apps/de/48b6e7ae-8b64-11ec-92dc-008cfa5ae621/launch" target="_blank"><img src="https://img.shields.io/badge/Verse-latest-blue?style=plastic&amp;logo=rstudio"/></a>
 
-<<<<<<< HEAD
+
 To cite please use: 
 >Greg, C. (2022). Gchism94/Data7_EDA_In_R_Workshops: Data7 EDA in R Workshop Series (Version v1.0.0) [Computer software]. https://doi.org/10.5281/zenodo.7015979
 
