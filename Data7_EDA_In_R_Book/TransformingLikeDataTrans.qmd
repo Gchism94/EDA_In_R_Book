@@ -2,6 +2,7 @@
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+
 ```
 
 ## Purpose of Workshop
@@ -85,6 +86,8 @@ Here are the distribution properties to know and consider:
 Here's an example using the `Glucose` column in our `dataset`
 
 ```{r}
+library(ggpubr)
+
 # Function for data mode
 getmode <- function(v) {
    uniqv <- unique(v)
@@ -104,7 +107,9 @@ dataset |>
   geom_segment(aes(y = 30, yend = 30, x = mean(BMI) + sd(BMI) + 1, xend = 50)) +
   annotate(geom = "text", x = 50.5, y = 45, label = "Mean, \nMedian, \nMode = 32", size = 5, hjust = 0) +
   annotate(geom = "text", x = 50.5, y = 30, label = "SD = 7.9", size = 5, hjust = 0) +
-  theme(axis.title.y = element_blank()) 
+  ylab("Count") +
+  theme(axis.title.y = element_blank()) +
+  theme_pubclean(base_size = 16)
 ```
 
 ------------------------------------------------------------------------
