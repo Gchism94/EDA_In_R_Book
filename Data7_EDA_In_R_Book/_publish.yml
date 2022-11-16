@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 24d729e8-a102-43f1-a967-552a41ab5094
+      url: 'https://quartopub.com/sites/gchism/data-7-exploratory-data-analysis-in-r-book'
