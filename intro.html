@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - Introduction</title>
+<title>Data 7 Exploratory Data Analysis In R Book - Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ ul.task-list{list-style: none;}
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+      <a href="./">Data 7 Exploratory Data Analysis In R Book</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
 </div>
@@ -94,7 +94,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">UArizona Data7 Exploratory Data Analysis In Python Book!</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">UArizona Data7 Exploratory Data Analysis In R Book!</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -104,27 +104,27 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link">Diagnosing like a Data Doctor</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploring like a Data Adventurer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Transforming like a Data… Transformer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputing like a Data Scientist</a>
+  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Imputing like a Data Scientist</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Correlating Like a Data Master</a>
   </div>
 </li>
     </ul>
@@ -137,7 +137,7 @@ ul.task-list{list-style: none;}
    
   <ul>
   <li><a href="#what-is-exploratory-data-analysis" id="toc-what-is-exploratory-data-analysis" class="nav-link active" data-scroll-target="#what-is-exploratory-data-analysis">What is Exploratory Data Analysis?</a></li>
-  <li><a href="#what-are-some-important-data-set-characteristics" id="toc-what-are-some-important-data-set-characteristics" class="nav-link" data-scroll-target="#what-are-some-important-data-set-characteristics"><strong>What are Some Important Data Set Characteristics?</strong></a></li>
+  <li><a href="#what-are-some-important-data-set-characteristics" id="toc-what-are-some-important-data-set-characteristics" class="nav-link" data-scroll-target="#what-are-some-important-data-set-characteristics">What are Some Important Data Set Characteristics?</a></li>
   <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics">Diagnostics</a>
   <ul class="collapse">
   <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
@@ -181,18 +181,18 @@ ul.task-list{list-style: none;}
 </div>
 <p><a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">Exploratory data analysis</a> is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The <a href="https://en.wikipedia.org/wiki/R_(programming_language)">R programming language</a>, specifically through the <a href="https://en.wikipedia.org/wiki/RStudio">RStudio IDE</a>, is a widely used open source platform for <a href="https://en.wikipedia.org/wiki/Data_analysis">data analysis</a> and <a href="https://en.wikipedia.org/wiki/Data_and_information_visualization">data visualization</a>. This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis <a href="https://arxiv.org/pdf/1904.02101.pdf">packages</a>, each of which have their own pros and cons.</p>
 <p>Here, we utilize the <a href="https://github.com/choonghyunryu/dlookr">dlookr package</a> to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data <a href="https://en.wikipedia.org/wiki/Outlier">outliers</a>, <a href="https://en.wikipedia.org/wiki/Missing_data">missing data</a>, as well as summary statistical reports.</p>
-<section id="what-is-exploratory-data-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-exploratory-data-analysis">What is Exploratory Data Analysis?</h3>
+<section id="what-is-exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-exploratory-data-analysis">What is Exploratory Data Analysis?</h2>
 <p>Exploratory data analysis is a <a href="https://en.wikipedia.org/wiki/Statistics">statistical</a>, approach towards analyzing <a href="https://en.wikipedia.org/wiki/Data_set">data sets</a> to investigate and summarize their main characteristics, often through <a href="https://en.wikipedia.org/wiki/Statistical_graphics">statistical graphics</a> and other data visualization methods.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/EDA-Title-Plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <hr>
 </section>
 <section id="what-are-some-important-data-set-characteristics" class="level2">
-<h2 class="anchored" data-anchor-id="what-are-some-important-data-set-characteristics"><strong>What are Some Important Data Set Characteristics?</strong></h2>
+<h2 class="anchored" data-anchor-id="what-are-some-important-data-set-characteristics">What are Some Important Data Set Characteristics?</h2>
 <p>There are several characteristics that are arguably important, but we will only consider those covered in this workshop series. Let’s start with the fundamentals that will help guide us.</p>
 </section>
 <section id="diagnostics" class="level2">
@@ -547,7 +547,7 @@ factor
 <p>Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/num-plot-continuous-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -556,7 +556,7 @@ factor
 <p>Countable whole numbers or integers (e.g., number of successes or failures)</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/num-plot-discrete-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <hr>
@@ -566,7 +566,7 @@ factor
 <p>Labeling variables without any order or quantitative value (e.g., hair color, nationality)</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/cat-plot-nominal-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -575,7 +575,7 @@ factor
 <p>Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/cat-plot-ordinal-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -666,7 +666,7 @@ Middle
 85
 </td>
 <td style="text-align:right;">
-NA
+66
 </td>
 <td style="text-align:right;">
 29
@@ -684,18 +684,18 @@ NA
 31
 </td>
 <td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
-NA
+Middle
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-8
+NA
 </td>
 <td style="text-align:right;">
-NA
+183
 </td>
 <td style="text-align:right;">
 64
@@ -719,12 +719,12 @@ NA
 1
 </td>
 <td style="text-align:right;">
-Middle
+NA
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
-NA
+1
 </td>
 <td style="text-align:right;">
 89
@@ -742,7 +742,7 @@ NA
 28.1
 </td>
 <td style="text-align:right;">
-NA
+0.167
 </td>
 <td style="text-align:right;">
 21
@@ -765,16 +765,16 @@ Young
 40
 </td>
 <td style="text-align:right;">
-35
+NA
 </td>
 <td style="text-align:right;">
 168
 </td>
 <td style="text-align:right;">
-NA
+43.1
 </td>
 <td style="text-align:right;">
-2.288
+NA
 </td>
 <td style="text-align:right;">
 33
@@ -794,19 +794,19 @@ Middle
 116
 </td>
 <td style="text-align:right;">
-74
-</td>
-<td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
 NA
 </td>
 <td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
 25.6
 </td>
 <td style="text-align:right;">
-0.201
+NA
 </td>
 <td style="text-align:right;">
 30
@@ -815,7 +815,7 @@ NA
 0
 </td>
 <td style="text-align:right;">
-NA
+Young
 </td>
 </tr>
 </tbody>
@@ -840,7 +840,7 @@ NA
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/cent-tendency-plots-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notice however, that all values of central tendency can be pretty similar, such as in the top panel. This will become important when we discuss data transformations in Chapter 3.</p>
@@ -855,7 +855,7 @@ NA
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/stat-dispersion-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -868,7 +868,7 @@ NA
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/dist-shape-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -880,7 +880,7 @@ NA
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="intro_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="intro_files/figure-html/corr-matrix-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
@@ -989,12 +989,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">UArizona Data7 Exploratory Data Analysis In Python Book!</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">UArizona Data7 Exploratory Data Analysis In R Book!</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./DiagnosingLikeDataDoctor.html" class="pagination-link">
-        <span class="nav-page-text">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Diagnosing like a Data Doctor</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
