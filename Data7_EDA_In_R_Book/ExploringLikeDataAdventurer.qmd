@@ -1,16 +1,16 @@
-# Exploratory Data Analysis in R - Exploring like a Data Adventurer {.unnumbered}
+# Exploring like a Data Adventurer {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## Purpose of Workshop
+## Purpose of this chapter
 
 **Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports**
 
 ------------------------------------------------------------------------
 
-## Objectives
+## Take-aways
 
 1.  Using summary statistics to better understand individual columns in a data set.
 2.  Assessing data normality in numerical columns.
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 We first need to prepare our environment with the necessary packages
 
-```{r, results = 'hide'}
+```{r req-setup, results = 'hide'}
 # Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
@@ -46,7 +46,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 
 We will be using open source data from UArizona researchers that investigates the effects of climate change on canopy trees. [@meredith2021]
 
-```{r}
+```{r load-data}
 # Let's load a data set from the canopy tree data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "Data_Fig2_Repo.csv")) 
 
@@ -60,7 +60,7 @@ dataset |>
 
 ## Diagnose your Data
 
-```{r}
+```{r diagnose-data}
 # What are the properties of the data
 dataset |>
   diagnose() |>
@@ -103,7 +103,7 @@ dataset |>
 
 ------------------------------------------------------------------------
 
-**NOTE**
+#### **NOTE**
 
 -   There are multiple definitions of kurtosis - i.e., "kurtosis" and "excess kurtosis," but there are other definitions of this measure.
 -   Kurtosis may work fine for distributions with one peak (*unimodal*); it's meaningless for distributions with multiple peaks (*multimodal*).
@@ -113,7 +113,7 @@ dataset |>
 
 ## Describe your Continuous Data
 
-```{r}
+```{r summ-stats-num}
 # Summary statistics 
 dataset |>
   describe() |>
@@ -142,7 +142,7 @@ dataset |>
 
 The above is pretty overwhelming, and most people don't care about percentiles outside of Q1, Q3, and the median (Q2).
 
-```{r}
+```{r summ-stats-num-refined}
 # Summary statistics, selecting the desired ones
 dataset |>
   describe() |>
@@ -154,7 +154,7 @@ dataset |>
 
 ## Describe Categorical Variables
 
-```{r}
+```{r summ-stats-cat}
 dataset |>
   diagnose_category() |>
   formattable()
@@ -171,7 +171,7 @@ dataset |>
 
 ### Group Descriptive Statistics
 
-```{r}
+```{r group-summ-stats}
 dataset |>
   group_by(Group) |>
   describe() |>
@@ -197,7 +197,7 @@ dataset |>
 
 Shapiro-Wilk test looks at whether a target distribution is sample form a normal distribution
 
-```{r}
+```{r shapiro-wilk}
 dataset |>
   normality() |>
   formattable()
@@ -209,7 +209,7 @@ dataset |>
 
 Plots of the quartiles of a target data set and plot it against predicted quartiles from a normal distribution
 
-```{r}
+```{r QQ-plot}
 dataset |>
 plot_normality()
 ```
@@ -222,20 +222,20 @@ Looking within Age_group at the subgroup normality
 
 #### Shapiro-Wilk Test
 
-```{r}
+```{r group-shapiro-wilk}
 dataset |>
   group_by(Group) |>
-  select(Sap_Flow, TWaterFlux) |>
+  select(Sap_Flow, TWaterFlux, Group) |>
   normality() |>
   formattable()
 ```
 
 #### Q-Q Plots
 
-```{r}
+```{r group-QQ-plot}
 dataset |>
 group_by(Group) |>
-  select(Sap_Flow, TWaterFlux) |>
+  select(Sap_Flow, TWaterFlux, Group) |>
   plot_normality()
 ```
 
@@ -243,7 +243,6 @@ group_by(Group) |>
 
 ## Produce an HTML Normality Summary
 
-```{r}
-# Remove the '#' below to reproduce an HTML from an R script. 
-#eda_web_report(dataset)
+```{r HTML-EDA, eval = FALSE}
+eda_web_report(dataset)
 ```

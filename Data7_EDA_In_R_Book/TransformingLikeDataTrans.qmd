@@ -1,17 +1,16 @@
-# Exploratory Data Analysis in R - Transforming like a Data... Transformer {.unnumbered}
+# Transforming like a Data... Transformer {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
-
 ```
 
-## Purpose of Workshop
+## Purpose of this chapter
 
 **Using data transformation to correct non-normality in numerical data**
 
 ------------------------------------------------------------------------
 
-## Objectives
+## Take-aways
 
 1.  Load and explore a data set with publication quality tables
 2.  Quickly diagnose non-normality in data
@@ -24,7 +23,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 We first need to prepare our environment with the necessary packages
 
-```{r, results = 'hide', message = FALSE, warning = FALSE}
+```{r req-setup, results = 'hide'}
 # Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
@@ -54,7 +53,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 -   Examine data normality
 -   Describe properties of data
 
-```{r}
+```{r load-data}
 # Let's load a data set from the diabetes data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
@@ -85,7 +84,7 @@ Here are the distribution properties to know and consider:
 
 Here's an example using the `Glucose` column in our `dataset`
 
-```{r}
+```{r norm-plot-cent-tend}
 library(ggpubr)
 
 # Function for data mode
@@ -122,7 +121,7 @@ The symmetry of the distribution
 
 See [Introduction -@sec-DistShape] for more information about these values
 
-```{r}
+```{r describe-skew}
 dataset |>
   select(Glucose, Insulin, BMI, SkinThickness) |>
   describe() |>
@@ -146,17 +145,17 @@ Note that we will remove the other percentiles to produce a cleaner output
 
 -   Testing normality of groups
 
-**Note** that you can also use `normality()` to run Shapiro-Wilk tests, but since this test is not viable at `N < 20`, I recommend just skipping to Q-Q plots.
+**Note** that you can also use `normality()` to run Shapiro-Wilk tests, but since this test is not viable at `N < 20`, I recommend Q-Q plots.
 
 ------------------------------------------------------------------------
 
 #### Q-Q Plots
 
-Plots of the quartiles of a target data set and plot it against predicted quartiles from a normal distribution.
+Plots of the quartiles of a target data set against the predicted quartiles from a normal distribution.
 
-Notably, `plot_normality()` will show you the Logaritmic and Skewed transformations (more below)
+Notably, `plot_normality()` will show you the logaritmic and skewed transformations (more below)
 
-```{r}
+```{r norm-plot}
 dataset |>
 plot_normality(Glucose, Insulin, Age)
 ```
@@ -169,7 +168,7 @@ Looking within Age_group at the subgroup normality
 
 #### Q-Q Plots
 
-```{r}
+```{r grouped-norm-plot}
 dataset %>%
   group_by(Age_group) %>%
   select(Glucose, Insulin) %>%
@@ -184,7 +183,7 @@ Your data could be more easily interpreted with a transformation, since not all 
 
 We will try to transform the `Insulin` column with through several approaches and discuss the pros and cons of each. First however, we will remove `0` values, because `Insulin` values are impossible...
 
-```{r}
+```{r mod-insulin}
 InsMod <- dataset |>
   filter(Insulin > 0)
 ```
@@ -207,19 +206,19 @@ Resolving Skewness using `transform()`.
 
 "x\^3": [cubed transformation](https://en.wikipedia.org/wiki/Cubic_function). $x^3$
 
-We will compare `sqrt`, `log+1`, and `1/x` (inverse) transformations. Note that you would have to add a constant to use the `log` transformation, so it is easier to use the `log+1` instead. You however need to add a constant to both the `sqrt` and `1/x` transformations because they don't include zeros and will otherwise skew the results.
+We will compare the `sqrt`, `log+1`, `1/x` (inverse), `x^2`, and `x^3` transformations. Note that you would have to add a constant to use the `log` transformation, so it is easier to use the `log+1` instead. You however need to add a constant to both the `sqrt` and `1/x` transformations because they don't include zeros and will otherwise skew the results. *Here we removed zeros a priori*.
 
 ------------------------------------------------------------------------
 
 #### Square-root Transformation
 
-```{r}
+```{r sqrt-trans}
 sqrtIns <- transform(InsMod$Insulin, method = "sqrt") 
 
 summary(sqrtIns)
 ```
 
-```{r}
+```{r sqrt-viz}
 sqrtIns |>
   plot()
 ```
@@ -228,13 +227,13 @@ sqrtIns |>
 
 #### Logarithmic (+1) Transformation
 
-```{r}
+```{r log-trans}
 Log1Ins <- transform(InsMod$Insulin, method = "log+1") 
 
 summary(Log1Ins)
 ```
 
-```{r}
+```{r log-viz}
 Log1Ins |>
   plot()
 ```
@@ -243,14 +242,44 @@ Log1Ins |>
 
 #### Inverse Transformation
 
-```{r}
+```{r inv-trans}
 InvIns <- transform(InsMod$Insulin, method = "1/x") 
 
 summary(InvIns)
 ```
 
-```{r}
+```{r inv-viz}
 InvIns |>
+  plot()
+```
+
+------------------------------------------------------------------------
+
+#### Squared Transformation
+
+```{r sqrd-trans}
+SqrdIns <- transform(InsMod$Insulin, method = "x^2") 
+
+summary(SqrdIns)
+```
+
+```{r sqrd-viz}
+SqrdIns |>
+  plot()
+```
+
+------------------------------------------------------------------------
+
+#### Cubed Transformation
+
+```{r cube-trans}
+CubeIns <- transform(InsMod$Insulin, method = "x^3") 
+
+summary(CubeIns)
+```
+
+```{r cube-viz}
+CubeIns |>
   plot()
 ```
 
@@ -260,22 +289,21 @@ InvIns |>
 
 There are several transformations, each with it's own "criteria", and they don't always fix extremely skewed data. Instead, you can just choose the [Box-Cox transformation](https://en.wikipedia.org/wiki/Box%E2%80%93Cox_distribution) which searches for the the best lambda value that maximizes the log-likelihood (basically, what power transformation is best). The benefit is that you should have normally distributed data after, but the power relationship might be pretty abstract (i.e., what would a transformation of x\^0.12 be interpreted as in your system?..)
 
-```{r}
+```{r boxcox-trans}
 BoxCoxIns <- transform(InsMod$Insulin, method = "Box-Cox") 
 
 summary(BoxCoxIns)
 ```
 
-```{r}
+```{r boxcox-viz}
 BoxCoxIns |>
   plot()
 ```
 
 ------------------------------------------------------------------------
 
-## Produce an HTML Transformation Summary 
+## Produce an HTML Transformation Summary
 
-```{r}
-# Remove the '#' below to reproduce an HTML from an R script. 
-# transformation_web_report(dataset)
+```{r HTML-trans, eval = FALSE}
+transformation_web_report(dataset)
 ```

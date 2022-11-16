@@ -1,16 +1,18 @@
-# Exploratory Data Analysis in R - Imputing like a Data Scientist {.unnumbered}
+# Imputing like a Data Scientist {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## Purpose of Workshop
+## Purpose of this chapter
 
 **Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables**
 
+**IMPORTANT NOTE**: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data.
+
 ------------------------------------------------------------------------
 
-## Objectives
+## Take-aways
 
 1.  Load and explore a data set with publication quality tables
 2.  Thoroughly diagnose outliers and missing values
@@ -22,7 +24,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 We first need to prepare our environment with the necessary packages and set a global theme for publishable plots in `ggplot()`
 
-```{r, results = 'hide', message = FALSE, warning = FALSE}
+```{r req-setup, results = 'hide', message = FALSE, warning = FALSE}
 # Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
@@ -63,7 +65,7 @@ theme_update(legend.key = element_blank())
 
 ## Load and Examine a Data Set
 
-```{r}
+```{r load-data}
 # Let's load a data set from the diabetes data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
@@ -82,7 +84,7 @@ dataset |>
 
 ## Diagnose your Data
 
-```{r}
+```{r diagnose-data}
 # What are the properties of the data
 dataset |>
   diagnose() |>
@@ -106,17 +108,18 @@ There are several numerical variables that have outliers above, let's see what t
 
 -   Plot outliers in a box plot and histogram
 
-```{r}
+```{r diagnose-outliers}
 # Table showing outliers
 dataset |>
   diagnose_outlier() |>
   filter(outliers_ratio > 0) |>  
   mutate(rate = outliers_mean / with_mean) |>
   arrange(desc(rate)) |> 
-  select(-outliers_cnt)
+  select(-outliers_cnt) |>
+  formattable()
 ```
 
-```{r}
+```{r plot-outliers}
 # Boxplots and histograms of data with and without outliers
 dataset |>
   select(find_outliers(dataset)) |>
@@ -129,7 +132,7 @@ dataset |>
 
 -   Table showing the extent of NAs in columns containing them
 
-```{r, output.width = "100%"}
+```{r diagnose-NAs, output.width = "100%"}
 # Randomly generate NAs for 30
 na.dataset <- dataset |>
   generateNA(p = 0.3)
@@ -147,7 +150,7 @@ na.dataset |>
 
 -   Plots showing the frequency of missing values
 
-```{r}
+```{r plot-NAs}
 # Plot the insersect of the columns with missing values
 # This plot visualizes the table above
 na.dataset |>
@@ -163,7 +166,7 @@ na.dataset |>
 -   x axis (top green bar plots) show the number of missing values in that column
 -   y axis (right green bars) show the number of missing values in the columns in orange blocks
 
-```{r}
+```{r adv-plot-NAs}
 # Plot the insersect of the 5 columns with the most missing values
 # This means that some combinations of columns have missing values in the same row
 na.dataset |>
@@ -180,7 +183,7 @@ na.dataset |>
 -   Here we will show ALL columns with NAs, and you can zoom into individual rows (interactive plot)
 -   NOTE: This line will make the HTML rendering take a while...
 
-```{r}
+```{r int-plot-NAs}
 # Interactive plotly() plot of all NA values to examine every row
 na.dataset |>
  select(BloodPressure, Glucose, Age) |>
@@ -198,15 +201,11 @@ The principle goal for all imputation is to find the method that does not change
 
 ------------------------------------------------------------------------
 
-**NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data.**
-
-------------------------------------------------------------------------
-
 ### Classifying Outliers
 
 Before imputing outliers, you will want to diagnose whether it's they are natural outliers or not. We will be looking at "Insulin" for example across Age_group, because there are outliers and several NAs, which we will impute below.
 
-```{r}
+```{r agegroup-boxplot}
 # Box plot
 dataset %>% # Set the simulated normal data as a data frame
   ggplot(aes(x = Insulin, y = Age_group, fill = Age_group)) + # Create a ggplot
@@ -235,7 +234,7 @@ We remove outliers using `imputate_outlier()` and replace them with values that 
 
 The mean of the observed values for each variable is computed and the outliers for that variable are imputed by this mean
 
-```{r, results = 'hide'}
+```{r mean-imp}
 # Raw summary, output suppressed
 mean_out_imp_insulin <- dataset |>
   select(Insulin) |>
@@ -244,10 +243,10 @@ mean_out_imp_insulin <- dataset |>
 
 # Output showing the summary statistics of our imputation
 mean_out_imp_insulin |>
-  summary()
+  summary() 
 ```
 
-```{r}
+```{r plot-mean-imp}
 # Visualization of the mean imputation
 mean_out_imp_insulin |>
   plot()
@@ -259,7 +258,7 @@ mean_out_imp_insulin |>
 
 The median of the observed values for each variable is computed and the outliers for that variable are imputed by this median
 
-```{r}
+```{r med-imp}
 # Raw summary, output suppressed
 med_out_imp_insulin <- dataset |>
   select(Insulin) |>
@@ -271,7 +270,7 @@ med_out_imp_insulin |>
   summary()
 ```
 
-```{r}
+```{r plot-med-imp}
 # Visualization of the median imputation
 med_out_imp_insulin |>
   plot()
@@ -288,8 +287,8 @@ med_out_imp_insulin |>
 
 **Cons**:
 
--   Doesn't factor the correlations between features. It only works on the column level.
--   Will give poor results on encoded categorical features (do **NOT** use it on categorical features).
+-   Doesn't factor the correlations between variables. It only works on the column level.
+-   Will give poor results on encoded categorical variables (do **NOT** use it on categorical variables).
 -   Not very accurate.
 -   Doesn't account for the uncertainty in the imputations.
 
@@ -299,7 +298,7 @@ med_out_imp_insulin |>
 
 The mode of the observed values for each variable is computed and the outliers for that variable are imputed by this mode
 
-```{r}
+```{r mode-imp}
 # Raw summary, output suppressed
 mode_out_imp_insulin <- dataset |>
   select(Insulin) |>
@@ -311,7 +310,7 @@ mode_out_imp_insulin |>
   summary()
 ```
 
-```{r}
+```{r viz-mode-imp}
 # Visualization of the mode imputation
 mode_out_imp_insulin |>
 plot()
@@ -323,11 +322,11 @@ plot()
 
 **Pros**:
 
--   Works well with categorical features.
+-   Works well with categorical variables.
 
 **Cons**:
 
--   It also doesn't factor the correlations between features.
+-   It also doesn't factor the correlations between variables.
 
 -   It can introduce bias in the data.
 
@@ -337,7 +336,7 @@ plot()
 
 The Percentile Capping is a method of Imputing the outlier values by replacing those observations outside the lower limit with the value of 5th percentile and those that lie above the upper limit, with the value of 95th percentile of the same dataset.
 
-```{r}
+```{r cap-imp}
 # Raw summary, output suppressed
 cap_out_imp_insulin <- dataset |>
   select(Insulin) |>
@@ -349,7 +348,7 @@ cap_out_imp_insulin |>
   summary()
 ```
 
-```{r}
+```{r viz-cap-imp}
 # Visualization of the capping imputation
 cap_out_imp_insulin |>
   plot()
@@ -389,13 +388,13 @@ KNN is a machine learning algorithm that classifies data by similarity. This in 
 
 Here's a visual example using the `clara()` function from the `cluster` package to run a KNN algorithm on our `dataset`, where three clusters are created by the algorithm.
 
-```{r}
+```{r knn-plot}
 # KNN plot of our dataset without categories
 autoplot(clara(dataset[-5], 3)) +
   scale_color_OkabeIto()
 ```
 
-```{r}
+```{r knn-imp}
 # Raw summary, output suppressed
 knn_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "knn")
@@ -427,7 +426,7 @@ rpart is a decision tree machine learning algorithm that builds classification o
 
 For example, if we are missing a value for `Age_group` a first decision could be whether the associated `Age` is within a series of yes or no criteria
 
-```{r, echo = FALSE}
+```{r rpart-viz, echo = FALSE}
 # rpart algorithm plot for our categorical variable Age_group
 fancyRpartPlot(rpart(Age_group~., data = na.dataset),
                yesno = 2,
@@ -438,7 +437,7 @@ fancyRpartPlot(rpart(Age_group~., data = na.dataset),
                branch.col="black")
 ```
 
-```{r}
+```{r rpart-imp}
 # Raw summary, output suppressed
 rpart_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "rpart")
@@ -472,7 +471,7 @@ MICE is an algorithm that fills missing values multiple times, hence dealing wit
 
 ![Image Credit: [Will Badr](https://towardsdatascience.com/6-different-ways-to-compensate-for-missing-values-data-imputation-with-examples-6022d9ca0779)](https://miro.medium.com/max/1400/1*cmZFWypJUrFL2QL3KyzXEQ.png)
 
-```{r}
+```{r mice-imp}
 # Raw summary, output suppressed
 mice_na_imp_insulin <- na.dataset |>
   imputate_na(Insulin, method = "mice")
@@ -500,8 +499,6 @@ mice_na_imp_insulin |>
 
 ## Produce an HTML Transformation Summary
 
-```{r}
-# Remove the '#' below to reproduce an HTML from an R script. 
-
-# transformation_web_report(dataset)
+```{r trans-HTML, eval = FALSE}
+transformation_web_report(dataset)
 ```

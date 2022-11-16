@@ -2,19 +2,19 @@
 bibliography: references.bib
 ---
 
-# Exploratory Data Analysis in R - Correlate Like a Data Master {.unnumbered}
+# Correlating Like a Data Master {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## Purpose of workshop
+## Purpose of this chapter
 
 **Assess relationships within a novel data set using publication quality tables and plots**
 
 ------------------------------------------------------------------------
 
-## Objectives
+## Take-aways
 
 1.  Describe and visualize correlations between numerical variables
 2.  Visualize correlations of all numerical variables within groups
@@ -24,9 +24,9 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 ### Required setup
 
-#### We first need to prepare our environment with the necessary packages
+We first need to prepare our environment with the necessary packages.
 
-```{r}
+```{r req-setup}
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
 install.packages("pacman")
@@ -60,7 +60,7 @@ theme_update(legend.key = element_blank())
 
 We will be using open source data from UArizona researchers that investigates the effects of climate change on canopy trees. [@meredith2021]
 
-```{r}
+```{r load-data}
 # Let's load the canopy tree data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "Data_Fig2_Repo.csv"))
 
@@ -80,13 +80,13 @@ dataset |>
 
 Note that the `dlookr` default correlation is the [Pearson's $r$ coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficienthttps://en.wikipedia.org/wiki/Pearson_correlation_coefficient), but you can specify any method you would like: `correlate(dataset, method = "")`, where the method can be `"pearson"` for Pearson's $r$, `"spearman"` for [Spearman's](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) $\rho$, or `"kendall"` for [Kendall's](https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient) $\tau$. The main differences are that Pearson's $r$ assumes a normal distribution for ALL numerical variables, whereas Spearman's $\rho$ and Kendall's $\tau$ do not, but Spearman's $\rho$ requires $N > 10$, and Kendall's $\tau$ does not. Notably, Kendall's $\tau$ performs as well as Spearman's $\rho$ when $N > 10$, so its best to just use Kendall's $\tau$ when data are not normally distributed.
 
-```{r}
+```{r corr}
 # Table of correlations between numerical variables (we are sticking to the default Pearson's r coefficient)
 correlate(dataset) |>
   formattable()
 ```
 
-```{r}
+```{r plot-corr}
 # Correlation matrix of numerical variables
 dataset |>
 plot_correlate()
@@ -98,7 +98,7 @@ plot_correlate()
 
 If we have groups that we will compare later on, it is a good idea to see how each numerical variable correlates within these groups.
 
-```{r}
+```{r group-plot-corr}
 dataset |>
   group_by(Group) |>
   plot_correlate()
@@ -108,11 +108,11 @@ This is great, we have our correlations within groups! However, the correlation 
 
 We will be using the `ggpairs()` function within the `GGally` package. Specifically, we are looking at the correlations between predawn leaf water potential `pLWP` and midday leaf water potential `mLWP`. Leaf water potential is a key indicator for how stressed plants are in droughts.
 
-```{r}
+```{r corr-facet-plot}
 dataset |> 
   dplyr::select(Group, pLWP, mLWP) |>
   ggpairs(aes(color = Group, alpha = 0.5)) +
-  theme(strip.background = element_blank()) + # I don't like the facet strips
+  theme(strip.background = element_blank()) + # I don't like facet strip backgrounds...
   scale_fill_OkabeIto() +
   scale_color_OkabeIto()
 ```
@@ -135,7 +135,7 @@ The relationships below will have the formula relationship `target ~ predictor`.
 
 `Formula: pLWP (numerical)  ~ Sap_Flow (numerical)`
 
-```{r}
+```{r lm}
 # The numerical predictor variable that we want
 num <- target_by(dataset, Sap_Flow)
 
@@ -146,7 +146,7 @@ num_num <- relate(num, pLWP)
 summary(num_num)
 ```
 
-```{r}
+```{r plot-lm}
 # Plotting the linear relationship
 plot(num_num)
 ```
@@ -157,7 +157,7 @@ plot(num_num)
 
 Formula: `Group (categorical) ~ pLWP (numerical)`
 
-```{r}
+```{r cat-num}
 # The categorical predictor variable that we want
 num <- target_by(dataset, pLWP) 
 
@@ -171,7 +171,7 @@ num_cat <- relate(num, Group)
 summary(num_cat)
 ```
 
-```{r}
+```{r plot-cat-num}
 plot(num_cat) + 
   theme(axis.text.x = element_blank())
 ```
@@ -184,7 +184,7 @@ Note that this produces descriptive statistics, unlike the other relationships w
 
 Formula: `pLWP (numerical) ~ Group (categorical)`
 
-```{r}
+```{r num-cat}
 # The categorical predictor variable that we want
 categ <- target_by(dataset, Group)
 
@@ -195,7 +195,7 @@ cat_num <- relate(categ, pLWP)
 summary(cat_num)
 ```
 
-```{r}
+```{r plot-num-cat}
 plot(cat_num) 
 ```
 
@@ -207,7 +207,7 @@ Notably, there is only one categorical variable... Let's make another:
 
 If $mLWP > mean(mLWP) + sd(mLWP)$ then "Yes", else "No".
 
-```{r}
+```{r new-cat}
 # Create new categorical column
 cat_dataset <- dataset |>
   select(pLWP, Group) |>
@@ -223,7 +223,7 @@ Now we have two categories!
 
 Formula = `Group (categorical) ~ HighLWP (categorical)`
 
-```{r}
+```{r cat-cat}
 # The categorical predictor variable that we want
 categ1 <- target_by(cat_dataset, HighLWP)
 
@@ -234,7 +234,7 @@ cat_num <- relate(categ1, Group)
 summary(cat_num)
 ```
 
-```{r}
+```{r plot-cat-cat}
 plot(cat_num)
 ```
 

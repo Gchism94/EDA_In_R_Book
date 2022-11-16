@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "Data 7 Exploratory Data Analysis In R Workshops Companion Book"
+  title: "Data 7 Exploratory Data Analysis In R Book"
   author: "Greg Chism"
   cover-image: cover.png
   chapters:

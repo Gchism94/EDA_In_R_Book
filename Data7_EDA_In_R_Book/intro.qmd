@@ -10,11 +10,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data [outliers](https://en.wikipedia.org/wiki/Outlier), [missing data](https://en.wikipedia.org/wiki/Missing_data), as well as summary statistical reports.
 
-### What is Exploratory Data Analysis?
+## What is Exploratory Data Analysis?
 
 Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
 
-```{r}
+```{r EDA-Title-Plot}
 pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, remotes, tidyverse, plotly) 
 
 remotes::install_github("r-link/corrmorant")
@@ -46,7 +46,7 @@ dataset |>
 
 ------------------------------------------------------------------------
 
-## **What are Some Important Data Set Characteristics?**
+## What are Some Important Data Set Characteristics?
 
 There are several characteristics that are arguably important, but we will only consider those covered in this workshop series. Let's start with the fundamentals that will help guide us.
 
@@ -60,7 +60,7 @@ When importing data sets, it is important to consider characteristics about the 
 
 Name of each variable
 
-```{r}
+```{r data-head}
 head(dataset) |>
   formattable::formattable()
 ```
@@ -69,7 +69,7 @@ head(dataset) |>
 
 Data type of each variable
 
-```{r}
+```{r data-variables-types}
 dlookr::diagnose(dataset) |>
   select(variables, types) |>
   formattable::formattable()
@@ -79,7 +79,7 @@ dlookr::diagnose(dataset) |>
 
 Measurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)
 
-```{r}
+```{r num-plot-continuous}
 dataset |> 
   ggplot(aes(x = BMI)) +
   geom_line(stat = "bin", binwidth = 5, color = "#4E84C4", size = 2) +
@@ -90,7 +90,7 @@ dataset |>
 
 Countable whole numbers or integers (e.g., number of successes or failures)
 
-```{r}
+```{r num-plot-discrete}
 dataset |> 
   ggplot(aes(x = Outcome, group = Age_group, fill = Age_group)) +
   geom_histogram(position = position_dodge2(), binwidth = 1) +
@@ -107,7 +107,7 @@ dataset |>
 
 Labeling variables without any order or quantitative value (e.g., hair color, nationality)
 
-```{r}
+```{r cat-plot-nominal}
 dataset |> 
   mutate(Outcome = ifelse(Outcome == "0", "No", "Yes")) |>
   ggplot(aes(x = Outcome, y = BMI, color = Outcome)) +
@@ -120,7 +120,7 @@ dataset |>
 
 Where there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)
 
-```{r}
+```{r cat-plot-ordinal}
 dataset |> 
   ggplot(aes(x = Age_group, y = BMI, color = Age_group)) +
   geom_jitter(size = 2, alpha = 0.75, width = 0.1) +
@@ -137,7 +137,7 @@ Cells, rows, or columns without data
 
 -   Unique rate: rate of unique value - unique count / total number of observations.
 
-```{r}
+```{r NAs-head}
 dataset |>
   dplyr::mutate_all(~ifelse(sample(c(TRUE, FALSE), size = length(.), replace =
                                      TRUE, prob = c(0.8, 0.2)),
@@ -164,8 +164,7 @@ Measuring a central property of your data. Some examples you've probably heard o
 
 -   Mode: Most common value
 
-```{r}
-
+```{r cent-tendency-plots}
 p_BMI <- dataset |>
   ggplot(aes(x = BMI)) +
   geom_density(size = 2) +
@@ -209,7 +208,7 @@ Measure of data variability, scatter, or spread. Some examples you may have hear
 
 -   Outliers: A value outside of $1.5 * IQR$
 
-```{r}
+```{r stat-dispersion-plot}
 dataset |> 
   ggplot(aes(x = BMI)) +
   geom_histogram(fill = "#4E84C4", size = 2, bins = 40) +
@@ -238,7 +237,7 @@ Measures of describing the shape of a distribution, usually compared to a normal
 
 -   Kurtosis: The tailedness of the distribution
 
-```{r}
+```{r dist-shape-plot}
 dataset |>
   ggplot(aes(x = dlookr::transform(Insulin, "minmax"))) +
   geom_density(size = 2) +
@@ -257,7 +256,7 @@ Measure of causality between two random variables (statistically). Notably, we a
 
 -   Numerical values, but you can compare numericals across categories (see the first plot above).
 
-```{r}
+```{r corr-matrix}
 dataset |>
   select(-c(Age_group, DiabetesPedigreeFunction, Pregnancies)) |>
   cor() |>

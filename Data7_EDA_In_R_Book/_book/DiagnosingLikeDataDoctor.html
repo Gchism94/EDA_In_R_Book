@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data 7 Exploratory Data Analysis In R Workshops Companion Book - Exploratory Data Analysis in R - Diagnosing like a Data Doctor</title>
+<title>Data 7 Exploratory Data Analysis In R Book - Diagnosing like a Data Doctor</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</h1>
+      <h1 class="quarto-secondary-nav-title">Diagnosing like a Data Doctor</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -161,7 +161,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Data 7 Exploratory Data Analysis In R Workshops Companion Book</a> 
+      <a href="./">Data 7 Exploratory Data Analysis In R Book</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/Gchism94/Data7_EDA_In_R_Workshops" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
 </div>
@@ -176,7 +176,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">UArizona Data7 Exploratory Data Analysis In Python Book!</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">UArizona Data7 Exploratory Data Analysis In R Book!</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -186,27 +186,27 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link active">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</a>
+  <a href="./DiagnosingLikeDataDoctor.html" class="sidebar-item-text sidebar-link active">Diagnosing like a Data Doctor</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Exploring like a Data Adventurer</a>
+  <a href="./ExploringLikeDataAdventurer.html" class="sidebar-item-text sidebar-link">Exploring like a Data Adventurer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Transforming like a Data… Transformer</a>
+  <a href="./TransformingLikeDataTrans.html" class="sidebar-item-text sidebar-link">Transforming like a Data… Transformer</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Imputing like a Data Scientist</a>
+  <a href="./ImputingLikeDataScientist.html" class="sidebar-item-text sidebar-link">Imputing like a Data Scientist</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Exploratory Data Analysis in R - Correlate Like a Data Master</a>
+  <a href="./CorrelateLikeDataMaster.html" class="sidebar-item-text sidebar-link">Correlate Like a Data Master</a>
   </div>
 </li>
     </ul>
@@ -218,8 +218,8 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#purpose-of-workshop" id="toc-purpose-of-workshop" class="nav-link active" data-scroll-target="#purpose-of-workshop">Purpose of workshop</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#purpose-of-this-chapter" id="toc-purpose-of-this-chapter" class="nav-link active" data-scroll-target="#purpose-of-this-chapter">Purpose of this chapter</a></li>
+  <li><a href="#take-aways" id="toc-take-aways" class="nav-link" data-scroll-target="#take-aways">Take-aways</a></li>
   <li><a href="#required-setup" id="toc-required-setup" class="nav-link" data-scroll-target="#required-setup">Required Setup</a></li>
   <li><a href="#load-and-examine-a-data-set" id="toc-load-and-examine-a-data-set" class="nav-link" data-scroll-target="#load-and-examine-a-data-set">Load and Examine a Data Set</a></li>
   <li><a href="#diagnose-your-data" id="toc-diagnose-your-data" class="nav-link" data-scroll-target="#diagnose-your-data">Diagnose your Data</a></li>
@@ -239,7 +239,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Exploratory Data Analysis in R - Diagnosing like a Data Doctor</h1>
+<h1 class="title d-none d-lg-block">Diagnosing like a Data Doctor</h1>
 </div>
 
 
@@ -253,13 +253,13 @@ div.csl-indent {
 
 </header>
 
-<section id="purpose-of-workshop" class="level2">
-<h2 class="anchored" data-anchor-id="purpose-of-workshop">Purpose of workshop</h2>
+<section id="purpose-of-this-chapter" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-of-this-chapter">Purpose of this chapter</h2>
 <p><strong>Exploring a novel data set and produce publication quality tables and reports</strong></p>
 <hr>
 </section>
-<section id="objectives" class="level2">
-<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<section id="take-aways" class="level2">
+<h2 class="anchored" data-anchor-id="take-aways">Take-aways</h2>
 <ol type="1">
 <li>Load and explore a data set with publication quality tables</li>
 <li>Diagnose outliers and missing values in a data set</li>
@@ -809,7 +809,7 @@ test_count
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_outlier</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="DiagnosingLikeDataDoctor_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="DiagnosingLikeDataDoctor_files/figure-html/plot-outlier-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <hr>
@@ -964,7 +964,7 @@ Bad
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(test_type, test_result, test_count) <span class="sc">|&gt;</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_na_intersect</span>(<span class="at">only_na =</span> <span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="DiagnosingLikeDataDoctor_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="DiagnosingLikeDataDoctor_files/figure-html/NA-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <hr>
@@ -1461,8 +1461,7 @@ Campus Health
 <section id="produce-an-html-summary-of-a-data-set" class="level2">
 <h2 class="anchored" data-anchor-id="produce-an-html-summary-of-a-data-set">Produce an HTML Summary of a Data Set</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the '#' below to reproduce an HTML from an R script. </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#diagnose_web_report(dataset)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diagnose_web_report</span>(dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1579,7 +1578,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ExploringLikeDataAdventurer.html" class="pagination-link">
-        <span class="nav-page-text">Exploratory Data Analysis in R - Exploring like a Data Adventurer</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Exploring like a Data Adventurer</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

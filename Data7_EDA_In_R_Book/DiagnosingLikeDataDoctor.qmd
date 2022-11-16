@@ -2,19 +2,19 @@
 bibliography: references.bib
 ---
 
-# Exploratory Data Analysis in R - Diagnosing like a Data Doctor {.unnumbered}
+# Diagnosing like a Data Doctor {.unnumbered}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## Purpose of workshop
+## Purpose of this chapter
 
 **Exploring a novel data set and produce publication quality tables and reports**
 
 ------------------------------------------------------------------------
 
-## Objectives
+## Take-aways
 
 1.  Load and explore a data set with publication quality tables
 2.  Diagnose outliers and missing values in a data set
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 We first need to prepare our environment with the necessary packages
 
-```{r, results = 'hide', message = FALSE, warning = FALSE}
+```{r req-packages, results = 'hide', message = FALSE, warning = FALSE}
 # Sets the repository to download packages from
 options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
@@ -57,7 +57,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 
 We will be using open source data from UArizona researchers for Test, Trace, Treat (T3) efforts offers two clinical diagnostic tests (Antigen, RT-PCR) to determine whether an individual is currently infected with the COVID-19 virus. [@merchant2022]
 
-```{r}
+```{r load-data}
 # Let's load a data set from the COVID-19 daily testing data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "daily_summary.csv")) 
 
@@ -71,7 +71,7 @@ dataset |>
 
 ## Diagnose your Data
 
-```{r}
+```{r diagnose-data}
 # What are the properties of the data
 dataset |>
   diagnose() |>
@@ -91,7 +91,7 @@ dataset |>
 
 ### Numerical Variables
 
-```{r}
+```{r diagnose-num}
 # Summary statistics of our numerical columns
 dataset |>
   diagnose_numeric() |>
@@ -124,7 +124,7 @@ There are several numerical variables that have outliers above, let's see what t
 
 -   Plot outliers in a box plot and histogram
 
-```{r}
+```{r diag-outliers}
 # Table showing outliers
 diagnose_outlier(dataset) |>
   filter(outliers_ratio > 0) |>
@@ -137,7 +137,7 @@ diagnose_outlier(dataset) |>
 -   `with_mean`: arithmetic mean of all values **including** outliers
 -   `without_mean`: arithmetic mean of all values **excluding** outliers
 
-```{r}
+```{r plot-outlier}
 # Selecting desired columns 
 dataset |>
     plot_outlier()
@@ -150,7 +150,7 @@ dataset |>
 -   Table showing the extent of NAs in columns containing them
 -   Plot showing the frequency of missing values
 
-```{r, output.width = "100%"}
+```{r NA-table, output.width = "100%"}
 # Create the NA table
 dataset |>
   generateNA(p = 0.3) |>
@@ -158,7 +158,7 @@ dataset |>
   formattable() # Publishable table
 ```
 
-```{r}
+```{r NA-plot}
 # Plot the intersect of the columns with the most missing values
 # This means that some combinations of columns have missing values in the same row
 dataset |>
@@ -171,7 +171,7 @@ dataset |>
 
 ### Categorical Variables
 
-```{r}
+```{r diagnose-cat}
 # Diagnose our categorical columns
 dataset |>
   diagnose_category() |> 
@@ -189,7 +189,6 @@ dataset |>
 
 ## Produce an HTML Summary of a Data Set
 
-```{r}
-# Remove the '#' below to reproduce an HTML from an R script. 
-#diagnose_web_report(dataset)
+```{r HTML-summary, eval = FALSE}
+diagnose_web_report(dataset)
 ```
