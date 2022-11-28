@@ -31,9 +31,7 @@ options(repos = list(CRAN = "http://cran.rstudio.com/"))
 
 install.packages("pacman")
 
-library(pacman)
-
-p_load(colorblindr,
+pacman::p_load(colorblindr,
        dlookr,
        formattable,
        GGally,
@@ -121,8 +119,6 @@ dataset |>
 
 ## Describe and Visualize Relationships Based on Target Variables
 
-------------------------------------------------------------------------
-
 ### Target Variables
 
 `Target variables` are essentially numerical or categorical variables that you want to relate others to in a data frame. `dlookr` does this through the `target_by()` function, which is similar to `group_by()` in `dplyr`. The `relate()` function then briefly analyzes the relationship between the target variable and the variables of interest.
@@ -133,9 +129,12 @@ The relationships below will have the formula relationship `target ~ predictor`.
 
 ### Numerical Target Variables: Numerical Variable of Interest
 
-`Formula: pLWP (numerical)  ~ Sap_Flow (numerical)`
+`Formula: Sap_Flow (numerical response)  ~ pLWP (numerical predictor)`
 
 ```{r lm}
+pacman::p_load(sjPlot,
+       sjmisc,
+       sjlabelled)
 # The numerical predictor variable that we want
 num <- target_by(dataset, Sap_Flow)
 
@@ -155,9 +154,9 @@ plot(num_num)
 
 ### Numerical Target Variables: Categorical Variable of Interest
 
-Formula: `Group (categorical) ~ pLWP (numerical)`
+Formula: `pLWP (numerical response) ~ Group (categorical predictor)`
 
-```{r cat-num}
+```{r num-cat}
 # The categorical predictor variable that we want
 num <- target_by(dataset, pLWP) 
 
@@ -171,7 +170,7 @@ num_cat <- relate(num, Group)
 summary(num_cat)
 ```
 
-```{r plot-cat-num}
+```{r plot-num_cat}
 plot(num_cat) + 
   theme(axis.text.x = element_blank())
 ```
@@ -182,9 +181,9 @@ plot(num_cat) +
 
 Note that this produces descriptive statistics, unlike the other relationships we are looking at.
 
-Formula: `pLWP (numerical) ~ Group (categorical)`
+Formula: ` Group (categorical) ~ pLWP (numerical)`
 
-```{r num-cat}
+```{r cat-num}
 # The categorical predictor variable that we want
 categ <- target_by(dataset, Group)
 
@@ -195,7 +194,7 @@ cat_num <- relate(categ, pLWP)
 summary(cat_num)
 ```
 
-```{r plot-num-cat}
+```{r plot-cat_num}
 plot(cat_num) 
 ```
 
@@ -212,30 +211,34 @@ If $mLWP > mean(mLWP) + sd(mLWP)$ then "Yes", else "No".
 cat_dataset <- dataset |>
   select(pLWP, Group) |>
   drop_na() |>
-  mutate(HighLWP = ifelse(pLWP > (mean(pLWP + sd(pLWP))), "Yes", "No"))
+  mutate(HighLWP = ifelse(
+    pLWP > (mean(pLWP + sd(pLWP))), 
+                          "Yes", 
+                          "No"))
 
 # New dataset 
-head(cat_dataset) |>
-  head()
+cat_dataset |>
+  head() |>
+  formattable()
 ```
 
 Now we have two categories!
 
-Formula = `Group (categorical) ~ HighLWP (categorical)`
+Formula = `HighLWP (categorical) ~ Group (categorical response)`
 
 ```{r cat-cat}
 # The categorical predictor variable that we want
-categ1 <- target_by(cat_dataset, HighLWP)
+categ <- target_by(cat_dataset, HighLWP)
 
 # Relating the variable of interest to the categorical target variable
-cat_num <- relate(categ1, Group)
+cat_cat <- relate(categ, Group)
 
 # Summary of the Chi-square test for Independence
-summary(cat_num)
+summary(cat_cat)
 ```
 
 ```{r plot-cat-cat}
-plot(cat_num)
+plot(cat_cat)
 ```
 
 ------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -131,29 +136,29 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#uarizona-data7-exploratory-data-analysis-in-r-book" id="toc-uarizona-data7-exploratory-data-analysis-in-r-book" class="nav-link active" data-scroll-target="#uarizona-data7-exploratory-data-analysis-in-r-book">UArizona Data7 Exploratory Data Analysis In R Book!</a>
   <ul class="collapse">
-  <li><a href="#diagnosing-like-a-data-doctor" id="toc-diagnosing-like-a-data-doctor" class="nav-link" data-scroll-target="#diagnosing-like-a-data-doctor"><span>Diagnosing like a data doctor</span></a>
+  <li><a href="#diagnosing-like-a-data-doctor" id="toc-diagnosing-like-a-data-doctor" class="nav-link" data-scroll-target="#diagnosing-like-a-data-doctor">Diagnosing like a data doctor</a>
   <ul class="collapse">
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary">Chapter summary</a></li>
   </ul></li>
-  <li><a href="#exploring-like-a-data-adventurer" id="toc-exploring-like-a-data-adventurer" class="nav-link" data-scroll-target="#exploring-like-a-data-adventurer"><span>Exploring like a data adventurer</span></a>
+  <li><a href="#exploring-like-a-data-adventurer" id="toc-exploring-like-a-data-adventurer" class="nav-link" data-scroll-target="#exploring-like-a-data-adventurer">Exploring like a data adventurer</a>
   <ul class="collapse">
   <li><a href="#chapter-summary-1" id="toc-chapter-summary-1" class="nav-link" data-scroll-target="#chapter-summary-1">Chapter summary</a></li>
   </ul></li>
-  <li><a href="#transforming-like-a-data-transformer" id="toc-transforming-like-a-data-transformer" class="nav-link" data-scroll-target="#transforming-like-a-data-transformer"><span>Transforming like a Data… Transformer</span></a>
+  <li><a href="#transforming-like-a-data-transformer" id="toc-transforming-like-a-data-transformer" class="nav-link" data-scroll-target="#transforming-like-a-data-transformer">Transforming like a Data… Transformer</a>
   <ul class="collapse">
   <li><a href="#chapter-summary-2" id="toc-chapter-summary-2" class="nav-link" data-scroll-target="#chapter-summary-2">Chapter summary</a></li>
   </ul></li>
-  <li><a href="#imputing-like-a-data-scientist" id="toc-imputing-like-a-data-scientist" class="nav-link" data-scroll-target="#imputing-like-a-data-scientist"><span>Imputing like a Data Scientist</span></a>
+  <li><a href="#imputing-like-a-data-scientist" id="toc-imputing-like-a-data-scientist" class="nav-link" data-scroll-target="#imputing-like-a-data-scientist">Imputing like a Data Scientist</a>
   <ul class="collapse">
   <li><a href="#chapter-summary-3" id="toc-chapter-summary-3" class="nav-link" data-scroll-target="#chapter-summary-3">Chapter summary</a></li>
   </ul></li>
-  <li><a href="#correlating-like-a-data-master" id="toc-correlating-like-a-data-master" class="nav-link" data-scroll-target="#correlating-like-a-data-master"><span>Correlating Like a Data Master</span></a>
+  <li><a href="#correlating-like-a-data-master" id="toc-correlating-like-a-data-master" class="nav-link" data-scroll-target="#correlating-like-a-data-master">Correlating Like a Data Master</a>
   <ul class="collapse">
   <li><a href="#chapter-summary-4" id="toc-chapter-summary-4" class="nav-link" data-scroll-target="#chapter-summary-4">Chapter summary</a></li>
   </ul></li>
@@ -310,7 +315,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -132,7 +137,7 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -634,7 +639,7 @@ Age_group
 148
 </td>
 <td style="text-align:right;">
-72
+NA
 </td>
 <td style="text-align:right;">
 35
@@ -663,28 +668,28 @@ Middle
 1
 </td>
 <td style="text-align:right;">
-NA
+85
 </td>
 <td style="text-align:right;">
 66
 </td>
 <td style="text-align:right;">
-NA
+29
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
 26.6
 </td>
 <td style="text-align:right;">
-NA
+0.351
 </td>
 <td style="text-align:right;">
 31
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
 Middle
@@ -695,7 +700,7 @@ Middle
 8
 </td>
 <td style="text-align:right;">
-183
+NA
 </td>
 <td style="text-align:right;">
 64
@@ -707,13 +712,13 @@ Middle
 0
 </td>
 <td style="text-align:right;">
-23.3
+NA
 </td>
 <td style="text-align:right;">
 0.672
 </td>
 <td style="text-align:right;">
-32
+NA
 </td>
 <td style="text-align:right;">
 1
@@ -730,10 +735,10 @@ Middle
 89
 </td>
 <td style="text-align:right;">
-66
+NA
 </td>
 <td style="text-align:right;">
-NA
+23
 </td>
 <td style="text-align:right;">
 NA
@@ -742,7 +747,7 @@ NA
 28.1
 </td>
 <td style="text-align:right;">
-0.167
+NA
 </td>
 <td style="text-align:right;">
 21
@@ -751,7 +756,7 @@ NA
 0
 </td>
 <td style="text-align:right;">
-Young
+NA
 </td>
 </tr>
 <tr>
@@ -765,7 +770,7 @@ Young
 40
 </td>
 <td style="text-align:right;">
-35
+NA
 </td>
 <td style="text-align:right;">
 168
@@ -774,13 +779,13 @@ Young
 43.1
 </td>
 <td style="text-align:right;">
-2.288
+NA
 </td>
 <td style="text-align:right;">
 33
 </td>
 <td style="text-align:right;">
-NA
+1
 </td>
 <td style="text-align:right;">
 Middle
@@ -797,7 +802,7 @@ Middle
 74
 </td>
 <td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
 0
@@ -812,7 +817,7 @@ Middle
 30
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
 Young
@@ -958,7 +963,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
