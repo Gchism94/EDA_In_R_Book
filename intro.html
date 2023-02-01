@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -172,6 +172,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -633,13 +634,13 @@ Age_group
 <tbody>
 <tr>
 <td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-148
+NA
 </td>
 <td style="text-align:right;">
 NA
+</td>
+<td style="text-align:right;">
+72
 </td>
 <td style="text-align:right;">
 35
@@ -680,7 +681,7 @@ Middle
 0
 </td>
 <td style="text-align:right;">
-26.6
+NA
 </td>
 <td style="text-align:right;">
 0.351
@@ -700,7 +701,7 @@ Middle
 8
 </td>
 <td style="text-align:right;">
-NA
+183
 </td>
 <td style="text-align:right;">
 64
@@ -712,19 +713,19 @@ NA
 0
 </td>
 <td style="text-align:right;">
-NA
+23.3
 </td>
 <td style="text-align:right;">
 0.672
 </td>
 <td style="text-align:right;">
-NA
+32
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-Middle
+NA
 </td>
 </tr>
 <tr>
@@ -735,19 +736,19 @@ Middle
 89
 </td>
 <td style="text-align:right;">
-NA
+66
 </td>
 <td style="text-align:right;">
 23
 </td>
 <td style="text-align:right;">
-NA
+94
 </td>
 <td style="text-align:right;">
 28.1
 </td>
 <td style="text-align:right;">
-NA
+0.167
 </td>
 <td style="text-align:right;">
 21
@@ -756,7 +757,7 @@ NA
 0
 </td>
 <td style="text-align:right;">
-NA
+Young
 </td>
 </tr>
 <tr>
@@ -770,7 +771,7 @@ NA
 40
 </td>
 <td style="text-align:right;">
-NA
+35
 </td>
 <td style="text-align:right;">
 168
@@ -779,7 +780,7 @@ NA
 43.1
 </td>
 <td style="text-align:right;">
-NA
+2.288
 </td>
 <td style="text-align:right;">
 33
@@ -802,7 +803,7 @@ Middle
 74
 </td>
 <td style="text-align:right;">
-NA
+0
 </td>
 <td style="text-align:right;">
 0
@@ -814,10 +815,10 @@ NA
 0.201
 </td>
 <td style="text-align:right;">
-30
+NA
 </td>
 <td style="text-align:right;">
-0
+NA
 </td>
 <td style="text-align:right;">
 Young
@@ -935,7 +936,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -971,24 +989,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

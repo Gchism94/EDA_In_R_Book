@@ -4,14 +4,42 @@
     "href": "index.html",
     "title": "Data 7 Exploratory Data Analysis In R Book",
     "section": "",
-    "text": "Here you will find a companion book for Exploratory Data Analysis in R Workshops prepared by the staff of the Data Science Institute\nThe links below take you to the GitHub repository for the associated workshop.\n\n\n\n\n\nExploring a novel data set and produce publication quality tables and reports\n\n\n\n\n\n\n\nExploring the normality of numerical columns in a novel data set and producing publication quality tables and reports\n\n\n\n\n\n\n\nUsing data transformation to correct non-normality in numerical data\n\n\n\n\n\n\n\nExploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables\n\n\n\n\n\n\n\nAssess relationships within a novel data set using publication quality tables and plots\n\nVisit our available Digital Learning Resources Library!\n\nCreated: 07/22/2022 (G. Chism); Last update: 11/16/2022\n CC BY-NC-SA"
+    "text": "Here you will find a companion book for Exploratory Data Analysis in R Workshops prepared by the staff of the Data Science Institute\nThe links below take you to the GitHub repository for the associated workshop."
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "Introduction",
-    "section": "",
-    "text": "Image Credit: Choonghyun Ryu\nExploratory data analysis is an essential first step towards determining the validity of your data and should be performed throughout the data pipeline. However, EDA is often performed too late or not at all. The R programming language, specifically through the RStudio IDE, is a widely used open source platform for data analysis and data visualization. This is because of the extensive variety of packages available and attentive community devoted to data analysis. Consequently, there are several exploratory data analysis packages, each of which have their own pros and cons.\nHere, we utilize the dlookr package to conduct preliminary exploratory data analysis aimed at diagnosing any major issues with an imported data set. dlookr offers a clean and straightforward methodology to uncover issues such as data outliers, missing data, as well as summary statistical reports."
+    "objectID": "index.html#diagnosing-like-a-data-doctor",
+    "href": "index.html#diagnosing-like-a-data-doctor",
+    "title": "Data 7 Exploratory Data Analysis In R Book",
+    "section": "Diagnosing like a data doctor",
+    "text": "Diagnosing like a data doctor\n\nChapter summary\nExploring a novel data set and produce publication quality tables and reports"
+  },
+  {
+    "objectID": "index.html#exploring-like-a-data-adventurer",
+    "href": "index.html#exploring-like-a-data-adventurer",
+    "title": "Data 7 Exploratory Data Analysis In R Book",
+    "section": "Exploring like a data adventurer",
+    "text": "Exploring like a data adventurer\n\nChapter summary\nExploring the normality of numerical columns in a novel data set and producing publication quality tables and reports"
+  },
+  {
+    "objectID": "index.html#transforming-like-a-data-transformer",
+    "href": "index.html#transforming-like-a-data-transformer",
+    "title": "Data 7 Exploratory Data Analysis In R Book",
+    "section": "Transforming like a Data… Transformer",
+    "text": "Transforming like a Data… Transformer\n\nChapter summary\nUsing data transformation to correct non-normality in numerical data"
+  },
+  {
+    "objectID": "index.html#imputing-like-a-data-scientist",
+    "href": "index.html#imputing-like-a-data-scientist",
+    "title": "Data 7 Exploratory Data Analysis In R Book",
+    "section": "Imputing like a Data Scientist",
+    "text": "Imputing like a Data Scientist\n\nChapter summary\nExploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables"
+  },
+  {
+    "objectID": "index.html#correlating-like-a-data-master",
+    "href": "index.html#correlating-like-a-data-master",
+    "title": "Data 7 Exploratory Data Analysis In R Book",
+    "section": "Correlating Like a Data Master",
+    "text": "Correlating Like a Data Master\n\nChapter summary\nAssess relationships within a novel data set using publication quality tables and plots\n\nVisit our available Digital Learning Resources Library!\n\nCreated: 07/22/2022 (G. Chism); Last update: 11/16/2022\n CC BY-NC-SA"
   },
   {
     "objectID": "intro.html#what-is-exploratory-data-analysis",
@@ -32,7 +60,7 @@
     "href": "intro.html#diagnostics",
     "title": "Introduction",
     "section": "Diagnostics",
-    "text": "Diagnostics\nWhen importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.\n\n\nVariables\nName of each variable\n\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\n6\n\n\n148\n\n\n72\n\n\n35\n\n\n0\n\n\n33.6\n\n\n0.627\n\n\n50\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n85\n\n\n66\n\n\n29\n\n\n0\n\n\n26.6\n\n\n0.351\n\n\n31\n\n\n0\n\n\nMiddle\n\n\n\n\n8\n\n\n183\n\n\n64\n\n\n0\n\n\n0\n\n\n23.3\n\n\n0.672\n\n\n32\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n89\n\n\n66\n\n\n23\n\n\n94\n\n\n28.1\n\n\n0.167\n\n\n21\n\n\n0\n\n\nYoung\n\n\n\n\n0\n\n\n137\n\n\n40\n\n\n35\n\n\n168\n\n\n43.1\n\n\n2.288\n\n\n33\n\n\n1\n\n\nMiddle\n\n\n\n\n5\n\n\n116\n\n\n74\n\n\n0\n\n\n0\n\n\n25.6\n\n\n0.201\n\n\n30\n\n\n0\n\n\nYoung\n\n\n\n\n\n\n\n\n\nTypes\nData type of each variable\n\n\n\n\n\n\n\nvariables\n\n\ntypes\n\n\n\n\n\n\nPregnancies\n\n\ninteger\n\n\n\n\nGlucose\n\n\ninteger\n\n\n\n\nBloodPressure\n\n\ninteger\n\n\n\n\nSkinThickness\n\n\ninteger\n\n\n\n\nInsulin\n\n\ninteger\n\n\n\n\nBMI\n\n\nnumeric\n\n\n\n\nDiabetesPedigreeFunction\n\n\nnumeric\n\n\n\n\nAge\n\n\ninteger\n\n\n\n\nOutcome\n\n\ninteger\n\n\n\n\nAge_group\n\n\nfactor\n\n\n\n\n\n\n\n\nNumerical: Continuous\nMeasurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)\n\n\n\n\n\n\n\nNumerical: Discrete\nCountable whole numbers or integers (e.g., number of successes or failures)\n\n\n\n\n\n\n\n\nCategorical: Nominal\nLabeling variables without any order or quantitative value (e.g., hair color, nationality)\n\n\n\n\n\n\n\nCategorical: Ordinal\nWhere there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)\n\n\n\n\n\n\n\n\nMissing Values (NAs)\nCells, rows, or columns without data\n\nMissing percent: percentage of missing values * Unique count: number of unique values.\nUnique rate: rate of unique value - unique count / total number of observations.\n\n\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\n6\n\n\n148\n\n\nNA\n\n\n35\n\n\n0\n\n\n33.6\n\n\n0.627\n\n\n50\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n85\n\n\n66\n\n\n29\n\n\n0\n\n\n26.6\n\n\n0.351\n\n\n31\n\n\n0\n\n\nMiddle\n\n\n\n\n8\n\n\nNA\n\n\n64\n\n\n0\n\n\n0\n\n\nNA\n\n\n0.672\n\n\nNA\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n89\n\n\nNA\n\n\n23\n\n\nNA\n\n\n28.1\n\n\nNA\n\n\n21\n\n\n0\n\n\nNA\n\n\n\n\n0\n\n\n137\n\n\n40\n\n\nNA\n\n\n168\n\n\n43.1\n\n\nNA\n\n\n33\n\n\n1\n\n\nMiddle\n\n\n\n\n5\n\n\n116\n\n\n74\n\n\nNA\n\n\n0\n\n\n25.6\n\n\n0.201\n\n\n30\n\n\n0\n\n\nYoung"
+    "text": "Diagnostics\nWhen importing data sets, it is important to consider characteristics about the data columns, rows, and individual cells.\n\n\nVariables\nName of each variable\n\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\n6\n\n\n148\n\n\n72\n\n\n35\n\n\n0\n\n\n33.6\n\n\n0.627\n\n\n50\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n85\n\n\n66\n\n\n29\n\n\n0\n\n\n26.6\n\n\n0.351\n\n\n31\n\n\n0\n\n\nMiddle\n\n\n\n\n8\n\n\n183\n\n\n64\n\n\n0\n\n\n0\n\n\n23.3\n\n\n0.672\n\n\n32\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n89\n\n\n66\n\n\n23\n\n\n94\n\n\n28.1\n\n\n0.167\n\n\n21\n\n\n0\n\n\nYoung\n\n\n\n\n0\n\n\n137\n\n\n40\n\n\n35\n\n\n168\n\n\n43.1\n\n\n2.288\n\n\n33\n\n\n1\n\n\nMiddle\n\n\n\n\n5\n\n\n116\n\n\n74\n\n\n0\n\n\n0\n\n\n25.6\n\n\n0.201\n\n\n30\n\n\n0\n\n\nYoung\n\n\n\n\n\n\n\n\n\nTypes\nData type of each variable\n\n\n\n\n\n\n\nvariables\n\n\ntypes\n\n\n\n\n\n\nPregnancies\n\n\ninteger\n\n\n\n\nGlucose\n\n\ninteger\n\n\n\n\nBloodPressure\n\n\ninteger\n\n\n\n\nSkinThickness\n\n\ninteger\n\n\n\n\nInsulin\n\n\ninteger\n\n\n\n\nBMI\n\n\nnumeric\n\n\n\n\nDiabetesPedigreeFunction\n\n\nnumeric\n\n\n\n\nAge\n\n\ninteger\n\n\n\n\nOutcome\n\n\ninteger\n\n\n\n\nAge_group\n\n\nfactor\n\n\n\n\n\n\n\n\nNumerical: Continuous\nMeasurable numbers that are fractional or decimal and cannot be counted (e.g., time, height, weight)\n\n\n\n\n\n\n\nNumerical: Discrete\nCountable whole numbers or integers (e.g., number of successes or failures)\n\n\n\n\n\n\n\n\nCategorical: Nominal\nLabeling variables without any order or quantitative value (e.g., hair color, nationality)\n\n\n\n\n\n\n\nCategorical: Ordinal\nWhere there is a hierarchical order along a scale (e.g., ranks, letter grades, age groups)\n\n\n\n\n\n\n\n\nMissing Values (NAs)\nCells, rows, or columns without data\n\nMissing percent: percentage of missing values * Unique count: number of unique values.\nUnique rate: rate of unique value - unique count / total number of observations.\n\n\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\nNA\n\n\nNA\n\n\n72\n\n\n35\n\n\n0\n\n\n33.6\n\n\n0.627\n\n\n50\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n85\n\n\n66\n\n\n29\n\n\n0\n\n\nNA\n\n\n0.351\n\n\n31\n\n\n0\n\n\nMiddle\n\n\n\n\n8\n\n\n183\n\n\n64\n\n\n0\n\n\n0\n\n\n23.3\n\n\n0.672\n\n\n32\n\n\n1\n\n\nNA\n\n\n\n\n1\n\n\n89\n\n\n66\n\n\n23\n\n\n94\n\n\n28.1\n\n\n0.167\n\n\n21\n\n\n0\n\n\nYoung\n\n\n\n\n0\n\n\n137\n\n\n40\n\n\n35\n\n\n168\n\n\n43.1\n\n\n2.288\n\n\n33\n\n\n1\n\n\nMiddle\n\n\n\n\n5\n\n\n116\n\n\n74\n\n\n0\n\n\n0\n\n\n25.6\n\n\n0.201\n\n\nNA\n\n\nNA\n\n\nYoung"
   },
   {
     "objectID": "intro.html#summary-statistics",
@@ -42,11 +70,11 @@
     "text": "Summary Statistics\nAbove we described some properties of data. However, you will need to know some descriptive characteristics of your data before you can move forward. Enter, summary statistics.\nSummary statistics allow you to summarize large amounts of information about your data as quickly as possible.\n\nCentral Tendency\nMeasuring a central property of your data. Some examples you’ve probably heard of are:\n\nMean: Average value\nMedian: Middle value\nMode: Most common value\n\n\n\n\n\n\nNotice however, that all values of central tendency can be pretty similar, such as in the top panel. This will become important when we discuss data transformations in Chapter 3.\n\n\nStatistical Dispersion\nMeasure of data variability, scatter, or spread. Some examples you may have heard of:\n\nStandard deviation (SD): The amount of variation that occurs in a set of values.\nInterquartile range (IQR): The difference between the 75th and 25th percentiles\nOutliers: A value outside of \\(1.5 * IQR\\)\n\n\n\n\n\n\n\n\nDistribution Shape\nMeasures of describing the shape of a distribution, usually compared to a normal distribution (bell-curve)\n\nSkewness: The symmetry of the distribution\nKurtosis: The tailedness of the distribution\n\n\n\n\n\n\n\n\nStatistical Dependence (Correlation)\nMeasure of causality between two random variables (statistically). Notably, we approximate causality with correlations (see correlation \\(\\neq\\) causation)\n\nNumerical values, but you can compare numericals across categories (see the first plot above)."
   },
   {
-    "objectID": "DiagnosingLikeDataDoctor.html",
-    "href": "DiagnosingLikeDataDoctor.html",
+    "objectID": "DiagnosingLikeDataDoctor.html#purpose-of-this-chapter",
+    "href": "DiagnosingLikeDataDoctor.html#purpose-of-this-chapter",
     "title": "Diagnosing like a Data Doctor",
-    "section": "",
-    "text": "Exploring a novel data set and produce publication quality tables and reports"
+    "section": "Purpose of this chapter",
+    "text": "Purpose of this chapter\nExploring a novel data set and produce publication quality tables and reports"
   },
   {
     "objectID": "DiagnosingLikeDataDoctor.html#take-aways",
@@ -91,11 +119,11 @@
     "text": "Produce an HTML Summary of a Data Set\n\ndiagnose_web_report(dataset)\n\n\n\n\n\nMerchant, Nirav C, Jim Davis, George H Franks, Chun Ly, Fernando Rios, Todd Wickizer, Gary D Windham, and Michelle Yung. 2022. “University of Arizona Test-Trace-Treat COVID-19 Testing Results.” University of Arizona Research Data Repository. https://doi.org/10.25422/AZU.DATA.14869740.V3."
   },
   {
-    "objectID": "ExploringLikeDataAdventurer.html",
-    "href": "ExploringLikeDataAdventurer.html",
+    "objectID": "ExploringLikeDataAdventurer.html#purpose-of-this-chapter",
+    "href": "ExploringLikeDataAdventurer.html#purpose-of-this-chapter",
     "title": "Exploring like a Data Adventurer",
-    "section": "",
-    "text": "Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports"
+    "section": "Purpose of this chapter",
+    "text": "Purpose of this chapter\nExploring the normality of numerical columns in a novel data set and producing publication quality tables and reports"
   },
   {
     "objectID": "ExploringLikeDataAdventurer.html#take-aways",
@@ -154,11 +182,11 @@
     "text": "Produce an HTML Normality Summary\n\neda_web_report(dataset)\n\n\n\n\n\nMeredith, Laura, S. Nemiah Ladd, and Christiane Werner. 2021. “Data for \"Ecosystem Fluxes During Drought and Recovery in an Experimental Forest\".” University of Arizona Research Data Repository. https://doi.org/10.25422/AZU.DATA.14632593.V1."
   },
   {
-    "objectID": "TransformingLikeDataTrans.html",
-    "href": "TransformingLikeDataTrans.html",
+    "objectID": "TransformingLikeDataTrans.html#purpose-of-this-chapter",
+    "href": "TransformingLikeDataTrans.html#purpose-of-this-chapter",
     "title": "Transforming like a Data… Transformer",
-    "section": "",
-    "text": "Using data transformation to correct non-normality in numerical data"
+    "section": "Purpose of this chapter",
+    "text": "Purpose of this chapter\nUsing data transformation to correct non-normality in numerical data"
   },
   {
     "objectID": "TransformingLikeDataTrans.html#take-aways",
@@ -210,11 +238,11 @@
     "text": "Produce an HTML Transformation Summary\n\ntransformation_web_report(dataset)"
   },
   {
-    "objectID": "ImputingLikeDataScientist.html",
-    "href": "ImputingLikeDataScientist.html",
+    "objectID": "ImputingLikeDataScientist.html#purpose-of-this-chapter",
+    "href": "ImputingLikeDataScientist.html#purpose-of-this-chapter",
     "title": "Imputing like a Data Scientist",
-    "section": "",
-    "text": "Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables\nIMPORTANT NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data."
+    "section": "Purpose of this chapter",
+    "text": "Purpose of this chapter\nExploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables\nIMPORTANT NOTE: imputation should only be used when missing data is unavoidable and probably limited to 10% of your data being outliers / missing data (though some argue imputation is necessary between 30-60%). Ask what the cause is for the outlier and missing data."
   },
   {
     "objectID": "ImputingLikeDataScientist.html#take-aways",
@@ -256,7 +284,7 @@
     "href": "ImputingLikeDataScientist.html#basic-exploration-of-missing-values-nas",
     "title": "Imputing like a Data Scientist",
     "section": "Basic Exploration of Missing Values (NAs)",
-    "text": "Basic Exploration of Missing Values (NAs)\n\nTable showing the extent of NAs in columns containing them\n\n\n# Randomly generate NAs for 30\nna.dataset <- dataset |>\n  generateNA(p = 0.3)\n\n# First six rows\nna.dataset |>\nhead() |>\n  formattable()\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\n6\n\n\nNA\n\n\nNA\n\n\nNA\n\n\n0\n\n\n34\n\n\n0.63\n\n\n50\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\n85\n\n\nNA\n\n\n29\n\n\n0\n\n\nNA\n\n\n0.35\n\n\n31\n\n\n0\n\n\nNA\n\n\n\n\n8\n\n\n183\n\n\nNA\n\n\n0\n\n\nNA\n\n\nNA\n\n\n0.67\n\n\n32\n\n\n1\n\n\nMiddle\n\n\n\n\n1\n\n\nNA\n\n\n66\n\n\n23\n\n\nNA\n\n\nNA\n\n\nNA\n\n\n21\n\n\n0\n\n\nNA\n\n\n\n\n0\n\n\n137\n\n\nNA\n\n\n35\n\n\n168\n\n\n43\n\n\n2.29\n\n\n33\n\n\n1\n\n\nMiddle\n\n\n\n\nNA\n\n\n116\n\n\n74\n\n\n0\n\n\nNA\n\n\n26\n\n\nNA\n\n\n30\n\n\n0\n\n\nYoung\n\n\n\n\n\n\n# Create the NA table\nna.dataset |>\n  plot_na_pareto(only_na = TRUE, plot = FALSE) |>\n  formattable() # Publishable table\n\n\n\n\n\n\nvariable\n\n\nfrequencies\n\n\nratio\n\n\ngrade\n\n\ncumulative\n\n\n\n\n\n\nAge\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n10\n\n\n\n\nAge_group\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n20\n\n\n\n\nBloodPressure\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n30\n\n\n\n\nBMI\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n40\n\n\n\n\nDiabetesPedigreeFunction\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n50\n\n\n\n\nGlucose\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n60\n\n\n\n\nInsulin\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n70\n\n\n\n\nOutcome\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n80\n\n\n\n\nPregnancies\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n90\n\n\n\n\nSkinThickness\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n100\n\n\n\n\n\n\n\n\nPlots showing the frequency of missing values\n\n\n# Plot the insersect of the columns with missing values\n# This plot visualizes the table above\nna.dataset |>\n  plot_na_pareto(only_na = TRUE)"
+    "text": "Basic Exploration of Missing Values (NAs)\n\nTable showing the extent of NAs in columns containing them\n\n\n# Randomly generate NAs for 30\nna.dataset <- dataset |>\n  generateNA(p = 0.3)\n\n# First six rows\nna.dataset |>\nhead() |>\n  formattable()\n\n\n\n\n\n\nPregnancies\n\n\nGlucose\n\n\nBloodPressure\n\n\nSkinThickness\n\n\nInsulin\n\n\nBMI\n\n\nDiabetesPedigreeFunction\n\n\nAge\n\n\nOutcome\n\n\nAge_group\n\n\n\n\n\n\n6\n\n\n148\n\n\n72\n\n\n35\n\n\n0\n\n\n34\n\n\nNA\n\n\n50\n\n\nNA\n\n\nMiddle\n\n\n\n\nNA\n\n\n85\n\n\n66\n\n\n29\n\n\n0\n\n\nNA\n\n\nNA\n\n\n31\n\n\n0\n\n\nNA\n\n\n\n\n8\n\n\nNA\n\n\n64\n\n\n0\n\n\n0\n\n\n23\n\n\n0.67\n\n\nNA\n\n\n1\n\n\nMiddle\n\n\n\n\nNA\n\n\nNA\n\n\n66\n\n\nNA\n\n\n94\n\n\nNA\n\n\n0.17\n\n\nNA\n\n\n0\n\n\nYoung\n\n\n\n\n0\n\n\n137\n\n\n40\n\n\nNA\n\n\nNA\n\n\n43\n\n\nNA\n\n\nNA\n\n\nNA\n\n\nMiddle\n\n\n\n\nNA\n\n\n116\n\n\n74\n\n\nNA\n\n\n0\n\n\n26\n\n\nNA\n\n\nNA\n\n\n0\n\n\nYoung\n\n\n\n\n\n\n# Create the NA table\nna.dataset |>\n  plot_na_pareto(only_na = TRUE, plot = FALSE) |>\n  formattable() # Publishable table\n\n\n\n\n\n\nvariable\n\n\nfrequencies\n\n\nratio\n\n\ngrade\n\n\ncumulative\n\n\n\n\n\n\nAge\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n10\n\n\n\n\nAge_group\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n20\n\n\n\n\nBloodPressure\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n30\n\n\n\n\nBMI\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n40\n\n\n\n\nDiabetesPedigreeFunction\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n50\n\n\n\n\nGlucose\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n60\n\n\n\n\nInsulin\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n70\n\n\n\n\nOutcome\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n80\n\n\n\n\nPregnancies\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n90\n\n\n\n\nSkinThickness\n\n\n230\n\n\n0.3\n\n\nBad\n\n\n100\n\n\n\n\n\n\n\n\nPlots showing the frequency of missing values\n\n\n# Plot the insersect of the columns with missing values\n# This plot visualizes the table above\nna.dataset |>\n  plot_na_pareto(only_na = TRUE)"
   },
   {
     "objectID": "ImputingLikeDataScientist.html#advanced-exploration-of-missing-values-nas",
@@ -287,18 +315,18 @@
     "text": "Produce an HTML Transformation Summary\n\ntransformation_web_report(dataset)"
   },
   {
-    "objectID": "CorrelateLikeDataMaster.html",
-    "href": "CorrelateLikeDataMaster.html",
+    "objectID": "CorrelateLikeDataMaster.html#purpose-of-this-chapter",
+    "href": "CorrelateLikeDataMaster.html#purpose-of-this-chapter",
     "title": "Correlating Like a Data Master",
-    "section": "",
-    "text": "Assess relationships within a novel data set using publication quality tables and plots"
+    "section": "Purpose of this chapter",
+    "text": "Purpose of this chapter\nAssess relationships within a novel data set using publication quality tables and plots"
   },
   {
     "objectID": "CorrelateLikeDataMaster.html#take-aways",
     "href": "CorrelateLikeDataMaster.html#take-aways",
     "title": "Correlating Like a Data Master",
     "section": "Take-aways",
-    "text": "Take-aways\n\nDescribe and visualize correlations between numerical variables\nVisualize correlations of all numerical variables within groups\nDescribe and visualize relationships based on target variables\n\n\n\nRequired setup\nWe first need to prepare our environment with the necessary packages.\n\noptions(repos = list(CRAN = \"http://cran.rstudio.com/\"))\n\ninstall.packages(\"pacman\")\n\n\nThe downloaded binary packages are in\n    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//Rtmp38BqKH/downloaded_packages\n\npacman::p_load(colorblindr,\n       dlookr,\n       formattable,\n       GGally,\n       ggdist,\n       ggpubr,\n       ggridges,\n       here,\n       tidyverse)\n\n# Set global ggplot() theme\n# Theme pub_clean() from the ggpubr package with base text size = 16\ntheme_set(theme_pubclean(base_size = 12)) \n# All axes titles to their respective far right sides\ntheme_update(axis.title = element_text(hjust = 1))\n# Remove axes ticks\ntheme_update(axis.ticks = element_blank()) \n# Remove legend key\ntheme_update(legend.key = element_blank())"
+    "text": "Take-aways\n\nDescribe and visualize correlations between numerical variables\nVisualize correlations of all numerical variables within groups\nDescribe and visualize relationships based on target variables\n\n\n\nRequired setup\nWe first need to prepare our environment with the necessary packages.\n\noptions(repos = list(CRAN = \"http://cran.rstudio.com/\"))\n\ninstall.packages(\"pacman\")\n\n\nThe downloaded binary packages are in\n    /var/folders/c0/w15tbmpn36d7jj_tpjm_sz9c0000gn/T//RtmppC8FsJ/downloaded_packages\n\npacman::p_load(colorblindr,\n       dlookr,\n       formattable,\n       GGally,\n       ggdist,\n       ggpubr,\n       ggridges,\n       here,\n       tidyverse)\n\n# Set global ggplot() theme\n# Theme pub_clean() from the ggpubr package with base text size = 16\ntheme_set(theme_pubclean(base_size = 12)) \n# All axes titles to their respective far right sides\ntheme_update(axis.title = element_text(hjust = 1))\n# Remove axes ticks\ntheme_update(axis.ticks = element_blank()) \n# Remove legend key\ntheme_update(legend.key = element_blank())"
   },
   {
     "objectID": "CorrelateLikeDataMaster.html#load-the-examine-a-data-set",
