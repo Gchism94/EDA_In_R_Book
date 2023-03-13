@@ -132,11 +132,12 @@ The relationships below will have the formula relationship `target ~ predictor`.
 `Formula: Sap_Flow (numerical response)  ~ pLWP (numerical predictor)`
 
 ```{r lm}
-pacman::p_load(sjPlot,
-       sjmisc,
-       sjlabelled)
+# First, we need to remove NAs, they cause an error
+dataset.noNA <- dataset |> 
+  drop_na()
+
 # The numerical predictor variable that we want
-num <- target_by(dataset, Sap_Flow)
+num <- target_by(dataset.noNA, Sap_Flow)
 
 # Relating the variable of interest to the numerical target variable
 num_num <- relate(num, pLWP)

@@ -66,7 +66,7 @@ theme_update(legend.key = element_blank())
 ## Load and Examine a Data Set
 
 ```{r load-data}
-# Let's load a data set from the diabetes data set
+# Let's the diabetes data set
 dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
@@ -167,7 +167,7 @@ na.dataset |>
 -   y axis (right green bars) show the number of missing values in the columns in orange blocks
 
 ```{r adv-plot-NAs}
-# Plot the insersect of the 5 columns with the most missing values
+# Plot the intersect of the 5 columns with the most missing values
 # This means that some combinations of columns have missing values in the same row
 na.dataset |>
   select(BloodPressure, Glucose, Age) |>
@@ -469,12 +469,14 @@ rpart_na_imp_insulin |>
 
 MICE is an algorithm that fills missing values multiple times, hence dealing with uncertainty better than other methods. This approach creates multiple copies of the data that can then be analyzed and then pooled into a single dataset.
 
+NOTE: You will have to set a random seed (e.g., 123) since the MICE algorithm pools several simulated imputations. Without setting a seed, a different result will occur after each simulation.
+
 ![Image Credit: [Will Badr](https://towardsdatascience.com/6-different-ways-to-compensate-for-missing-values-data-imputation-with-examples-6022d9ca0779)](https://miro.medium.com/max/1400/1*cmZFWypJUrFL2QL3KyzXEQ.png)
 
 ```{r mice-imp}
 # Raw summary, output suppressed
 mice_na_imp_insulin <- na.dataset |>
-  imputate_na(Insulin, method = "mice")
+  imputate_na(Insulin, method = "mice", seed = 123)
 
 # Plot showing the results of our imputation
 mice_na_imp_insulin |>
