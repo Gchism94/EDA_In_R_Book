@@ -1,0 +1,55 @@
+# Overview {.unnumbered}
+
+Here you will find a companion book for Exploratory Data Analysis in R Workshops prepared by the staff of the [Data Science Institute](https://datascience.arizona.edu/)
+
+The links below take you to the GitHub repository for the associated workshop.
+
+------------------------------------------------------------------------
+
+## [Diagnosing like a data doctor](https://github.com/Gchism94/EDA_In_R_Book/tree/main/Workshops/Fall2022/EDA_In_R_Fall1)
+
+### Chapter summary
+
+Exploring a novel data set and produce publication quality tables and reports
+
+------------------------------------------------------------------------
+
+## [Exploring like a data adventurer](https://github.com/Gchism94/EDA_In_R_Book/tree/main/Workshops/Fall2022/EDA_In_R_Fall2)
+
+### Chapter summary
+
+Exploring the normality of numerical columns in a novel data set and producing publication quality tables and reports
+
+------------------------------------------------------------------------
+
+## [Transforming like a Data... Transformer](https://github.com/Gchism94/EDA_In_R_Book/tree/main/Workshops/Fall2022/EDA_In_R_Fall3)
+
+### Chapter summary
+
+Using data transformation to correct non-normality in numerical data
+
+------------------------------------------------------------------------
+
+## [Imputing like a Data Scientist](https://github.com/Gchism94/EDA_In_R_Book/tree/main/Workshops/Fall2022/EDA_In_R_Fall4)
+
+### Chapter summary
+
+Exploring, visualizing, and imputing outliers and missing values (NAs) in a novel data set and produce publication quality graphs and tables
+
+------------------------------------------------------------------------
+
+## [Correlating Like a Data Master](https://github.com/Gchism94/EDA_In_R_Book/tree/main/Workshops/Fall2022/EDA_In_R_Fall5)
+
+### Chapter summary
+
+Assess relationships within a novel data set using publication quality tables and plots
+
+------------------------------------------------------------------------
+
+[Visit our available Digital Learning Resources Library!](https://github.com/ua-data7/LearningResources/wiki)
+
+------------------------------------------------------------------------
+
+Created: 07/22/2022 (G. Chism); Last update: 09/14/2023
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/CC_BY-NC-SA.svg/800px-CC_BY-NC-SA.svg.png?20181117113353" width="150" height="50"/> [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)
