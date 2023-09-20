@@ -27,9 +27,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 We first need to prepare our environment with the necessary packages.
 
 ```{r req-setup}
-options(repos = list(CRAN = "http://cran.rstudio.com/"))
-
-install.packages("pacman")
+if (!require(pacman))
+  install.packages("pacman")
 
 pacman::p_load(colorblindr,
        dlookr,

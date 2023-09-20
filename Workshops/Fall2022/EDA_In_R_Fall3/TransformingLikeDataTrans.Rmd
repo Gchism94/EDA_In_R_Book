@@ -34,14 +34,12 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 We first need to prepare our environment with the necessary packages
 
 ```{r, results = 'hide', message = FALSE, warning = FALSE}
-# Sets the repository to download packages from
-options(repos = list(CRAN = "http://cran.rstudio.com/"))
-
 # Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
 
 # Required package for quick package downloading and loading 
-install.packages("pacman")
+if (!require(pacman))
+  install.packages("pacman")
 
 # Downloads and load required packages
 pacman::p_load(dlookr, # Exploratory data analysis
@@ -65,7 +63,7 @@ pacman::p_load(dlookr, # Exploratory data analysis
 
 ```{r}
 # Let's load a data set from the diabetes data set
-dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
+dataset <- read.csv(here("EDA_In_R_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
                             ifelse(Age > 30 & Age <= 50, "Middle", 

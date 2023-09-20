@@ -25,14 +25,12 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 We first need to prepare our environment with the necessary packages and set a global theme for publishable plots in `ggplot()`
 
 ```{r req-setup, results = 'hide', message = FALSE, warning = FALSE}
-# Sets the repository to download packages from
-options(repos = list(CRAN = "http://cran.rstudio.com/"))
-
 # Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
 
 # Required package for quick package downloading and loading 
-install.packages("pacman")
+if (!require(pacman))
+  install.packages("pacman")
 
 pacman::p_load(colorblindr, # Colorblind friendly pallettes
                cluster, # K cluster analyses

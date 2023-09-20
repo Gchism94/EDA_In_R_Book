@@ -33,14 +33,12 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 We first need to prepare our environment with the necessary packages and set a global theme for publishable plots in `ggplot()`
 
 ```{r, results = 'hide', message = FALSE, warning = FALSE}
-# Sets the repository to download packages from
-options(repos = list(CRAN = "http://cran.rstudio.com/"))
-
 # Sets the number of significant figures to two - e.g., 0.01
 options(digits = 2)
 
 # Required package for quick package downloading and loading 
-install.packages("pacman")
+if (!require(pacman))
+  install.packages("pacman")
 
 pacman::p_load(colorblindr, # Colorblind friendly pallettes
                cluster, # K cluster analyses
@@ -75,7 +73,7 @@ theme_update(legend.key = element_blank())
 
 ```{r}
 # Let's load a data set from the diabetes data set
-dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "diabetes.csv")) |>
+dataset <- read.csv(here("EDA_In_R_Book", "data", "diabetes.csv")) |>
   # Add a categorical group
   mutate(Age_group = ifelse(Age >= 21 & Age <= 30, "Young", 
                             ifelse(Age > 30 & Age <=50, "Middle", 

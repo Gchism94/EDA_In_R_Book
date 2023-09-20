@@ -15,10 +15,12 @@ Here, we utilize the [dlookr package](https://github.com/choonghyunryu/dlookr) t
 Exploratory data analysis is a [statistical](https://en.wikipedia.org/wiki/Statistics), approach towards analyzing [data sets](https://en.wikipedia.org/wiki/Data_set) to investigate and summarize their main characteristics, often through [statistical graphics](https://en.wikipedia.org/wiki/Statistical_graphics) and other data visualization methods.
 
 ```{r EDA-Title-Plot}
+if (!require(pacman))
+  install.packages("pacman")
+
 pacman::p_load(colorblindr, colorspace, dlookr, formattable, GGally, ggcorrplot, ggpubr, ggthemes, here, hrbrthemes, remotes, tidyverse, plotly) 
 
 pacman::p_load_gh("r-link/corrmorant")
-
 
 theme_set(theme_pubclean(base_size = 16))
 theme_update(axis.title = element_text(hjust = 1))

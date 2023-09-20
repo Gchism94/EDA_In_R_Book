@@ -35,9 +35,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 #### We first need to prepare our environment with the necessary packages
 
 ```{r}
-options(repos = list(CRAN = "http://cran.rstudio.com/"))
-
-install.packages("pacman")
+if (!require(pacman))
+  install.packages("pacman")
 
 library(pacman)
 
@@ -70,7 +69,7 @@ We will be using open source data from UArizona researchers that investigates th
 
 ```{r}
 # Let's load the canopy tree data set
-dataset <- read.csv(here("Data7_EDA_In_R_Book", "data", "Data_Fig2_Repo.csv"))
+dataset <- read.csv(here("EDA_In_R_Book", "data", "Data_Fig2_Repo.csv"))
 
 # What does the data look like?
 dataset |>
@@ -144,8 +143,12 @@ The relationships below will have the formula relationship `target ~ predictor`.
 `Formula: pLWP (numerical)  ~ Sap_Flow (numerical)`
 
 ```{r}
+# First, we need to remove NAs, they cause an error
+dataset.noNA <- dataset |> 
+  drop_na()
+
 # The numerical predictor variable that we want
-num <- target_by(dataset, Sap_Flow)
+num <- target_by(dataset.noNA, Sap_Flow)
 
 # Relating the variable of interest to the numerical target variable
 num_num <- relate(num, pLWP)
